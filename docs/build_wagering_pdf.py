@@ -7,6 +7,7 @@ Usage:  python3 docs/build_wagering_pdf.py [output.pdf]
 Requires: reportlab
 """
 
+import io
 import sys
 from datetime import date
 
@@ -15,6 +16,7 @@ from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_RIGHT
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import mm
+from reportlab.pdfgen.canvas import Canvas
 from reportlab.platypus import (
     BaseDocTemplate,
     Flowable,
@@ -48,6 +50,7 @@ CAUTION = colors.HexColor("#8A5A00")
 PAGE_W, PAGE_H = A4
 MARGIN = 20 * mm
 
+PUB_DATE = "August 2026"
 TITLE = "The Complete Guide to Horse Racing Wagering"
 SUBTITLE = "Pools, Prices, Probability and Bankroll"
 
@@ -83,10 +86,12 @@ def build_styles():
     S["h2"] = ParagraphStyle(
         "h2", parent=ss["Heading2"], fontName="Helvetica-Bold", fontSize=12.5,
         leading=15.5, textColor=ACCENT_2, spaceBefore=14, spaceAfter=5,
+        keepWithNext=1,
     )
     S["h3"] = ParagraphStyle(
         "h3", parent=ss["Heading3"], fontName="Helvetica-BoldOblique", fontSize=10.6,
         leading=13.5, textColor=INK, spaceBefore=10, spaceAfter=3,
+        keepWithNext=1,
     )
     S["bullet"] = ParagraphStyle(
         "bullet", parent=S["body"], alignment=TA_JUSTIFY, spaceAfter=3.5, leading=14,
@@ -256,7 +261,7 @@ class Guide(BaseDocTemplate):
             centred(line, "Helvetica", 8.5, colors.HexColor("#B9AE97"), y)
             y -= 6.4 * mm
 
-        centred("Version 1.0  ·  %s" % date.today().strftime("%B %Y"),
+        centred("Version 1.0  ·  %s" % PUB_DATE,
                 "Helvetica", 8.5, colors.HexColor("#B9AE97"), band_h + 22 * mm)
         centred("Prepared for HorseHQ  ·  Educational use only",
                 "Helvetica", 8.5, colors.HexColor("#B9AE97"), band_h + 15 * mm)
@@ -610,7 +615,7 @@ def ch1():
         "Achill Bay        $12,600          12.00         $24.00      11/1",
         "Coldharbour       $37,800           4.00          $8.00       3/1",
         "Marlpit           $50,400           3.00          $6.00       2/1",
-        "Silverlode        $79,200           1.909         $3.81       0.91/1",
+        "Silverlode        $79,200           1.909         $3.82       0.91/1",
         "                 --------",
         "                 $180,000",
         "",
@@ -657,7 +662,7 @@ def ch1():
          "For the bettor the lesson is defensive: a 1/9 shot in the show pool can tie up your "
          "capital for a 5% return with a real chance of losing 100%. Bridge-jumping &mdash; "
          "very large show bets on short-priced horses &mdash; is the classic way to convert a "
-         "large bankroll into a small one, one 4% win at a time."],
+         "large bankroll into a small one, one 5% win at a time."],
         tone="caution"))
 
     s.append(Paragraph("Commingling and why the price moves at the bell", ST["h2"]))
@@ -729,26 +734,28 @@ def ch2():
     s.append(P(
         "The strategic reading of that table is unglamorous but correct: the bet with the "
         "lowest cost of entry is the win bet, and the bets with the highest cost are precisely "
-        "the ones marketed hardest. A bettor with a genuine 5% edge in judgement can profit at "
-        "15% takeout and cannot profit at 25%. The same skill, applied to a different window, "
-        "produces opposite results."))
+        "the ones marketed hardest. By the arithmetic above, 15% takeout requires you to be 17.6% "
+        "better than the crowd, while 25% takeout requires 33.3% better. A bettor with a genuine "
+        "20% edge in judgement can profit at the first and cannot profit at the second. The same "
+        "skill, applied to a different window, produces opposite results."))
 
     s.append(Paragraph("Breakage: the quiet second tax", ST["h2"]))
     s.append(P(
         "After takeout, the calculated payout is rounded down. Traditional breakage rounds the "
-        "$2 payout down to the nearest $0.10 (dime breakage) or $0.20 (nickel breakage on a $1 "
-        "base). The remainder is retained. It sounds trivial and is not, because the effect is "
-        "worst on exactly the short-priced horses that place and show bettors favour."))
+        "$2 payout down to the nearest $0.10 &mdash; dime breakage &mdash; and some "
+        "jurisdictions still round to $0.20, which costs twice as much. The remainder is "
+        "retained. It sounds trivial and is not, because the effect is worst on exactly the "
+        "short-priced horses that place and show bettors favour."))
     s.append(worked("Breakage bites hardest at short prices", [
         "True calculated $2 payout   Paid after dime breakage   Lost to breakage",
-        "        $2.38                        $2.20                  7.6%",
-        "        $3.18                        $3.00                  5.7%",
-        "        $4.19                        $4.00                  4.5%",
-        "        $9.19                        $9.00                  2.1%",
-        "       $24.19                       $24.00                  0.8%",
+        "        $2.38                        $2.30                  3.4%",
+        "        $3.18                        $3.10                  2.5%",
+        "        $4.19                        $4.10                  2.1%",
+        "        $9.19                        $9.10                  1.0%",
+        "       $24.19                       $24.10                  0.4%",
         "",
-        "A show bettor on odds-on favourites can surrender several",
-        "percent to breakage alone, on top of takeout.",
+        "Under 20-cent breakage every figure above roughly doubles:",
+        "the $2.38 payout becomes $2.20, a loss of 7.6%.",
     ]))
     s.append(P(
         "Some jurisdictions have moved to penny breakage, which nearly eliminates this. It is "
@@ -846,11 +853,12 @@ def ch3():
     s.append(P(
         "A five-runner book at 103.88% is a tight, competitive market. A twenty-runner "
         "handicap priced at 130% is a market you should be very reluctant to bet into blind. "
-        "The overround is not distributed evenly, either: bookmakers habitually price "
-        "outsiders proportionally shorter than favourites, which is the mechanical cause of "
-        "the well-documented <i>favourite&ndash;longshot bias</i>. Long-priced horses are, on "
-        "average, worse value than their odds suggest, and this holds in pari-mutuel pools "
-        "too."))
+        "The overround is not distributed evenly, either: bookmakers habitually load more "
+        "margin onto outsiders than onto favourites, which reinforces the well-documented "
+        "<i>favourite&ndash;longshot bias</i> &mdash; the tendency of long-priced horses to be "
+        "worse value than their odds suggest. Margin loading is not the whole explanation, "
+        "though. The same bias appears in pari-mutuel pools, where no bookmaker sets the price "
+        "at all, so bettor behaviour is doing most of the work."))
 
     s.append(Paragraph("Exchange pricing and commission", ST["h2"]))
     s.append(P(
@@ -932,6 +940,7 @@ def ch4():
         ["2 to 4 runners", "Win only &mdash; no each-way betting", "&mdash;"],
         ["5 to 7 runners", "1st and 2nd", "1/4 of the win odds"],
         ["8 or more runners (non-handicap)", "1st, 2nd, 3rd", "1/5 of the win odds"],
+        ["8 to 11 runners (handicap)", "1st, 2nd, 3rd", "1/5 of the win odds"],
         ["12 to 15 runners (handicap)", "1st, 2nd, 3rd", "1/4 of the win odds"],
         ["16 or more runners (handicap)", "1st, 2nd, 3rd, 4th", "1/4 of the win odds"],
     ], [62 * mm, 44 * mm, 44 * mm],
@@ -996,7 +1005,7 @@ def ch5():
                 "variance, and the place where ticket construction begins to matter more "
                 "than opinion.")
     s.append(P(
-        "Vertical exotics ask you to name the finishing order of two, three or four horses "
+        "Vertical exotics ask you to name the finishing order of two, three, four or occasionally five horses "
         "in one race. They are the most heavily promoted bets in racing and among the most "
         "expensive by takeout. They are nevertheless where a strong opinion can be leveraged, "
         "because the crowd's ability to rank horses correctly decays far faster than its "
@@ -1026,7 +1035,9 @@ def ch5():
          "position; see below", "5 keyed on top of 4 others, trifecta: 4&times;3 = 12"],
         ["Part-wheel", "Different horse lists in each position", "product of list sizes, minus "
          "duplicates", "See the worked example below"],
-    ], [26 * mm, 46 * mm, 44 * mm, 42 * mm], font_size=8.2))
+    ], [26 * mm, 46 * mm, 44 * mm, 42 * mm], font_size=8.2,
+        caption="Table 5.2 &mdash; The four ticket shapes. Every exotic wager you will ever "
+                "make is one of these."))
     s.append(worked("Box costs at a $1 base", [
         "Horses    Exacta box    Trifecta box    Superfecta box",
         "   3          $6            $6              n/a",
@@ -1069,8 +1080,9 @@ def ch5():
         "Compare: a 6-horse trifecta box covering the same runners",
         "         = 6 x 5 x 4 = 120 combinations = $120.",
         "",
-        "The part-wheel is 15x cheaper and loses only the outcomes",
-        "in which #5 fails to win -- which you already said was unlikely.",
+        "The part-wheel is 15x cheaper. It gives up the outcomes in",
+        "which #5 fails to win -- which you already said was unlikely",
+        "-- plus the 12 in which #5 wins but a C horse runs second.",
     ]))
     s.append(P(
         "Most tote systems compute the deduplication for you and quote the true ticket cost "
@@ -1147,9 +1159,10 @@ def ch6():
         "  1 x 6 x 8 x 6                    288        $144.00",
         "  5 x 5 x 5 x 5                    625        $312.50",
         "",
-        "Notice rows 5 and 7: nearly identical cost, radically",
-        "different bets. One backs a strong single; the other",
-        "admits it has no opinion anywhere.",
+        "Notice rows 6 and 7: nearly identical cost, radically",
+        "different bets. Row 6 admits it has no opinion anywhere;",
+        "row 7 backs a strong single and spends the savings",
+        "spreading in the three legs it cannot read.",
     ]))
 
     s.append(Paragraph("The single is the whole game", ST["h2"]))
@@ -1175,7 +1188,8 @@ def ch6():
         "Ticket shape beats ticket size",
         ["Two players spend $144 on the same Pick 4. Player A plays 1&times;6&times;8&times;6, "
          "keying a strong single and spreading everywhere else. Player B plays "
-         "3&times;4&times;4&times;3 &mdash; 144 combinations of moderate coverage in every leg.",
+         "4&times;4&times;3&times;6 &mdash; the same 288 combinations, but moderate coverage in "
+         "every leg and a single nowhere.",
          "Player A wins big or loses everything in the first race. Player B wins something more "
          "often but at a fraction of the price, because the horses in B's tickets are the same "
          "horses on everyone else's tickets. Over a season A's structure has higher variance "
@@ -1241,7 +1255,7 @@ def ch7():
         "beaten lengths at each call; the finishing position and margin; the jockey, weight and "
         "odds; the speed figure; and a short comment naming the first three finishers."))
     s.append(worked("Anatomy of one running line", [
-        "12May26 Kem 7f Std  22.4 45.1 1:23.2  6-4  5-3  3-1  2-nk  Doyle 126  9/2  91",
+        "12May26 Bel 7f fst  22.4 45.1 1:23.2  6-4  5-3  3-1  2-nk  Doyle 126  9/2  91",
         "|        |   |   |   |________________|  |____|____|____|   |     |    |    |",
         "|        |   |   |          fractions     position and      jockey wt  SP  figure",
         "|        |   |   track condition          lengths behind",
@@ -1249,7 +1263,7 @@ def ch7():
         "|        track",
         "date",
         "",
-        "Read it as: at Kempton over 7 furlongs on standard going, the",
+        "Read it as: at Belmont over 7 furlongs on a fast track, the",
         "field went 22.4 to the quarter, 45.1 to the half, 1:23.2 final.",
         "Our horse was 6th, 4 lengths back at the first call; 5th and 3",
         "back at the second; 3rd and 1 back at the stretch call; and",
@@ -1356,12 +1370,14 @@ def ch8():
          "A moderate pace and a clear run."],
         ["Closer", "S (sustained)", "Last early, runs on late", "A fast, contested early pace "
          "that collapses. Needs the race to fall apart."],
-    ], [28 * mm, 22 * mm, 44 * mm, 76 * mm], font_size=8.4))
+    ], [28 * mm, 22 * mm, 44 * mm, 76 * mm], font_size=8.4,
+        caption="Table 8.2 &mdash; Running styles. The abbreviations are those used by most "
+                "North American form providers."))
     s.append(P(
         "The pace scenario is the interaction of these styles in a specific field, and it is "
         "the most reliable source of edge available to a bettor willing to do the work. The "
         "core insight is simple: the number of horses that want the lead determines who wins."))
-    s.append(worked("Two fields, same horses, opposite outcomes", [
+    s.append(worked("Two pace shapes, opposite outcomes", [
         "FIELD A -- lone speed",
         "  1 front-runner, 3 pressers, 4 closers",
         "  The front-runner gets an uncontested, slow lead. It has",
@@ -1475,7 +1491,9 @@ def ch9():
          "samples; require several years of data before believing it"],
         ["Today's jockey combination", "Some trainers reserve their best rider for their best "
          "chance", "A stable's top jockey on a longshot in the barn's second string is a signal"],
-    ], [42 * mm, 62 * mm, 66 * mm], font_size=8.2))
+    ], [42 * mm, 62 * mm, 66 * mm], font_size=8.2,
+        caption="Table 9.2 &mdash; The trainer statistics worth looking up, and what counts as "
+                "a meaningful number in each."))
     s.append(callout(
         "Beware of small samples",
         ["A trainer who is '3 for 5 with first-time starters' is very likely a trainer who has "
@@ -1543,14 +1561,14 @@ def ch10():
     ]))
     s.append(worked("A completed line for an eight-runner handicap", [
         "Horse            My %    My fair odds   Board    Verdict",
-        "Coldharbour       28%        5/2         2/1     UNDERLAY - no bet",
-        "Achill Bay        20%        4/1         6/1     OVERLAY  - bet",
-        "Marlpit           16%        5/1         9/2     underlay - no bet",
-        "Silverlode        12%        7/1        11/1     OVERLAY  - bet",
-        "Penny Whistle      9%       10/1         8/1     underlay - no bet",
-        "Grey Sessions      7%       13/1        20/1     OVERLAY  - bet",
-        "Foxbarrow          5%       19/1        16/1     underlay - no bet",
-        "Tallowmere         3%       32/1        50/1     overlay  - too small to matter",
+        "Ashgrove          28%        5/2         2/1     UNDERLAY - no bet",
+        "Ninebarrow        20%        4/1         6/1     OVERLAY  - bet",
+        "Cranmere          16%        5/1         9/2     underlay - no bet",
+        "Saltmarsh         12%        7/1        11/1     OVERLAY  - bet",
+        "Bell Heather       9%       10/1         8/1     underlay - no bet",
+        "Winterditch        7%       13/1        20/1     OVERLAY  - bet",
+        "Owlpen             5%       19/1        16/1     underlay - no bet",
+        "Redmire            3%       32/1        50/1     overlay  - too small to matter",
         "                 ----",
         "                 100%",
         "",
@@ -1616,7 +1634,7 @@ def ch11():
         "is simple, it makes your records interpretable &mdash; profit is directly comparable "
         "across bets &mdash; and it removes the emotional escalation that destroys most "
         "accounts. A common rule is 1% to 3% of bankroll per bet, with 2% a reasonable "
-        "starting point. At 2%, a fifty-bet losing run is survivable; at 10% it is fatal."))
+        "starting point. At 2%, a twenty-bet losing run costs 40% of the bankroll and is survivable; at 10% the same run wipes you out twice over."))
     s.append(P(
         "The refinement worth making is <i>flat to win</i> rather than flat stake. Betting to "
         "win a fixed amount rather than to risk a fixed amount means larger stakes on short "
@@ -1658,9 +1676,11 @@ def ch11():
          "The standard recommendation for anyone estimating their own probabilities."],
         ["Quarter Kelly", "f* / 4", "Very conservative. Appropriate when your edge estimate is "
          "genuinely uncertain, which for most bettors is always."],
-        ["Capped Kelly", "min(f*, cap)", "Half Kelly with a hard ceiling, commonly 3&ndash;5% "
+        ["Capped Kelly", "min(f*/2, cap)", "Half Kelly with a hard ceiling, commonly 3&ndash;5% "
          "of bankroll. Protects against a single miscalculated huge edge."],
-    ], [26 * mm, 22 * mm, 122 * mm], font_size=8.4))
+    ], [26 * mm, 22 * mm, 122 * mm], font_size=8.4,
+        caption="Table 11.1 &mdash; Fractional Kelly. Almost nobody estimating their own "
+                "probabilities should be playing full Kelly."))
     s.append(callout(
         "Kelly in a pari-mutuel pool",
         ["Kelly assumes a fixed price. In a pari-mutuel pool your stake changes the price, so "
@@ -1703,7 +1723,7 @@ def ch11():
     s.append(Paragraph("Drawdown, variance and the length of a bad run", ST["h2"]))
     s.append(P(
         "Losing runs are longer than intuition suggests. A bettor with a genuine edge backing "
-        "horses at an average 8/1 wins roughly one bet in eight. The probability of at least "
+        "horses at an average 8/1 wins roughly one bet in nine. The probability of at least "
         "one run of twenty consecutive losses over a season of a thousand bets is close to "
         "certain. This is not a sign that the method has stopped working; it is the arithmetic "
         "of an 11% strike rate."))
@@ -1711,11 +1731,11 @@ def ch11():
         ["Average price", "Approx. strike rate", "Chance of a 20-loss run in 500 bets",
          "Bankroll units to survive comfortably"],
         ["2/1", "33%", "Very low", "50&ndash;100"],
-        ["5/1", "17%", "Moderate", "100&ndash;200"],
+        ["5/1", "17%", "Very likely &mdash; about 90%", "100&ndash;200"],
         ["10/1", "9%", "Near certain", "200&ndash;400"],
         ["25/1", "4%", "Certain; 50-loss runs are routine", "500+"],
     ], [26 * mm, 30 * mm, 56 * mm, 50 * mm], font_size=8.4,
-        caption="Table 11.1 &mdash; The longer the prices you play, the deeper the bankroll you "
+        caption="Table 11.2 &mdash; The longer the prices you play, the deeper the bankroll you "
                 "need for the same level of comfort. Figures are indicative, assuming a small "
                 "positive edge."))
     s.append(PageBreak())
@@ -1746,7 +1766,9 @@ def ch12():
         ["Reason for the bet, in one line", "'Lone speed, drops in class' is a category you can "
          "later analyse. 'Looked good' is not."],
         ["Result and return", "Gross return, not profit &mdash; compute profit later."],
-    ], [52 * mm, 118 * mm], font_size=8.4))
+    ], [52 * mm, 118 * mm], font_size=8.4,
+        caption="Table 12.1 &mdash; The minimum useful bet log. Every field must be filled in "
+                "before the race runs, except the last."))
 
     s.append(Paragraph("The metrics that matter", ST["h2"]))
     s.append(worked("Core performance metrics", [
@@ -1855,7 +1877,9 @@ def ch13():
          "Priced separately these are a significant annual cost."],
         ["Withdrawal terms and licensing", "Confirm the operator is licensed in your "
          "jurisdiction and understand the withdrawal timetable before you deposit."],
-    ], [46 * mm, 124 * mm], font_size=8.4))
+    ], [46 * mm, 124 * mm], font_size=8.4,
+        caption="Table 13.1 &mdash; Choosing an account wagering platform. For most bettors "
+                "this decision is worth more than a year of handicapping improvement."))
 
     s.append(Paragraph("Will-pays, probables and reading the other pools", ST["h2"]))
     s.append(P(
@@ -1927,7 +1951,7 @@ def ch14():
          "when they are wrong or when they conceal something, not when they are highest."),
         ("Treating a big-race day like a normal day",
          "Championship days attract enormous casual money, which distorts pools in predictable "
-         "directions &mdash; toward famous horses, famous jockeys, and recognisable names. "
+         "directions &mdash; towards famous horses, famous jockeys, and recognisable names. "
          "This is an opportunity, but only for a bettor who has not also become excited."),
         ("Failing to shop the price",
          "In fixed-odds markets, taking the first price you see is a straightforward donation. "
@@ -1970,7 +1994,7 @@ def ch15():
     s.append(Paragraph("Jurisdictional sketch", ST["h2"]))
     s.append(table([
         ["Jurisdiction", "Structure", "Notes"],
-        ["United States", "Pari-mutuel only, regulated state by state. Interstate account "
+        ["United States", "Predominantly pari-mutuel, regulated state by state. Interstate account "
          "wagering is permitted under federal law subject to state consent.",
          "Legality of ADW, the tracks available and the takeout rates all differ by state. "
          "Fixed-odds horse wagering has been introduced in a small number of states and remains "
@@ -2151,9 +2175,12 @@ def app_b():
                  "probability here is the break-even win rate for a bet at that price.")
     rows = [["Fractional", "Decimal", "American", "Implied %", "Fractional", "Decimal",
              "American", "Implied %"]]
-    left = [("1/10", 1.10, "-1000"), ("1/5", 1.20, "-500"), ("2/7", 1.286, "-350"),
-            ("1/3", 1.33, "-300"), ("2/5", 1.40, "-250"), ("1/2", 1.50, "-200"),
-            ("8/13", 1.615, "-163"), ("4/5", 1.80, "-125"), ("10/11", 1.909, "-110"),
+    M = "&minus;"
+    left = [("1/10", 1.10, M + "1000"), ("1/5", 1.20, M + "500"),
+            ("2/7", 9.0 / 7.0, M + "350"), ("1/3", 4.0 / 3.0, M + "300"),
+            ("2/5", 1.40, M + "250"), ("1/2", 1.50, M + "200"),
+            ("8/13", 21.0 / 13.0, M + "163"), ("4/5", 1.80, M + "125"),
+            ("10/11", 21.0 / 11.0, M + "110"),
             ("1/1", 2.00, "+100"), ("11/10", 2.10, "+110"), ("5/4", 2.25, "+125"),
             ("11/8", 2.375, "+138"), ("6/4", 2.50, "+150"), ("13/8", 2.625, "+163"),
             ("7/4", 2.75, "+175"), ("15/8", 2.875, "+188"), ("2/1", 3.00, "+200")]
@@ -2163,9 +2190,15 @@ def app_b():
              ("8/1", 9.00, "+800"), ("10/1", 11.00, "+1000"), ("12/1", 13.00, "+1200"),
              ("14/1", 15.00, "+1400"), ("16/1", 17.00, "+1600"), ("20/1", 21.00, "+2000"),
              ("25/1", 26.00, "+2500"), ("33/1", 34.00, "+3300"), ("50/1", 51.00, "+5000")]
+    # The epsilon forces exact .xx5 decimals (11/8, 13/8) to round up
+    # consistently; Python's default round-half-even would send 2.375 up and
+    # 2.625 down, which looks like a mistake in a printed table.
+    def dec(d):
+        return "%.2f" % (d + 1e-9)
+
     for (lf, ld, la), (rf, rd, ra) in zip(left, right):
-        rows.append([lf, "%.2f" % ld, la, "%.1f%%" % (100.0 / ld),
-                     rf, "%.2f" % rd, ra, "%.1f%%" % (100.0 / rd)])
+        rows.append([lf, dec(ld), la, "%.1f%%" % (100.0 / ld),
+                     rf, dec(rd), ra, "%.1f%%" % (100.0 / rd)])
     s.append(table(rows, [20 * mm, 18 * mm, 21 * mm, 20 * mm,
                           20 * mm, 18 * mm, 21 * mm, 20 * mm],
                    font_size=8.2,
@@ -2173,8 +2206,11 @@ def app_b():
                            "implied probabilities sum to more than 100%; the excess is the "
                            "overround."))
 
-    s.append(Paragraph("Converting a probability to a price", ST["h2"]))
-    s.append(worked("Both directions", [
+    # Bundled explicitly: this block is just over the automatic threshold in
+    # bind_headings, and the page it would otherwise head is already short.
+    s.append(KeepTogether([
+        Paragraph("Converting a probability to a price", ST["h2"]),
+        worked("Both directions", [
         "probability -> odds        odds -> probability",
         "  decimal   d = 1 / p        p = 1 / d",
         "  fraction  a/b where        p = b / (a + b)",
@@ -2188,6 +2224,7 @@ def app_b():
         "  decimal  = 1/0.15   = 6.67",
         "  fraction = 0.85/0.15 = 5.67/1, i.e. about 11/2",
         "  American = 100 x 0.85/0.15 = +567",
+        ]),
     ]))
     s.append(PageBreak())
     return s
@@ -2219,9 +2256,9 @@ def app_c():
         ["6/5 to Evens", "45p"],
         ["6/4 to 5/4", "40p"],
         ["7/4 to 8/5", "35p"],
-        ["9/4 to 15/8", "30p"],
-        ["3/1 to 5/2", "25p"],
-        ["4/1 to 10/3", "20p"],
+        ["9/4 to 9/5", "30p"],
+        ["3/1 to 12/5", "25p"],
+        ["4/1 to 16/5", "20p"],
         ["11/2 to 9/2", "15p"],
         ["9/1 to 6/1", "10p"],
         ["14/1 to 10/1", "5p"],
@@ -2274,8 +2311,11 @@ def app_c():
         caption="Table C.3 &mdash; Cost is the product of the horses used in each leg, times "
                 "the base unit."))
 
-    s.append(Paragraph("C.4 &nbsp;Pool payout formulas, collected", ST["h2"]))
-    s.append(worked("Every formula in this guide, in one place", [
+    # Bundled explicitly: the block is over the bind_headings threshold, and
+    # the page it would otherwise head is already nearly full.
+    s.append(KeepTogether([
+        Paragraph("C.4 &nbsp;Pool payout formulas, collected", ST["h2"]),
+        worked("Every formula in this guide, in one place", [
         "WIN",
         "  payout per $2 = 2 x [ W(1-t) ] / w        then apply breakage",
         "",
@@ -2300,6 +2340,7 @@ def app_c():
         "  W, P, S, X = gross pool for that bet type",
         "  t = takeout rate;  w, p(), s() = amount staked on a runner",
         "  p = your estimated probability;  d = decimal odds",
+        ]),
     ]))
     s.append(PageBreak())
     return s
@@ -2318,8 +2359,8 @@ def app_d():
     s.append(table([
         ["Horse", "Style", "Last run", "Notes from the form"],
         ["Coldharbour", "E", "Won by 3, career-best figure", "Clear top figure, but that was a "
-         "career best off a layoff &mdash; bounce candidate. Also the only confirmed "
-         "front-runner facing three others who want the lead."],
+         "career best off a layoff &mdash; bounce candidate. Also one of four horses that want "
+         "the lead, and the one most committed to it."],
         ["Achill Bay", "E/P", "4th, beaten 2, wide throughout", "Chart says 'wide into the "
          "stretch'. Replay confirms it lost about three lengths on the turn. Effectively a "
          "winning run. Second start off a layoff for a barn that hits 24% in that spot."],
@@ -2333,7 +2374,9 @@ def app_d():
          "rail was dead and it raced on the rail throughout. Forgivable. Drops in class."],
         ["Foxbarrow", "E", "5th, beaten 6", "Third of the four front-runners."],
         ["Tallowmere", "P", "7th, beaten 8", "Little to recommend it."],
-    ], [26 * mm, 14 * mm, 40 * mm, 90 * mm], font_size=8.2))
+    ], [26 * mm, 14 * mm, 40 * mm, 90 * mm], font_size=8.2,
+        caption="Table D.1 &mdash; The field as read from the form, before looking at a single "
+                "price."))
     s.append(P(
         "The structural read: <b>four</b> horses want the lead (Coldharbour, Silverlode, "
         "Foxbarrow, and Achill Bay if forced). That is a speed duel. The front end is likely "
@@ -2419,7 +2462,7 @@ def app_d():
 
     s.append(Paragraph("Step 5 &mdash; Record it before the race runs", ST["h2"]))
     s.append(worked("The log entry, written before the gates open", [
-        "Date/Track/Race   12 May / Kempton / R6",
+        "Date/Track/Race   12 May / Belmont / R6",
         "Bet 1  Achill Bay WIN  $150 @ 11/2   my p = 24%",
         "Bet 2  Grey Sessions WIN $115 @ 12/1  my p = 12%",
         "Bet 3  Exacta part-wheel $12",
@@ -2443,6 +2486,54 @@ def app_d():
 # --------------------------------------------------------------------------
 # Assemble
 # --------------------------------------------------------------------------
+
+def bind_headings(story):
+    """Bundle a heading with the block that follows it.
+
+    ParagraphStyle.keepWithNext handles a heading followed by body text, but
+    not one followed by a KeepTogether (a table or a worked example) -- those
+    move to the next page on their own and leave the heading stranded at the
+    foot of the previous one. Bundling the pair into a single KeepTogether
+    makes them travel together.
+
+    Bundling is skipped for tall blocks: a big table nested two KeepTogethers
+    deep stops splitting across pages and starts wasting whole pages instead.
+    Those keep the old behaviour, where the table breaks and the heading may
+    sit above it on the previous page.
+    """
+    # 60mm is the measured sweet spot: bundling blocks larger than this
+    # buys a few less orphans at a cost of several near-empty pages.
+    limit = 60 * mm
+    # Flowables need a canvas bound before they can be measured outside a build.
+    probe = Canvas(io.BytesIO(), pagesize=A4)
+    out = []
+    i = 0
+    while i < len(story):
+        f = story[i]
+        nxt = story[i + 1] if i + 1 < len(story) else None
+        if (isinstance(f, Paragraph) and f.style.name in ("h2", "h3")
+                and isinstance(nxt, (KeepTogether, ListFlowable))):
+            try:
+                nxt.canv = probe
+                wrapped = nxt.wrap(W_FULL, PAGE_H)[1]
+                # KeepTogether.wrap reports a sentinel height to force a split,
+                # stashing the real measurement on _H.
+                height = getattr(nxt, "_H", None)
+                if not height:
+                    height = wrapped
+            except Exception:
+                height = limit + 1
+            finally:
+                if hasattr(nxt, "canv"):
+                    del nxt.canv
+            if height <= limit:
+                out.append(KeepTogether([f, nxt]))
+                i += 2
+                continue
+        out.append(f)
+        i += 1
+    return out
+
 
 def build(path):
     doc = Guide(path, title=TITLE, author="HorseHQ",
@@ -2491,7 +2582,7 @@ def build(path):
     story += app_c()
     story += app_d()
 
-    doc.multiBuild(story)
+    doc.multiBuild(bind_headings(story))
     return path
 
 
