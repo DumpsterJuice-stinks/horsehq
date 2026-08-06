@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Horse HQ — Horse Marketplace</title>
+  <meta name="description" content="Buy, sell, and feature horses on The Horse HQ — Racing Quarter Horses, Thoroughbreds, yearlings, ranch and roping horses, hay, transporters, and equine art. List your horse in minutes.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="The Horse HQ">
+  <meta property="og:title" content="The Horse HQ — Horse Marketplace">
+  <meta property="og:description" content="Buy, sell, and feature horses — Racing Quarter Horses to Hay, Transporters to Art. List yours today.">
+  <meta property="og:url" content="https://thehorsehq.com/">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="The Horse HQ — Horse Marketplace">
+  <meta name="twitter:description" content="Buy, sell, and feature horses — Racing Quarter Horses to Hay, Transporters to Art. List yours today.">
+
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#" class="logo" onclick="showPage('home'); return false;">
+        <span class="logo-text">The Horse <strong>HQ</strong></span>
+      </a>
+      <nav class="main-nav">
+        <a href="#" onclick="showPage('home'); return false;">Home</a>
+        <a href="#" onclick="showPage('listings'); return false;">Browse Listings</a>
+        <a href="#" onclick="showPage('stallions'); return false;">Member Stallions</a>
+        <a href="#" onclick="showPage('submit'); return false;">Sell a Horse</a>
+        <a href="#" onclick="showPage('pricing'); return false;">Pricing</a>
+        <button type="button" class="categories-trigger" onclick="openCategoriesPanel()">
+          Categories
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+      </nav>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#" onclick="showPage('home'); return false;">Home</a>
+      <a href="#" onclick="showPage('listings'); return false;">Browse Listings</a>
+      <a href="#" onclick="showPage('stallions'); return false;">Member Stallions</a>
+      <a href="#" onclick="showPage('submit'); return false;">Sell a Horse</a>
+      <a href="#" onclick="showPage('pricing'); return false;">Pricing</a>
+      <button type="button" class="categories-trigger" onclick="openCategoriesPanel()">
+        Categories
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ CATEGORIES SLIDE-OUT PANEL ============ -->
+  <div class="categories-panel-overlay" id="categoriesPanelOverlay" onclick="closeCategoriesPanel()"></div>
+  <div class="categories-panel" id="categoriesPanel">
+    <div class="categories-panel-header">
+      <h3>Browse by Category</h3>
+      <button type="button" class="categories-panel-close" onclick="closeCategoriesPanel()">✕</button>
+    </div>
+    <div class="categories-panel-list" id="categoriesPanelList"></div>
+  </div>
+
+  <!-- ============ HOME PAGE ============ -->
+  <div id="page-home" class="page active">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <h1>The #1 Horse Marketplace in the Country</h1>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary btn-lg" onclick="showPage('submit'); return false;">List a Horse</a>
+          <a href="#" class="btn btn-outline btn-lg" onclick="showPage('listings'); return false;">Browse All</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOP ADVERTISEMENT SLOTS -->
+    <section class="section top-ad-section">
+      <div class="section-inner">
+        <div class="ad-slots-grid">
+          <div class="ad-slot">
+            <span class="ad-banner-label">Advertisement</span>
+            <div class="ad-slot-content">
+              <h4>Your Ad Here</h4>
+              <p>Prime placement above the fold — the first thing buyers see.</p>
+            </div>
+            <a href="https://buy.stripe.com/7sY5kCdGTc3DbtT7qa6Vq02" target="_blank" rel="noopener" class="btn btn-outline">Get Ad Rates</a>
+          </div>
+          <div class="ad-slot">
+            <span class="ad-banner-label">Advertisement</span>
+            <div class="ad-slot-content">
+              <h4>Your Ad Here</h4>
+              <p>Reach horse buyers and sellers before they scroll past.</p>
+            </div>
+            <a href="https://buy.stripe.com/7sY5kCdGTc3DbtT7qa6Vq02" target="_blank" rel="noopener" class="btn btn-outline">Get Ad Rates</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED LISTINGS -->
+    <section class="section featured-section">
+      <div class="section-inner">
+        <div class="section-header">
+          <div>
+            <span class="section-label">Featured Listings</span>
+            <h2>Premium Listings on the Homepage</h2>
+            <p>Sellers pay extra to be seen here — these horses are ready to move.</p>
+          </div>
+          <a href="#" class="btn btn-outline" onclick="showPage('pricing'); return false;">Get Featured →</a>
+        </div>
+        <div class="listings-grid" id="featuredGrid"></div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="section categories-section">
+      <div class="section-inner">
+        <h2>Browse by Category</h2>
+        <div class="categories-list" id="categoriesGrid"></div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta-section">
+      <div class="section-inner cta-inner">
+        <h2>Ready to Sell?</h2>
+        <p>List your horse, hay, transporter service, or art in minutes. Reach thousands of serious buyers.</p>
+        <a href="#" class="btn btn-primary btn-lg" onclick="showPage('submit'); return false;">Submit a Listing</a>
+        <p class="cta-sub"><a href="#" onclick="showPage('pricing'); return false;">See featured options →</a></p>
+      </div>
+    </section>
+
+    <!-- ADVERTISEMENT FOOTER -->
+    <section class="section ad-banner-section">
+      <div class="section-inner">
+        <div class="ad-banner">
+          <span class="ad-banner-label">Advertisement</span>
+          <div class="ad-banner-content">
+            <h3>Reach Thousands of Horse Buyers & Sellers</h3>
+            <p>Advertise your ranch, tack shop, feed store, or service right here on The Horse HQ homepage.</p>
+          </div>
+          <a href="https://buy.stripe.com/7sY5kCdGTc3DbtT7qa6Vq02" target="_blank" rel="noopener" class="btn btn-outline">Get Ad Rates</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ LISTINGS PAGE ============ -->
+  <div id="page-listings" class="page">
+    <section class="section">
+      <div class="section-inner">
+        <div class="listings-header">
+          <h1>All Listings</h1>
+          <div class="listings-controls">
+            <select id="categoryFilter" onchange="filterListings()">
+              <option value="">All Categories</option>
+            </select>
+            <select id="sortFilter" onchange="filterListings()">
+              <option value="newest">Newest First</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="featured">Featured First</option>
+            </select>
+          </div>
+        </div>
+        <div class="listings-grid" id="allListingsGrid"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ CATEGORY PAGE ============ -->
+  <div id="page-category" class="page">
+    <section class="section">
+      <div class="section-inner">
+        <div class="breadcrumb">
+          <a href="#" onclick="showPage('listings'); return false;">← All Listings</a>
+        </div>
+        <h1 id="categoryTitle">Category</h1>
+        <div class="listings-grid" id="categoryGrid"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ MEMBER STALLIONS PAGE ============ -->
+  <div id="page-stallions" class="page">
+    <section class="hero">
+      <div class="hero-inner">
+        <h1>Member Stallions</h1>
+        <p>Standing stallions from verified members — pedigree, progeny earnings, and stud fee, all in one place.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary btn-lg" onclick="showPage('submit-stallion'); return false;">Become a Member Stallion</a>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-inner">
+        <div class="listings-header">
+          <h2>Standing Stallions</h2>
+        </div>
+        <div class="listings-grid" id="stallionsGrid"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ BECOME A MEMBER STALLION PAGE ============ -->
+  <div id="page-submit-stallion" class="page">
+    <section class="section">
+      <div class="section-inner submit-inner">
+        <div class="submit-info">
+          <h1>Become a Member Stallion</h1>
+          <p>Full stallion profile — pedigree, progeny record, and stud fee — standing in front of serious breeders for 12 months.</p>
+          <div class="submit-fee-box">
+            <div class="fee-row">
+              <span>Member Stallion Listing</span>
+              <strong>$600 / 12 months</strong>
+            </div>
+            <p class="fee-note">Includes full pedigree, progeny earnings, and lifetime earnings display, plus Boost and Featured options after you submit.</p>
+          </div>
+          <a href="#" class="btn btn-outline" onclick="showPage('stallions'); return false;">← Back to Member Stallions</a>
+        </div>
+        <div class="submit-form-box">
+          <form id="submitStallionForm" onsubmit="submitStallionListing(event)" data-netlify="true" data-netlify-honeypot="bot-field" name="stallion-submission">
+            <input type="hidden" name="form-name" value="stallion-submission">
+            <p hidden><label>Don't fill this out: <input name="bot-field"></label></p>
+            <h2>Stallion Profile</h2>
+
+            <div class="form-group">
+              <label for="st-title">Stallion Name *</label>
+              <input type="text" id="st-title" name="title" placeholder="e.g. Dash For Cash Jr." required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="st-sire">Sire *</label>
+                <input type="text" id="st-sire" name="sire" placeholder="e.g. Dash For Cash" required>
+              </div>
+              <div class="form-group">
+                <label for="st-dam">Dam *</label>
+                <input type="text" id="st-dam" name="dam" placeholder="e.g. Cash Only" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="st-sire-sire">Sire's Sire</label>
+                <input type="text" id="st-sire-sire" name="sire-sire" placeholder="Grandsire (paternal)">
+              </div>
+              <div class="form-group">
+                <label for="st-sire-dam">Sire's Dam</label>
+                <input type="text" id="st-sire-dam" name="sire-dam" placeholder="Granddam (paternal)">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="st-dam-sire">Dam's Sire</label>
+                <input type="text" id="st-dam-sire" name="dam-sire" placeholder="Grandsire (maternal)">
+              </div>
+              <div class="form-group">
+                <label for="st-dam-dam">Dam's Dam</label>
+                <input type="text" id="st-dam-dam" name="dam-dam" placeholder="Granddam (maternal)">
+              </div>
+            </div>
+
+            <p class="form-subhead">Great-Grandparents (optional — fills out the 3rd generation of the pedigree tree)</p>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="st-ss-s">Sire's Sire's Sire</label>
+                <input type="text" id="st-ss-s" name="sire-sire-sire" placeholder="Great-grandsire">
+              </div>
+              <div class="form-group">
+                <label for="st-ss-d">Sire's Sire's Dam</label>
+                <input type="text" id="st-ss-d" name="sire-sire-dam" placeholder="Great-granddam">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="st-sd-s">Sire's Dam's Sire</label>
+                <input type="text" id="st-sd-s" name="sire-dam-sire" placeholder="Great-grandsire">
+              </div>
+              <div class="form-group">
+                <label for="st-sd-d">Sire's Dam's Dam</label>
+                <input type="text" id="st-sd-d" name="sire-dam-dam" placeholder="Great-granddam">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="st-ds-s">Dam's Sire's Sire</label>
+                <input type="text" id="st-ds-s" name="dam-sire-sire" placeholder="Great-grandsire">
+              </div>
+              <div class="form-group">
+                <label for="st-ds-d">Dam's Sire's Dam</label>
+                <input type="text" id="st-ds-d" name="dam-sire-dam" placeholder="Great-granddam">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="st-dd-s">Dam's Dam's Sire</label>
+                <input type="text" id="st-dd-s" name="dam-dam-sire" placeholder="Great-grandsire">
+              </div>
+              <div class="form-group">
+                <label for="st-dd-d">Dam's Dam's Dam</label>
+                <input type="text" id="st-dd-d" name="dam-dam-dam" placeholder="Great-granddam">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="st-breed">Breed / Registry *</label>
+                <input type="text" id="st-breed" name="breed" placeholder="e.g. AQHA" required>
+              </div>
+              <div class="form-group">
+                <label for="st-regnumber">Registration # (AQHA, etc.)</label>
+                <input type="text" id="st-regnumber" name="registration-number" placeholder="e.g. 5678901234">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="st-color">Color *</label>
+              <input type="text" id="st-color" name="color" placeholder="e.g. Bay Roan" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="st-height">Height (hands)</label>
+                <input type="text" id="st-height" name="height" placeholder="e.g. 15.1hh">
+              </div>
+              <div class="form-group">
+                <label for="st-foalyear">Foal Year</label>
+                <input type="number" id="st-foalyear" name="foal-year" placeholder="e.g. 2019" min="1990" max="2026">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="st-discipline">Discipline(s)</label>
+                <input type="text" id="st-discipline" name="discipline" placeholder="e.g. Barrel Racing, Ranch Versatility">
+              </div>
+              <div class="form-group">
+                <label for="st-studfee">Stud Fee ($) *</label>
+                <input type="number" id="st-studfee" name="stud-fee" placeholder="1500" min="0" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="st-location">Standing At (Location) *</label>
+              <input type="text" id="st-location" name="location" placeholder="City, State — Farm Name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="st-pedigree">Pedigree Highlights</label>
+              <textarea id="st-pedigree" name="pedigree" rows="3" placeholder="Notable bloodlines, sire/dam producers, siblings of note, etc."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="st-progeny">Progeny Earnings / Achievements</label>
+              <textarea id="st-progeny" name="progeny-earnings" rows="3" placeholder="Offspring performance record — earnings, wins, ROM, world show placings, etc."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="st-topprogeny">Top Progeny</label>
+              <input type="text" id="st-topprogeny" name="top-progeny" placeholder="e.g. Famous Colt Name — $120,000 earner, Grade 1 winner">
+            </div>
+
+            <div class="form-group">
+              <label for="st-lifetime">Lifetime Earnings (Own Performance)</label>
+              <input type="text" id="st-lifetime" name="lifetime-earnings" placeholder="e.g. $84,000 — 3x Grade 1 winner">
+            </div>
+
+            <div class="form-group">
+              <label for="st-description">Description / Bio *</label>
+              <textarea id="st-description" name="description" rows="4" placeholder="Temperament, foal guarantee, cover terms, semen availability, etc." required></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="st-image">Photo URL</label>
+                <input type="url" id="st-image" name="photo-url" placeholder="https://example.com/stallion.jpg">
+              </div>
+              <div class="form-group">
+                <label for="st-video">Video URL</label>
+                <input type="url" id="st-video" name="video-url" placeholder="https://youtube.com/...">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="st-documents">Documents (registration papers, Coggins, etc.)</label>
+              <input type="url" id="st-documents" name="documents-url" placeholder="Link to a hosted PDF or image">
+              <small>Upload your document anywhere (Google Drive, Dropbox) and paste the shareable link here</small>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="st-name">Your Name / Farm Name *</label>
+                <input type="text" id="st-name" name="seller-name" placeholder="Three Bars Ranch" required>
+              </div>
+              <div class="form-group">
+                <label for="st-email">Email *</label>
+                <input type="email" id="st-email" name="seller-email" placeholder="stallions@example.com" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="st-phone">Phone</label>
+              <input type="tel" id="st-phone" name="seller-phone" placeholder="(405) 555-0221">
+            </div>
+
+            <div class="form-total">
+              Total: <strong>$600</strong> <small>(12-month listing)</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Become a Member Stallion</button>
+            <p class="form-disclaimer">Your profile goes live immediately, and Stripe checkout opens in a new tab to complete payment.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ SUBMIT PAGE ============ -->
+  <div id="page-submit" class="page">
+    <section class="section">
+      <div class="section-inner submit-inner">
+        <div class="submit-info">
+          <h1>Sell on The Horse HQ</h1>
+          <p>List your horse, hay, transporter, or art in front of thousands of buyers.</p>
+          <div class="submit-fee-box">
+            <div class="fee-row">
+              <span>Free Listing</span>
+              <strong>$0 · 9 days, 2 photos</strong>
+            </div>
+            <div class="fee-row">
+              <span>Standard Listing</span>
+              <strong>$50 per listing</strong>
+            </div>
+            <div class="fee-row">
+              <span>Bundle (up to 4 listings)</span>
+              <strong>$160 total</strong>
+            </div>
+            <div class="fee-row">
+              <span>Member Stallion Listing</span>
+              <a href="#" onclick="showPage('submit-stallion'); return false;">$600 / 12 months →</a>
+            </div>
+            <p class="fee-note">Standing a stallion? Use the dedicated Member Stallions form for pedigree, progeny, and stud fee details. Want more eyes on a regular listing? You'll get the option to Boost or get Featured right after you submit.</p>
+          </div>
+          <a href="#" class="btn btn-outline" onclick="showPage('pricing'); return false;">See full pricing →</a>
+        </div>
+        <div class="submit-form-box">
+          <form id="submitForm" onsubmit="submitListing(event)" data-netlify="true" data-netlify-honeypot="bot-field" name="listing-submission">
+            <input type="hidden" name="form-name" value="listing-submission">
+            <p hidden><label>Don't fill this out: <input name="bot-field"></label></p>
+            <h2>Submit Your Listing</h2>
+
+            <div class="submit-mode-toggle">
+              <button type="button" class="mode-btn active" id="modeStandardBtn" onclick="setSubmitMode('standard')">Standard<span>$50</span></button>
+              <button type="button" class="mode-btn" id="modeBundleBtn" onclick="setSubmitMode('bundle')">Bundle<span>$160 · up to 4</span></button>
+              <button type="button" class="mode-btn" id="modeFreeBtn" onclick="setSubmitMode('free')">Free<span>9 days</span></button>
+            </div>
+
+            <div id="listingSlots">
+              <div class="listing-slot" data-slot="0">
+                <div class="listing-slot-header">
+                  <h3>Listing 1</h3>
+                  <button type="button" class="remove-slot-btn" onclick="removeListingSlot(this)" style="display:none">Remove</button>
+                </div>
+
+                <div class="form-group">
+                  <label>Listing Title *</label>
+                  <input type="text" class="s-title" placeholder="e.g. Flashy Kid — Registered AQHA Bay Roan Gelding" required>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Price ($) *</label>
+                    <input type="number" class="s-price" placeholder="18500" min="0" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Category *</label>
+                    <select class="s-category" required></select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Location *</label>
+                  <input type="text" class="s-location" placeholder="City, State" required>
+                </div>
+
+                <div class="form-group">
+                  <label>Description *</label>
+                  <textarea class="s-description" rows="4" placeholder="Describe your horse/item in detail. Include age, breed, training, temperament, and reason for selling." required></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>Photo URL</label>
+                  <input type="url" class="s-image" placeholder="https://example.com/horse.jpg">
+                  <small>Or email a photo to <strong>photos@thehorsehq.com</strong> after submitting</small>
+                </div>
+
+                <div class="form-group" id="secondImageGroup" style="display:none">
+                  <label>Photo URL 2</label>
+                  <input type="url" class="s-image-2" placeholder="https://example.com/horse2.jpg">
+                  <small>Free listings are limited to 2 photos</small>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-outline btn-block add-slot-btn" id="addSlotBtn" onclick="addListingSlot()" style="display:none">+ Add Another Listing</button>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="s-name">Your Name / Farm Name *</label>
+                <input type="text" id="s-name" name="seller-name" placeholder="Bucker Ranch" required>
+              </div>
+              <div class="form-group">
+                <label for="s-email">Email *</label>
+                <input type="email" id="s-email" name="seller-email" placeholder="bucker@example.com" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="s-phone">Phone</label>
+              <input type="tel" id="s-phone" name="seller-phone" placeholder="(806) 555-0142">
+            </div>
+
+            <input type="hidden" id="s-mode-field" name="mode">
+            <input type="hidden" id="s-summary-field" name="listings-summary">
+
+            <div class="form-total" id="formTotal">
+              Total: <strong>$50</strong>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Submit Listing</button>
+            <p class="form-disclaimer">Your listing goes live immediately, and Stripe checkout opens in a new tab to complete payment.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ PRICING PAGE ============ -->
+  <div id="page-pricing" class="page">
+    <section class="section">
+      <div class="section-inner">
+        <h1>Pricing</h1>
+        <p class="page-subtitle">Simple, transparent pricing. No hidden fees.</p>
+
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <div class="pricing-card-header">
+              <h3>Standard Listing</h3>
+              <div class="price">$50</div>
+              <p>per listing</p>
+            </div>
+            <ul>
+              <li class="yes">30-day listing run time</li>
+              <li class="yes">Appears in category & search</li>
+              <li class="yes">Contact info displayed</li>
+              <li class="yes">Photo support</li>
+              <li class="no">Homepage featured section</li>
+            </ul>
+            <a href="#" class="btn btn-outline btn-block" onclick="showPage('submit'); return false;">Get Started</a>
+          </div>
+          <div class="pricing-card featured">
+            <div class="pricing-badge">Best Value</div>
+            <div class="pricing-card-header">
+              <h3>Bundle Listing</h3>
+              <div class="price">$160</div>
+              <p>up to 4 listings</p>
+            </div>
+            <ul>
+              <li class="yes">Post up to 4 listings</li>
+              <li class="yes">Save $40 vs. buying individually</li>
+              <li class="yes">Mix & match categories</li>
+              <li class="yes">30-day run time each</li>
+              <li class="yes">Boost & Featured add-ons available</li>
+            </ul>
+            <a href="#" class="btn btn-primary btn-block" onclick="showPage('submit'); return false;">Get Bundle</a>
+          </div>
+        </div>
+
+        <div class="pricing-faq">
+          <h2>Frequently Asked</h2>
+          <div class="faq-item">
+            <h4>How do I pay?</h4>
+            <p>You'll be taken straight to a secure Stripe checkout in a new tab right after you submit — no waiting on an email.</p>
+          </div>
+          <div class="faq-item">
+            <h4>When does my listing go live?</h4>
+            <p>Once payment is confirmed (usually within minutes during business hours), your listing goes live automatically.</p>
+          </div>
+          <div class="faq-item">
+            <h4>Can I edit my listing?</h4>
+            <p>Yes. Email changes to <strong>edit@thehorsehq.com</strong> with your listing ID in the subject line.</p>
+          </div>
+          <div class="faq-item">
+            <h4>What's your refund policy?</h4>
+            <p>No refunds once payment is processed and listing is live. If there's an error on our end, we'll fix it immediately.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ DETAIL MODAL ============ -->
+  <div class="modal-overlay" id="detailModal" onclick="closeModal(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-content" id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- ============ SUCCESS MODAL ============ -->
+  <div class="modal-overlay" id="successModal" onclick="closeSuccessModal(event)">
+    <div class="modal success-modal" onclick="event.stopPropagation()">
+      <div class="success-content">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l3 3 5-6"></path></svg>
+        </div>
+        <h2 id="successHeading">Listing Submitted!</h2>
+        <p id="successMessage">Your listing is live. Complete payment in the Stripe tab that just opened to keep it active.</p>
+
+        <div class="success-upsells">
+          <p class="upsell-heading">Want more eyes on your listing?</p>
+          <div class="form-group" id="upsellTargetGroup" style="display:none">
+            <label for="upsellTarget">Apply to</label>
+            <select id="upsellTarget" onchange="onUpsellTargetChange()"></select>
+          </div>
+          <div class="upsell-actions">
+            <button type="button" class="upsell-btn" id="boostBtn" onclick="purchaseBoost()">
+              <span class="upsell-btn-title">Boost — $30</span>
+              <span class="upsell-btn-desc">Jump to the top of your category</span>
+            </button>
+            <button type="button" class="upsell-btn" id="featureBtn" onclick="purchaseFeature()">
+              <span class="upsell-btn-title">Get Featured — $200</span>
+              <span class="upsell-btn-desc">Homepage placement for 7 days</span>
+            </button>
+          </div>
+        </div>
+
+        <p class="success-note">Questions? Email <strong>listings@thehorsehq.com</strong></p>
+        <button class="btn btn-primary" onclick="closeSuccessModal()">Got It</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-text">The Horse <strong>HQ</strong></span>
+        <p>The #1 horse marketplace. Buy, sell, and feature your horses.</p>
+
+        <form id="digestForm" onsubmit="subscribeDigest(event)" class="footer-signup" data-netlify="true" data-netlify-honeypot="bot-field-digest" name="digest-signup">
+          <input type="hidden" name="form-name" value="digest-signup">
+          <p hidden><label>Don't fill this out: <input name="bot-field-digest"></label></p>
+          <label for="digest-email" class="footer-signup-label">Get new listings in your inbox</label>
+          <div class="footer-signup-row">
+            <input type="email" id="digest-email" name="email" placeholder="you@example.com" required>
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+          </div>
+          <p class="footer-signup-note" id="digestNote"></p>
+        </form>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h4>Marketplace</h4>
+          <a href="#" onclick="showPage('listings'); return false;">Browse All</a>
+          <a href="#" onclick="showPage('submit'); return false;">Sell a Horse</a>
+          <a href="#" onclick="showPage('pricing'); return false;">Pricing</a>
+          <a href="blog/">Blog</a>
+        </div>
+        <div>
+          <h4>Categories</h4>
+          <a href="#" onclick="showCategoryPage('Founding Farms'); return false;">Founding Farms</a>
+          <a href="#" onclick="showCategoryPage('Racing Quarter Horse'); return false;">Racing Quarter Horse</a>
+          <a href="#" onclick="showCategoryPage('Racing Thoroughbred'); return false;">Racing Thoroughbred</a>
+          <a href="#" onclick="showCategoryPage('Yearlings'); return false;">Yearlings</a>
+          <a href="#" onclick="showPage('stallions'); return false;">Member Stallions</a>
+          <a href="#" onclick="showCategoryPage('Roping/Rodeo Horses'); return false;">Roping/Rodeo</a>
+          <a href="#" onclick="showCategoryPage('Ranch Horses'); return false;">Ranch Horses</a>
+          <a href="#" onclick="showCategoryPage('Hay'); return false;">Hay</a>
+          <a href="#" onclick="showCategoryPage('Transporters'); return false;">Transporters</a>
+          <a href="#" onclick="showCategoryPage('Horse Trailers'); return false;">Horse Trailers</a>
+          <a href="#" onclick="showCategoryPage('Training Equipment'); return false;">Training Equipment</a>
+          <a href="#" onclick="showCategoryPage('Art'); return false;">Art</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a href="mailto:listings@thehorsehq.com">listings@thehorsehq.com</a>
+          <a href="mailto:photos@thehorsehq.com">photos@thehorsehq.com</a>
+          <a href="mailto:edit@thehorsehq.com">edit@thehorsehq.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 TheHorseHQ.com — All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
