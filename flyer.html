@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Horse HQ — Printable Flyer</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  :root {
+    --green: #16a34a;
+    --green-dark: #15803d;
+    --green-bg: #f0fdf4;
+    --gray-900: #111827;
+    --gray-600: #4b5563;
+    --gray-400: #9ca3af;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    background: #e5e7eb;
+    display: flex;
+    justify-content: center;
+    padding: 32px 16px;
+  }
+
+  .page {
+    width: 8.5in;
+    min-height: 11in;
+    background: #fff;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    padding: 0.65in;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .print-hint {
+    max-width: 8.5in;
+    margin: 0 auto 16px;
+    text-align: center;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #374151;
+    font-size: 14px;
+  }
+
+  .flyer-header {
+    text-align: center;
+    padding-bottom: 28px;
+    border-bottom: 3px solid var(--green);
+  }
+
+  .flyer-logo {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--gray-900);
+  }
+
+  .flyer-logo strong { color: var(--green); }
+
+  .flyer-hero {
+    text-align: center;
+    padding: 56px 0 40px;
+  }
+
+  .flyer-hero h1 {
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--gray-900);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .flyer-hero h1 span { color: var(--green); }
+
+  .flyer-hero p {
+    font-size: 20px;
+    color: var(--gray-600);
+    max-width: 5.5in;
+    margin: 0 auto;
+  }
+
+  .flyer-categories {
+    text-align: center;
+    font-size: 15px;
+    color: var(--gray-600);
+    padding: 28px 0;
+    margin: 0 auto 40px;
+    max-width: 6.5in;
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .flyer-categories strong { color: var(--gray-900); }
+
+  .flyer-url-box {
+    background: var(--green-bg);
+    border: 2px dashed var(--green);
+    border-radius: 16px;
+    text-align: center;
+    padding: 40px 20px;
+    margin-bottom: 40px;
+  }
+
+  .flyer-url-box .label {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--green-dark);
+    margin-bottom: 10px;
+  }
+
+  .flyer-url-box .url {
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--gray-900);
+    letter-spacing: -0.01em;
+  }
+
+  .flyer-pricing {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    text-align: center;
+    margin-bottom: auto;
+    padding-bottom: 40px;
+  }
+
+  .flyer-pricing div { flex: 1; max-width: 2in; }
+
+  .flyer-pricing .amount {
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--green);
+  }
+
+  .flyer-pricing .label {
+    font-size: 13px;
+    color: var(--gray-600);
+    margin-top: 4px;
+  }
+
+  .flyer-footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: var(--gray-400);
+  }
+
+  .flyer-footer strong { color: var(--gray-600); }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .print-hint { display: none; }
+    .page { box-shadow: none; padding: 0.4in; width: 100%; min-height: 100vh; }
+    @page { size: letter; margin: 0.4in; }
+  }
+</style>
+</head>
+<body>
+
+  <div>
+    <p class="print-hint">Ready to print — use your browser's Print (Ctrl/Cmd+P) and choose "Save as PDF" or print directly.</p>
+
+    <div class="page">
+      <div class="flyer-header">
+        <div class="flyer-logo">The Horse <strong>HQ</strong></div>
+      </div>
+
+      <div class="flyer-hero">
+        <h1>Buy & Sell Horses<br>Online — <span>Today</span></h1>
+        <p>A marketplace built specifically for horse people. List your horse, browse standing stallions, or find your next prospect.</p>
+      </div>
+
+      <div class="flyer-categories">
+        <strong>Categories:</strong> Racing Quarter Horse &middot; Racing Thoroughbred &middot; Yearlings &middot; Member Stallions &middot; Roping/Rodeo &middot; Ranch Horses &middot; Horses Under 3k &middot; Hay &middot; Transporters &middot; Art
+      </div>
+
+      <div class="flyer-url-box">
+        <div class="label">Visit Online</div>
+        <div class="url">TheHorseHQ.com</div>
+      </div>
+
+      <div class="flyer-pricing">
+        <div>
+          <div class="amount">$50</div>
+          <div class="label">Standard Listing</div>
+        </div>
+        <div>
+          <div class="amount">$160</div>
+          <div class="label">Bundle — up to 4</div>
+        </div>
+        <div>
+          <div class="amount">5 min</div>
+          <div class="label">To list your horse</div>
+        </div>
+      </div>
+
+      <div class="flyer-footer">
+        <p><strong>The Horse HQ</strong> — TheHorseHQ.com — listings@thehorsehq.com</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
