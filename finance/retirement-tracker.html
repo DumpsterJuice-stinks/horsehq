@@ -1,0 +1,1253 @@
+<title>Start a Retirement Plan — Understand It, Then Track It</title>
+<style>
+/* ---------- reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+body, h1, h2, h3, h4, p, ul, ol, li, figure, table, dl, dd { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+button, input, select { font: inherit; color: inherit; }
+img, svg { max-width: 100%; }
+
+/* ---------- tokens: light ---------- */
+:root {
+  color-scheme: light;
+  --ground:      #f8f8f5;
+  --panel:       #ffffff;
+  --ink:         #14181d;
+  --ink-2:       #4a5159;
+  --ink-3:       #7d858e;
+  --rule:        #e3e2da;
+  --rule-strong: #c9c8bd;
+  --accent:      #8a6212;
+  --accent-ink:  #6d4c0b;
+  --accent-soft: #f3ead6;
+  --good:        #006300;
+  --crit:        #b8322f;
+  --field:       #ffffff;
+  --shadow:      0 1px 2px rgba(20,24,29,.06), 0 8px 24px -16px rgba(20,24,29,.28);
+  /* chart series — validated against ground #f8f8f5 */
+  --s1: #2a78d6;  /* your money in */
+  --s2: #eb6834;  /* employer match */
+  --s3: #1baf7a;  /* investment growth */
+  --grid: #e3e2da;
+  --axis: #c3c2b7;
+
+  --font-display: Georgia, "Iowan Old Style", "Source Serif Pro", ui-serif, serif;
+  --font-ui: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --spine: 68ch;
+  --wide: 1080px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --ground:      #14181d;
+    --panel:       #1b2027;
+    --ink:         #f4f4f0;
+    --ink-2:       #b3bac2;
+    --ink-3:       #858d96;
+    --rule:        #2a3039;
+    --rule-strong: #3d454f;
+    --accent:      #d4a54a;
+    --accent-ink:  #e2b969;
+    --accent-soft: #2a2317;
+    --good:        #0ca30c;
+    --crit:        #e06a67;
+    --field:       #11151a;
+    --shadow:      0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+    --s1: #3987e5;
+    --s2: #d95926;
+    --s3: #199e70;
+    --grid: #2a3039;
+    --axis: #3d454f;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground:      #14181d;
+  --panel:       #1b2027;
+  --ink:         #f4f4f0;
+  --ink-2:       #b3bac2;
+  --ink-3:       #858d96;
+  --rule:        #2a3039;
+  --rule-strong: #3d454f;
+  --accent:      #d4a54a;
+  --accent-ink:  #e2b969;
+  --accent-soft: #2a2317;
+  --good:        #0ca30c;
+  --crit:        #e06a67;
+  --field:       #11151a;
+  --shadow:      0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  --s1: #3987e5;
+  --s2: #d95926;
+  --s3: #199e70;
+  --grid: #2a3039;
+  --axis: #3d454f;
+}
+
+/* ---------- base ---------- */
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+.spine { width: 100%; max-width: var(--spine); margin-inline: auto; padding-inline: 20px; }
+.wide  { width: 100%; max-width: var(--wide); margin-inline: auto; padding-inline: 20px; }
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; text-wrap: balance; line-height: 1.15; letter-spacing: -.01em; }
+h1 { font-size: clamp(2rem, 5vw, 3.1rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h3 { font-size: 1.15rem; }
+p { text-wrap: pretty; }
+strong { font-weight: 650; }
+a { color: var(--accent-ink); text-underline-offset: 3px; }
+
+.eyebrow {
+  font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--accent-ink); font-family: var(--font-ui);
+}
+.lede { font-size: 1.12rem; color: var(--ink-2); }
+.num { font-variant-numeric: tabular-nums; }
+
+/* ---------- masthead ---------- */
+.masthead { border-bottom: 1px solid var(--rule); padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(2rem, 5vw, 3rem); }
+.masthead h1 { margin-block: .5rem .9rem; }
+.masthead .lede { max-width: 58ch; }
+.rule-brass { width: 54px; height: 3px; background: var(--accent); margin-bottom: 1.6rem; }
+
+/* ---------- section scaffolding ---------- */
+section { padding-block: clamp(2.75rem, 6vw, 4.5rem); border-bottom: 1px solid var(--rule); }
+.sec-head { margin-bottom: 1.75rem; }
+.sec-head h2 { margin-block: .35rem .6rem; }
+.sec-head p { color: var(--ink-2); max-width: 62ch; }
+.stack > * + * { margin-top: 1rem; }
+
+/* ---------- cards ---------- */
+.cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); }
+.card {
+  background: var(--panel); border: 1px solid var(--rule); border-radius: 3px;
+  padding: 1.35rem; display: flex; flex-direction: column; gap: .6rem;
+}
+.card h3 { font-family: var(--font-ui); font-size: .95rem; font-weight: 700; letter-spacing: -.005em; }
+.card p { font-size: .93rem; color: var(--ink-2); }
+.card .tag {
+  align-self: flex-start; font-size: .68rem; font-weight: 700; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--accent-ink); background: var(--accent-soft);
+  padding: .22rem .5rem; border-radius: 2px;
+}
+.card .do { font-size: .88rem; color: var(--ink); border-top: 1px solid var(--rule); padding-top: .6rem; margin-top: auto; }
+.card .do b { font-family: var(--font-ui); }
+
+/* ---------- ordered waterfall (a real sequence) ---------- */
+.waterfall { counter-reset: step; display: grid; gap: 0; }
+.step {
+  counter-increment: step; display: grid; grid-template-columns: 3rem 1fr; gap: 1.1rem;
+  padding: 1.15rem 0; border-top: 1px solid var(--rule);
+}
+.step:last-child { border-bottom: 1px solid var(--rule); }
+.step::before {
+  content: counter(step, decimal-leading-zero);
+  font-family: var(--font-display); font-size: 1.35rem; color: var(--accent);
+  line-height: 1.2; font-variant-numeric: tabular-nums;
+}
+.step h3 { font-family: var(--font-ui); font-size: 1rem; font-weight: 700; margin-bottom: .2rem; }
+.step p { font-size: .94rem; color: var(--ink-2); }
+.step .why { display: inline-block; margin-top: .35rem; font-size: .82rem; color: var(--accent-ink); font-weight: 600; }
+
+/* ---------- calculator ---------- */
+.calc { display: grid; gap: 1.5rem; grid-template-columns: minmax(260px, 320px) 1fr; align-items: start; }
+@media (max-width: 860px) { .calc { grid-template-columns: 1fr; } }
+
+.controls { background: var(--panel); border: 1px solid var(--rule); border-radius: 3px; padding: 1.25rem; }
+.controls fieldset { border: 0; padding: 0; margin: 0; }
+.controls legend {
+  font-size: .7rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase;
+  color: var(--ink-3); padding: 0; margin-bottom: .75rem;
+}
+.controls fieldset + fieldset { margin-top: 1.35rem; padding-top: 1.15rem; border-top: 1px solid var(--rule); }
+.field { display: grid; gap: .3rem; margin-bottom: .85rem; }
+.field:last-child { margin-bottom: 0; }
+.field label { font-size: .82rem; font-weight: 600; color: var(--ink-2); display: flex; justify-content: space-between; gap: .5rem; align-items: baseline; }
+.field label .val { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; }
+.field input[type="number"], .field input[type="text"], .field select {
+  width: 100%; background: var(--field); border: 1px solid var(--rule-strong); border-radius: 2px;
+  padding: .45rem .55rem; font-variant-numeric: tabular-nums; font-size: .92rem;
+}
+.field input[type="range"] { width: 100%; accent-color: var(--accent); }
+.hint { font-size: .76rem; color: var(--ink-3); }
+
+/* ---------- results ---------- */
+.results { display: grid; gap: 1rem; }
+.hero-fig { background: var(--panel); border: 1px solid var(--rule); border-radius: 3px; padding: 1.5rem; }
+.hero-fig .label { font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.hero-fig .figure {
+  font-family: var(--font-ui); font-size: clamp(2.4rem, 7vw, 3.6rem); font-weight: 700;
+  letter-spacing: -.03em; line-height: 1.05; margin-top: .3rem;
+}
+.hero-fig .sub { color: var(--ink-2); font-size: .93rem; margin-top: .45rem; }
+
+.kpis { display: grid; gap: 1px; grid-template-columns: repeat(3, 1fr); background: var(--rule); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+@media (max-width: 560px) { .kpis { grid-template-columns: 1fr; } }
+.kpi { background: var(--panel); padding: 1rem 1.1rem; }
+.kpi .k { display: flex; align-items: center; gap: .45rem; font-size: .78rem; font-weight: 600; color: var(--ink-2); }
+.kpi .swatch { width: 10px; height: 10px; border-radius: 2px; flex: none; }
+.kpi .v { font-size: 1.35rem; font-weight: 700; font-variant-numeric: tabular-nums; margin-top: .25rem; letter-spacing: -.02em; }
+.kpi .p { font-size: .78rem; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+
+.chart-card { background: var(--ground); border: 1px solid var(--rule); border-radius: 3px; padding: 1.1rem; }
+.chart-head { display: flex; flex-wrap: wrap; gap: .75rem; align-items: baseline; justify-content: space-between; margin-bottom: .35rem; }
+.chart-head h3 { font-family: var(--font-ui); font-size: .95rem; font-weight: 700; }
+.chart-head .note { font-size: .78rem; color: var(--ink-3); }
+.legend { display: flex; flex-wrap: wrap; gap: .9rem; margin: .55rem 0 .3rem; }
+.legend span { display: inline-flex; align-items: center; gap: .38rem; font-size: .8rem; color: var(--ink-2); }
+.legend i { width: 11px; height: 11px; border-radius: 2px; display: inline-block; }
+.chart-wrap { position: relative; overflow-x: auto; }
+svg.chart { display: block; width: 100%; height: auto; }
+.tip {
+  position: absolute; pointer-events: none; background: var(--panel); border: 1px solid var(--rule-strong);
+  border-radius: 3px; padding: .5rem .6rem; font-size: .8rem; box-shadow: var(--shadow);
+  min-width: 168px; opacity: 0; transition: opacity .1s; z-index: 5;
+}
+.tip.on { opacity: 1; }
+.tip .t-age { font-weight: 700; margin-bottom: .3rem; }
+.tip .t-row { display: flex; justify-content: space-between; gap: .9rem; font-variant-numeric: tabular-nums; }
+.tip .t-row i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; margin-right: .35rem; }
+.tip .t-tot { border-top: 1px solid var(--rule); margin-top: .3rem; padding-top: .3rem; font-weight: 700; }
+
+/* ---------- callouts ---------- */
+.callouts { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; }
+@media (max-width: 700px) { .callouts { grid-template-columns: 1fr; } }
+.callout { border: 1px solid var(--rule); border-left: 3px solid var(--accent); border-radius: 3px; background: var(--panel); padding: 1rem 1.15rem; }
+.callout.warn { border-left-color: var(--crit); }
+.callout .h { font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.callout .v { font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.02em; margin: .15rem 0 .2rem; }
+.callout .v.good { color: var(--good); }
+.callout .v.bad { color: var(--crit); }
+.callout p { font-size: .88rem; color: var(--ink-2); }
+
+/* ---------- buttons ---------- */
+.btn {
+  background: var(--ink); color: var(--ground); border: 1px solid var(--ink);
+  border-radius: 2px; padding: .45rem .85rem; font-size: .88rem; font-weight: 600; cursor: pointer;
+}
+.btn:hover { opacity: .88; }
+.btn.ghost { background: transparent; color: var(--ink-2); border-color: var(--rule-strong); }
+.btn.ghost[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent-ink); border-color: var(--accent); }
+.btn.mini { padding: .2rem .5rem; font-size: .78rem; }
+.btn.danger { background: transparent; border-color: transparent; color: var(--ink-3); }
+.btn.danger:hover { color: var(--crit); }
+
+/* ---------- tables ---------- */
+.table-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 3px; background: var(--panel); }
+table { width: 100%; border-collapse: collapse; font-size: .875rem; }
+th, td { padding: .55rem .75rem; text-align: right; border-bottom: 1px solid var(--rule); font-variant-numeric: tabular-nums; white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; font-variant-numeric: normal; }
+thead th { font-size: .72rem; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; background: var(--ground); position: sticky; top: 0; }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:hover td { background: var(--accent-soft); }
+[hidden] { display: none !important; }
+
+/* ---------- tracker ---------- */
+.tracker { display: grid; gap: 1.5rem; grid-template-columns: minmax(250px, 300px) 1fr; align-items: start; }
+@media (max-width: 860px) { .tracker { grid-template-columns: 1fr; } }
+.meters { display: grid; gap: 1rem; }
+.meter { background: var(--panel); border: 1px solid var(--rule); border-radius: 3px; padding: 1rem 1.15rem; }
+.meter .m-top { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem; }
+.meter .m-name { font-size: .88rem; font-weight: 700; }
+.meter .m-pct { font-size: .8rem; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.meter .track { height: 9px; border-radius: 5px; background: var(--rule); margin: .55rem 0 .4rem; overflow: hidden; }
+.meter .fill { height: 100%; background: var(--accent); border-radius: 5px; transition: width .25s; }
+.meter .fill.full { background: var(--good); }
+.meter .m-sub { font-size: .8rem; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.form-row { display: grid; gap: .6rem; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); align-items: end; }
+.empty { padding: 1.5rem; text-align: center; color: var(--ink-3); font-size: .9rem; }
+
+/* ---------- allocation bar ---------- */
+.alloc { display: flex; height: 30px; border-radius: 3px; overflow: hidden; gap: 2px; background: var(--rule); }
+.alloc div { min-width: 3px; }
+
+/* ---------- reference ---------- */
+.limits-note { font-size: .82rem; color: var(--ink-3); margin-top: .7rem; }
+dl.gloss { display: grid; gap: 0; }
+dl.gloss > div { padding: .95rem 0; border-top: 1px solid var(--rule); }
+dl.gloss > div:last-child { border-bottom: 1px solid var(--rule); }
+dl.gloss dt { font-weight: 700; font-size: .95rem; margin-bottom: .2rem; }
+dl.gloss dd { color: var(--ink-2); font-size: .93rem; }
+
+footer { padding-block: 2.5rem 3.5rem; color: var(--ink-3); font-size: .85rem; }
+footer p + p { margin-top: .7rem; }
+footer .disc { border: 1px solid var(--rule); border-left: 3px solid var(--rule-strong); padding: .9rem 1.1rem; border-radius: 3px; background: var(--panel); }
+</style>
+
+<header class="masthead">
+  <div class="spine">
+    <div class="rule-brass"></div>
+    <p class="eyebrow">A starting point, built 2026</p>
+    <h1>You don't have a 401(k) yet. Here's the whole picture.</h1>
+    <p class="lede">Three things, in order: figure out which account you can actually open, see what contributing does over time, then track what you put in. Nothing here needs an account or sends your numbers anywhere — everything you type stays in this browser.</p>
+  </div>
+</header>
+
+<main>
+
+<!-- 1. WHICH DOOR -->
+<section>
+  <div class="wide">
+    <div class="sec-head">
+      <p class="eyebrow">First</p>
+      <h2>Which door are you walking through?</h2>
+      <p>"I don't have a 401(k)" means different things, and the fix is different for each. Find the row that matches you — that's your next action.</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <span class="tag">Most common</span>
+        <h3>My job offers one, I never enrolled</h3>
+        <p>Very common — many plans need you to opt in, and the paperwork is easy to ignore. Every pay period you skip is match money you don't get back.</p>
+        <p class="do"><b>Do this:</b> Open your benefits portal (or email HR) and ask: do we have a 401(k), what's the match, and when can I enroll? Set your contribution to <b>at least</b> the full match.</p>
+      </article>
+      <article class="card">
+        <span class="tag">No plan at work</span>
+        <h3>My employer doesn't offer one</h3>
+        <p>You can't open a 401(k) on your own — it's an employer plan. The individual equivalent is an <b>IRA</b>, which you open yourself at any brokerage in about 15 minutes.</p>
+        <p class="do"><b>Do this:</b> Open a Roth IRA at a major low-cost brokerage. 2026 limit is <b>$7,500</b>. Set an automatic monthly transfer, then pick an investment — money sitting in the account uninvested doesn't grow.</p>
+      </article>
+      <article class="card">
+        <span class="tag">Self-employed</span>
+        <h3>I'm 1099, freelance, or a business owner</h3>
+        <p>You get the best options of anyone. A Solo 401(k) lets you contribute as both employee and employer, so the ceiling is far higher than a regular plan.</p>
+        <p class="do"><b>Do this:</b> Compare a Solo 401(k) against a SEP-IRA. Both are opened at a brokerage; the Solo 401(k) usually allows more at lower incomes and permits Roth contributions.</p>
+      </article>
+      <article class="card">
+        <span class="tag">Waiting period</span>
+        <h3>I'm new and not eligible yet</h3>
+        <p>Plans can make you wait — often up to a year of service. That's a delay, not a dead end, and it doesn't stop you saving elsewhere meanwhile.</p>
+        <p class="do"><b>Do this:</b> Ask HR for your exact eligibility date and put it in your calendar. Fund an IRA in the meantime; you can do both in the same year.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 2. ORDER OF OPERATIONS -->
+<section>
+  <div class="spine">
+    <div class="sec-head">
+      <p class="eyebrow">Second</p>
+      <h2>The order to do things in</h2>
+      <p>Money you invest can only be spent once, so sequence matters more than picking the perfect fund. This order is deliberately boring and it's roughly what most fee-only planners will tell you.</p>
+    </div>
+    <ol class="waterfall">
+      <li class="step">
+        <div>
+          <h3>A small cash buffer</h3>
+          <p>One month of expenses in plain savings, before investing anything. Without it, the first surprise bill turns into credit-card debt or an early withdrawal with a penalty.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div>
+          <h3>The full employer match</h3>
+          <p>If your job matches contributions, contribute at least enough to get all of it. A 50% match is an immediate 50% return before the market does anything at all.</p>
+          <span class="why">Nothing else you can buy pays this well. Do it even while carrying debt.</span>
+        </div>
+      </li>
+      <li class="step">
+        <div>
+          <h3>High-interest debt</h3>
+          <p>Anything above roughly 7–8% — credit cards especially. Paying off a 22% card is a guaranteed 22% return; no investment offers that with certainty.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div>
+          <h3>Top the emergency fund to 3–6 months</h3>
+          <p>This is what keeps the invested money invested through a job loss. Keep it in a high-yield savings account, not in the market.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div>
+          <h3>Max an IRA</h3>
+          <p>$7,500 for 2026. You choose the brokerage and the investments, and the fees are usually lower than a workplace plan's menu. Roth if you expect your tax rate to be higher later, which is typical early in a career.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div>
+          <h3>Back to the 401(k), up to the max</h3>
+          <p>$24,500 of your own salary in 2026. Most people never reach this step, and that's fine — it's a ceiling, not a target.</p>
+        </div>
+      </li>
+      <li class="step">
+        <div>
+          <h3>A regular taxable brokerage account</h3>
+          <p>No contribution limit and no early-withdrawal penalty, which makes it the right home for goals before retirement age.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- 3. PROJECTION -->
+<section>
+  <div class="wide">
+    <div class="sec-head">
+      <p class="eyebrow">Third</p>
+      <h2>What contributing actually does</h2>
+      <p>Change the inputs and watch the split between what you put in and what the market adds. The gap between those two is the entire argument for starting now rather than later.</p>
+    </div>
+
+    <div class="calc">
+      <form class="controls" id="calc" autocomplete="off">
+        <fieldset>
+          <legend>You</legend>
+          <div class="field">
+            <label for="ageNow">Current age <span class="val num" id="ageNow_v">30</span></label>
+            <input type="range" id="ageNow" min="18" max="70" step="1" value="30">
+          </div>
+          <div class="field">
+            <label for="ageRet">Retire at <span class="val num" id="ageRet_v">65</span></label>
+            <input type="range" id="ageRet" min="50" max="75" step="1" value="65">
+          </div>
+          <div class="field">
+            <label for="salary">Annual salary</label>
+            <input type="number" id="salary" min="0" step="1000" value="65000">
+          </div>
+          <div class="field">
+            <label for="startBal">Already saved for retirement</label>
+            <input type="number" id="startBal" min="0" step="500" value="0">
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Contributions</legend>
+          <div class="field">
+            <label for="contribPct">You contribute <span class="val num" id="contribPct_v">6%</span></label>
+            <input type="range" id="contribPct" min="0" max="30" step="0.5" value="6">
+            <span class="hint" id="contribDollars"></span>
+          </div>
+          <div class="field">
+            <label for="matchRate">Employer matches <span class="val num" id="matchRate_v">50%</span></label>
+            <input type="range" id="matchRate" min="0" max="100" step="5" value="50">
+            <span class="hint">of what you put in&hellip;</span>
+          </div>
+          <div class="field">
+            <label for="matchLimit">&hellip;up to <span class="val num" id="matchLimit_v">6%</span> of pay</label>
+            <input type="range" id="matchLimit" min="0" max="15" step="0.5" value="6">
+            <span class="hint" id="matchHint"></span>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Assumptions</legend>
+          <div class="field">
+            <label for="ret">Annual return <span class="val num" id="ret_v">7.0%</span></label>
+            <input type="range" id="ret" min="0" max="12" step="0.25" value="7">
+            <span class="hint">A broad stock index has averaged roughly 7% a year after inflation, historically — with losing decades inside that average.</span>
+          </div>
+          <div class="field">
+            <label for="salGrowth">Raises per year <span class="val num" id="salGrowth_v">2.0%</span></label>
+            <input type="range" id="salGrowth" min="0" max="8" step="0.25" value="2">
+          </div>
+          <div class="field">
+            <label for="infl">Inflation <span class="val num" id="infl_v">2.5%</span></label>
+            <input type="range" id="infl" min="0" max="6" step="0.25" value="2.5">
+          </div>
+          <div class="field">
+            <button type="button" class="btn ghost" id="realToggle" aria-pressed="false">Show in today's dollars</button>
+            <span class="hint">Converts future balances into what they'd buy at today's prices.</span>
+          </div>
+        </fieldset>
+      </form>
+
+      <div class="results">
+        <div class="hero-fig">
+          <div class="label" id="heroLabel">Projected balance at 65</div>
+          <div class="figure num" id="heroFig">$0</div>
+          <p class="sub" id="heroSub"></p>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi">
+            <div class="k"><span class="swatch" style="background:var(--s1)"></span> Your money in</div>
+            <div class="v num" id="kMine">$0</div>
+            <div class="p num" id="kMinePct"></div>
+          </div>
+          <div class="kpi">
+            <div class="k"><span class="swatch" style="background:var(--s2)"></span> Employer match</div>
+            <div class="v num" id="kMatch">$0</div>
+            <div class="p num" id="kMatchPct"></div>
+          </div>
+          <div class="kpi">
+            <div class="k"><span class="swatch" style="background:var(--s3)"></span> Investment growth</div>
+            <div class="v num" id="kGrowth">$0</div>
+            <div class="p num" id="kGrowthPct"></div>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-head">
+            <h3>Where the balance comes from, year by year</h3>
+            <button type="button" class="btn ghost mini" id="tableToggle" aria-pressed="false">Show table</button>
+          </div>
+          <div class="legend">
+            <span><i style="background:var(--s1)"></i> Your money in</span>
+            <span><i style="background:var(--s2)"></i> Employer match</span>
+            <span><i style="background:var(--s3)"></i> Investment growth</span>
+          </div>
+          <div class="chart-wrap" id="chartWrap">
+            <svg class="chart" id="chart" viewBox="0 0 720 320" role="img" aria-labelledby="chartTitle"><title id="chartTitle">Stacked area chart of projected retirement balance by age, split into your contributions, employer match, and investment growth</title></svg>
+            <div class="tip" id="tip" aria-hidden="true"></div>
+          </div>
+          <div class="table-wrap" id="chartTable" hidden style="max-height:340px;"></div>
+        </div>
+
+        <div class="callouts">
+          <div class="callout">
+            <div class="h">One more percent</div>
+            <div class="v good num" id="plusOne">+$0</div>
+            <p id="plusOneP">Extra at retirement if you contribute one percentage point more of your salary.</p>
+          </div>
+          <div class="callout warn">
+            <div class="h">The cost of waiting 5 years</div>
+            <div class="v bad num" id="wait5">−$0</div>
+            <p>What the same plan is worth if you start five years from now instead of this year. This is the real price of "I'll sort it out later."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. CONTRIBUTION TRACKER -->
+<section>
+  <div class="wide">
+    <div class="sec-head">
+      <p class="eyebrow">Fourth</p>
+      <h2>Track this year's contributions</h2>
+      <p>Once money is actually going in, the job becomes staying under the annual caps and knowing where you stand. Log contributions as they happen — saved in this browser only.</p>
+    </div>
+
+    <div class="tracker">
+      <div>
+        <form class="controls" id="contribForm" autocomplete="off">
+          <fieldset>
+            <legend>Log a contribution</legend>
+            <div class="field">
+              <label for="cDate">Date</label>
+              <input type="date" id="cDate" required>
+            </div>
+            <div class="field">
+              <label for="cType">Bucket</label>
+              <select id="cType">
+                <option value="401k_employee">401(k) — my contribution</option>
+                <option value="401k_employer">401(k) — employer match</option>
+                <option value="ira">IRA (Roth or Traditional)</option>
+                <option value="taxable">Taxable brokerage</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="cAmt">Amount</label>
+              <input type="number" id="cAmt" min="0" step="10" placeholder="500" required>
+            </div>
+            <div class="field">
+              <label for="cNote">Note (optional)</label>
+              <input type="text" id="cNote" placeholder="March paycheck">
+            </div>
+            <div class="field">
+              <button type="submit" class="btn">Add contribution</button>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Your age this year</legend>
+            <div class="field">
+              <label for="tAge">Age <span class="val num" id="tAge_v">30</span></label>
+              <input type="range" id="tAge" min="18" max="75" step="1" value="30">
+              <span class="hint">Sets which catch-up limits apply to you.</span>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+
+      <div class="stack">
+        <div class="meters" id="meters"></div>
+        <div class="table-wrap" id="contribTable"></div>
+        <p class="hint" id="storageNote"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. ACCOUNTS -->
+<section>
+  <div class="wide">
+    <div class="sec-head">
+      <p class="eyebrow">Fifth</p>
+      <h2>What you've got, in one place</h2>
+      <p>Retirement money tends to scatter across old jobs and half-forgotten accounts. List every balance here so the total is a number you actually know.</p>
+    </div>
+
+    <div class="tracker">
+      <form class="controls" id="acctForm" autocomplete="off">
+        <fieldset>
+          <legend>Add an account</legend>
+          <div class="field">
+            <label for="aName">Name</label>
+            <input type="text" id="aName" placeholder="Fidelity Roth IRA" required>
+          </div>
+          <div class="field">
+            <label for="aKind">Kind</label>
+            <select id="aKind">
+              <option>401(k)</option>
+              <option>Roth IRA</option>
+              <option>Traditional IRA</option>
+              <option>Old employer 401(k)</option>
+              <option>Solo 401(k) / SEP</option>
+              <option>HSA</option>
+              <option>Taxable brokerage</option>
+              <option>Cash / savings</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="aBal">Current balance</label>
+            <input type="number" id="aBal" min="0" step="100" placeholder="0" required>
+          </div>
+          <div class="field">
+            <button type="submit" class="btn">Add account</button>
+          </div>
+        </fieldset>
+      </form>
+
+      <div class="stack">
+        <div class="hero-fig">
+          <div class="label">Total across all accounts</div>
+          <div class="figure num" id="acctTotal">$0</div>
+          <p class="sub" id="acctSub">Add your accounts to see the total.</p>
+        </div>
+        <div class="alloc" id="alloc" hidden></div>
+        <div class="legend" id="allocLegend"></div>
+        <div class="table-wrap" id="acctTable"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. LIMITS -->
+<section>
+  <div class="wide">
+    <div class="sec-head">
+      <p class="eyebrow">Reference</p>
+      <h2>2026 contribution limits</h2>
+      <p>Set by the IRS in Notice 2025-67 and adjusted most years for inflation.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th scope="col">Limit</th><th scope="col">2026 amount</th><th scope="col">Who it applies to</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>401(k) salary deferral</td><td>$24,500</td><td>Your own contributions, all 401(k)s combined</td></tr>
+          <tr><td>Catch-up, age 50+</td><td>+$8,000</td><td>On top of the $24,500</td></tr>
+          <tr><td>Catch-up, ages 60&ndash;63</td><td>+$11,250</td><td>Replaces the $8,000 — it doesn't stack, and your plan must offer it</td></tr>
+          <tr><td>Total 401(k) additions</td><td>$72,000</td><td>You + employer combined, per plan</td></tr>
+          <tr><td>IRA contribution</td><td>$7,500</td><td>Roth and Traditional combined</td></tr>
+          <tr><td>IRA catch-up, age 50+</td><td>+$1,100</td><td>Total of $8,600</td></tr>
+          <tr><td>Roth IRA income phase-out</td><td>$153,000&ndash;$168,000</td><td>Single / head of household</td></tr>
+          <tr><td>Roth IRA income phase-out</td><td>$242,000&ndash;$252,000</td><td>Married filing jointly</td></tr>
+          <tr><td>Traditional IRA deduction phase-out</td><td>$81,000&ndash;$91,000</td><td>Single, covered by a workplace plan</td></tr>
+          <tr><td>Traditional IRA deduction phase-out</td><td>$129,000&ndash;$149,000</td><td>Married filing jointly, contributor covered at work</td></tr>
+          <tr><td>Saver's Credit income cap</td><td>$40,250</td><td>Single — a tax credit just for contributing</td></tr>
+          <tr><td>Saver's Credit income cap</td><td>$80,500</td><td>Married filing jointly</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="limits-note"><strong>New for 2026:</strong> if you earned more than $150,000 from your employer last year and you're making age-50+ catch-up contributions, those catch-ups must go in as Roth (after-tax) rather than pre-tax. This is automatic in most plans — worth knowing, not worth worrying about.</p>
+  </div>
+</section>
+
+<!-- 7. GLOSSARY -->
+<section>
+  <div class="spine">
+    <div class="sec-head">
+      <p class="eyebrow">Plain language</p>
+      <h2>The words people use without explaining them</h2>
+    </div>
+    <dl class="gloss">
+      <div><dt>401(k)</dt><dd>A retirement account your employer sets up. Money moves straight from your paycheck, usually before tax is taken, and it's yours if you leave — you take it with you.</dd></div>
+      <div><dt>IRA</dt><dd>The same idea, but you open it yourself at a brokerage. Lower limit than a 401(k), no employer match, more control over what you invest in.</dd></div>
+      <div><dt>Traditional vs. Roth</dt><dd>Traditional: skip tax now, pay it when you withdraw. Roth: pay tax now, withdraw completely tax-free later. Roth usually wins when you're early in your career and your tax rate is lower than it will be.</dd></div>
+      <div><dt>Employer match</dt><dd>Your employer adds money when you do — often 50% or 100% of your contribution, up to a few percent of pay. Not contributing enough to get all of it means turning down salary.</dd></div>
+      <div><dt>Vesting</dt><dd>How long you must stay before the employer's contributions are permanently yours. Your own contributions are always yours immediately. Check the schedule before you resign.</dd></div>
+      <div><dt>Index fund</dt><dd>A fund that buys the whole market instead of trying to beat it. Cheap, boring, and it outperforms most managed funds over long periods.</dd></div>
+      <div><dt>Target-date fund</dt><dd>A single fund named for the year you'll retire ("Target 2060"). It holds a mix of stocks and bonds and gets more conservative as that date approaches. A reasonable one-choice answer if you don't want to think about it.</dd></div>
+      <div><dt>Expense ratio</dt><dd>The annual fee a fund takes, as a percentage. 0.03% is excellent; above 0.50% deserves a hard look. Small differences compound into large ones over thirty years.</dd></div>
+      <div><dt>Rollover</dt><dd>Moving an old employer's 401(k) into an IRA or a new plan when you change jobs. Done correctly there's no tax and no penalty — this is how you stop losing track of old accounts.</dd></div>
+      <div><dt>RMD</dt><dd>Required minimum distribution — the age at which the government makes you start withdrawing from pre-tax accounts. Roth IRAs are exempt for the original owner.</dd></div>
+    </dl>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="spine">
+    <div class="disc">
+      <p><strong>This is educational, not financial advice.</strong> It's a calculator and a notebook — it doesn't know your tax situation, debts, or plans. The projections are arithmetic on the assumptions you type in, not predictions: real markets deliver their average through years that are nothing like average, and a long decline early in retirement hurts far more than the same decline late.</p>
+      <p>Contribution limits are 2026 figures from IRS Notice 2025-67. Limits in future years are estimated by growing them 2% annually. Balances compound monthly and are shown in future dollars unless you switch to today's dollars. Before doing anything large, a fee-only fiduciary advisor is worth an hour of their time.</p>
+    </div>
+    <p>Everything you enter is stored in this browser's local storage and never leaves your device. Clearing site data erases it.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------------- 2026 IRS limits (Notice 2025-67) ---------------- */
+  var LIM = {
+    year: 2026,
+    deferral: 24500,
+    catchup50: 8000,
+    catchup6063: 11250,
+    ira: 7500,
+    iraCatchup: 1100,
+    total415c: 72000,
+    indexRate: 0.02
+  };
+
+  var usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+  var usd2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 });
+  var $ = function (id) { return document.getElementById(id); };
+  var money = function (n) { return usd.format(Math.round(n || 0)); };
+
+  /* ---------------- storage ---------------- */
+  var KEY = "retirement-tracker-v1";
+  var store = { contribs: [], accounts: [], age: 30 };
+  var storageOK = true;
+
+  function load() {
+    try {
+      var raw = window.localStorage.getItem(KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === "object") {
+          store.contribs = Array.isArray(parsed.contribs) ? parsed.contribs : [];
+          store.accounts = Array.isArray(parsed.accounts) ? parsed.accounts : [];
+          store.age = typeof parsed.age === "number" ? parsed.age : 30;
+        }
+      }
+    } catch (e) { storageOK = false; }
+  }
+  function save() {
+    try { window.localStorage.setItem(KEY, JSON.stringify(store)); }
+    catch (e) {
+      storageOK = false;
+      $("storageNote").textContent = "This browser is blocking local storage, so entries will disappear when you close the tab.";
+    }
+  }
+
+  /* ---------------- projection ---------------- */
+  function project(p) {
+    var years = Math.max(0, p.ageRet - p.ageNow);
+    var mRate = Math.pow(1 + p.ret, 1 / 12) - 1;
+    var bal = p.startBal;
+    var employee = 0, employer = 0, yearEmployee = 0;
+    var rows = [{ age: p.ageNow, mine: p.startBal, match: 0, growth: 0, total: p.startBal }];
+
+    for (var m = 0; m < years * 12; m++) {
+      var yIdx = Math.floor(m / 12);
+      if (m % 12 === 0) yearEmployee = 0;
+
+      var age = p.ageNow + yIdx;
+      var infl = Math.pow(1 + LIM.indexRate, yIdx);
+      var cap = LIM.deferral * infl;
+      if (age >= 60 && age <= 63) cap += LIM.catchup6063 * infl;
+      else if (age >= 50) cap += LIM.catchup50 * infl;
+
+      var monthlyPay = (p.salary * Math.pow(1 + p.salGrowth, yIdx)) / 12;
+      var ec = Math.min(monthlyPay * p.contribPct, Math.max(0, cap - yearEmployee));
+      yearEmployee += ec;
+
+      var em = Math.min(ec, monthlyPay * p.matchLimit) * p.matchRate;
+
+      bal = bal * (1 + mRate) + ec + em;
+      employee += ec;
+      employer += em;
+
+      if (m % 12 === 11) {
+        rows.push({
+          age: age + 1,
+          mine: p.startBal + employee,
+          match: employer,
+          growth: bal - p.startBal - employee - employer,
+          total: bal
+        });
+      }
+    }
+    return { rows: rows, total: bal, mine: p.startBal + employee, match: employer,
+             growth: bal - p.startBal - employee - employer };
+  }
+
+  function readInputs() {
+    var ageNow = +$("ageNow").value;
+    var ageRet = Math.max(+$("ageRet").value, ageNow);
+    return {
+      ageNow: ageNow,
+      ageRet: ageRet,
+      salary: Math.max(0, +$("salary").value || 0),
+      startBal: Math.max(0, +$("startBal").value || 0),
+      contribPct: +$("contribPct").value / 100,
+      matchRate: +$("matchRate").value / 100,
+      matchLimit: +$("matchLimit").value / 100,
+      ret: +$("ret").value / 100,
+      salGrowth: +$("salGrowth").value / 100,
+      infl: +$("infl").value / 100
+    };
+  }
+
+  /* ---------------- chart ---------------- */
+  var NS = "http://www.w3.org/2000/svg";
+  var W = 720, H = 320, PAD = { t: 16, r: 16, b: 34, l: 62 };
+  var lastRows = [], lastScale = null;
+
+  function el(name, attrs) {
+    var n = document.createElementNS(NS, name);
+    for (var k in attrs) { if (Object.prototype.hasOwnProperty.call(attrs, k)) n.setAttribute(k, attrs[k]); }
+    return n;
+  }
+  function niceTicks(max) {
+    if (max <= 0) return [0];
+    var raw = max / 4;
+    var mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    var step = [1, 2, 2.5, 5, 10].reduce(function (best, mult) {
+      var cand = mult * mag;
+      return cand >= raw && (best === null || cand < best) ? cand : best;
+    }, null) || mag * 10;
+    var out = [];
+    for (var v = 0; v <= max + step * 0.001; v += step) out.push(v);
+    return out;
+  }
+  function abbrev(n) {
+    if (n >= 1e6) return "$" + (n / 1e6).toFixed(n >= 1e7 ? 0 : 1) + "M";
+    if (n >= 1e3) return "$" + Math.round(n / 1e3) + "k";
+    return "$" + Math.round(n);
+  }
+
+  function drawChart(rows) {
+    var svg = $("chart");
+    /* keep the <title> (accessible name), drop every rendered node after it */
+    while (svg.lastChild && svg.lastChild.nodeName !== "title") svg.removeChild(svg.lastChild);
+
+    lastRows = rows;
+    if (rows.length < 2) { lastScale = null; return; }
+
+    var maxY = rows[rows.length - 1].total || 1;
+    var ticks = niceTicks(maxY);
+    var top = ticks[ticks.length - 1] || maxY;
+    var x0 = PAD.l, x1 = W - PAD.r, y0 = H - PAD.b, y1 = PAD.t;
+    var ageMin = rows[0].age, ageMax = rows[rows.length - 1].age;
+
+    var X = function (age) { return x0 + (ageMax === ageMin ? 0 : (age - ageMin) / (ageMax - ageMin)) * (x1 - x0); };
+    var Y = function (v) { return y0 - (top === 0 ? 0 : v / top) * (y0 - y1); };
+    lastScale = { X: X, Y: Y, x0: x0, x1: x1, ageMin: ageMin, ageMax: ageMax };
+
+    /* gridlines + y labels */
+    ticks.forEach(function (t) {
+      svg.appendChild(el("line", { x1: x0, x2: x1, y1: Y(t), y2: Y(t),
+        stroke: "var(--grid)", "stroke-width": 1 }));
+      var lab = el("text", { x: x0 - 10, y: Y(t) + 4, "text-anchor": "end",
+        fill: "var(--ink-3)", "font-size": 11, "font-family": "var(--font-ui)" });
+      lab.textContent = abbrev(t);
+      svg.appendChild(lab);
+    });
+
+    /* stacked areas: mine -> +match -> +growth */
+    var keys = ["mine", "match", "growth"];
+    var colors = ["var(--s1)", "var(--s2)", "var(--s3)"];
+    var lower = rows.map(function () { return 0; });
+
+    keys.forEach(function (key, ki) {
+      var upper = rows.map(function (r, i) { return lower[i] + r[key]; });
+      var d = "M " + X(rows[0].age) + " " + Y(upper[0]);
+      for (var i = 1; i < rows.length; i++) d += " L " + X(rows[i].age) + " " + Y(upper[i]);
+      for (var j = rows.length - 1; j >= 0; j--) d += " L " + X(rows[j].age) + " " + Y(lower[j]);
+      d += " Z";
+      svg.appendChild(el("path", { d: d, fill: colors[ki], "fill-opacity": ki === 2 ? 0.95 : 1 }));
+
+      /* 2px surface gap along the top boundary of each band */
+      var top_d = "M " + X(rows[0].age) + " " + Y(upper[0]);
+      for (var k = 1; k < rows.length; k++) top_d += " L " + X(rows[k].age) + " " + Y(upper[k]);
+      svg.appendChild(el("path", { d: top_d, fill: "none", stroke: "var(--ground)",
+        "stroke-width": 2, "stroke-linejoin": "round" }));
+
+      lower = upper;
+    });
+
+    /* baseline + x labels */
+    svg.appendChild(el("line", { x1: x0, x2: x1, y1: y0, y2: y0, stroke: "var(--axis)", "stroke-width": 1 }));
+    var span = ageMax - ageMin;
+    var stepAge = span > 40 ? 10 : span > 20 ? 5 : span > 8 ? 2 : 1;
+    for (var a = ageMin; a <= ageMax; a += stepAge) {
+      /* the emphasized end label owns the right edge — skip ticks that would collide with it */
+      if (X(ageMax) - X(a) < 34) continue;
+      var t2 = el("text", { x: X(a), y: y0 + 20, "text-anchor": "middle",
+        fill: "var(--ink-3)", "font-size": 11, "font-family": "var(--font-ui)" });
+      t2.textContent = a;
+      svg.appendChild(t2);
+    }
+    var endLab = el("text", { x: X(ageMax), y: y0 + 20, "text-anchor": "end",
+      fill: "var(--ink-2)", "font-size": 11, "font-weight": 700, "font-family": "var(--font-ui)" });
+    endLab.textContent = "age " + ageMax;
+    svg.appendChild(endLab);
+
+    /* direct label on the final total — the relief for sub-3:1 fills */
+    var endTotal = el("text", { x: X(ageMax) - 6, y: Math.max(Y(rows[rows.length - 1].total) - 8, PAD.t + 10),
+      "text-anchor": "end", fill: "var(--ink)", "font-size": 13, "font-weight": 700,
+      "font-family": "var(--font-ui)" });
+    endTotal.textContent = abbrev(rows[rows.length - 1].total);
+    svg.appendChild(endTotal);
+
+    /* hover layer */
+    var hoverLine = el("line", { id: "hoverLine", y1: y1, y2: y0, stroke: "var(--ink-3)",
+      "stroke-width": 1, "stroke-dasharray": "3 3", opacity: 0 });
+    svg.appendChild(hoverLine);
+    var hoverDot = el("circle", { id: "hoverDot", r: 4.5, fill: "var(--ink)",
+      stroke: "var(--ground)", "stroke-width": 2, opacity: 0 });
+    svg.appendChild(hoverDot);
+  }
+
+  function bindHover() {
+    var wrap = $("chartWrap"), svg = $("chart"), tip = $("tip");
+
+    function hide() {
+      tip.classList.remove("on");
+      var hl = $("hoverLine"), hd = $("hoverDot");
+      if (hl) hl.setAttribute("opacity", 0);
+      if (hd) hd.setAttribute("opacity", 0);
+    }
+
+    function move(ev) {
+      if (!lastScale || lastRows.length < 2) return;
+      var rect = svg.getBoundingClientRect();
+      var px = ((ev.clientX - rect.left) / rect.width) * W;
+      var frac = (px - lastScale.x0) / (lastScale.x1 - lastScale.x0);
+      var idx = Math.round(frac * (lastRows.length - 1));
+      idx = Math.max(0, Math.min(lastRows.length - 1, idx));
+      var r = lastRows[idx];
+
+      var hl = $("hoverLine"), hd = $("hoverDot");
+      if (hl) { hl.setAttribute("x1", lastScale.X(r.age)); hl.setAttribute("x2", lastScale.X(r.age)); hl.setAttribute("opacity", 1); }
+      if (hd) { hd.setAttribute("cx", lastScale.X(r.age)); hd.setAttribute("cy", lastScale.Y(r.total)); hd.setAttribute("opacity", 1); }
+
+      tip.innerHTML =
+        '<div class="t-age">Age ' + r.age + '</div>' +
+        '<div class="t-row"><span><i style="background:var(--s1)"></i>You</span><span>' + money(r.mine) + '</span></div>' +
+        '<div class="t-row"><span><i style="background:var(--s2)"></i>Match</span><span>' + money(r.match) + '</span></div>' +
+        '<div class="t-row"><span><i style="background:var(--s3)"></i>Growth</span><span>' + money(r.growth) + '</span></div>' +
+        '<div class="t-row t-tot"><span>Balance</span><span>' + money(r.total) + '</span></div>';
+      tip.classList.add("on");
+
+      var tw = tip.offsetWidth, left = (lastScale.X(r.age) / W) * rect.width + 14;
+      if (left + tw > rect.width) left = (lastScale.X(r.age) / W) * rect.width - tw - 14;
+      tip.style.left = Math.max(0, left) + "px";
+      tip.style.top = "10px";
+    }
+
+    wrap.addEventListener("mousemove", move);
+    wrap.addEventListener("mouseleave", hide);
+    wrap.addEventListener("touchmove", function (e) {
+      if (e.touches[0]) move({ clientX: e.touches[0].clientX });
+    }, { passive: true });
+    wrap.addEventListener("touchend", hide);
+  }
+
+  function drawChartTable(rows) {
+    var h = '<table><thead><tr><th scope="col">Age</th><th scope="col">Your money in</th>' +
+            '<th scope="col">Employer match</th><th scope="col">Growth</th><th scope="col">Balance</th></tr></thead><tbody>';
+    rows.forEach(function (r) {
+      h += "<tr><td>" + r.age + "</td><td>" + money(r.mine) + "</td><td>" + money(r.match) +
+           "</td><td>" + money(r.growth) + "</td><td><strong>" + money(r.total) + "</strong></td></tr>";
+    });
+    $("chartTable").innerHTML = h + "</tbody></table>";
+  }
+
+  /* ---------------- calculator wiring ---------------- */
+  var realDollars = false;
+
+  function deflate(rows, infl, ageNow) {
+    if (!realDollars) return rows;
+    return rows.map(function (r) {
+      var f = Math.pow(1 + infl, r.age - ageNow);
+      return { age: r.age, mine: r.mine / f, match: r.match / f, growth: r.growth / f, total: r.total / f };
+    });
+  }
+
+  function render() {
+    var p = readInputs();
+
+    $("ageNow_v").textContent = p.ageNow;
+    $("ageRet_v").textContent = p.ageRet;
+    $("contribPct_v").textContent = (+$("contribPct").value).toFixed(1).replace(/\.0$/, "") + "%";
+    $("matchRate_v").textContent = $("matchRate").value + "%";
+    $("matchLimit_v").textContent = (+$("matchLimit").value).toFixed(1).replace(/\.0$/, "") + "%";
+    $("ret_v").textContent = (+$("ret").value).toFixed(2).replace(/0$/, "") + "%";
+    $("salGrowth_v").textContent = (+$("salGrowth").value).toFixed(2).replace(/0$/, "") + "%";
+    $("infl_v").textContent = (+$("infl").value).toFixed(2).replace(/0$/, "") + "%";
+
+    $("contribDollars").textContent =
+      money(p.salary * p.contribPct) + " a year — about " + usd2.format((p.salary * p.contribPct) / 26) + " per paycheck, paid twice a month.";
+
+    var missing = Math.max(0, p.matchLimit - p.contribPct) * p.salary * p.matchRate;
+    $("matchHint").textContent = missing > 1
+      ? "You're leaving " + money(missing) + " of match on the table each year. Raise your contribution to " + (+$("matchLimit").value) + "%."
+      : (p.matchRate > 0 && p.matchLimit > 0 ? "You're capturing the full match. " + money(Math.min(p.contribPct, p.matchLimit) * p.salary * p.matchRate) + " a year of free money." : "No match at this job.");
+
+    var base = project(p);
+    var rows = deflate(base.rows, p.infl, p.ageNow);
+    var shown = rows[rows.length - 1] || { total: 0, mine: 0, match: 0, growth: 0 };
+
+    $("heroLabel").textContent = "Projected balance at " + p.ageRet + (realDollars ? ", in today's dollars" : "");
+    $("heroFig").textContent = money(shown.total);
+
+    var years = p.ageRet - p.ageNow;
+    $("heroSub").textContent = years <= 0
+      ? "Set a retirement age above your current age to see a projection."
+      : "Over " + years + " years, from " + money(base.mine - p.startBal) + " of your own contributions" +
+        (base.match > 0 ? " plus " + money(base.match) + " of employer match." : ".");
+
+    $("kMine").textContent = money(shown.mine);
+    $("kMatch").textContent = money(shown.match);
+    $("kGrowth").textContent = money(shown.growth);
+    var tot = shown.total || 1;
+    $("kMinePct").textContent = Math.round((shown.mine / tot) * 100) + "% of the total";
+    $("kMatchPct").textContent = Math.round((shown.match / tot) * 100) + "% of the total";
+    $("kGrowthPct").textContent = Math.round((shown.growth / tot) * 100) + "% of the total";
+
+    drawChart(rows);
+    drawChartTable(rows);
+
+    /* one more percent */
+    var p2 = Object.assign({}, p, { contribPct: p.contribPct + 0.01 });
+    var delta = project(p2).total - base.total;
+    if (realDollars) delta = delta / Math.pow(1 + p.infl, years);
+    $("plusOne").textContent = "+" + money(delta);
+    $("plusOneP").textContent = "Extra at retirement if you contribute one more percentage point — " +
+      money(p.salary * 0.01) + " a year today, about " + usd2.format((p.salary * 0.01) / 26) + " a paycheck.";
+
+    /* cost of waiting 5 years */
+    var pWait = Object.assign({}, p, { ageNow: Math.min(p.ageNow + 5, p.ageRet) });
+    var waitDelta = base.total - project(pWait).total;
+    if (realDollars) waitDelta = waitDelta / Math.pow(1 + p.infl, years);
+    $("wait5").textContent = "−" + money(Math.max(0, waitDelta));
+  }
+
+  ["ageNow", "ageRet", "salary", "startBal", "contribPct", "matchRate", "matchLimit", "ret", "salGrowth", "infl"]
+    .forEach(function (id) {
+      $(id).addEventListener("input", render);
+      $(id).addEventListener("change", render);
+    });
+
+  $("realToggle").addEventListener("click", function () {
+    realDollars = !realDollars;
+    this.setAttribute("aria-pressed", String(realDollars));
+    this.textContent = realDollars ? "Show in future dollars" : "Show in today's dollars";
+    render();
+  });
+
+  $("tableToggle").addEventListener("click", function () {
+    var t = $("chartTable"), on = t.hasAttribute("hidden");
+    if (on) { t.removeAttribute("hidden"); $("chartWrap").setAttribute("hidden", ""); }
+    else { t.setAttribute("hidden", ""); $("chartWrap").removeAttribute("hidden"); }
+    this.setAttribute("aria-pressed", String(on));
+    this.textContent = on ? "Show chart" : "Show table";
+  });
+
+  /* ---------------- contribution tracker ---------------- */
+  var BUCKETS = {
+    "401k_employee": "401(k) — mine",
+    "401k_employer": "401(k) — employer",
+    "ira": "IRA",
+    "taxable": "Taxable"
+  };
+
+  function limitsForAge(age) {
+    var k = LIM.deferral;
+    if (age >= 60 && age <= 63) k += LIM.catchup6063;
+    else if (age >= 50) k += LIM.catchup50;
+    var ira = LIM.ira + (age >= 50 ? LIM.iraCatchup : 0);
+    return { k401: k, ira: ira };
+  }
+
+  function thisYear(list) {
+    return list.filter(function (c) { return new Date(c.date).getFullYear() === LIM.year; });
+  }
+
+  function renderTracker() {
+    var age = store.age;
+    $("tAge").value = age;
+    $("tAge_v").textContent = age;
+    var lim = limitsForAge(age);
+    var rows = thisYear(store.contribs);
+
+    var sum = function (type) {
+      return rows.filter(function (c) { return c.type === type; })
+                 .reduce(function (a, c) { return a + c.amount; }, 0);
+    };
+    var mine = sum("401k_employee"), emp = sum("401k_employer"), ira = sum("ira"), tax = sum("taxable");
+
+    var meters = [
+      { name: "401(k) — your contributions", used: mine, cap: lim.k401,
+        sub: "IRS salary-deferral limit for " + LIM.year + (age >= 50 ? " including your catch-up" : "") },
+      { name: "IRA", used: ira, cap: lim.ira,
+        sub: "Roth and Traditional combined" + (age >= 50 ? ", including catch-up" : "") },
+      { name: "401(k) total additions", used: mine + emp, cap: LIM.total415c,
+        sub: "You plus employer — rarely the binding limit" }
+    ];
+
+    $("meters").innerHTML = meters.map(function (m) {
+      var pct = m.cap > 0 ? Math.min(100, (m.used / m.cap) * 100) : 0;
+      var full = m.used >= m.cap && m.cap > 0;
+      return '<div class="meter"><div class="m-top"><span class="m-name">' + m.name +
+        '</span><span class="m-pct">' + Math.round(pct) + '%</span></div>' +
+        '<div class="track"><div class="fill' + (full ? " full" : "") + '" style="width:' + pct + '%"></div></div>' +
+        '<div class="m-sub">' + money(m.used) + " of " + money(m.cap) +
+        (full ? " — at the limit" : " · " + money(m.cap - m.used) + " left") + '</div>' +
+        '<div class="hint">' + m.sub + '</div></div>';
+    }).join("");
+
+    if (tax > 0) {
+      $("meters").insertAdjacentHTML("beforeend",
+        '<div class="meter"><div class="m-top"><span class="m-name">Taxable brokerage</span></div>' +
+        '<div class="m-sub">' + money(tax) + ' contributed in ' + LIM.year + '</div>' +
+        '<div class="hint">No contribution limit applies here.</div></div>');
+    }
+
+    var all = store.contribs.slice().sort(function (a, b) { return b.date.localeCompare(a.date); });
+    if (!all.length) {
+      $("contribTable").innerHTML = '<p class="empty">No contributions logged yet. Add your first one on the left — even a $50 entry makes the meters real.</p>';
+      return;
+    }
+    var h = '<table><thead><tr><th scope="col">Date</th><th scope="col">Bucket</th>' +
+            '<th scope="col">Note</th><th scope="col">Amount</th><th scope="col"></th></tr></thead><tbody>';
+    all.forEach(function (c) {
+      h += "<tr><td>" + c.date + "</td><td>" + BUCKETS[c.type] + "</td><td>" +
+           (c.note ? escapeHTML(c.note) : "<span style='color:var(--ink-3)'>—</span>") +
+           "</td><td>" + money(c.amount) + '</td><td><button type="button" class="btn danger mini" data-del-c="' +
+           c.id + '" aria-label="Delete contribution">Remove</button></td></tr>';
+    });
+    $("contribTable").innerHTML = h + "</tbody></table>";
+  }
+
+  function escapeHTML(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  $("contribForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var amt = +$("cAmt").value;
+    if (!(amt > 0) || !$("cDate").value) return;
+    store.contribs.push({
+      id: String(Date.now()) + Math.random().toString(36).slice(2, 7),
+      date: $("cDate").value,
+      type: $("cType").value,
+      amount: amt,
+      note: $("cNote").value.trim()
+    });
+    save();
+    $("cAmt").value = "";
+    $("cNote").value = "";
+    renderTracker();
+  });
+
+  $("tAge").addEventListener("input", function () {
+    store.age = +this.value;
+    save();
+    renderTracker();
+  });
+
+  document.addEventListener("click", function (e) {
+    var t = e.target;
+    if (t.hasAttribute && t.hasAttribute("data-del-c")) {
+      var id = t.getAttribute("data-del-c");
+      store.contribs = store.contribs.filter(function (c) { return c.id !== id; });
+      save(); renderTracker();
+    }
+    if (t.hasAttribute && t.hasAttribute("data-del-a")) {
+      var aid = t.getAttribute("data-del-a");
+      store.accounts = store.accounts.filter(function (a) { return a.id !== aid; });
+      save(); renderAccounts();
+    }
+  });
+
+  /* ---------------- accounts ---------------- */
+  var ALLOC_COLORS = ["var(--s1)", "var(--s2)", "var(--s3)", "var(--accent)", "var(--ink-3)"];
+
+  function renderAccounts() {
+    var accts = store.accounts;
+    var total = accts.reduce(function (a, x) { return a + x.balance; }, 0);
+    $("acctTotal").textContent = money(total);
+
+    if (!accts.length) {
+      $("acctSub").textContent = "Add your accounts to see the total.";
+      $("alloc").setAttribute("hidden", "");
+      $("allocLegend").innerHTML = "";
+      $("acctTable").innerHTML = '<p class="empty">Nothing added yet. Include old 401(k)s from previous jobs — those are the ones people forget.</p>';
+      return;
+    }
+
+    $("acctSub").textContent = accts.length + (accts.length === 1 ? " account" : " accounts") +
+      " tracked. Update the balances whenever you check in — quarterly is plenty.";
+
+    /* group by kind for the allocation bar */
+    var byKind = {};
+    accts.forEach(function (a) { byKind[a.kind] = (byKind[a.kind] || 0) + a.balance; });
+    var kinds = Object.keys(byKind).sort(function (a, b) { return byKind[b] - byKind[a]; });
+
+    $("alloc").removeAttribute("hidden");
+    $("alloc").innerHTML = kinds.map(function (k, i) {
+      var pct = total > 0 ? (byKind[k] / total) * 100 : 0;
+      return '<div style="width:' + pct + '%;background:' + ALLOC_COLORS[i % ALLOC_COLORS.length] +
+             '" title="' + escapeHTML(k) + ' — ' + money(byKind[k]) + '"></div>';
+    }).join("");
+    $("allocLegend").innerHTML = kinds.map(function (k, i) {
+      var pct = total > 0 ? Math.round((byKind[k] / total) * 100) : 0;
+      return '<span><i style="background:' + ALLOC_COLORS[i % ALLOC_COLORS.length] + '"></i>' +
+             escapeHTML(k) + " · " + pct + "%</span>";
+    }).join("");
+
+    var h = '<table><thead><tr><th scope="col">Account</th><th scope="col">Kind</th>' +
+            '<th scope="col">Balance</th><th scope="col">Share</th><th scope="col"></th></tr></thead><tbody>';
+    accts.slice().sort(function (a, b) { return b.balance - a.balance; }).forEach(function (a) {
+      h += "<tr><td>" + escapeHTML(a.name) + "</td><td>" + escapeHTML(a.kind) + "</td><td>" +
+           money(a.balance) + "</td><td>" + (total > 0 ? Math.round((a.balance / total) * 100) : 0) +
+           '%</td><td><button type="button" class="btn danger mini" data-del-a="' + a.id +
+           '" aria-label="Delete account">Remove</button></td></tr>';
+    });
+    $("acctTable").innerHTML = h + "</tbody></table>";
+  }
+
+  $("acctForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = $("aName").value.trim(), bal = +$("aBal").value;
+    if (!name || !(bal >= 0)) return;
+    store.accounts.push({
+      id: String(Date.now()) + Math.random().toString(36).slice(2, 7),
+      name: name, kind: $("aKind").value, balance: bal
+    });
+    save();
+    $("aName").value = "";
+    $("aBal").value = "";
+    renderAccounts();
+  });
+
+  /* ---------------- init ---------------- */
+  load();
+  $("cDate").value = new Date().toISOString().slice(0, 10);
+  if (!storageOK) $("storageNote").textContent = "This browser is blocking local storage, so entries will disappear when you close the tab.";
+  bindHover();
+  render();
+  renderTracker();
+  renderAccounts();
+})();
+</script>
