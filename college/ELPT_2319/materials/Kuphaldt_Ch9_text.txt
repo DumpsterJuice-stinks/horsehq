@@ -1,0 +1,714 @@
+Chapter 9
+Discrete process measurement
+The word “discrete” means individual or distinct. In engineering, a “discrete” variable or
+measurement refers to a true-or-false condition. Thus, a discrete sensor is one that i s only able
+to indicate whether the measured variable is above or below a speciﬁed setpoint.
+Discrete sensors typically take the form of switches, built to “trip” when the measured quantity
+either exceeds or falls below a speciﬁed value. These devices are less sophisticated than so -called
+continuous sensors capable of reporting an analog value, but they are quite useful in industry.
+Many diﬀerent types of discrete sensors exist, detecting variables such as posit ion, ﬂuid pressure,
+material level, temperature, and ﬂuid ﬂow rate. The output of a discrete sensor is typi cally electrical
+in nature, whether it be an active voltage signal or just resistive continui ty between two terminals
+on the device.
+655656 CHAPTER 9. DISCRETE PROCESS MEASUREMENT
+9.1 “Normal” status of a switch
+Perhaps the most confusing aspect of discrete sensors is the deﬁnition of a sensor’s normal status.
+Electrical switch contacts are typically classiﬁed as either normally-open or normally-closed, referring
+to the open or closed status of the contacts under “normal” conditions. But what exact ly deﬁnes
+“normal” for a switch? The answer is not complex, but is often misunderstood due to the ambiguous
+nature of the word normal.
+The “normal” status for a switch is the status its electrical contacts are in during a condition
+of no physical stimulation . Another way to think of the “normal” status is to think in terms of
+the switch being at rest . For a momentary-contact pushbutton switch, this would be the status of
+the switch contact when it is not being pressed. Electrical switches are always drawn in schematic
+diagrams in their “normal” statuses, regardless of their application. For ins tance, the following
+diagram shows a normally-open pushbutton switch controlling a lamp on a 1 20 volt AC circuit (the
+“hot” and “neutral” poles of the AC power source labeled L1 and L2, respectively) :
+L1 L2
+Switch Lamp
+Normally-open contacts
+We can tell this switch is a normally-open (NO) switch because it is drawn i n an open position.
+The lamp will energize only if someone presses the switch, holding its normally-o pen contacts in the
+“closed” position. Normally-open switch contacts are sometimes referred to in the electrical industry
+as form-A contacts.
+If we had used a normally-closed pushbutton switch instead, the behavior would be exactly
+opposite. The lamp would energize if the switch was left alone, but it would turn oﬀ if anyone
+pressed the switch. Normally-closed switch contacts are sometimes referred to in the electrical
+industry as form-B contacts:
+L1 L2
+Switch Lamp
+Normally-closed contacts
+This seems rather simple, don’t you think? What could possibly be confusing about the “normal”
+status of a switch? The confusion becomes evident, though, when you begin to consider process
+switches (i.e. switches actuated by process measurements such as pressure, ﬂow, level , etc.). In
+order to better understand this concept, we will consider a simple application of a ﬂow switch: a
+switch built to actuate when a suﬃcient rate of ﬂuid ﬂows through a pipe.9.1. “NORMAL” STATUS OF A SWITCH 657
+A ﬂow switch is built to detect ﬂuid ﬂow through a pipe. In a schematic diagram, the s witch
+symbol appears to be a toggle switch with a “ﬂag” hanging below. The schem atic diagram, of course,
+only shows the circuitry and not the pipe where the switch is physically mounted:
+L1 L2
+Flow switch
+Alarm
+lamp
+A low coolant flow alarm circuit
+This particular ﬂow switch is used to trigger an alarm light if coolant ﬂo w through the pipe ever
+falls to a dangerously low level, and the contacts are normally-closed as evidenced by the closed
+status in the diagram. Here is where things get confusing: even though this switch is designated as
+“normally-closed,” it will spend most of its lifetime being held in the open s tatus by the presence of
+adequate coolant ﬂow through the pipe. Only when the ﬂow through the pipe slows down enoug h
+will this switch return to its “normal” status and conduct electrical power to t he lamp. In other
+words, the “normal” status for this switch (closed) is actually an abnormal status for the process it
+operates within (low ﬂow), for the simple reason that the switch should be stimulated and not at
+rest while the process is operating as it should.
+Students often wonder why process switch contacts are labeled according to this conv ention of
+“no stimulation” instead of according to the typical status of the process in whic h the switch is used.
+The answer to this question is that the manufacturer of the switch has no idea whats oever as to your
+intended use. A ﬂow switch manufacturer does not know or care whether their product gets used
+as a low-ﬂow detector or as a high-ﬂow detector. In other words, the manufacturer cannot predi ct
+what the typical status of your process will be, and so the deﬁnition of “normal” status for the
+switch must be founded on some common criterion unrelated to your particular appl ication. That
+common criterion is the resting status: when the sensor is exposed to the least (or no) amount of
+stimulation from the process it senses.
+Here is a listing of “normal” deﬁnitions for various process switch types:
+• Limit switch : target not contacting the switch
+• Proximity switch: target far away
+• Pressure switch : low pressure (or even a vacuum)
+• Level switch : low level (empty)
+• T emperature switch: low temperature (cold)
+• Flow switch : low ﬂow rate (ﬂuid stopped)
+These are the conditions represented by the switch statuses shown in a schematic di agram.
+These may very well not be the statuses of the switches when they are exposed to typical operating
+conditions in the process.658 CHAPTER 9. DISCRETE PROCESS MEASUREMENT
+A helpful tip to remember about process switches and their respective schematic diagr am symbols
+is that the symbols are conventionally drawn in such a way that an upward motion of the movable
+switch element represents increasing stimulus . Here are some examples of this, showing various
+process switch types and NO/NC contact conﬁgurations, comparing their states wit h no stimulus
+versus when the stimulus exceeds the each switch’s threshold or “trip” setting. The normal status
+of each switch as deﬁned by the manufacturer is labeled in green text:
+NO pressure switch NC pressure switch
+Closed when pressure increases beyond threshold Open when pressure increases beyond threshold
+NO level switch NC level switch
+Open when there is zero level (minimum stimulus)
+Closed when level increases beyond threshold
+Closed when there is zero pressure (minimum stimulus)Open when there is zero pressure (minimum stimulus)
+Closed when there is zero level (minimum stimulus)
+Open when level increases beyond threshold
+NO temperature switch NC temperature switch
+Open when temperature is cold (minimum stimulus) Closed when temperature is cold (minimum stimulus)
+Closed when temperature increases beyond threshold Open when temperature increases beyond threshold
+NO flow switch NC flow switch
+Open when there is zero flow (minimum stimulus)
+Closed when flow increases beyond threshold
+Closed when there is zero flow (minimum stimulus)
+Open when flow increases beyond threshold
+It is imperative 1 to remember that the way a switch is drawn in a schematic diagram merely
+represents its “normal” status as deﬁned by the manufacturer. This may or may not b e the switch’s
+status during “typical” operation of the process, and it may or may not be the s tatus of that switch
+at the time of concern when you are examining the schematic! The “normal” status o f a switch
+means just one thing: what that switch will do when subjected to minimum stimulus – t hat is to
+say, what it will do when its stimulus is less than the actuation threshold of t he switch.
+1Mistaken interpretations of switch status remains one of th e most resilient misconceptions for students ﬁrst
+learning this topic. It seems that a great many students pref er to think of a switch’s drawn status as its status at
+the present moment (e.g. when the process is running as expec ted). I believe the heart of this misconception is the
+meaning of the word “normal,” which to most peoples’ minds re fers to “the way things typically are.”9.1. “NORMAL” STATUS OF A SWITCH 659
+For example, the LED in this circuit will turn on if the liquid level rises abov e 14 inches and the
+pressure falls below 22 PSI and either the ﬂow is less than 3 gallons per minute or the temperature
+is greater than 125 degrees Fahrenheit:
++−
+14 inches 3 GPM
+125 oF
+22 PSI
+Since we know we need a switch to be closed in order to conduct electricity and provide a path
+for current in this circuit, we are looking for the necessary conditions to close ea ch switch. For any
+normally-closed (NC) switch, this means a stimulus value less than the actuati on threshold. For any
+normally-open (NO) switch, this means a stimulus value great enough to exceed the thr eshold and
+“hold” the switch in its actuated state. Since the ﬂow and pressure switches in this circuit are both
+NC, we are looking for ﬂow and pressure values less than the respective settings . Since the level
+and temperature switches are both NO, we are looking for level and temperatur e values in excess of
+their respective settings.
+The present status of a switch may be determined by comparing its stimulating q uantity against
+its trip (threshold) setting. A switch will be in its “normal” (resting ) state when the stimulus
+value is less than the threshold value. Conversely, a switch will be in its “actuated” state when the
+stimulus value exceeds the threshold value. Determination of a switch’s status, t herefore, is a matter
+of comparing the stimulus quantity to the threshold “trip” setting. One cannot sim ply look at the
+schematic diagram to tell what the switch is doing – one must compare the switch’s setting versus
+against a known stimulus value in order to tell whether it will be in its resti ng state or not.
+Likewise, if we happen to know the switch’s present status in a system, we may qualitatively
+determine the stimulating quantity by comparing the present status against the “ normal” (resting)
+status. If a switch is in its resting state, then the stimulating quantit y must be less than the trip
+threshold. If a switch is in its actuated (non-normal) state, then the stimulat ing quantity must be
+greater than the trip threshold 2. The next example showcases these determinations.
+2In this discussion I am deliberately omitting the detail of deadband for process switches, for the sake of simplicity.660 CHAPTER 9. DISCRETE PROCESS MEASUREMENT
+In this next example, we see a pictorial representation of multiple switches wir ed to the discrete
+input channels of a programmable logic controller (PLC), with red LED indicat ors denoting the
+real-time status of each input on the PLC:
+Power
+Run
+Fault
+Force
+L1 L2/N VAC
+VDC O/0 VAC
+VDC
+VAC
+VDC
+VAC
+VDCO/1 O/2 O/3
+85-264 VAC
+DC OUT
+24V DC
+COM
+I/0 I/1 I/2 I/3 DC
+COM
+I/4 I/5
+Allen-Bradley
+MicroLogix PLCComNC NO
+Fluid pressure
+Trip = 12 PSI
+ComNC NO
+Temperature
+sensing bulb
+Trip = 235 oF
+ComNC NO
+Float
+Com NCNO
+Trip = 4 inches
+Pressure switchTemperature switch
+Liquid level
+float switch
+Limit switch
+Pressure switch status
+Temperature switch status
+Level switch status
+Limit switch status
+(on) (off)
+(on)
+(on)
+We may determine a switch’s degree of stimulation by comparing its present sta tus with its
+“normal” status. If a switch happens to be in the same state as its norma l state (i.e. resting), we
+know its stimulus must be less than the threshold (trip) value. If a switch happ ens to be in the
+opposite state as its normal state (i.e. actuated), we know its stimulus has exceeded the threshold
+(trip) value. The states of these four switches may be shown in a table:
+Switch Normal status Present status T rip value Stimulus
+Pressure Normally-closed (NC) Closed 12 PSI P < 12 PSI
+Temperature Normally-open (NO) Closed 235 oF T > 235 oF
+Level Normally-closed (NC) Closed 4 inches L < 4 inches
+Limit Normally-open (NO) Open n/a no contact9.2. HAND SWITCHES 661
+9.2 Hand switches
+A hand switch is exactly what the name implies: an electrical switch actuated by a person’s hand
+motion. These may take the form of toggle, pushbutton, rotary, pull-chain, etc. A common form of
+industrial pushbutton switch looks something like this:
+Button
+Threaded neck
+Base
+NC terminal
+NO terminal
+NC terminal
+NO terminal
+The threaded neck inserts through a hole cut into a metal or plastic panel, with a mat ching nut
+to hold it in place. Thus, the button faces the human operator(s) while the swit ch contacts reside
+on the other side of the panel.
+When pressed, the downward motion of the actuator breaks the electrical bridge between the
+two NC contacts, forming a new bridge between the NO contacts:
+NC terminal
+NO terminal
+NC terminal
+NO terminal
+Switch in the actuated
+(pressed) state
+The schematic diagram symbol for this type of switch looks much like the real thing, with the
+normally-closed contact set on top and the normally-open contact set below:662 CHAPTER 9. DISCRETE PROCESS MEASUREMENT
+Connecting two of the terminals together makes this form of switch electrically identical to a
+Form C :
+Connected as a form-C switch
+This switch contact arrangement is sometimes referred to as a form-C contact set, since it
+incorporates both a form-A contact (normally-open) as well as a form-B cont act (normally-closed).
+Most industrial hand switches are available in modular form, where sets of s witch contact blocks
+may be “stacked” together to be actuated by the same pushbutton or rotary knob. This allows an
+almost unlimited number of switch contacts to be simultaneously actuated by a single actuating
+mechanism. Diﬀerent actuator types such as pushbuttons, rotary selectors, knobs , and keyswitches
+may also be interchanged with contact modules for maximum ﬂexibility:
+Stackable switch
+modules9.3. LIMIT SWITCHES 663
+9.3 Limit switches
+Normally-open
+(NO)
+Normally-closed
+(NC)
+Limit switch symbols
+A limit switch detects the physical motion of an object by direct contact with that object.
+An example of a limit switch is the switch detecting the open position of a n automobile door,
+automatically energizing the cabin light when the door opens.
+Recall from section 9.1 that the “normal” status of a switch is the resting condition of no
+stimulation. A limit switch will be in its “normal” status when it is not in contact with anything
+(i.e. nothing touching the switch actuator mechanism).
+Limit switches ﬁnd many uses in industry, particular in robotic control and C NC (Computer
+Numerical Control) machine tool systems. In many motion-control syst ems, the moving elements
+have “home” positions where the computer assigns a position value of zero. For example, the axis
+controls on a CNC machine tool such as a lathe or mill all return to their “ home” positions upon
+start-up, so the computer can know with conﬁdence the starting locations of each piece. These home
+positions are detected by means of limit switches. The computer commands each servo motor to
+travel fully in one direction until a limit switch on each axis trips. The position counter for each
+axis resets to zero as soon as the respective limit switch detects that the home position has been
+reached.
+A typical limit switch design uses a roller-tipped lever to make contact with the moving part.
+Screw terminals on the switch body provide connection points with the NC and NO co ntacts inside
+the switch. Most limit switches of this design share a “common” terminal bet ween the NC and NO
+contacts like this:
+Com NC NO
+Lever
+Roller tip
+to actuate
+Com NC NO
+Equivalent schematic
+Push lever up
+This switch contact arrangement is sometimes referred to as a form-C contact set, since it
+incorporates both a form-A contact (normally-open) as well as a form-B cont act (normally-closed).664 CHAPTER 9. DISCRETE PROCESS MEASUREMENT
+A close-up view of several limit switches (used on a drum sequencer) shows the arrangemen t of
+connection terminals for form-C contacts. Each limit switch has its own “ NO” (normally-open),
+“NC” (normally-closed), and “C” (common) screw terminal for wires to attac h:
+A limit switch assembly attached to the stem of a rotary valve – used to det ect the fully-closed
+and fully-open positions of the valve – is shown in the following photogra ph:
+9.4. PROXIMITY SWITCHES 665
+9.4 Proximity switches
+A proximity switch is one detecting the proximity (closeness) of some object. By deﬁnition, these
+switches are non-contact sensors , using magnetic, electric, or optical means to sense the proximity
+of objects.
+Recall from section 9.1 that the “normal” status of a switch is the resting condition of no
+stimulation. A proximity switch will be in its “normal” status when it is distant from any detectable
+object.
+Being non-contact in nature, proximity switches are often used instead of direct-cont act limit
+switches for the same purpose of detecting the position of a machine part, wit h the advantage of
+never wearing out over time due to repeated physical contact.
+Most proximity switches are active in design. That is, they incorporate a powered electronic
+circuit to sense the proximity of an object. Inductive proximity switches sense the presence of
+metallic objects through the use of a high-frequency magnetic ﬁeld. Capacitive proximity switches
+sense the presence of non-metallic objects through the use of a high-frequency electric ﬁeld. Optical
+proximity switches detect the interruption of a light beam by an object. Ultrasonic proximity
+switches sense the presence of dense matter by the reﬂection of sound waves.
+The schematic diagram symbol for a proximity switch with mechanical con tacts is the same as
+for a mechanical limit switch, except the switch symbol is enclosed by a diamond shape, indicating
+a powered (active) device:
+Normally-open
+(NO)
+Normally-closed
+(NC)
+prox prox
+Proximity switch symbols
+Many proximity switches, though, do not provide “dry contact 3” outputs. Instead, their output
+elements are transistors conﬁgured either to source current or sink current. The terms “sourcing”
+and “sinking” are best understood by visualizing electric current in the direction o f conventional
+ﬂow rather than electron ﬂow .
+3This curious label is used to describe switch contacts lacki ng their own built-in power source, as opposed to a
+switch contained in a device that also provides power to driv e the switch circuit. Dry contacts may be mechanical
+in nature, or they may be electronic (e.g. transistor). By con trast, a “wet” contact is one already connected to an
+internal power source, ready to drive a load with no other ext ernal components needed.666 CHAPTER 9. DISCRETE PROCESS MEASUREMENT
+The following schematic diagrams contrast the two modes of switch opera tion, using red arrows
+to show the direction of current (conventional ﬂow notation). In both examples, the load being
+driven by each proximity switch is a light-emitting diode (LED):
+Output
++V
+Ground
+"Sinking" output
+proximity switch
+Output
++V
+Ground
+proximity switch
+"Sourcing" output
++− 24VDC
++− 24VDC
+LED
+LED
+ground through the switch
+Switch "sources" current
+Switch is "sinking" or "NPN" type
+Switch is "sourcing" or "PNP" type
+Brn
+Blk
+Blu
+Brn
+Blk
+Blu
+LED current "sinks" down to
+out to the LED
+Sensor
+circuit
+Sensor
+circuit
+A common coloring convention for electronic proximity switches is brown fo r +V power supply,
+blue for ground ( − pole of power supply), and black for the switched output signal. This conventio n
+is common to sinking and sourcing proximity switches alike.
+An electronic switch designed to sink current through its signal wire is alterna tively referred to
+as an NPN switch due to the type of transistor used in its output. Conversely, an electr onic switch
+designed to source current through its signal wire may be referred to as a PNP switch. The key to
+understanding these labels is to recognize the emitter terminal of the output transisto r is always the
+one connected to the power supply rail. For a sinking switch, this means the emitter mus t connect
+to the negative rail, necessitating 4 an NPN transistor to do the switching. For a sourcing switch,
+4To be honest, one could use an NPN transistor to source current or a PNP to sink, but it would require the9.4. PROXIMITY SWITCHES 667
+this means the emitter must connect to the positive rail, in which case only a PNP transistor will
+suﬃce.
+Yet another convention for describing sourcing and sinking transistor switches is to refer to
+them as high-side switches and low-side switches, respectively. A sourcing transistor (PNP) has
+its emitter terminal attached directly to the “high” rail (+) of the DC power suppl y. A sinking
+transistor (NPN), by contrast, has its emitter terminal attached directl y to the “low” rail ( −) of the
+DC power supply.
+Output
++V
+Ground
+Output
++V
+Ground
++− 24VDC
++− 24VDC
+LED
+LED
+Sinking transistor = NPN = "low side" switch
+Sourcing transistor = PNP = "high side" switch
+Brn
+Blk
+Blu
+Brn
+Blk
+Blu
+Sensor
+circuit
+Sensor
+circuit
+transistor be used in the common-collector conﬁguration which does not allow for saturation. The engin eers designing
+these proximity switches strive for complete saturation of the transistor, in order to achieve minimum “on” resistance ,
+and that requires a common-emitter conﬁguration.668 CHAPTER 9. DISCRETE PROCESS MEASUREMENT
+These photographs show two diﬀerent styles of electronic proximity switch:
+Many industrial proximity switches have built-in LED indicator lamps to help t echnicians
+diagnose circuit problems by directly indicating switch status. With just a gla nce, one may tell
+whether or not the proximity switch is detecting the presence of an object.9.4. PROXIMITY SWITCHES 669
+The next photograph shows a proximity switch detecting the passing of teeth on a cha in sprocket,
+generating a slow square-wave electrical signal as the sprocket rotates. Such a s witch may be used
+as a rotational speed sensor (sprocket speed proportional to signal frequency) or as a broken chain
+sensor (when sensing the rotation of the driven sprocket instead of the drive spro cket):
+Like other types of process switches, proximity switches come in both “norm ally open” (NO)
+and “normally closed” (NC) varieties. This distinction has nothing whatsoever t o do with sourcing
+versus sinking (PNP vs. NPN), but rather what the status of the proximity swi tch will be when
+no objects are near. Thus, it is possible to ﬁnd normally-open proximity swi tches that are sinking
+(NPN) as well as normally-open proximity switches that are sourcing (PNP ), and normally-closed
+proximity switches in either sinking or sourcing designs as well.
+These switch characteristics are commonly ﬁxed, and must be speciﬁed when ordering the device.
+Likewise, the detection range of a proximity switch is usually a ﬁxed parameter rather than being
+adjustable.670 CHAPTER 9. DISCRETE PROCESS MEASUREMENT
+9.5 Pressure switches
+A pressure switch is one detecting the presence of ﬂuid pressure. Pressure switches often use
+diaphragms or bellows as the pressure-sensing element, the motion of which actuates one or more
+switch contacts.
+Recall from section 9.1 that the “normal” status of a switch is the resting condition of no
+stimulation. A pressure switch will be in its “normal” status when it senses minimum press ure (e.g.
+an applied pressure, or in some cases a vacuum condition) 5. For a pressure switch, “normal” status
+is any ﬂuid pressure below the trip threshold of the switch.
+Normally-open
+(NO)
+Normally-closed
+(NC)
+Pressure switch symbols
+The following photograph shows two pressure switches sensing the same ﬂuid pressur e as an
+electronic pressure transmitter (the device on the far left) because they are all plum bed to a common
+tube:
+5If the trip setting of a pressure switch is below atmospheric pressure, then it will be “actuated” at atmospheric
+pressure and in its “normal” status only when the pressure fa lls below that trip point (i.e. a vacuum).9.5. PRESSURE SWITCHES 671
+A legacy design of pressure switch uses a bourdon tube as the pressure-sensing element, a nd a
+glass bulb partially ﬁlled with mercury as the electrical switching element. When a pplied pressure
+causes the bourdon tube to ﬂex suﬃciently, the glass bulb tilts far enough to cause the mercury
+to fall against a pair of electrodes, thus completing an electrical circuit. A great many pressure
+switches of this design were sold under the brand name of “Mercoid,” with a few appear ing in this
+photograph of a steam boiler (the round-shaped units with glass covers allowing inspection of the
+bourdon tube and mercury tilt switch):
+672 CHAPTER 9. DISCRETE PROCESS MEASUREMENT
+A close-up photograph of one of these pressure switches appears here. The bourdon tube is grey
+in color, and almost as wide in diameter as the circular switch housing. The mer cury tilt switch
+bottles have yellow-colored plastic caps covering up their external electrical conta cts:
+The next set of photographs show a mercury tilt switch removed from the pressure sw itch
+mechanism, so you may see the switch in two diﬀerent states (contact open on the left, and closed
+on the right):
+Advantages of mercury tilt switches include immunity to switch contact degradation from harmful
+atmospheres (oil mist, dirt, dust, corrosion) as well as safety in explosiv e atmospheres (since a spark9.5. PRESSURE SWITCHES 673
+contained within a hermetically sealed glass bulb cannot touch oﬀ an explosion in the surrounding
+atmosphere). Disadvantages include the possibility of intermittent electrica l contact resulting from
+mechanical vibration, as well as sensitivity to mounting angle (i.e. you wo uld not want to use this
+kind of switch aboard a moving vehicle!).
+A pressure switch manufactured by the Danfoss corporation appears in the next photograph.
+This particular model of pressure switch has windows on the front cover allowi ng a technician to see
+the pressure limit setting inside:
+This switch balances the force generated by a pressure-sensing element against a mechanica l
+spring. Tension on the spring may be adjusted by a technician, which means the trip p oint of this
+switch is adjustable.
+One of the settings on this switch is the deadband or diﬀerential pressure setting, seen in the
+lower window. This setting determines the amount of pressure change required to re-set t he switch
+to its normal state after it has tripped. For example, a high-pressure switch w ith a trip point of 67
+PSI (changes state at 67 PSI, increasing) that re-sets back to its normal state at a pressure of 63
+PSI decreasing has a “deadband” or “diﬀerential” pressure setting of 4 PSI (67 PSI − 63 PSI = 4
+PSI).674 CHAPTER 9. DISCRETE PROCESS MEASUREMENT
+The “diﬀerential” pressure setting of a gauge pressure switch is not to be confus ed with a true
+diﬀerential pressure switch. In the next photograph, we see a pressure switch truly actuated by
+diﬀerential pressure (the diﬀerence in ﬂuid pressure sensed between two ports):
+The electrical switch element is located underneath the blue cover, while the diaphragm pres sure
+element is located within the grey metal housing. The net force exerted on the diaphragm by the
+two ﬂuid pressures varies in magnitude and direction with the magnitude of those pres sures. If
+the two ﬂuid pressures are precisely equal, the diaphragm experiences no net force (zero diﬀerent ial
+pressure).
+Like the Danfoss gauge pressure switch seen previously, this diﬀerential press ure switch has
+a “trip” or “limit” setting as well as a “dead-band” or “diﬀerential” setting. I t is important to
+recognize and clearly distinguish the two meanings of diﬀerential pressure in the context of this
+device. It senses diﬀerences in pressure between two input ports (“diﬀerential pressure” – the
+diﬀerence between two diﬀerent ﬂuid pressure connections), but being a switch, it also exhibit s some
+dead band in its action (“diﬀerential pressure” – a change in pressure required to re-s et the switch’s
+state).9.6. LEVEL SWITCHES 675
+9.6 Level switches
+A level switch is one detecting the level of liquid or solid (granules or powder) in a vessel. Lev el
+switches often use ﬂoats as the level-sensing element, the motion of which actuates one or more
+switch contacts.
+Recall from section 9.1 that the “normal” status of a switch is the resting condition of no
+stimulation. A level switch will be in its “normal” status when it senses minimum level (e. g. an
+empty vessel). For a level switch, “normal” status is any ﬂuid level below the trip threshold of the
+switch.
+Normally-open
+(NO)
+Normally-closed
+(NC)
+Level switch symbols676 CHAPTER 9. DISCRETE PROCESS MEASUREMENT
+9.6.1 Float-type level switches
+Some level switches use a ﬂoat to sense the level of a liquid surface, actuating an electrical switch
+by the motion of the ﬂoat. The electrical schematic symbol for a level switc h is actually based on
+this type of mechanism, with a round “ball” ﬂoat drawn as the actuating element:
+Normally-open
+(NO)
+Normally-closed
+(NC)
+Level switch symbols
+An example of this technology is a level switch manufactured by Magnetrol, wi th two such
+switches shown in the following photograph of a steam boiler. These switches sense water level in
+the steam drum of the boiler:
+9.6. LEVEL SWITCHES 677
+The Magnetrol ﬂoat switch mechanism uses a mercury tilt bulb, tilted by a magnet’s attraction
+to a steel rod lifted into position by a ﬂoat. The ﬂoat directly senses liquid level, positioning the
+steel rod either closer to or farther away from the magnet. If the rod comes close enough to the
+magnet, the mercury bottle tilts to change the switch’s electrical status:
+Float
+Connection to vessel
+Connection to vessel
+Float
+Tilt switch
+MagnetMagnetic
+rod
+Process
+liquid
+Process
+liquid
+A feature of this design is complete isolation between the electrical components a nd the “wet”
+components sensing the liquid level. The steel rod moves inside a non-magnetic metal t ube, with
+the tube sealing process ﬂuid pressure from escape while still allowing the magnet ic tilt switch to
+sense ﬂoat position.
+Simpler ﬂoat switch designs also exist for direct installation in open (vent ed) process vessels,
+resembling the ﬂoat valve assembly on a water-ﬂush toilet. Any “limit” styl e switching element will
+work here, including inductive proximity switches, to sense the ﬂoat’s position i n an environment
+where no isolation need exist between the switch and the process ﬂuid(s):
+Float
+Switch Switch Float
+Process liquid Process liquid678 CHAPTER 9. DISCRETE PROCESS MEASUREMENT
+9.6.2 Tuning fork level switches
+This level switch uses a metal tuning fork structure to detect the presence of a liquid or solid (powder
+or granules) in a vessel:
+An electronic circuit continuously excites the tuning fork, causing it to mechanically vibrate.
+When the prongs of the fork contact anything with substantial mass, the resona nt frequency of
+the fork decreases. The circuit detects this frequency change and indicates the presence of mass
+contacting the fork. The forks’ vibrating motion tends to shake oﬀ any accumul ated material, such
+that this style of level switch tends to be resistant to fouling.
+It should be noted that the previous photograph of the tuning-fork style level swit ch is complete:
+the fork “paddles” are only a couple of inches long and require no physical extensions in order to
+properly detect liquid or solid material at that point.9.6. LEVEL SWITCHES 679
+9.6.3 Paddle-wheel level switches
+A more primitive variation on the theme of a “tuning fork” level switch i s the rotating paddle switch,
+used to detect the level of powder or granular solid material. This level switch uses an electric motor
+to slowly rotate a metal paddle inside the process vessel. If solid material rises to the level of the
+paddle, the material’s bulk will place a mechanical load on the paddle. A torque-sensiti ve switch
+mechanically linked to the motor actuates when enough torsional eﬀort is detected on t he part of the
+motor. A great many level switches of this design sold in the United States under t he trade-name
+Bindicator (so-called because they detected the level of solid material in storage bins).
+A “Bindicator” style of level switch appears in this photograph (painted bla ck, against a white-
+painted hopper), used to detect the presence of soda ash powder in a hopper at a water treatm ent
+plant:
+680 CHAPTER 9. DISCRETE PROCESS MEASUREMENT
+9.6.4 Ultrasonic level switches
+Yet another style of electronic level switch uses ultrasonic sound waves to detect the presence of
+process material (either solid or liquid) at one point:
+Sound waves pass back and forth within the gap of the probe, sent and received by piezoel ectric
+transducers. The presence of any substance other than gas within that gap aﬀects the receiv ed audio
+power, thus signaling to the electronic circuit within the bulkier portion of the device that process
+level has reached the detection point. The lack of moving parts makes this probe q uite reliable,
+although it may become “fooled” by heavy fouling.9.6. LEVEL SWITCHES 681
+9.6.5 Capacitive level switches
+Another electronic liquid level switch technology is capacitive: sensing level by changes in electrical
+capacitance between the switch and the liquid. The following photograph shows a coupl e of capacitive
+switches sensing the presence of water in a plastic storage vessel:
+682 CHAPTER 9. DISCRETE PROCESS MEASUREMENT
+9.6.6 Conductive level switches
+Perhaps the simplest (and oldest) form of electrical level detection is where a pair of metal electrodes
+contacts the process material to form a complete electrical circuit, actuating a rel ay. This type
+of switch, of course, only works with granular solids and liquids that are electrically conductive
+(e.g. potable or dirty water, acids, caustics, food liquids, coal, metal po wders) and not with non-
+conducting materials (e.g. ultra-pure water, oils, ceramic powders).
+A legacy design for conductive level switches is the model 1500 “induction relay” ori ginally
+manufactured by B/W Controls, using a special transformer/relay to generat e an isolated AC probe
+voltage and sense the presence of liquid:
+Primary coil
+To 120 VAC
+power source
+Secondary coil
+Armature
+Core
+Probes
+Conductive
+liquid
+B/W Controls
+model 1500
+inductive relay
+N.O. switch contacts
+Line voltage (120 V AC) energizes the primary coil, sending a magnetic ﬁeld through the laminated
+ferrous6 core of the relay. This magnetic ﬁeld easily passes through the center of the secondary coil
+when the secondary circuit is open (no liquid closing the probe circuit), thus completing the magnetic
+“circuit” in the core. With the magnetic circuit thus completed, the armature will no t be attracted
+to the core. However, when a circuit is completed by liquid level rising to contact bo th probes,
+the secondary coil’s resulting current “bucks” the magnetic ﬂux 7 through its center, causing more
+6“Ferrous” simply means any iron-containing substance.
+7The reason for this opposition is rooted in the roles of prima ry and secondary coils as power load and source,
+respectively. The voltage across each coil is a function of F araday’s Law of Electromagnetic Induction: V = N dφ
+dt .
+However, since the primary coil acts as a load (drawing power from the 120 V AC source) and the secondary coil acts
+as a source (sending power to the probes), the directions of c urrent through the two coils will be opposite despite
+their common voltage polarities. The secondary coil’s oppo site current direction causes an opposing magnetic force in
+that section of the core, reducing the magnetic ﬂux there. In a normal power transformer, this reduction in magnetic9.6. LEVEL SWITCHES 683
+magnetic ﬂux to bypass to the end poles where it attracts the ferrous armature to ward the core
+frame. This physical attraction actuates switch contacts which then signal the presence of liquid
+level at the probes.
+The following pair of illustrations shows the two conditions of this level sw itch, with the magnetic
+lines of ﬂux highlighted as dashed lines through the core:
+(open) (closed)
+Negligible magnetic flux
+passes through armature
+Opposition to magnetic flux
+by secondary coil causes more
+flux to attract armature
+The “transformer” design of this particular conductive level switch not only prov ides electrical
+isolation between the probes and the energizing (120 V AC) circuit, but it also enables a wide range
+of detection voltages to be generated for the probes just by altering the number of wire “turns” in
+the secondary coil. The B/W Controls model 1500 inductive relay is available i n a variety of AC
+voltage output levels, ranging from 12 V AC (for detecting metallic substances) t o 800 V AC for use
+with demineralized water such as that found in steam boiler systems.
+More modern variations on the same design theme use much lower AC voltages 8 to energize
+the probes, employing sensitive semiconductor ampliﬁer circuits to detect probe current and signal
+liquid level.
+ﬂux caused by secondary current is also felt by the primary co il (since there is only one magnetic “path” in a power
+transformer’s core), which then causes the primary coil to d raw more current and re-establish the core ﬂux at its
+original magnitude. With the inductive relay, however, the opposing magnetic force created by the secondary coil
+simply forces more of the primary coil’s magnetic ﬂux to bypa ss to the alternate route: through the armature.
+8The B/W Controls model 5200 solid-state relay, for example, u ses only 8 volts AC at the probe tips.684 CHAPTER 9. DISCRETE PROCESS MEASUREMENT
+9.7 Temperature switches
+A temperature switch is one detecting the temperature of some substance. Temperature switches
+often use bimetallic strips as the temperature-sensing element, the motion of whi ch actuates one
+or more switch contacts. An alternative design uses a metal bulb ﬁlled with a ﬂuid that expands
+with temperature, causing the switch mechanism to actuate based on the pressure thi s ﬂuid exerts
+against a diaphragm or bellows. This latter temperature switch design is r eally a pressure switch,
+whose pressure is a direct function of process temperature by virtue of the physics o f the entrapped
+ﬂuid inside the sensing bulb.
+Recall from section 9.1 that the “normal” status of a switch is the resting condition of no
+stimulation. A temperature switch will be in its “normal” status when it senses minimum
+temperature (i.e. cold, in some cases a condition colder than ambient) 9. For a temperature switch,
+“normal” status is any sensed temperature below the trip threshold of the switch.
+Normally-open
+(NO)
+Normally-closed
+(NC)
+Temperature switch symbols
+9If the trip setting of a temperature switch is below ambient t emperature, then it will be “actuated” at ambient
+temperature and in its “normal” status only when the tempera ture falls below that trip point (i.e. colder than
+ambient).9.7. TEMPERATURE SWITCHES 685
+The following photograph shows a temperature-actuated switch manufactured by t he Ashcroft
+corporation:
+Like all other process switches, temperature switches exhibit a certain amount o f deadband in
+their switching action. A temperature switch that trips at 300 oF rising, for example, will not re-set
+at 300 oF falling. That switch would more likely reset at some lower temperature such as 29 5 oF.
+With mechanical switch designs, some amount of deadband is inevitable due to frict ion inside the
+mechanism. However, process switch deadband is actually a useful characteristic as it helps avoid
+repeated “nuisance” alarms from happening.
+To understand this concept, it is helpful to imagine a scenario where the process variable i s at
+or very near the trip point. For our hypothetical temperature switch with a trip point of 300 oF
+(rising), imagine a situation where the process temperature is precisely 300. 0 oF. Any further rise
+in temperature will of course trip the switch (sounding an alarm). With no deadband, however,
+the switch will immediately re-set when the temperature falls back down to 300 .0 oF. This means
+the switch may possibly “cycle” back and forth between its trip and reset sta tes with just a minute
+change in process temperature (300.0 oF to 300.1 oF and back again). If the temperature switch is
+activating an alarm every time it trips, it will create a series of alarm events prompting operators to
+repeatedly acknowledge the alarm. This is a nuisance to operations personnel, as it distracts them686 CHAPTER 9. DISCRETE PROCESS MEASUREMENT
+from addressing what they already realize is a process problem. It is better for the s witch to trip
+at 300.0 oF rising and remain in that tripped state until the temperature falls down to some degree
+substantially below the trip point. This way, the operators only receive one alarm event rather than
+multiple alarm events for each process temperature excursion.
+Some mechanical temperature switches come equipped with a separate adjustment for deadband
+(also called diﬀerential ). Setting this deadband adjustment in a mechanical temperature switch
+requires the technician to repeatedly subject the sensing element to a rising and falling temperature,
+to check that the switch trips at the proper setting and resets at the proper setti ng. This is analogous
+to cycling the process variable back and forth when adjusting the “zero” and “span” set tings of an
+analog transmitter: checking to see that the transmitter repeatedly outputs a 0% signal at the lower
+range value (LR V) and a 100% signal at the upper range value (UR V).9.7. TEMPERATURE SWITCHES 687
+For discrete temperature-sensing applications demanding high accuracy and repeatability,
+electronic temperature switch circuits using thermocouples, RTDs, or thermistors may be used
+instead of a mechanical (bi-metallic or ﬁlled bulb) sensing element. The operation and conﬁguration
+of discrete electronic temperature switches is very similar to that of contin uous electronic
+temperature transmitters.
+An example of an electronic temperature switch module is the Moore Industries m odel SPA
+(“Site Programmable Alarm”), shown here:
+Not only is this particular model capable of directly interpreting both RTD and ther mocouple
+signals, but it will also input 4-20 mA loop current signals as well. This means you may build a
+temperature switch system out of a 4-20 mA loop-powered temperature transmi tter (located in the
+ﬁeld) and an SPA switch module (located in a protected environment such as a contro l room or
+electrical enclosure). Many other manufacturers and models of electronic switching unit s exist, with
+the Moore Industries SPA being just one example.
+With electronic temperature switches, the adjustment of deadband (diﬀerential) is both precise
+and ﬂexible. Unlike mechanical switches where deadband is primarily a function of frict ion, and
+therefore liable to change over time as the device wears, electronic switching cir cuits may be precisely
+set for any trip and reset points along its measurement range, remaining very s table over time.688 CHAPTER 9. DISCRETE PROCESS MEASUREMENT
+9.8 Flow switches
+A ﬂow switch is one detecting the ﬂow of some ﬂuid through a pipe. Flow switches often use
+“paddles” as the ﬂow-sensing element, the motion of which actuates one or more swit ch contacts.
+Recall from section 9.1 that the “normal” status of a switch is the resting condition of no
+stimulation. A ﬂow switch will be in its “normal” status when it senses minimum ﬂow (i.e. no ﬂuid
+moving through the pipe). For a ﬂow switch, “normal” status is any ﬂuid ﬂow ra te below the trip
+threshold of the switch.
+Normally-open
+(NO)
+Normally-closed
+(NC)
+Flow switch symbols9.8. FLOW SWITCHES 689
+A simple paddle placed in the midst of a ﬂuid stream generates a mechanical force which m ay
+be used to actuate a switch mechanism, as shown in the following photograph:
+Like all other process switches, ﬂow switches exhibit deadband (also called diﬀerential ) in their
+switching action. A ﬂow switch that trips at 15 GPM rising, for example, will not re-set at 15 GPM
+falling. That switch would more likely reset at some lower ﬂow rate such as 14 GP M. With the
+“trip” and “reset” points being diﬀerent, the switch avoids unnecessary cycling if the process ﬂow
+rate hovers near one critical value.690 CHAPTER 9. DISCRETE PROCESS MEASUREMENT
+9.9 Review of fundamental principles
+Shown here is a partial listing of principles applied in the subject matter of this cha pter, given for
+the purpose of expanding the reader’s view of this chapter’s concepts and of their general int er-
+relationships with concepts elsewhere in the book. Your abilities as a problem-solv er and as a
+life-long learner will be greatly enhanced by mastering the applications of these princi ples to a wide
+variety of topics, the more varied the better.
+• “Normal” switch status : the “normal” status of a switch contact as deﬁned by the
+manufacturer is its resting condition (minimum stimulus).
+• Sourcing versus sinking : whether the electronic device in question is outputting
+(conventional ﬂow) current or inputting current. Relevant to the proper connection of
+electronic switches (especially proximity switches).
+• Deadband and hysteresis : the diﬀerence in response with the independent variable
+increasing versus decreasing. Usually caused by friction in a mechanism. Relevant t o the
+“trip” settings of process switches: the value at which a switch changes stat e when its stimulus
+increases is not the same value it changes state when its stimulus decreases.
+References
+“Installation and Service Manual – 1500 Induction Control Relays”, document 511 1500.M4R
+02/05.Z145 10M, AMETEK Automation and Process Technologies, Clawso n, MI, 2005.
+“Installation and Service Manual – 5200 Solid State Relays”, document 432 5 200.M4R 05/07.Z152,
+AMETEK Automation and Process Technologies, Clawson, MI, 2007.

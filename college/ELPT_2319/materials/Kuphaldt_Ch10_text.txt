@@ -1,0 +1,1506 @@
+Chapter 10
+Discrete control elements
+The word “discrete” means individual or distinct. In engineering, a “discrete” variable or
+measurement refers to a true-or-false condition. Thus, a discrete control element is one that has
+but a limited number of states (usually two: on and oﬀ). In the case of valves , this means a valve
+designed to operate either in “open” mode or “closed” mode, not in-between.
+691692 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+10.1 On/oﬀ valves
+An on/oﬀ valve is the ﬂuid equivalent of an electrical switch: a device that either a llows unimpeded
+ﬂow or acts to prevent ﬂow altogether. These valves are often used for routing proces s ﬂuid to
+diﬀerent locations, starting and stopping batch processes, and engaging automated safety (shutdown)
+functions.
+Valve styles commonly used for on/oﬀ service include ball, plug, butterﬂy (or disk) , gate, and
+globe. Large on/oﬀ valves are generally of such a design that the full-open po sition provides a
+nearly unimpeded path for ﬂuid to travel through. Ball, plug 1, and gate valves provide just this
+characteristic:
+Inlet Outlet
+Ball valve
+Inlet Outlet
+Butterfly valve
+Inlet Outlet
+Gate valve
+Inlet Outlet
+Diaphragm valve
+1A plug valve is very much like a ball valve, the diﬀerence being the s hape of the rotating element. Rather than a
+spherical ball, the plug valve uses a truncated cone as the ro tary element, a slot cut through the cone serving as the
+passageway for ﬂuid. The conical shape of a plug valve’s rota ting element allows it to wedge tightly into the “closed”
+(shut) position for exceptional sealing.10.1. ON/OFF V AL VES 693
+A series of photographs showing a cut-away ball valve (hand-actuated) in three diﬀerent p ositions
+reveals the inner workings common to all ball valve mechanisms:
+The left-hand image shows the valve in the shut position, with the bore axi s facing the viewer
+(preventing ﬂuid ﬂow). The right-hand image shows the valve in the open positi on, with the bore
+axis perpendicular to view and allowing ﬂow. The middle image shows the valve i n a partially-open
+condition.694 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+10.2 Fluid power systems
+Given the ability of pressurized ﬂuids to transmit force over long distances, it is not surprising that
+many practical “ﬂuid power systems” have been built using ﬂuid as a mechanical power-co nducting
+media. Fluid systems may be broadly grouped into pneumatic (gas, usually air) and hydraulic
+(liquid, usually oil 2).
+Although there is no particular reason why a ﬂuid power system must be discrete and not
+continuous, the majority of ﬂuid power systems operate in an on/oﬀ contro l mode rather than
+throttling, which is why this subject is covered in the “Discrete Control El ements” chapter.
+As usual for technical specialties, ﬂuid power has its own unique symbology for describing various
+components and their interconnections. The following diagram shows some common symbols used
+in ﬂuid power system diagrams. Lines connecting components together in a ﬂuid power dia gram
+indicate pipes, hoses, or tubes, much like lines connecting components together in an elect ronic
+schematic diagram represent wires:
+Solenoid-actuated
+on/off spool valve reversing spool valve
+1 2
+P TP
+1
+Filter
+Hydraulic motor
+Pressure relief
+valve
+Single-acting cylinder (ram) Double-acting cylinder
+Hydraulic pump
+Lever-actuated
+Air compressor Pneumatic motor Open liquid reservoir
+Check valve
+flow
+P T
+1
+Pressure-actuated
+3-way spool valve
+2While it would be technically possible to use water instead o f oil in a hydraulic power system, oil enjoys some
+distinct advantages. First, oil is a lubricating substance , and non-corrosive, unlike water. Second, oil enjoys a wide r
+operating temperature range than water, which tends to both freeze and boil more readily.10.2. FLUID POWER SYSTEMS 695
+Many of these symbols are self-explanatory, especially the pumps, motors, a nd cylinders. What
+seems to cause the most confusion for people new to this symbology are the spoo l valve symbols. A
+“spool” valve is a special type of ﬂow-directing valve used in pneumatic and hy draulic systems to
+direct the pressurized ﬂuid to diﬀerent locations. The symbology for a spool val ve is a set of boxes,
+each box containing arrows or other symbols showing the intended direction(s) f or the ﬂuid’s travel.
+Take for instance this pneumatic reversing cylinder control system:
+To compressed
+air supply (vent)
+Lever
+Double-acting cylinder
+Spool valve
+The proper way to interpret a spool valve symbol is to see only one “box” a ctive at any given
+time. As the actuator (in this case, a hand-actuated lever) is moved one way or the ot her, the boxes
+“shift” laterally to redirect the ﬂow of ﬂuid from source to load.
+For example, when the spool valve in this reversing control system is in its center position, the
+outer boxes in the symbol are inactive. This is emphasized in the following diag ram by coloring the
+outer boxes grey. In this position, the spool valve neither admits compressed a ir to the cylinder nor
+vents any air from the cylinder. As a result, the piston within the cylinder holds i ts position:
+To compressed
+air supply (vent)
+Spool valve is off
+Piston holds position696 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+If the spool valve is actuated in one direction, the spool piece inside the valve assembly shifts,
+directing compressed air to one side of the cylinder while venting air from the other s ide. This is
+shown in the following diagram by shifting the boxes to one side, lining up the “ active” box with
+the cylinder and air supply/vent connections:
+To compressed
+air supply (vent)
+Air flow Air flow
+Air flow Air flow
+Piston moves
+If the spool valve is actuated in the other direction, the spool piece inside the va lve assembly
+shifts again, switching the directions of air ﬂow to and from the cylinder. Compr essed air still ﬂows
+from the supply to the vent, but the direction within the cylinder is reversed. This causes t he piston
+to reverse its mechanical travel:
+To compressed
+air supply (vent)
+Air flow Air flow
+Air flow Air flow
+Piston moves
+Note that the boxes in a spool valve symbol are never shifted or grayed-out i n color like this to
+represent the valve’s state in a real ﬂuid power diagram. The previous illustra tions were drawn this
+way only as an aid to your understanding, teaching you how to interpret the meaning of the symbols
+when you see them in real ﬂuid power diagrams. Like electrical switches represented i n schematic
+diagrams, spool valve symbols are always drawn with the boxes ali gned in their “resting” states,
+and with all portions identically colored.10.2. FLUID POWER SYSTEMS 697
+Hydraulic systems require more components, including ﬁlters and pressure regulato rs, to ensure
+proper operation. Shown here is a simple uni-directional hydraulic motor control system:
+Oil reservoir
+Filter
+Control valve
+Hand-actuated
+lever
+Hydraulic motor
+Hydraulicpump
+Pressure relief
+valve
+Constant hydraulic
+pressure maintained
+here
+(return to reservoir)
+(return to reservoir)
+M
+Electric motor
+Note the placement of the pressure relief valve: it is a shunt regulator, bleeding excess pressure
+from the discharge of the hydraulic pump back to the reservoir 3. A “shunt” regulator is necessary
+because hydraulic pumps are positive displacement, meaning they discharge a ﬁxed volume of ﬂuid
+with every revolution of the shaft. If the discharge of a positive-displacemen t pump is blocked (as
+it would be if the spool valve were placed in its default “oﬀ” position, wi th no shunt regulator to
+bleed pressure back to the reservoir), it will mechanically “lock” and refuse to turn. This would
+overload the electric motor coupled to the pump, if not for the pressure regulating va lve providing
+an alternative route for oil to ﬂow back to the reservoir. This shunt regula tor allows the pump to
+discharge a ﬁxed rate of oil ﬂow (for a constant electric motor speed) under all hy draulic operating
+conditions.
+3Note also how identical reservoir symbols may be placed at di ﬀerent locations of the diagram although they
+represent the exact same reservoir. This is analogous to “gr ound” symbols in electronic schematic diagrams, every
+ground symbol representing a common connection to the same z ero-potential point.698 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+An alternative to using a shunt regulating valve in a hydraulic system is t o use a variable-
+displacement pump . Variable-displacement pumps still output a certain volume of hydraulic oil per
+shaft revolution, but that volumetric quantity may be varied by moving a com ponent within the
+pump. In other words, the pump’s per-revolution displacement of oil may be externally adjusted.
+If we connect the variable-displacement mechanism of such a hydraulic pump to a pressure-
+sensing element such as a bellows, in a way where the pump senses its own discharge pr essure and
+adjusts its volumetric output accordingly, we will have a pressure-regulating hydr aulic system that
+not only prevents the pump from “locking” when the spool valve turns oﬀ, but also saves energy by
+not circulating pressurized oil all the time:
+Oil reservoir
+Filter
+Control valve
+Hand-actuated
+lever
+Hydraulic motor
+pump
+Constant hydraulic
+pressure maintained
+here
+(return to reservoir)
+M
+Electric motor
+Variable
+displacement
+Note the placement of a ﬁlter at the inlet of the pump in all hydraulic systems. Fi ltration is
+an absolute essential for any hydraulic system, given the extremely tight dimensional tolerances
+of components inside pumps, motors, spool valves, and cylinders. Even very sma ll concentrations
+of particulate impurities in the hydraulic ﬂuid may drastically shorten the li fe of these precision-
+machined components.
+Hydraulic ﬂuid also acts as a heat-transfer medium, and as such must be kept cool enough to
+prevent thermal damage to components. Large hydraulic systems are equipped wi th coolers, which
+are just heat exchangers designed to extract heat energy from the ﬂuid and transfer it to ei ther
+cooling water or ambient air. Small hydraulic systems dissipate heat at a fa st enough rate through
+their components that coolers are often unnecessary.10.2. FLUID POWER SYSTEMS 699
+An interior view of a simple “2-way” spool valve such as that used in the h ydraulic motor system
+previously examined reveals why cleanliness and temperature stability is impor tant. The spool valve
+is shown here in both positions, with its accompanying schematic symbol :
+Spool Land
+P
+1
+P1
+Cut-away illustration Schematic symbol
+Actuating
+force Spool Land
+P
+1
+P1
+("Normal" position)
+Body
+Body
+Both the spool and the valve body it moves in are circular in cross-section. T he spool has wide
+areas called “lands” that act to cover and uncover ports in the valve body for ﬂuid t o ﬂow through.
+The precise ﬁt between the outside diameter of the lands and the inside diameter of the valv e body’s
+bore is the only factor limiting leakage through this spool valve in the closed state. Dirty hydraulic
+ﬂuid will wear at this precise ﬁt over time until the valve is no longer capable of s ealing ﬂuid in its
+“closed” position. Extreme cycles in temperature will also compromise the pr ecise ﬁt between the
+spool and the valve body.
+Pneumatic ﬂuid power systems require cleanliness as well, since any particulate con tamination
+in the air will likewise cause undue wear in the close-tolerance compressors, moto rs, valves, and
+cylinders. Unlike hydraulic oil, compressed air is not a natural lubricant, whic h means many
+pneumatic power devices beneﬁt from a small concentration of oil vapor in the air. Pneumatic
+“oilers” designed to introduce lubricating oil into a ﬂowing air stream are gener ally located very
+near the point of use (e.g. the motor or the cylinder) to ensure the oil does not condense a nd
+“settle” in the air piping.700 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+Fluid power systems in general tend to be ineﬃcient, requiring much more energy input t o
+the ﬂuid than what is extracted at the points of use 4. When large amounts of energy need to be
+transmitted over long distances, electricity is the a more practical medium for the task. However,
+ﬂuid power systems enjoy certain advantages over electric power, a few of which a re listed here:
+• Fluid power motors and cylinders do not overload at low speeds or under locked conditi ons
+• Fluid power systems present little hazard of accidently igniting ﬂammable atm ospheres (i.e.
+no sparks produced)
+• Fluid power systems present little or no ﬁre hazard 5
+• Fluid power systems present no hazard of electric shock or arc ﬂash
+• Fluid power systems are often easier to understand and troubleshoot than electric s ystems
+• Fluid power systems may be safely used in submerged (underwater) environments
+• Pneumatic systems are relatively easy to equip with back-up energy reserve (e.g. liqueﬁed
+nitrogen serving as a back-up gas supply in the event of compressor shut-down)
+• Pneumatic systems are self-purging (i.e. enclosures housing pneumatic devices will be nat urally
+purged of dusts and vapors by leaking air)
+Another important consideration for ﬂuid power systems is the ongoing maint enance work they
+require for reliable operation. Hydraulic power systems will suﬀer rapid w ear if the hydraulic oil
+is not clean and chemically stable. The ﬂuid in a hydraulic system not only transmi ts mechanical
+power, but it also lubricates and stabilizes the temperature of components as they t ransfer that
+power between diﬀerent forms. Regular ﬁlter changes and oil changes (especially if t he ﬂuid is
+subject to contamination from the process) is necessary for long service life o f any hydraulic system.
+Pneumatic (instrument air) systems must be free of water vapor and particula te contamination
+for much the same reason. Water is perhaps the most common contaminant in ins trument air
+systems, causing corrosion of metal components and subsequent clogging of oriﬁces . Special devices
+called air dryers installed in instrument air systems use solid materials called desiccants to absorb
+water entrained in the compressed air. The desiccant material is “regenerated” by the dryer
+mechanism on a regular cycle, but must be periodically replaced when its water-absorbing ability
+wanes.
+4Close-coupled hydraulic systems with variable-displacem ent pumps and/or motors may achieve high eﬃciency,
+but they are the exception rather than the rule. One such syst em I have seen was used to couple a diesel engine to the
+drive axle of a large commercial truck, using a variable-dis placement pump as a continuously-variable transmission
+to keep the diesel engine in its optimum speed range. The syst em was so eﬃcient, it did not require a cooler for the
+hydraulic oil!
+5Many kinds of hydraulic oils are ﬂammable, so this is not a per fectly true statement. However, ﬁre-resistant ﬂuids
+such as Skydrol (introduced to the aviation industry for safety) are commer cially available.10.2. FLUID POWER SYSTEMS 701
+This next photograph shows a high-capacity industrial air dryer, with two large c hambers holding
+desiccant:
+A valving system directs the main ﬂow of compressed air through one of these desiccan t chambers
+at a time, allowing the desiccant to absorb water vapor in the air. Meanwhil e, the unused chamber
+is purged of its collected water by venting low-pressure air through it to the atm osphere. An
+electronic timer unit (or PLC) controls the cycling of this valve system to ensur e adequate drying
+and maximized desiccant service life.
+Moisture content in instrument air is often expressed by the term dew point . This is the
+temperature at which water vapor suspended in the instrument air will condense int o water droplets,
+at atmospheric pressure. The “drier” the air, the lower the dew point temperature; t he “wetter” the
+air, the higher the dew point temperature. Sometimes the “dryness” of instrument air is expressed
+in terms of pressure dew point (PDP), which is the temperature of water condensation at system
+pressure rather than at atmospheric pressure. Pressure dew point is always a higher temperature
+value than atmospheric dew point, since greater air pressures force condensation to occur more
+readily. Pressure dew point is a more practical value than atmospheric dew poin t for an instrument
+air system, as PDP directly indicates the ambient temperature at which water wi ll condense in
+an operating pneumatic system. A low dew point value means that the air dryer is working as it
+should. A high dew point value means condensation is more likely to form in the com pressed air
+system piping.702 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+A simple way to help extract water from an instrument air system is an accesso ry called a water
+trap, usually found on air pressure regulators. The following photograph shows a F isher pneumatic
+regulator equipped with such a trap on the bottom:
+A shiny metal “wingnut” drain appears at the very bottom of the regulator, a cting as a
+manual valve for purging collected water from the basin where compressed air enter s the regulator
+mechanism. Periodic opening of this drain valve by maintenance or operations p ersonnel allows
+collected water to be blown out of the regulator.10.2. FLUID POWER SYSTEMS 703
+Another way to help minimize the amount of water reaching pneumatic devices is to proper ly
+orient all connections to the main air pipe (called a header). Ideally, each instrument air tap coming
+oﬀ a header should do so on the top of the header, not the bottom. This way, collected condensation
+inside the header will not go directly to the points of use, but rather will drain downhi ll to the lowest
+point in the header where a drain valve may be placed.
+This next photograph shows an incorrect installation, where air is drawn oﬀ the bottom of the
+main header line:
+Such an installation invites trouble, as every bit of water condensed inside the header pi pe is
+guaranteed to ﬁnd its way by gravity to the instruments connected to the underside of that header.
+One good feature of this installation is the use of stainless steel as the piping material. Copper,
+brass, plastic 6, and stainless steel are the preferred materials for instrument air piping, tubing ,
+valves, and ﬁttings, as standard (iron) pipe will inevitably rust in the presence of condensation.
+Particles of rust created inside an instrument air system plays havoc with the tiny ports, nozzles,
+and oriﬁces of pneumatic instruments.
+6Certain types of plastic pipe such as PVC should never be used in compressed air systems because it becomes
+brittle and liable to fracture over time. If you are consider ing the use of plastic for a high-pressure compressed air
+system, be sure the type of plastic is engineered for air pres sure service!704 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+The proper way to make instrument air connections to the air header is as such:
+Instrument air header (pipe)
+H L
+Pressure
+regulator
+Pressure
+regulator
+Pneumatic
+transmitter
+Pneumatic
+control valve
+Shutoff valve Shutoff valve
+Drain valve
+(placed at low
+point in header)
+downward slope
+In order to facilitate draining of the header, the header should be slightly inclined, w ith the drain
+valve installed at the lowest point. This drain valve should then be perio dically opened on a regular
+maintenance schedule in order to prevent the header from slowly ﬁlling up with condensed wat er
+over time.
+10.3 Solenoid valves
+A very common form of on/oﬀ valve used for pneumatic and hydraulic systems al ike is the solenoid
+valve. A “solenoid” is nothing more than a coil of wire designed to produce a magnetic ﬁeld w hen
+energized. Solenoid actuators work by attracting a movable ferrous armature into the center of the
+solenoid coil when energized, the force of this attraction working to actuate a sm all valve mechanism.
+Solenoid-actuated valves are usually classiﬁed according to the number of ports (“w ays”). A
+simple on/oﬀ solenoid valve controlling ﬂow into one port and out of another port is called a 2-way
+valve. Another style of solenoid valve, where ﬂow is directed in one path or to ano ther path – much
+like a single-pole double-throw (SPDT) electrical switch – is called a 3-way valve because it has
+three ﬂuid ports.10.3. SOLENOID V AL VES 705
+10.3.1 2-way solenoid valves
+2-way solenoid valves operate in a manner analogous to single-pole single-thro w (SPST) electrical
+switches: with only one path for ﬂow.
+Solenoid valve symbols often appear identical to ﬂuid power valve symbols , with “boxes”
+representing ﬂow paths and directions between ports in each of the valve’s states. L ike electrical
+switches, these valve symbols are always drawn in their “normal” (rest ing) state, where the return
+spring’s action determines the valve position:
+2-way solenoid valve
+Solenoid coil Return spring
+(normally open)
+Passes flow when de-energized ("normal")
+Blocks flow when energized
+2-way solenoid valve
+(normally closed)
+Blocks flow when de-energized ("normal")
+Passes flow when energized
+Solenoid coil Return spring706 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+A good way to make sense of these “box” valve symbols is to imagine the boxes sliding back
+and forth as the actuating elements work. For example, the two boxes in a norma lly-closed solenoid
+valve symbol may be thought of in terms of being pushed to the left by the spring when de-energized
+and pushed to the right by the solenoid’s force when energized. Here, the color grey de-emphasizes
+the unselected box in each of the valve’s two states:
+Valve is shut Valve allows flow
+Spring pushes left Solenoid pushes right
+NC valve in "normal" position NC valve in actuated position
+As with electrical switches in schematic diagrams, ﬂuid control valve sym bols are always drawn
+in their “normal” (resting) states. For example, a normally-closed valve w ill always be drawn so
+that the box with the blocked ports aligns with the tubes leading to and from t he valve. What
+you see in the above illustration are “dramatized” symbols, highlight ing the valve’s action by color
+and by re-positioning the boxes, strictly for the purpose of making it easier for you to grasp the
+concept. This sort of coloring and re-positioning is never shown in a real schematic diagram. In a
+ﬂuid control schematic, it is left to the reader to visualize the valve symbol boxes moving to and fro,
+determining the ﬂow path of ﬂuid through the valve.
+Unlike electrical switches, of course, the terms open and closed have opposite meanings for valves.
+An “open” electrical switch constitutes a break in the circuit, ensuring no current; an “ open” valve,
+by contrast, freely allows ﬂuid ﬂow through it. A “closed” electrical switch ha s continuity, allowing
+current through it; a “closed” valve, on the other hand, shuts oﬀ ﬂuid ﬂow.10.3. SOLENOID V AL VES 707
+The arrow inside a solenoid valve symbol actually denotes a preferred direction o f ﬂow. Most
+solenoid valves use a “globe” or “poppet” style of valve element, where a met al plug covers up a
+hole (called the “seat”). Process ﬂuid pressure should be applied to the valve in s uch a way that the
+pressure diﬀerence tends to hold the solenoid valve in its “normal” position (t he same position as
+driven by the return spring). Otherwise 7, enough ﬂuid pressure might override the return spring’s
+action, preventing the valve from achieving its “normal” state when de-energized. Th us, we see that
+the label “2-way” does not refer to two directions of ﬂow as one might assume, but ra ther two ports
+on the valve for ﬂuid to travel through.
+Some solenoid valves are designed in such a way that the direction of ﬂuid ﬂow throug h them is
+irrelevant. In such valves, the arrow symbols will be double-headed (one head at each end, pointing
+in opposite directions) to show the possibility of ﬂow in either direction.
+Bidirectional solenoid valve
+7One could argue that enough ﬂuid pressure could override the solenoid’s energized state as well, so why choose
+to have the ﬂuid pressure act in the direction of helping the r eturn spring? The answer to this (very good) question
+is that the solenoid’s energized force greatly exceeds that of the return spring. This is immediately obvious on ﬁrst
+inspection, as the solenoid must be stronger than the return spring or else the solenoid valve would never actuate!
+Furthermore, the solenoid’s force must be signiﬁcantly stronger than the spring, or else the valve would open rather
+slowly. Fast valve action demands a solenoid force that grea tly exceeds spring force. Realizing this, now, we see that
+the spring is the weaker of the two forces, and thus it makes pe rfect sense why we should use the valve in such a way
+that the process pressure helps the spring: the solenoid’s f orce has the best chance of overcoming the force on the
+plug produced by process pressure, so those two forces shoul d be placed in opposition, while the return spring’s force
+should work with (not against) the process pressure.708 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+10.3.2 3-way solenoid valves
+3-way solenoid valves operate in a manner analogous to single-pole double-throw ( SPDT) electrical
+switches: with two paths for ﬂow sharing one common terminal.
+3-way solenoid valves have three ports for ﬂuid, and like 2-way valves may be referred to either
+as normally-open and normally-closed. Ports on a pneumatic 3-way valve are commonly labeled
+with the letters “P,” “E,” and “C,” representing Pressure (compressed air supply), Exhaust (vent
+to atmosphere), and Cylinder (the actuating mechanism), respectively. Alternatively, you may see
+the cylinder port labeled “A” (for actuator ) instead of “C”. If the solenoid valve is intended for use
+in a hydraulic (liquid) system, the letter “T” is customarily used to identif y the return port rather
+than “E” (i.e. Tank rather than Exhaust):
+Solenoid coil Return spring
+(normally open)
+(normally closed)
+Solenoid coil Return spring
+3-way solenoid valve
+3-way solenoid valve
+Pressurizes cylinder when de-energized
+Vents cylinder when energized
+Pressurizes cylinder when energized
+Vents cylinder when de-energized
+C (1)
+(2) P E (3)
+C (1)
+(3) P E (2)
+The letters used to label ports on a valve such as this not only denote those por ts’ destinations,
+but also serve to mark which “box” of the valve’s symbol is the normal (r esting) state. In all ﬂuid
+power diagrams you will see that only one of the boxes on each spool valve will have lines connecting
+to it and/or labels at the ﬂuid ports, and that box is the one which will be al igned when the valve
+is not being actuated.10.3. SOLENOID V AL VES 709
+Alternatively, the numbers 1, 2, and 3 may be used to label the same ports. H owever, the
+numbers do not consistently refer to pressure source (P) and exhaust (E) ports, but r ather to the
+3-way valve’s “normal” versus “actuated” statuses. A 3-way valve will pass ﬂuid between ports 1
+and 3 in its “normal” (resting) state, and pass ﬂuid between ports 1 and 2 in it s energized state.
+The following table shows the correspondence between port numbers and port letters for both styles
+of 3-way solenoid valve:
+V alve type Pressure port (P) Exhaust port (E) Cylinder port (C)
+Normally-closed 2 3 1
+Normally-open 3 2 1
+Another way to think of this labeling is to consider port 1 the common, port 2 the normally-closed,
+and port 3 the normally-open, in a manner similar to SPDT (form-C) electrical switches. Again,
+bear in mind that the words “open” and “closed” do not mean the same for ﬂuid valves a s they do
+for electrical switches. A “normally-open” port on the valve permits ﬂuid ﬂow in its “normal” state,
+whereas a “normally-open” switch contact prevents electric current ﬂow in its “normal” state.
+As with 2-way solenoid valves, the arrows denote preferred direction of ﬂuid ﬂow. Bidirectional
+3-way valves will be drawn with double-headed arrows (pointing both directions ).
+A diﬀerent symbology is used in loop diagrams and P&IDs than that found in ﬂuid power
+diagrams – one more resembling general instrumentation (ISA) valve symbol s:
+S
+2-way solenoid valve
+S
+3-way solenoid valve
+Regrettably, these symbols are not nearly as descriptive as those used in ﬂuid po wer diagrams. In
+order to show directions of ﬂow (especially for 3-way valves), one must add arro ws showing “normal”
+(resting, DE ) ﬂow directions:
+S
+3-way solenoid valve
+(normally-closed)
+P C
+E
+DE
+S
+3-way solenoid valve
+C
+E
+DE
+(normally-open)
+P710 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+Alternatively, a pair of arrows shows the directions of ﬂow in both energized ( E ) and de-energized
+(D) states:
+S
+3-way solenoid valve
+(normally-closed)
+P C
+E
+S
+3-way solenoid valve
+P C
+E
+(normally-open)
+D
+D
+E
+E
+Photographs of an actual 3-way solenoid valve (this one manufactured by ASCO) a ppear here:
+10.3. SOLENOID V AL VES 711
+A view of the nameplate for this particular solenoid valve reveals some of it s ratings and
+characteristics:
+712 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+10.3.3 4-way solenoid valves
+When a pneumatic actuator requires air pressure applied to two diﬀerent ports in order to move
+two diﬀerent directions (such as the case for cylinders lacking a return spring), t he solenoid valve
+supplying air to that actuator must have four ports: one for air supply (P), one for exhaust (E),
+and two for the cylinder ports (typically labeled A and B). The following diag ram shows a 4-way
+solenoid valve connected to the piston actuator of a larger (process) ball valve:
+P E
+(Air supply) (Vent)
+Process valve
+Solenoid valve
+A B
+Piston actuator
+The same diagram could be drawn using the “triangle” solenoid valve symbol s rather than the
+“block” symbols more common to ﬂuid power diagrams:
+(Air supply) (Vent)
+Process valve
+Solenoid valve
+Piston actuator
+S
+E
+E
+D
+D
+P E
+A
+B
+Here, the letters “D” and “E” specify which directions air is allowed to ﬂow when t he solenoid
+is de-energized and energized, respectively.
+In both of the examples shown above, the solenoid valve forces the piston-actuat ed valve stem
+to move down (shut oﬀ) when the solenoid is de-energized. When the solenoid is energized, air is
+directed to the bottom of the piston (with the top of the piston becoming vented to atmosphere),
+causing the piston-actuated valve stem to move up (open wide).10.3. SOLENOID V AL VES 713
+An interior view of a standard spool-type 4-way valve of the kind commonl y used for directional
+hydraulic8 controls is shown here, along with its accompanying schematic symbol:
+P
+1
+Cut-away illustration Schematic symbol
+T
+2
+P
+T
+12
+P
+1
+T
+2
+P
+T
+12
+P
+T
+12
+P
+1
+T
+2
+Note that the actuator (e.g. hand lever, solenoid armature, etc.) has been omitted from this
+illustration for simplicity. Only the spool and valve body are shown.
+8In hydraulics, it is common to use the letter “T” to represent the tank or reservoir return connection rather than
+the letter “E” for exhaust, which is why the supply and vent lines on this valve are label ed “P” and “T”, respectively.714 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+A variation on this theme uses a shorter spool allowing the two control po rts to freely pass ﬂuid
+in the “normal” position:
+Cut-away illustration Schematic symbol
+P
+1
+T
+2
+P
+T
+12
+P
+T
+12
+P
+1
+T
+2
+P 12
+T
+1 2
+P T
+Such a 4-way valve is useful for applications where the ﬁnal control element (motor , cylinder)
+must be free to move rather than be locked in place with the valve in the middl e position.10.3. SOLENOID V AL VES 715
+If no center “oﬀ” position is needed, the lands may be shortened in such a way that they ca nnot
+fully cover the “P,” “1,” and “2” ports simultaneously, making the valve us eful only in its two
+extreme positions:
+Cut-away illustration Schematic symbol
+P
+1
+T
+2
+P
+T
+12
+P
+T
+12
+P
+1
+T
+2
+Not all 4-way valves use the spool-type design. However, the spool valve enj oys the advantage of
+having pressure balance on its one moving part. If you examine these cut-away illustrations closely,
+you will see that the two lands present equal surface areas to the two pressures (pump and tank,
+“P” and “T”) in perfect vertical symmetry, such that any forces acting on the t wo lands from ﬂuid
+pressure do so in opposite directions. This means there will be no net hydraulic for ce acting on the
+spool to interfere with its positioning, thus making it very easy to po sition by hand lever, solenoid,
+piston, etc.716 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+A photograph of a Parker brand 4-way pneumatic solenoid valve appears here:
+This particular solenoid valve is spring-centered, with one solenoid coil at each end to provide
+actuation in two diﬀerent directions. The middle position is one where all por ts are blocked, providing
+a “locked” control position for the pneumatic actuating element fed air by this solenoid valve.10.3. SOLENOID V AL VES 717
+10.3.4 Normal energization states
+Solenoid valves may be used in such a way that they spend most of their time de-energized, energizing
+only for brief periods of time when some special function is required. Alternativ ely, solenoids may
+be maintained in an energized state, and de-energized to perform their design function. The choice
+to use a solenoid’s energized or de-energized state to perform a speciﬁc function is left t o the system
+designer, but nevertheless it is important for all maintenance personnel to know in o rder to perform
+work on a solenoid-controlled system.
+Take the following segment of an actual P&ID for a steam turbine-driven pump contr ol system for
+example, where a pair of 3-way solenoid valves control instrument air pressure 9 to a piston-actuated
+steam valve to start the turbine in the event that an electric motor-driven pump ha ppens to fail:
+If either 10 of the two solenoid valves de-energizes, instrument air pressure will vent from the top
+of the piston actuator to atmosphere, causing the steam valve to “fail” to the full-open position and
+send steam to the turbine. This much is evident from the curved arrows showing air ﬂow ing to the
+“Vent” ports in a de-energized (DE) condition. An additional valve (PY-590) guar antees the piston
+actuator’s upward motion by simultaneously applying air pressure to the bot tom11 of the actuator
+9The letters “IAS” refer to instrument air supply .
+10This solenoid valve arrangement would be designated 1oo2 from the perspective of starting the turbine, since
+only one out of the two solenoids needs to trip in order to init iate the turbine start-up.
+11If you examine this diagram closely, you will notice an error in it: it shows the top and bottom of the piston
+actuator connected together by air tubing, which if implemented in real life would preven t air pressure from imparting
+any force to the valve stem at all! Connecting the top and bott om of the actuator together would ensure the piston
+always sees zero diﬀerential pressure, and thus would never develop a resultant force. The output tube of PY-590718 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+if ever air is vented from the top. As an additional feature, the left-hand solenoid valve (SOV-590A)
+has a manual “Reset” lever on it, symbolized by the letter “R” inside a diamond o utline.
+The only indication of the solenoids’ typical status (energized or de-energized) comes from the
+letters “NE” next to each solenoid coil. In this case, “NE” stands for normally energized. Therefore,
+this steam turbine control system, which serves as a back-up to an electric moto r-driven pump,
+relies on either (or both) of the solenoid valves de-energizing to make the turbine start up. Under
+“normal” conditions, where the turbine is not needed, the solenoids remain energized and the st eam
+valve remains shut.
+Unfortunately, this use of the word “normal” is altogether diﬀerent from the us e of the word
+“normal” when describing a solenoid valve’s open/close characteristics. Recall t hat a normally open
+solenoid valve allows ﬂuid to pass through when it is de-energized. A normally closed solenoid valve,
+by contrast, shuts oﬀ ﬂuid ﬂow when de-energized. In this context, the word “normally ” refers to
+the unpowered state of the solenoid valve. This is quite similar to how the word “norma lly’ is used to
+describe switch contact status: a normally-open (NO) electrical switch is o pen when unactuated (at
+rest); a normally-closed (NC) electrical switch is closed when unactuated (at res t). In both cases,
+with solenoid valves and with electrical switches, the word “normally” ref ers to the resting condition
+of no stimulation .
+However, when an engineer designs a solenoid control system and declares a solenoid to b e
+“normally energized,” that engineer is describing the typical status of the solenoid valve as it
+is intended to function in the process . This may or may not correspond to the manufacturer’s
+deﬁnition of “normally,” since the solenoid manufacturer cannot possibly know whi ch state any
+of their customers intends to have their solenoid valve typically operate in. To illustrate using
+the previous steam turbine control system P&ID, those two solenoid valves woul d be considered
+normally closed by the manufacturer, since their de-energized states block air ﬂow from the “P”
+port to the “C” port and vent air pressure from the “C” port to the “E” (ven t) port. However, the
+engineer who designed this system wanted both solenoids to be energized whenever the turbine wa s
+not needed to run (the “normal” state of the process), and so the engineer labeled both s olenoid
+coils as normally energized , which means both solenoids will be actuated to pass air pressure from
+their “P” ports to their “C” ports (and close oﬀ the vent ports) under typical co nditions. Here, we
+see the manufacturer’s deﬁnition of “normal” for the solenoid valve body (i.e. the resting condition)
+is precisely opposite that of the process engineer’s deﬁnition of “normal” for the so lenoid coil (i.e.
+the typical operating status of the process) in this particular application.
+should only connect to the bottom of the piston actuator, not to the bottom and the top. A more minor error in
+this diagram snippet is the labeling of SOV-590A: it actuall y reads “SOV-59DA” if you look closely enough! My ﬁrst
+inclination when sampling this real P&ID for inclusion in th e book was to correct the errors, but I think an important
+lesson may be taught by leaving them in: documentation error s are a realistic challenge you will contend with on the
+job as an instrumentation professional!10.3. SOLENOID V AL VES 719
+The manufacturer’s and process engineer’s deﬁnitions of “normally” are not always i n conﬂict.
+Take for example this P&ID segment, showing the solenoid control of an air v ent door on a large
+furnace, designed to open up if the forced-draft fan (blowing combustion air into the f urnace) happens
+to stop for any reason:
+Here we have a normally open solenoid valve, designed by the manufacturer to pass instrument
+air pressure from the pressure (“P”) port to the cylinder (“C”) port when de-energized. The straight
+arrow with the “DE” label next to it reveals this to be the case. Instrument ai r pressure sent to
+the air door actuator holds the door shut, meaning the air door will swing open if ever instrument
+air pressure is vented by the solenoid. For this particular solenoid, this would r equire an energized
+condition.
+The process engineer designing this Emergency Air Door control system chose to let the s olenoid
+be in its de-energized state under typical operating conditions (when the furnace air door s hould be
+shut), a fact revealed by the letters “NDE” (normally de-energized) next to the solenoi d coil symbol.
+Therefore, the “normal” process operating condition for this solenoid happens to be de-energized,
+which makes the manufacturer’s deﬁnition of “normal” match the engineer’s deﬁnition of “normal.”
+The solenoid valve should be open (passing air to the door’s actuating cylinder) under “normal”
+operating conditions.720 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+10.4 On/oﬀ electric motor control circuits
+An electric motor is often used as a discrete control element in a control syst em if driving a pump,
+conveyor belt, or other machine for the transportation of a process substance. A s such, it is important
+to understand the functioning of motor control circuits.
+Of all the available electric motor types, the most common found in industria l applications (by
+far) is the three-phase AC induction motor. For this reason, this section of the bo ok will focus
+exclusively on this type of motor as a ﬁnal control element.10.4. ON/OFF ELECTRIC MOTOR CONTROL CIRCUITS 721
+10.4.1 AC induction motors
+The basic principle of an AC induction motor is that one or more out-of-phase AC (s inusoidal)
+currents energize sets of electromagnet coils (called stator coils or windings) arranged around the
+circumference of a circle. As these currents alternately energize the coils, a magnetic ﬁeld is produced
+which “appears” to rotate around the circle. This rotating magnetic ﬁeld is not unlike the appearance
+of motion produced by an array of chaser lights blinking on and oﬀ in sequence: although the bulbs
+themselves are stationary, the out-of-phase sequence of their on-and-oﬀ blinking makes it appear
+as though a pattern of light “moves” or “chases” along the length of the arra y12. Likewise, the
+superposition of magnetic ﬁelds created by the out-of-phase coils resembles a magneti c ﬁeld of
+constant intensity revolving around the circle. The following images show how t he magnetic ﬁeld
+vector (the red arrow) is generated by a superposition of magnetic poles thro ugh one complete cycle
+(1 revolution), viewing the images from left to right, top to bottom (t he same order as you would
+read words in an English sentence) 13:
+A
+A
+B
+B C
+C
+N
+SN
+S
+A
+A
+B
+B C
+C
+N
+S
+N
+SN
+S
+A
+A
+B
+B C
+C
+N
+S
+N
+S
+A
+A
+B
+B C
+C
+N
+S
+N
+S
+N
+S
+A
+A
+B
+B C
+C
+N
+S
+N
+S
+A
+A
+B
+B C
+C
+N
+S
+N
+S N
+S
+A
+A
+B
+B C
+C
+N
+S N
+S
+A
+A
+B
+B C
+C
+S
+N
+N
+S N
+S
+A
+A
+B
+B C
+C
+S
+N
+N
+S
+A
+A
+B
+B C
+C
+S
+N
+N
+S
+N
+S
+A
+A
+B
+B C
+C
+S
+N
+N
+S
+A
+A
+B
+B C
+C
+S
+N
+N
+SN
+S
+It should come as no surprise that the combined eﬀect of these three-phase currents will be t o
+create a resultant magnetic ﬁeld vector rotating in a particular direction. After all, this is precisely
+how three-phase electric power is generated: by spinning a single magnet at the center of three
+sets of coils oﬀset by 120 degrees. The rotating magnetic ﬁeld generated by the sta tor windings
+of a three-phase motor is merely a reproduction of the rotor’s magnetic ﬁeld inside t he generator
+supplying the three-phase power!
+12To view a ﬂip-book animation of this sequence, turn to Append ix A.1 beginning on page 2829.
+13To view a ﬂip-book animation of this same sequence, turn to Ap pendix A.2 beginning on page 2856.722 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+If a permanent magnet were placed within the center of this machine on a shaft such tha t it was
+free to rotate, the magnet would spin at the exact same speed as the rotating ma gnetic ﬁeld. If
+the magnetic ﬁeld completes one full revolution in 1
+60 of a second, the rotating speed of the magnet
+will be 60 revolutions per second, or 3600 revolutions per minute (3600 RPM) . Since the magnet
+follows in lock-step with the rotating magnetic ﬁeld, its rotational sp eed is said to be synchronous.
+We would thus identify this motor as a synchronous AC motor .
+If an electrically conductive object were placed within the center of this same machine on a
+shaft such that it was free to rotate, the relative motion between the rota ting magnetic ﬁeld and the
+conductive object (rotor) would induce electric currents in the conductive object, producing m agnetic
+ﬁelds of their own. Lenz’s Law tells us that the eﬀect of these induced magnetic ﬁelds would be to
+try to oppose change: in other words, the induced ﬁelds react against the rotating mag netic ﬁeld
+of the stator coils in such a way as to minimize the relative motion. This means the conductive
+object would begin to rotate in the same direction as stator’s rotating magnetic ﬁeld, always trying
+to “catch up” to the rotating magnetic ﬁeld. However, the conductive rotor could never ex actly
+match the speed of the rotating magnetic ﬁeld as in the case of a synchronous mot or. If the rotor
+ever did achieve synchronous speed, there would no longer be any relative motion bet ween the rotor
+and the rotating magnetic ﬁeld, which means the induction would cease. No induction would mean
+no electric currents induced in the rotor, which would mean no reactive magnetic ﬁeld, whi ch would
+mean no torque to motivate the rotor. Thus, the electrically conductive rotor ’s speed must always
+slightly lag (“slip”) behind the rotating magnetic ﬁeld’s synchronous speed in order to experience
+induction and thereby be able to create a torque 14. We call this type of motor an induction AC
+motor.
+It may come as a surprise for some to learn that any conductive object – ferromagnetic or not
+– will experience a torque when placed inside the rotating magnetic ﬁeld generated by the stator
+coils. So long as the object is electrically conductive 15, electromagnetic induction will ensure the
+creation of electric currents in the rotor, and these currents will produce their own magnetic ﬁelds
+which react against the stator’s rotating magnetic ﬁeld to produce a torque on the rotor.
+14A helpful analogy for this eﬀect is to imagine a sailboat trav eling directly downwind, its motive force provided
+by a sail oriented perpendicular to the direction of travel. It should be obvious that in this conﬁguration the sailboat
+cannot travel faster than the wind. What is less obvious is th e fact that the sailboat can’t even travel as fast as the
+wind, its top speed in this conﬁguration being slightly less than the wind speed. If the sailboat somehow did manage
+to travel exactly at the wind’s speed, the sail would go slack because there would be no relative motion between the
+sail and the wind, and therefore the sail would cease to provi de any motive force. Thus, the sailboat must “slip” or
+“lag” behind the wind speed just enough to ﬁll the sails with e nough force to overcome water friction and maintain
+speed.
+15As a vivid illustration of this concept, I once worked at an al uminum foundry where an AC induction motor
+stator assembly was used to electromagnetically spin molte n aluminum inside the mold as it cooled from molten to
+solid state. Even though aluminum is a non-magnetic materia l, it was still spun by the stator’s rotating magnetic
+ﬁeld due to electromagnetic induction and Lenz’s Law.10.4. ON/OFF ELECTRIC MOTOR CONTROL CIRCUITS 723
+The eﬀect of Lenz’s Law between a magnet and a conductive object may be demonstrated by using
+a powerful permanent magnet and a strip of light-weight aluminum foil. Alum inum, of course, is
+electrically conductive but non-magnetic. However, despite the lack of magnetic attract ion between
+the magnet and the foil, the foil will nevertheless experience a motive force if the magnet is swept
+past its surface rapidly, due to Lenz’s Law:
+N
+S
+Motion
+Aluminum foil
+N
+S Motion
+foil loop
+Aluminum
+Aluminum foil will be "dragged along" linearly
+in the same direction as the moving magnet
+Aluminum foil will be "dragged along" rotationally
+in the same direction as the moving magnet
+Demonstration of Lenz’s Law between a moving
+magnet and a strip of conductive metal 
+induced currentinduced current
+induced currentN
+S
+S
+N
+N
+SN
+S
+This very same principle is what makes an induction AC motor function: a rotating magnetic ﬁeld
+induces electric currents in an electrically-conductive rotor, which then spins in the sam e direction
+as the magnetic ﬁeld. An induction motor’s rotor can never achieve synchronous speed o n its own,
+for if it ever did the induction would cease due to a lack of relative motion betw een the rotating
+magnetic ﬁeld and the rotor. The same is true of the aluminum foil strip exper iments: the foil strip
+can never fully “catch up” to the moving magnet, for if it ever did the induction would cea se and the
+motive force would disappear. Thus, induction machines always spin a bit slow er than synchronous
+speed.
+A typical “two-pole 16” induction motor operating at a power line frequency of 60 Hz has a
+synchronous speed of 3600 RPM (i.e. the rotating magnetic ﬁeld is spinning 60 revo lutions per
+second), but the rotor may only achieve a full-load speed of approximately 3540 R PM. Similarly,
+a typical “four-pole” induction motor with a synchronous speed of 1800 RPM 17 may only attain a
+rotor speed of approximately 1760 RPM.
+Induction motors are by far the most popular design in industry. The most comm on variant of the
+induction motor is the so-called squirrel-cage design, where the rotor is made up of aluminum bars
+joining two aluminum “shorting rings,” one at either end of the rotor. Ferrous m etal (iron alloy) ﬁlls
+16Two magnetic poles in the stator per phase , which is the lowest number possible because each phase natu rally
+produces both a “north” and a “south” pole when energized. In the case of a three-phase induction or synchronous
+motor, this means a total of six magnetic stator poles.
+17Doubling the number of magnetic poles increases the number o f AC power cycles required for the rotating magnetic
+ﬁeld to complete one full revolution. This eﬀect is not unlik e doubling the number of light bulbs in a chaser light
+array of ﬁxed length, making it seem as though the light seque nce is moving slower because there are more bulbs to
+blink along the same distance.724 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+the spaces between the rotor bars to provide a lower-reluctance magnetic “circuit” betw een stator
+poles than would otherwise be a large air gap if the rotor were simply ma de of aluminum. If the
+ferrous metal were removed from the rotor, the remaining aluminum bars and shor ting rings would
+resemble the cage-wheel exercise machine used by hamsters and other pet rodents, hence the name.
+A photograph of a small, disassembled three-phase AC induction “squirrel-cage” moto r is shown
+here, revealing the construction of the stator coils and the rotor:
+Given the extremely simple construction of AC induction motors, they tend to be ver y reliable.
+So long as the stator coil insulation is not damaged by excessive moisture, heat , or chemical exposure,
+these motors will continue to operate indeﬁnitely. The only “wearing” component s are the bearings
+supporting the rotor shaft, and those are easily replaced.
+Starting a three-phase induction motor is as simple as applying full power to the st ator windings.
+The stator coils will instantly produce a magnetic ﬁeld rotating at a speed deter mined by the
+frequency of the applied AC power, and the rotor will experience a large torque as t his high-speed
+(relative to the rotor’s stand-still speed of zero) magnetic ﬁeld induces large el ectric currents in it.
+As the rotor comes up to speed, the relative speed between the rotating magnetic ﬁeld and the
+rotating rotor diminishes, weakening the induced currents and also the rotor’s tor que.
+One way to “model” an AC induction motor is to think of it as an AC transformer with a
+short-circuited, movable secondary winding. When full power is ﬁrst applied, the initial current
+drawn by the stator (primary) windings will be very large, because it “sees” a short-circuit in the
+rotor (secondary) winding. As the rotor begins to turn, however, this short-circuit draws less and
+less current until the motor reaches full speed 18 and the line current approaches normal. As with
+18As mentioned previously, the rotor can never fully achieve s ynchronous speed, because if it did there would be
+zero relative motion between the rotating magnetic ﬁeld and the rotating rotor, and thus no induction of currents in
+the rotor bars to create the induced magnetic ﬁelds necessar y to produce a reaction torque. Thus, the rotor must
+“slip” behind the speed of the rotating magnetic ﬁeld in orde r to produce a torque, which is why the full-load speed
+of an induction motor is always just a bit slower than the sync hronous speed of the rotating magnetic ﬁeld (e.g. a
+4-pole motor with a synchronous speed of 1800 RPM will rotate at approximately 1750 RPM).10.4. ON/OFF ELECTRIC MOTOR CONTROL CIRCUITS 725
+a transformer, where a reduction in secondary current (from a load change) results i n a reduction
+in primary current, the reduction in induced rotor current (from reduced slip speed) result s in a
+reduction in stator winding current.
+The huge surge of current at start-up time (as much as ten times the normal running current!)
+is called inrush current, causing the rotor to produce a large mechanical torque. As the rotor gains
+speed, the current reduces to a normal level, with the speed approaching the “synchronous” s peed
+of the rotating magnetic ﬁeld. If somehow the rotor achieves synchronous speed (i. e. the slip speed
+becomes zero), stator current will fall to an absolute minimum. If a mechanical power source “over-
+drives” a powered induction motor, forcing it to spin faster than synchronous sp eed, it will actually
+begin to function as a generator 19 and source electrical power.
+Any mechanical load causing the motor to spin slower likewise causes the stato r windings to
+draw more current from the power supply. This is due to the greater slip speed causing stronger
+currents20 to be induced in the rotor. Stronger rotor currents equate to stronger stator curr ents,
+just like a transformer where a heavier load on the secondary winding causes greater cur rents in
+both secondary and primary windings.
+Reversing the rotational direction of a three-phase motor is as simple as swappi ng any two out of
+three power conductor connections. This has the eﬀect of reversing the phase sequence of the power
+“seen” by the motor 21. The ﬂip-book animation beginning in Appendix A.1 beginning on page 2829
+shows how reversing two of the three lines has the eﬀect of reversing phase sequence.
+An interesting problem to consider is whether it is possible to make an AC induction motor
+function on single-phase power rather than polyphase power. After all, it is the three-step phase
+sequence of three-phase AC power that gives the stator windings’ magnetic ﬁeld its deﬁnite rotational
+direction. If we have only one sine wave supplied by the AC power source, is it poss ible to generate
+a truly rotating magnetic ﬁeld? At best, it seems all we could ever produce with single-phase AC
+power is a pulsing or “blinking” magnetic ﬁeld. If you imagine a string of light bulbs blinking on
+and oﬀ 180 o out of phase (i.e. ABABABAB), one could argue the sequence is marching from A to B,
+or alternatively from B to A – there is no deﬁnite direction to the lights’ “mot ion.”
+19In this mode, the machine is called an induction alternator rather than an induction motor .
+20Faraday’s Law of Electromagnetic Induction describes the v oltage induced in a wire coil of N turns as proportional
+to the rate of change of the magnetic ﬂux: V = N dφ
+dt . The greater the diﬀerence in speed between the rotor and the
+rotating magnetic ﬁeld, the greater dφ
+dt , inducing greater voltages in the rotor and thus greater cur rents in the rotor.
+21This principle is not diﬃcult to visualize if you consider th e phase sequence as a repeating pattern of letters, such
+as ABCABCABC. Obviously, the reverse of this sequence would be CBACBACBA, which is nothing more than the original
+sequence with letters A and C transposed. However, you will ﬁ nd that transposing any two letters of the original
+sequence transforms it into the opposite order: for example , transposing letters A and B turns the sequence ABCABCABC
+into BACBACBAC, which is the same order as the sequence CBACBACBA.726 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+Since single-phase AC induction motors obviously exist, there must be a solution to this problem.
+In order to give the magnetic ﬁeld within a single-phase stator assembly a deﬁnite r otation, we must
+artiﬁcially create a second phase within the motor itself. One common way to do this is to add
+a second set of stator windings oﬀset from the ﬁrst and energize those windings throug h a high-
+voltage capacitor, which creates a leading phase shift in winding current. This phase shift creates
+an out-of-step magnetic ﬁeld in the second winding set, providing a deﬁnite direction of ro tation.
+Once the motor comes up to speed, this auxiliary winding may be disconnected by a speed-sending
+switch, since a spinning motor will happily run 22 on single-phase AC. This is called a capacitor-start
+induction motor, and it is the design used for most single-phase AC induction motor s requiring a
+high starting torque (e.g. pumps, shop grinders, drill presses, etc.):
+Mechanical
+diagram Schematic
+diagram
+Run
+Start
+Run Start single-phase
+AC power
+To 120 VAC
+Single-phase, capacitor-start induction motor
+Rotor
+Speed switch
+Capacitor
+One of the major principles to grasp about AC induction motors is that they must start as
+polyphase machines, although they may continue to run as sin gle-phase machines .
+22I once encountered a washing machine induction motor with an “open” fault in the start winding. When energized,
+this motor remained still and hummed because it had no second phase to give its magnetic ﬁeld a rotation. However,
+if you used your hand to give the motor a spin in either directi on, the motor would accelerate to full speed in that
+direction!10.4. ON/OFF ELECTRIC MOTOR CONTROL CIRCUITS 727
+A capacitor-start, single-phase electric motor is shown in the following photo graph. My hand is
+touching the capacitor enclosure for the motor’s starting winding. The speed swit ch is internal to
+the motor and cannot be seen in this photograph:
+Capacitor-start motors are often designed in such a way that the starting w inding draws much
+more current than the “run” winding, in order to provide a strong starting torque. This is important
+when the mechanical load being turned by the motor requires a great deal of torque to g et moving,
+such as in the case of a reciprocating gas compressor or a fully-loaded conveyor b elt. Due to this high
+current draw, starting windings are not rated for continuous duty, but rather must b e de-energized
+shortly after starting the motor in order to avoid overheating.728 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+Smaller AC motors, such as those used inside bench-top and rack-mount electronic eq uipment,
+use a completely diﬀerent method for generating a rotating magnetic ﬁeld from singl e-phase AC
+power. The following photograph shows one such motor, employing copper shading coils at the
+corners of the magnetic stator poles. The rotor has been removed, held by my ﬁngers f or inspection:
+Instead of a capacitor creating a leading phase-shift for current through a special sta tor winding,
+this “shaded-pole” induction motor uses a pair of copper loops wrapped around the corners o f
+the magnetic poles to produce a lagging phase shift in the magnetic ﬁeld at those cor ners. The
+copper shading coils act as inductors, delaying the magnetic ﬁeld through them by −90o, creating
+a secondary magnetic ﬁeld that is out-of-step with the main magnetic ﬁeld generated by the rest of
+the pole face. The out-of-step magnetic ﬁeld together with the main magnetic ﬁeld adj acent to it
+creates a deﬁnite direction of rotation 23.
+An interesting experiment you can try yourself is to obtain 24 one of these small shaded-pole AC
+motors and make it rotate by applying pulsed DC power to it, from a battery . Every time you
+connect the stator winding to the battery, the increasing magnetic ﬂux will lead at the no n-shaded
+23In this example, the direction of rotation is counter-clock wise. The shaded poles are oriented counter-clockwise of
+center, which means their delayed magnetic ﬁelds create an “ appearance” of rotation in that direction: the magnetic
+ﬁeld achieves its peak strength ﬁrst at the pole centers, and then later (delayed) at the shaded poles, as though there
+were an actual magnet rotating in that direction.
+24A convenient source of small shaded-pole motors is your near est home improvement or hardware store, where
+they likely sell replacement electric motors for bathroom f ans. Of course, you may also ﬁnd such motors inside of a
+variety of discarded electric appliances as well. Being rath er rugged devices, it is quite common to ﬁnd the shaded-pole
+motor inside of an electrical appliance in perfect conditio n even though other parts of that appliance may have failed
+with age. In fact, the shaded-pole motor shown in the precedi ng photograph was salvaged from a “water-pic” electric
+toothbrush, the motor used to drive a small water pump (which in this case had mechanically failed) delivering water
+to the head of the toothbrush.10.4. ON/OFF ELECTRIC MOTOR CONTROL CIRCUITS 729
+pole faces and lag at the shaded pole faces. Every time you disconnect the stator w inding from the
+battery, the decreasing magnetic ﬂux will lead at the non-shaded pole faces and lag at the shaded
+pole faces. In either case, the shaded poles’ magnetic ﬂux will lag behind that of the no n-shaded
+poles, causing the rotor to rotate slightly in one deﬁnite direction.
+The fact that all AC induction motors must start as polyphase machines even thoug h they can
+run as single-phase machines means that an AC motor designed to run on three-phase power m ay
+actually continue to run if one or more of its phases are “lost” due to an open wire connection
+or blown fuse. The motor cannot deliver full-rated mechanical power in this condition, but if the
+mechanical load is light enough the motor will continue to spin even though it no longer has multiple
+phases powering it! A three-phase motor, however, cannot start from a stand-still on just one phase
+of AC power. The loss of phases to an AC induction motor is called single-phasing, and it may cause
+a great deal of trouble in an industrial facility. Three-phase electric motors tha t become “single-
+phased” from a fault in one of the three-phase power lines will refuse to start. Thos e that were
+already running under heavy (high-torque) mechanical load will stall. In either case, the s topped
+motors will simply “hum” and draw large amounts of current.730 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+10.4.2 Motor contactors
+To start up and shut down a three-phase AC induction motor, any three-pole switch w ith a suitable
+current rating will suﬃce. Simply closing such a switch to send three-phase power to t he motor will
+cause it to start up, while opening the three-pole switch will cut power to the mot or to make it turn
+oﬀ. If we desire to have remote start and stop control over a three-phase motor, we need a special
+relay with switch contacts big enough to safely conduct the motor’s inrush current over many start
+and stop cycles. Large, high-current-rated electromechanical relays built for this ver y purpose are
+commonly referred to as contactors in industry.
+A schematic diagram of a three-phase contactor connected to a three-phase motor (with f uses
+for overcurrent protection) is shown here:
+Fuses
+Motor
+Contactor
+L1
+L2
+L3
+L1
+L2
+L3
+T1
+T2
+T3
+A1 A2
+(coil)
+Energizing terminals A1 and A2 magnetizes the electromagnet coil, causing all three sw itch
+contacts to simultaneously close, sending three-phase AC power to the motor. De-energizi ng the coil
+causes it to de-magnetize, releasing the armature and enabling a return spring inside the con tactor
+to snap all three contacts to the open (oﬀ) position.
+A contactor rated at 75 horsepower (at 480 volt AC 3-phase power) is shown her e, both assembled
+and with the top cover removed to reveal the three sets of high-current electrical swit ch contacts:
+10.4. ON/OFF ELECTRIC MOTOR CONTROL CIRCUITS 731
+Each phase switch contact is actually a series pair of contacts that make and break simultaneously
+with the actuation of a ferrous armature attracted by an electromagnet coil i n the base of the
+contactor assembly. The operation of the three contact sets may be seen in this pair of photographs,
+the left-hand image showing the contacts in their normal (open) state, and the rig ht-hand image
+showing the contacts closed (the armature “pulled in”) by the force of my ﬁnger:
+Of course, it would be very dangerous to touch or manually actuate the contacts of a motor
+starting relay with the cover removed as shown. Not only would there be an electr ic shock hazard
+from touching any one of the bare copper contacts with your ﬁnger, but the arcing produced b y
+closing and opening such contacts would pose arc ﬂash and arc blast hazards. This is why all
+modern motor contactors are equipped with arc shield covers. The actual switc h contact pads are
+not made of pure copper, but rather silver (or a silver alloy) designed to survive t he repeated arcing
+and blasting action of large AC currents being initiated and interrupted.
+Below the main power connection terminals (L1-L3, T1-T3) on this contactor hide two small
+screw terminals (commonly denoted A1 and A2) providing connection points to the electr omagnet
+coil actuating the contactor:
+Like most three-phase contactors, this one’s coil is rated for 120 volts AC. Although the electric
+motor may operate on three-phase, 480 volt AC power, the contactor coil and the rest of the
+control circuitry operates on a lower voltage for reasons of safety. Lik e all electromechanical relays,
+motor contactors use a low-power signal to control higher-power electric curren t to the load. This732 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+“amplifying” action enables relatively small control switches, PLCs, and relay circuits to start and
+stop relatively large (high-current) electric motors.
+10.4.3 Motor protection
+An essential component of any high-power motor control circuit is some device t o detect a condition
+of excessive overload and interrupt power to the motor before thermal damage occurs. A very
+simple and common overload protective device is known as an overload heater, consisting of resistive
+elements connected in series with the three lines of a 3-phase AC motor, designed to heat and to
+cool at rates modeling the thermal characteristics of the motor itself.
+Fuses and circuit breakers also protect against overcurrent, but for diﬀerent reasons a nd for
+diﬀerent parts of the motor circuit. Both fuses and circuit breakers tend to be fast -acting devices,
+intended to interrupt overcurrent resulting from an electrical fault such as a phase-to -ground short
+circuit. They are sized to protect the wiring delivering power to a load, not (necessari ly) the load
+itself. Thermal overload heaters, by contrast, are speciﬁcally designed to pro tect an electric motor
+from damage resulting from mild overcurrent conditions, such as what might b e experienced if
+the motor becomes mechanically overloaded. The sizing of overload heaters is unrelat ed to wire
+ampacity, and therefore unrelated to the ratings of the fuses or circuit breakers deliv ering line power
+to the motor.
+A schematic diagram of a three-phase overload connected to a three-phase contactor and thr ee-
+phase motor is shown here:
+Fuses
+Motor
+Contactor
+L1
+L2
+L3
+L1
+L2
+L3
+A1 A2
+(coil)
+T1
+T2
+T3
+Overload
+95 96
+97 98
+Both contacts inside the overload assembly will remain in their resting (“no rmal”) states so long
+as the heater elements (the back-to-back “hook” symbols seen in the above diagra m) remain cool.
+If one or more of the resistive heaters becomes too warm, however, the contacts will actuate and
+change state. The normally-closed overload contact (terminals 95 and 96) is typically wired in series
+with the contactor coil (terminals A1 and A2), so that a detected overload condit ion forces the
+contactor to de-energize and interrupt power to the motor.10.4. ON/OFF ELECTRIC MOTOR CONTROL CIRCUITS 733
+The following photograph shows a three-phase contactor relay joined together with a set of three
+“overload heaters” through which all of the motor’s current ﬂows. The overlo ad heaters appear
+as three brass-colored metal strips near a red push-bar labeled “Reset”. The entire as sembly –
+contactor plus overload heaters – is referred to as a starter :
+734 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+Removing one of the heater elements reveals its mechanical nature: a small toothed wheel on one
+side engages with a lever when it is bolted into place in the overload assembly. That lever connects
+to a spring-loaded mechanism charged by the manual actuation of the red “Reset” push-ba r, which
+in turn actuates a small set of electrical switch contacts:
+The purpose of the overload heater is to heat up as the motor draws excessive current . The
+small toothed wheel is held in place by a rod immersed in a solidiﬁed mass of sol der, encased in a
+brass cylinder underneath the heater strip. The next photograph shows the underside of the heater
+element, with the toothed wheel and brass cylinder plainly visible:
+If the heater element becomes too hot (due to excessive motor current), the solder inside the brass
+cylinder will melt, allowing the toothed wheel to spin. This will release spring tens ion in the overload
+mechanism, allowing the small electrical switch to spring to an open state. This “overload contact”
+then interrupts current to the contactor’s electromagnet coil, causing the contactor to de-energize
+and the motor to stop.10.4. ON/OFF ELECTRIC MOTOR CONTROL CIRCUITS 735
+Manually pressing the “Reset” push-bar will re-set the spring mechanism and re-close the o verload
+contact, allowing the contactor to energize once more, but only once the overload heat er element
+has cooled down enough for the solder inside the brass cylinder to re-solidify. Thus, t his simple
+mechanism prevents the overloaded motor from being immediately re-started after a thermal overload
+“trip” event, giving it time to cool down as well.
+A typical “trip curve” for a thermal overload unit is shown here, with time plot ted against the
+severity of the overcurrent level:
+Percent of full-load current rating
+0 100 200 300 400 500 600
+0
+Time to trip
+Time to reset
+Seconds
+10
+20
+30
+40
+In contrast to a circuit breaker or fuse – which is sized to protect the power wiri ng from
+overcurrent heating – the overload heater elements are sized speciﬁcally to protect the motor. As
+such, they act as thermal models of the motor itself, heating to the “trip” point just as fast as the
+motor itself will heat to the point of maximum rated temperature, and taki ng just as long to cool to a
+safe temperature as the motor will. Another diﬀerence between overload heaters and breakers/fuses
+is that the heaters are not designed to directly interrupt current by opening 25, as fuses or breakers
+do. Rather, each overload heater serves the simple purpose of warming proportionately to the
+magnitude and time duration of motor overcurrent, causing a diﬀerent electrical con tact to open,
+which in turn triggers the contactor to open and interrupt motor current.
+Of course, overload heaters only work to protect the motor from thermal overloa d if they
+experience similar ambient temperature conditions. If the motor is situated in a very hot area of
+the industrial process unit, whereas the overload elements are located in a climate-co ntrolled “motor
+control center” (MCC) room, they may fail to protect the motor as designed. Con versely, if the
+overload heaters are located in a hot room while the motor is located in a fr eezing-cold environment
+(e.g. the MCC room lacks air conditioning while the motor is located in a fr eezer), they may “trip”
+the motor prematurely.
+25This is not to say overload heaters cannot fail open, because they can and will under extraordinary circumstances.
+However, opening like a fuse is not the design function of an o verload heater.736 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+An interesting “trick” to keep in mind for motor control circuit diagnosis is that overload heaters
+are nothing more than low-value resistors. As such, they will drop small am ounts of voltage (usually
+quite a bit less than 1 volt AC) under full load current. This voltage drop may b e used as a simple,
+qualitative measure of motor phase current. By measuring the voltage dropped across each overload
+heater (with the motor running), one may ascertain whether or not all phases are carr ying equal
+currents. Of course, overload heaters are not precise enough in their resistance to serv e as true
+current-measuring “shunts,” but they are more than adequate as qualitative indica tors of relative
+phase current, to aid you in determining (for instance) if the motor suﬀers from a n open or high-
+resistance phase winding:
+Overloads
+V Ω
+COMA
+mV
+Voltage drop across each overload heater
+element should be approximately equal with
+the motor running . . .
+motor10.4. ON/OFF ELECTRIC MOTOR CONTROL CIRCUITS 737
+As useful as thermal overload “heaters” are for motor protection, there are mo re eﬀective
+technologies available. An alternative way to detect overloading conditions is t o monitor the
+temperature of the stator windings directly, using thermocouples or (more commonl y) RTDs, which
+report winding temperatures to an electronic “trip” unit with the same control r esponsibilities as an
+overload heater assembly. This sophisticated approach is used on large (thousa nds of horsepower)
+electric motors, and/or in critical process applications where motor reliabili ty is paramount. Machine
+vibration equipment used to monitor and protect against excessive vibration in rotary machines is
+often equipped with such temperature-sensing “trip” modules just for this purpose. No t only can
+motor winding temperatures be monitored, but also bearing temperatures and other tem perature-
+sensitive machine components so that the protective function extends beyond the health of the
+electric motor.
+Devices speciﬁcally constructed to monitor the condition of electrical power component s such as
+motors, generators, transformers, or distribution lines, and take actio n to protect those components
+in the event their parameters fall outside safe limits, are generally known a s protective relays 26.
+A protective relay is designed to monitor physical variables such as line current s and winding
+temperatures relevant to a large electrical component, then automatically init iate a “trip” action
+to shut oﬀ power to that component by sending a signal to the nearest circuit breaker or other
+automatic disconnect device 27.
+Originally, protective relays were electromechanical in nature, using coils, mag nets, springs,
+rotating disks, and other components to detect and act upon out-of-spec electrical meas urements.
+Modern protective relays – for electric motors or for other electric power comp onents such
+as generators, power lines, and transformers – use microprocessors instead of electromagnetic
+mechanisms to perform the same basic functions. With microprocessor technolog y comes vast
+increases in responsiveness and precision of timing, as well as digital networki ng capability to share
+system data among other components and to human operators.
+26For a more complete coverage of protective relays, refer to s ection 25.7 beginning on page 1989.
+27One way to help clarify the function of a protective relay is t o envision circuit protection without one. Household
+and low-current industrial circuit breakers are construct ed to have their own internal current-sensing elements (eit her
+thermal or magnetic) to force the circuit breaker open autom atically when current exceeds a pre-set limit. With
+protective relays, the circuit breaker instead has a “trip c oil” which will cause the breaker to trip when energized.
+The breaker then relies entirely on the (external) protecti ve relay to tell it when to trip. By relegating the function
+of event detection to a sophisticated, external relay, the c ircuit breaker may act much “smarter” in protecting against
+a wider variety of faults and abnormal conditions than if it r elied entirely on its own internal overcurrent-sensing
+mechanism.738 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+A diagram showing how a modern (digital) protective relay would monitor var ious parameters
+on a medium-voltage (4160 volts AC, three-phase) industrial electric motor is s hown here:
+Motor
+RTD
+RTD
+CT
+CT
+CT
+CT
+PT PT
+4160 VAC
+3-phase
+(Stator)
+(Bearing)
+Protective relay
+Line voltage sensing Line current sensing Ground fault sensing Temperature sensing
+Control power in
+"Zero sequence"
+Analog signal output RS-485 comm
+Trip contacts
+125 VDC
+125 VDC
+Trip coil on circuit breaker
+4-20 mA Modbus
+Trip
+In this example, line voltage (4160 volts AC) and line current are both to o great to be directly
+connected to the protective relay, and so the relay senses line voltage and line current via potential
+transformers (PTs) and current transformers (CTs), respectively. A potential transformer 28 is a
+precision device providing a known accurate step-down ratio, usually down to 120 vo lts or 240
+volts AC full-scale, for the protective relay to directly sense. Likewise, a curren t transformer is
+a precision device providing a known and accurate step-down ratio for current (actuall y a step-
+up from the perspective of voltage), usually down to 1 amp or 5 amps AC full-s cale, for the
+protective relay to directly sense. Both transformers provide galvanic isolation (a complete lack
+of electrical conductivity) between the medium-voltage motor power conductors and the pr otective
+relay electronics while still permitting accurate sensing of line voltage and l ine current.
+The zero sequence CT is a special current transformer encircling all three motor phase conductors,
+providing indication of a ground fault within the motor. The fact that this CT m easures the
+instantaneous algebraic sum of currents in and out of the motor means that in ordi nary operation
+it will output absolutely zero signal, since Kirchhoﬀ’s Current Law states that t he algebraic sum of
+currents into and out of a node (the motor here is considered a node) must be zero. If, how ever,
+28Potential transformers are also known as voltage transformers , abbreviated VT.10.4. ON/OFF ELECTRIC MOTOR CONTROL CIRCUITS 739
+a ground fault develops within the motor where some AC current “leaks” from a st ator winding to
+earth ground to return to the 4160 V AC power source’s neutral connection, that imbala nce of phase
+currents will be sensed by the zero sequence CT, since that ground fault current represents a fourth
+path for current not accounted for by the three power conductors passing through to the m otor.
+This next photograph shows the front panel display of a General Electric (“Multili n”) model 369
+protective relay for an electric motor:
+740 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+10.4.4 Motor control circuit wiring
+A simple three-phase, 480 volt AC motor-control circuit is shown here, both in pict orial and
+schematic form. This entire assembly consisting of contactor, overload bl ock, control power
+transformer, power fuses (or alternatively, a circuit breaker) and associated components is informally
+referred to as a bucket:
+Motor
+motor
+Fuses
+Contactor
+Contactor
+H1 H2H3 H4
+X1 X2
+Transformer
+Switch Switch
+Transformer
+To 3-φ , 480 volt power source
+Schematic diagramL1 L2 L3L1 L2 L3
+T1 T2 T3
+T1 T2 T3
+A1A2
+A1
+A2
+Reset
+Overload OL
+Fuse
+H1 H3 H2 H4
+X1 X2
+95 96
+95
+96
+Note how a control power transformer steps down the 480 volt AC to provide 120 volt AC power
+for the contactor coil to operate on. Furthermore, note how the overload (“OL” ) contact is wired
+in series with the contactor coil so that a thermal overload event forces the con tactor to de-energize
+and thus interrupt power to the motor even if the control switch is still in the “on” position. The
+overload heaters appear in the schematic diagram as pairs of back-to-back “hoo k” shapes, connected
+in series with the three “T” lines of the motor. Remember that these “OL” heater elemen ts do not
+directly interrupt power to the motor in the event of an overload, but rather signa l the “OL” contact
+to open up and de-energize the contactor.10.4. ON/OFF ELECTRIC MOTOR CONTROL CIRCUITS 741
+In an automatic control system, the toggle switch would be replaced by a nother relay contact
+(that relay controlled by the status of a process), a process switch, or perhaps the discrete output
+channel of a programmable logic controller (PLC).
+It should be noted that a toggling-style of switch is necessary in order for t he motor to continue
+to run after a human operator actuates the switch. The motor runs when the switc h is in the closed
+state, and stops when the switch opens. An alternative to this design is to buil d a latching circuit
+allowing the use of momentary contact switches (one to start, and one to st op). A simple latching
+motor control circuit is shown here:
+Motor
+motor
+Fuses
+Contactor
+H1 H2H3 H4
+X1 X2
+Transformer
+To 3-φ , 480 volt power source
+Schematic diagramL1 L2 L3L1 L2 L3
+T1 T2 T3
+T1 T2 T3
+A1A2
+A1
+A2
+Reset
+Overload
+OL
+Fuse
+Aux. contact
+Start
+Start
+Stop
+Stop
+H1 H3 H2 H4
+X1 X2
+95
+96
+95
+96
+In this circuit, an auxiliary contact actuated by the motor contactor is wired in parallel with
+the “Start” pushbutton switch, so that the motor contactor continues to receive power after the
+operator releases the switch. This parallel contact – sometimes called a seal-in contact – latches the
+motor in an “on” state after a momentary closure of the “Start” pushbutton switch.742 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+A normally-closed “Stop” switch provides a means to “un-latch” the motor circuit. Pressing this
+pushbutton switch opens the control circuit, forcing current to halt through the coi l of the contactor,
+which then opens the three motor power contacts as well as the auxiliary contact used to maintain
+the contactor’s energized state.
+A simple ladder diagram showing the interconnections of all components in this motor control
+circuit makes this system easier to understand:
+OLContactor
+coil
+Stop
+pushbutton
+Start
+pushbutton
+Auxiliary
+contact
+motor
+Power
+contacts OL
+heaters
+contact
+Fuses
+L1
+L2
+L3
+Fuse
+T1
+T2
+T3
+H1 H3 H2 H4
+X1 X2
+Most on/oﬀ motor control circuits in the United States are some variatio n on this wiring theme, if
+not identical to it. Once again, this system could be automated by replacing the “Sta rt” and “Stop”
+pushbutton switches with process switches (e.g. pressure switches for an air com pressor control
+system) to make a system that starts and stops automatically. A progra mmable logic controller
+(PLC) may also be used to provide the latching function rather than an auxilia ry contact on the
+contactor. Once a PLC is included in the motor control circuit, a great many autom atic control
+features may be added to enhance the system’s capabilities. Examples include timing functi ons,
+motor cycle count functions, and even remote start/stop capability via a digit al network connecting
+to operator interface displays or other computers.10.4. ON/OFF ELECTRIC MOTOR CONTROL CIRCUITS 743
+In applications where reversing motor control is desired, a pair of contactors m ay be wired
+together as shown here:
+OL
+coil
+Stop
+pushbutton pushbutton
+motor
+OL
+heaters
+contact
+Fuses
+L1
+L2
+L3
+Fuse
+Forward contacts
+Reverse contacts
+T1
+T2
+T3
+ForwardReverse
+interlock
+Forward
+seal-in
+pushbutton
+seal-in
+Forward
+Reverse
+Reverse
+interlock
+Forward
+coil
+Reverse
+X1 X2
+H1 H3 H2 H4744 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+Note how motor reversal is accomplished by swapping phases L1 and L3: in the forw ard direction,
+power line conductor L1 connects to motor terminal T1, L2 connects to T2, and L3 connects to T3.
+In the reverse direction L2 still connects to T2, but L1 now connects to T3 and L3 now connects to
+T1. Recall the principle that swapping any two phases in a three-phase power system reverses the
+phase rotation, which in this case make the electric motor spin the other directi on.
+With two contactors, the control circuit now contains two coils to actuate t hose contactors: one
+marked “forward” and the other marked “reverse”. Separate “forward” and “rever se” pushbutton
+switches send power to those coils, and separate seal-in auxiliary contacts co nnected in parallel with
+their respective pushbuttons latch each one.
+An important feature of this reversing starter circuit is the inclusion of interlocking contacts in
+each rung of the circuit. In the forward-control circuit, a normally-closed auxil iary contact actuated
+by the “reverse” contactor is wired in series, and vice-versa in the reverse-contro l circuit. The
+purpose of an “interlock” is to prevent incompatible events from happening, in t his case preventing
+the actuation of the “reverse” contactor when the “forward” contactor is alrea dy actuated, and
+vice-versa. If both contactors were to be simultaneously actuated, it would res ult in a direct phase-
+to-phase fault (short-circuit) between L1 and L3!
+Some reversing motor starters provide a feature called mechanical interlocking, where the motion
+of the armature in each contactor is restrained in such a way that both cannot actuate simultaneously.
+This usually takes the form of a “rocking beam” lever preventing one contactor a rmature from being
+pulled in while the other contactor’s armature is pulled in, similar to a “see-sa w” playground toy
+where only one end can be down at any given time. It is not uncommon for both electri cal and
+mechanical interlocking to be used in the same reversing starter, as a measure of extra protection.10.4. ON/OFF ELECTRIC MOTOR CONTROL CIRCUITS 745
+A modern trend in motor control is the use of digital networks to both comma nd the contactor
+as well as monitor the motor’s operating status remotely. This next photogr aph29 shows a digitally
+monitored and controlled “bucket,” using DeviceNet as the control network:
+Using a digital network standard such as Ethernet, DeviceNet, Modbus, Proﬁbus, or an y number
+of others to monitor and control a motor brings a host of beneﬁts for maintenance and operations.
+Control wiring is vastly simpliﬁed with digital networks, as a single network cable is able to address
+multiple motor buckets. The “smart” network interface module installed in t he bucket may be
+designed to monitor such parameters as line voltage, line current, phase imbalance, and power
+factor to report these values to the host control system via the network.
+29This bucket was still under construction at the time the phot ograph was taken. As such, none of the motor leads
+have been connected, which is why there are no power conducto rs exiting the bottom of the bucket. Instead, all you
+see are three terminals ready to accept heavy-gauge motor le ads.746 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+It is common for the network interface module inside the bucket to have its own di gital display
+for local indication of these parameters as well. A close-up photograph of a Square-D “Motor Logic
+Plus” unit shows some of its locally-accessible features:
+The PLC connected to the network is able to access all these values as well, reporting t hem to
+operations and/or maintenance personnel as desired. Instead of individual wires running b etween
+the PLC and the motor starter to command each motor to run and stop, the PLC s imply transmits
+“start” and “stop” commands over the network to individually addressed digital s tarter modules.
+The network wiring may simply be paralleled (“daisy-chained”) between units, such that several
+buckets reside on the same physical network, each one programmed with a unique addr ess. A PLC
+connected to this same network is thus able to access and control all parameters for all motors on
+that network.10.5. REVIEW OF FUNDAMENTAL PRINCIPLES 747
+10.5 Review of fundamental principles
+Shown here is a partial listing of principles applied in the subject matter of this cha pter, given for
+the purpose of expanding the reader’s view of this chapter’s concepts and of their general int er-
+relationships with concepts elsewhere in the book. Your abilities as a problem-solv er and as a
+life-long learner will be greatly enhanced by mastering the applications of these princi ples to a wide
+variety of topics, the more varied the better.
+• “Normal” switch status : the “normal” status of a switch contact as deﬁned by the
+manufacturer is its resting condition (minimum stimulus).
+• “Seal-in” circuit : when an electrical relay uses one of its own switch contacts to continue its
+own coil energization after the initial triggering event has passed. Relevant to motor starter
+circuits.
+• Lenz’s Law: any magnetic ﬁeld arising from electromagnetic induction opposes the inducing
+ﬁeld. Relevant to the operation of induction AC motors.
+• Rotating magnetic ﬁeld : this is necessary to cause an AC induction motor to spin in a
+particular direction, and is generated by polyphase ﬁeld poles (i.e. multiple magnet ic ﬁelds
+that are out-of-phase with each other). All AC induction motors require such a p olyphase
+magnetic ﬁeld to start up in a particular direction, although a single-phase magneti c ﬁeld is
+suﬃcient to maintain rotation once started.748 CHAPTER 10. DISCRETE CONTROL ELEMENTS
+References
+“369 Motor Management Relay Instruction Manual”, part number 1601-0077-B U, GE publication
+GEK-106288R, GE Multilin, Markham, Ontario, Canada, 2010.
+“857 Protection System User Manual”, publication 857-UM001A-EN-P, Rockw ell Automation, Inc,
+Milwaukee, WI, 2009.
+“ASCO Nuclear Catalog – Nuclear Products Qualiﬁed to IEEE Speciﬁcations”, ASCO Valv e Inc.
+“Compressed Air Manual”, 6th edition, Atlas Copco Compressor AB, Sweden, 199 8.
+Croft, Terrell and Summers, Wilford I., American Electrician ’s Handbook , Eleventh Edition,
+McGraw-Hill Book Company, New York, NY, 1987.
+Fitzgerald, A.E. and Higginbotham, David E., Basic Electrical Engineering , Second Edition,
+McGraw-Hill Book Company, New York, NY, 1957.
+“Fluid Power Design Engineer’s Handbook”, bulletin no. 0105-B1, Parker-Hanniﬁn Corporation,
+Cleveland, OH, 1973.
+“General Service Solenoid Valves – 3/2 Series 8300/8315”, document 8300R1, ASCO Valve Inc.
+“Hydraulic Cartridge Systems – Product Selection Guide”, catalog HY15-3501/U S, Parker Hanniﬁn
+Corporation, Lincolnshire, IL, 2008.
+“Hydraulic Valves Industrial Standard”, catalog HY11-3500/UK, Parker Hanni ﬁn GmbH & Co. KG,
+Kaarts, Germany, 2008.
+Robichaud, S.N., “Plumb Your Plant Air System with Plastic Pipe”, Hydraul ics & Pneumatics,
+June 1, 1999.

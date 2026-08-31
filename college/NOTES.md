@@ -335,3 +335,12 @@ midterm plus INTC Lab Test 2 within a week).
   (video quiz + Ch 1 material). Recurring themes: controls vs. instrumentation,
   relay-to-PLC lineage, the scan cycle, field-vs-internal (hardware vs. software)
   instructions, input-vs-output direction, and the three power domains.
+- `ELPT_2319/materials/Kuphaldt_Ch9_*` — Discrete Process Measurement. **Source
+  for Exam 02 (due 9/7) and the Discrete Input report.** The "normal status of a
+  switch" concept in §9.1 is the chapter's spine.
+- `ELPT_2319/materials/Kuphaldt_Ch10_*` — Discrete Control Elements (on/off
+  valves, solenoid valves, AC induction motor control).
+- `ELPT_2319/materials/Discrete_Input_Report_ASSIGNMENT.md` — full spec for the
+  **Discrete Input Measurement Devices Report due 9/7**: 5-column table, 8 device
+  rows, all web-links, and the instructor's example row. **SafeAssign
+  plagiarism-checked — definitions and applications must be the user's own words.**
