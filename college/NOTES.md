@@ -323,3 +323,15 @@ midterm plus INTC Lab Test 2 within a week).
   notes. This is the video behind the "Overview of PLCs Video" quiz due 8/31/26.
   Note: YouTube blocks direct retrieval from this environment's IP; the user
   supplied the script as a PDF.
+- `ELPT_2319/materials/Petruzella_Ch1_*` — **Chapter 1 of the required textbook**
+  (Petruzella, *PLCs*, 6th ed.), "PLCs: An Overview." This chapter is the source
+  of essentially all quiz questions seen so far. Notes + extracted text + PDF.
+- `ELPT_2319/materials/Kuphaldt_Ch12_*` — Kuphaldt, *Lessons In Industrial
+  Instrumentation*, Ch 12 (PLCs). Notes + extracted text + PDF.
+
+## Study Session Log
+
+- 2026-08-31 — Worked ~65 quiz questions on PLC fundamentals with the user
+  (video quiz + Ch 1 material). Recurring themes: controls vs. instrumentation,
+  relay-to-PLC lineage, the scan cycle, field-vs-internal (hardware vs. software)
+  instructions, input-vs-output direction, and the three power domains.

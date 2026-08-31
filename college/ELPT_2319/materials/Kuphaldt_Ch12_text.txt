@@ -1,0 +1,3351 @@
+Chapter 12
+Programmable Logic Controllers
+Every control system may be divided into three general sections: input devices (sensors), controllers,
+and output devices (actuators). The input devices sense what is happening in the process, the
+controller decides what to do about it, and the output devices manipulate the process to achi eve the
+desired result.
+A programmable logic controller or PLC is a general-purpose controller, applicable to many
+diﬀerent types of process control applications. The word “programmable” in it s name reveals just
+why PLCs are so useful: the end-user is able to program, or instruct, the PLC to do v irtually any
+control function imaginable. Unlike PID loop controllers, which are speci al-purpose devices intended
+to perform a single type of control function, a PLC may be instructed to do al most anything with
+the signals it receives from input devices.
+PLCs were introduced to industry as electronic replacements for electromechanical rela y controls.
+In applications where relays typically control the starting and stopping of elect ric motors and other
+discrete output devices, the reliability of an electronic PLC meant fewer system fai lures and longer
+operating life. The re-programmability of a PLC also meant changes could be i mplemented to the
+control system strategy must easier than with relay circuits, where re-wiring was the only way to
+alter the system’s function. Additionally, the computer-based nature of a PLC meant that process
+control data could now be communicated by the PLC over networks, allowing process conditions to
+be monitored in distant locations, and by multiple operator stations.
+The legacy of PLCs as relay-replacements is probably most evident in their traditi onal
+programming language: a graphical convention known as a Ladder Diagram . Ladder Diagram
+PLC programs resemble ladder-style electrical schematics, where vertical power “ rails” convey
+control power to a set of parallel “rung” circuits containing switch contacts and relay coils. A
+human being programming a PLC literally draws the diagram on the screen, using r elay-contact
+symbols to represent instructions to read data bits in the PLC’s memory, and r elay-coil symbols
+to represent instructions writing data bits to the PLC’s memory. This style o f programming was
+developed to make it easier for industrial electricians to adapt to the new technology of PLCs. While
+Ladder Diagram programming deﬁnitely has limitations compared to other computer pro gramming
+languages, it is relatively easy to learn and diagnose, which is why it remai ns popular as a PLC
+programming language today.
+Typical devices connecting to a PLC’s inputs include hand switches, process switches, sensors ,
+analog transmitters (4-20 mA), thermocouples, thermistors, and strain ga uges. Typical devices
+767768 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+connecting to a PLC’s outputs include electric lamps, solenoids, relay coils, motor co ntactors, analog
+ﬁnal control elements (e.g. throttling control valves, variable-speed motor drives), and audible
+buzzers. While PLCs were originally designed for discrete (on/oﬀ) control applica tions such as
+conveyor belt management, batch sequencing, and assembly line controls, modern PL Cs are equally
+capable of inputting and outputting analog signals as well. Thus, it is just as li kely now to ﬁnd a
+PLC performing PID loop control as it is to ﬁnd a PLC turning discrete devices on and oﬀ.
+12.1 PLC examples
+Programmable logic controllers are essentially nothing more than speci al-purpose, industrial
+computers. As such, they are built far more ruggedly than an ordinary personal comput er (PC),
+and designed to run extremely reliable operating system software 1. PLCs as a rule do not contain
+disk drives, cooling fans, or any other moving parts. This is an intentional design decision, intended
+to maximize the reliability of the hardware in harsh industrial environment s where the PLC chassis
+may be subjected to temperature extremes, vibration, humidity, and airborne pa rticulates (dust,
+ﬁbers, and/or fumes).
+Large PLC systems consist of a rack into which circuit “cards” are plugged. T hese cards include
+processors, input and output (I/O) points, communications ports, and other functions necessary
+to the operation of a complete PLC system. Such “modular” PLCs may be conﬁgured diﬀerently
+according to the speciﬁc needs of the application. Individual card failures are also easi er to repair
+in a modular system, since only the failed card need be replaced, not all the cards or the whole card
+rack.
+Small PLC systems consist of a monolithic “brick” containing all processor , I/O, and
+communication functions. These PLCs are typically far less expensive than their m odular cousins,
+but are also more limited in I/O capability and must be replaced as a whole in t he event of failure.
+The following photographs show several examples of real PLC systems, some mo dular and
+some monolithic. These selections are not comprehensive by any means, as there are m any more
+manufacturers and models of PLC than those I have photographed. They do, however, represen t
+some of the more common brands and models in current (2010) industrial use.
+1There are such things as soft PLCs , which consist of special-purpose software running on an or dinary personal
+computer (PC) with some common operating system. Soft PLCs e njoy the high speed and immense memory capacity
+of modern personal computers, but do not possess the same rug gedness either in hardware construction or in operating
+system design. Their applications should be limited to non- critical controls where neither main process production
+nor safety would be jeopardized by a control system failure.12.1. PLC EXAMPLES 769
+The ﬁrst photograph is of a Siemens (Texas Instruments) 505 series PLC, install ed in a control
+panel of a municipal wastewater treatment plant. This is an example of a modular P LC, with
+individual processor, I/O, and communication cards plugged into a rack. Three rack s appear in this
+photograph (two completely ﬁlled with cards, and the third only partially ﬁlled):
+The power supply and processor card for each rack is located on the left-hand end, with I/O
+cards plugged into slots in the rest of the rack. Input devices such as switches and s ensors connect by
+wire to terminals on input cards, while output devices such as lamps, solenoids, and motor contactor
+coils connect by wire to terminals on output cards.
+One of the beneﬁts of modular PLC construction is that I/O cards may be changed out as
+desired, altering the I/O conﬁguration of the PLC as needed. If, for example, the PLC needs t o be
+conﬁgured to monitor a greater number of sensors, more input cards may be plugged int o the rack
+and subsequently wired to those sensors. Or, if the type of sensor needs to be changed – perhaps
+from a 24 volt DC sensor to one operating on 120 volts AC – a diﬀerent type of input card may be
+substituted to match the new sensor(s).
+In this particular application, the PLC is used to sequence the operation of self-clea ning “trash
+racks” used to screen large debris such as rags, sticks, and other non-degradable i tems from municipal
+wastewater prior to treatment. These trash racks are actuated by electric m otors, the captured debris
+scraped oﬀ and transported to a solid waste handling system. The motion of the trash racks, the
+sensing of wastewater levels and pressures, and the monitoring of any human-operat ed override
+controls are all managed by these PLCs. The programming of these PLCs inv olves timers, counters,
+sequencers, and other functions to properly manage the continuous operation of the tr ash racks.770 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+The next photograph shows an Allen-Bradley (Rockwell) PLC-5 system, used to moni tor and
+control the operation of a large natural gas compressor. Two racks appea r in this ﬁrst photograph,
+with diﬀerent types of I/O cards plugged into each rack:
+Like the Siemens 505 PLC seen previously, this Allen-Bradley PLC-5 system is fully modular
+and conﬁgurable. The types and locations of the I/O cards inserted into the rack may be altered
+by appropriately skilled technicians to suit any desired application. The program ming of the PLC’s
+processor card may also be altered if a change in the control strategy is desi red for any reason.
+In this particular application, the PLC is tasked with monitoring certain va riables on the gas
+compressor unit, and taking corrective action if needed to keep the machine productive and safe.
+The automatic control aﬀorded by the PLC ensures safe and eﬃcient start-ups, shut -downs, and
+handling of emergency events. The networking and data-logging capability of the PLC ensur es that
+critical data on the compressor unit may be viewed by the appropriate personnel. Fo r this particular
+compressor station, the data gets communicated from Washington state where the compressor is
+located all the way to Utah state where the main operations center is located. Human operators
+in Utah are able to monitor the compressor’s operating conditions and issue co mmands to the
+compressor over digital networks.
+Both the Siemens (formerly Texas Instruments) 505 and Allen-Bradley (Rockwell ) PLC-5 systems
+are considered “legacy” PLC systems by modern standards, the two systems in the previous
+photographs being about 20 years old each. It is not uncommon to ﬁnd “obsolete” PLCs still
+in operation, though. Given their extremely rugged construction and reliable design, these control
+systems may continue to operate without signiﬁcant trouble for decades.12.1. PLC EXAMPLES 771
+A newer model of PLC manufactured by Allen-Bradley is the SLC 500 series (often verbal ly
+referred to as the “Slick 500”), which is also modular in design like the ol der PLC-5 system, although
+the racks and modules of the SLC 500 design are more compact. The SLC 500 rack sho wn in the
+next photograph has 7 “slots” for processor and I/O cards to plug in to, numbered 0 through 6 (left
+to right):
+The ﬁrst three slots of this particular SLC 500 rack (0, 1, and 2) are occupied by the processor
+card, an analog input card, and a discrete input card, respectively. The slots 3 and 4 are empty
+(revealing the backplane circuit board and connectors for accepting new cards). The slots 5 and 6
+hold discrete output and analog output cards, respectively.
+A feature visible on all cards in this system are numerous LED indicators, desi gned to show the
+status of each card. The processor card has LED indicators for “Run” mode, “Fault” conditions,
+“Force” conditions (when either input or output bits have been forced into certain states b y the
+human programmer for testing purposes), and communication network indicators. Each discrete
+I/O card has indicator LEDs showing the on/oﬀ status of each I/O bit, and the ana log card has a
+single LED showing that the card is powered.772 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+A nine-slot SLC 500 system is shown in the next photograph, controlling a high-purity water
+treatment system for a biopharmaceuticals manufacturing facility. As you can see in this photograph,
+not all slots in this particular rack are occupied by I/O cards either:
+Some of the inputs to this PLC include water level switches, pressure switches, water ﬂow meters,
+and conductivity meters (to measure the purity of the water, greater electrical conductiv ity indicating
+the presence of more dissolved minerals, which is undesirable in this particular pro cess application).
+In turn, the PLC controls the starting and stopping of water pumps and the switchi ng of water
+valves to manage the water puriﬁcation and storage processes.12.1. PLC EXAMPLES 773
+A modern PLC manufactured by Siemens appears in this next photograph, an S7-300, which is
+a diﬀerent design of modular PLC. Instead of individual cards plugging into a rack , this modular
+PLC design uses individual modules plugging into each other on their sides to form a wi der unit:
+A modern PLC manufactured by Allen-Bradley (Rockwell) is this ControlLogi x 5000 system,
+shown in this photograph used to control a cereal manufacturing process. The modular design of
+the ControlLogix 5000 system follows the more traditional scheme of individual cards plugged into
+a rack of ﬁxed size:
+774 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+While the Siemens S7 and Rockwell ControlLogix PLC platforms represent larg e-scale, modular
+PLC systems, there exist much smaller PLCs available for a fraction of the cost. Perhaps the least
+expensive PLC on the market at this time of writing is the Koyo “CLICK” PLC series, the processor
+module (with eight discrete input and six discrete output channels built in) shown in my ha nd (sold
+for 69 US dollars in the year 2010, and with free programming software! ):
+This is a semi-modular PLC design, with a minimum of input/output (I/O) channels built i nto
+the processor module, but having the capacity to accept multiple I/O modules plugged in to the
+side, much like the Siemens S7-300 PLC.12.1. PLC EXAMPLES 775
+Other semi-modular PLCs expand using I/O cards that plug in to the base unit not unlike
+traditional rack-based PLC systems. The Koyo DirectLogic DL06 is a good example of this type
+of semi-modular PLC, the following photograph showing a model DL06 accepting a ther mocouple
+input card in one of its four available card slots:
+This photograph shows the PLC base unit with 20 discrete input channels and 16 discrete o utput
+channels, accepting an analog input card (this particular card is designed to input signals from
+thermocouples to measure up to four channels of temperature).776 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+Some low-end PLCs are strictly monolithic, with no ability to accept additional I/O modules.
+This General Electric Series One PLC (used to monitor a small-scale hydroelectric p ower generating
+station) is an example of a purely monolithic design, having no “expansion” slots to accept I/O
+cards:
+A disadvantage of monolithic PLC construction is that damaged I/O cannot be i ndependently
+replaced. If an I/O channel on one of these PLCs becomes damaged, the entire PLC must be
+replaced to ﬁx the problem. In a modular system, the damaged I/O card may simply be unplugged
+from the rack and replaced with a new I/O card. Another disadvantage of monolithi c PLCs is the
+inherently ﬁxed nature of the I/O: the end-user cannot customize the I/O conﬁguration to matc h
+the application. For these reasons, monolithic PLCs are usually found on smal l-scale processes with
+few I/O channels and limited potential for expansion.12.2. INPUT/OUTPUT (I/O) CAPABILITIES 777
+12.2 Input/Output (I/O) capabilities
+Every programmable logic controller must have some means of receiving and in terpreting signals from
+real-world sensors such as switches, and encoders, and also be able to eﬀect contro l over real-world
+control elements such as solenoids, valves, and motors. This is generally kno wn as input/output,
+or I/O, capability. Monolithic (“brick”) PLCs have a ﬁxed amount of I/O capabilit y built into the
+unit, while modular (“rack”) PLCs use individual circuit board “cards” to prov ide customized I/O
+capability.
+PLC
+X1
+X2
+X3
+X4
+X5
+X6
+L1 L2 Y1
+Y2
+Y3
+Y4
+Y5
+Y6
+Programming
+port
+Common Source
+ProcessorPower
+supply
+L1
+Gnd
+L2/N
+IN 0+
+IN 0-
+IN 1+
+IN 1-
+IN 2+
+IN 2-
+IN 3+
+IN 3-
+Input
+Analog
+ANL COM
+ANL COM
+ANL COM
+ANL COM
+Input
+0
+1
+2
+3
+4
+5
+6
+7
+IN0
+IN1
+IN2
+IN3
+IN4
+IN5
+IN6
+IN7
+COM
+COM
+Output
+0
+1
+2
+3
+4
+5
+6
+7
+COM
+OUT1
+OUT2
+OUT3
+OUT4
+OUT5
+OUT6
+OUT7
+OUT0
+VDC
+Monolithic PLC
+VAC 1
+OUT1
+OUT2
+OUT3
+OUT4
+OUT5
+OUT6
+OUT7
+VAC 2
+OUT0
+Output
+0
+1
+2
+3
+6
+7
+4
+5
+Individual cards may be
+removed and replaced
+All I/O is fixed in one PLC unit
+Modular ("rack-based") PLC
+The advantages of using replaceable I/O cards instead of a monolithic PLC design a re numerous.
+First, and most obvious, is the fact that individual I/O cards may be easily replaced in the event
+of failure without having to replace the entire PLC. Speciﬁc I/O cards may be chos en for custom
+applications, biasing toward discrete cards for applications using many on/oﬀ i nputs and outputs,
+or biasing toward analog cards for applications using many 4-20 mA and simil ar signals. Some PLCs
+even oﬀer the feature of hot-swappable cards, meaning each card may be removed and a new one
+inserted without de-energizing power to the PLC processor and rack. Please note that o ne should
+not assume any system has hot-swappable cards, because if you attempt to change out a card “live”
+in a system without this feature, you run the risk of damaging the card and/or the rest of the unit
+it is plugged in to!778 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+Some PLCs have the ability to connect to processor-less remote racks ﬁlled with a dditional I/O
+cards or modules, thus providing a way to increase the number of I/O channels beyond the capacity
+of the base unit. The connection from host PLC to remote I/O racks usually takes the form of a
+special digital network, which may span a great physical distance:
+Power
+supply
+L1
+Gnd
+Processor Digital
+inputs
+Digital
+outputs
+Power
+supply
+L1
+Gnd
+Digital
+outputs inputs
+Analog Analog
+Remote
+I/O
+interace
+outputs
+Remote
+I/O
+interace
+L2/N
+L2/N
+Host PLC (base unit)
+Remote I/O rack
+Network
+cable
+An alternative scheme for system expansion is to network multiple PLCs tog ether, where each
+PLC has its own dedicated rack and processor. Through the use of communication inst ructions,
+one PLC may be programmed to read data from and/or write data to another PLC , eﬀectively
+using the other PLC as an extension of its own I/O. Although this method is more expensive than
+remote I/O (where the remote racks lack their own dedicated processors), it pro vides the capability
+of stand-alone control in the event the network connection between PLC processors becom es severed.
+Input/output capability for programmable logic controllers comes in three basi c varieties:
+discrete, analog, and network ; each type discussed in a following subsection.12.2. INPUT/OUTPUT (I/O) CAPABILITIES 779
+12.2.1 Discrete I/O
+A “discrete” data point is one with only two states on and oﬀ . Process switches, pushbutton switches,
+limit switches, and proximity switches are all examples of discrete sensing dev ices. In order for a PLC
+to be aware of a discrete sensor’s state, it must receive a signal from the sens or through a discrete
+input channel. Inside each discrete input module is (typically) a set of light-emitting dio des (LEDs)
+which will be energized when the corresponding sensing device turns on. Light from each L ED shines
+on a photo-sensitive device such as a phototransistor inside the module, which in t urn activates a bit
+(a single element of digital data) inside the PLC’s memory. This opto-coupled ar rangement makes
+each input channel of a PLC rather rugged, capable of isolating the sensitive computer cir cuitry of
+the PLC from transient voltage “spikes” and other electrical phenomena capable of caus ing damage:
+Power
+supply
+L1
+Gnd
+Processor
+L2/N
+Ch1
+Com
+Ch3
+Ch2...
+...
+ComNCNO
+Hand switch
+Pressure switch
++−
+DC power
+supply
+PLC
+Discrete input card (DC sinking)
+Energizing an input channel lights the LED inside the optocoupler,
+turning on the phototransistor, sending a "high" signal to the PLC’s
+microprocessor, setting (1) that bit in the PLC’s input register.
+Optocoupler
+The internal schematic diagram for a discrete input module (“card”) shown above reveals the
+componentry typical for a single input channel on that card. Each input channel has its ow n
+optocoupler, writing to its own unique memory register bit inside the PLC’s memo ry. Discrete
+input cards for PLCs typically have 4, 8, 16, or 32 channels.780 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+Indicator lamps, solenoid valves, and motor starters (assemblies consisti ng of contactors and
+overload protection devices) are all examples of discrete control devices. In a ma nner similar to
+discrete inputs, a PLC connects to any number of diﬀerent discrete ﬁnal control devices thro ugh
+a discrete output channel 2. Discrete output modules typically use the same form of opto-isolation
+to allow the PLC’s computer circuitry to send electrical power to loads: the inter nal PLC circuitry
+driving an LED which then activates some form of photosensitive switching dev ice. Alternatively,
+small electromechanical relays may be used in lieu of opto-isolating semiconducto r switching elements
+such as transistors (DC) or TRIACs (AC):
+Power
+supply
+L1
+Gnd
+Processor
+L2/N
+Ch1
+Ch3
+Ch2...
+...
+supply
+PLC
+Discrete output card (TRIAC)
+VAC
+AC power
+Contactor
+Lamp
+Setting a bit (1) in the PLC’s output register sends a "high" signal
+to the LED inside the optocoupler, turning on the photo-TRIAC,
+sending AC power to the output channel to energize the load.
+Optocoupler
+As with the schematic diagram for a discrete input module shown previously, the s chematic
+diagram shown here for a discrete output module reveals the componentry typical for a single
+channel on that card. Each output channel has its own optocoupler, driven by its own unique
+memory register bit inside the PLC’s memory. Discrete output cards for PLCs al so typically have
+4, 8, 16, or 32 channels.
+An important concept to master when working with DC discrete I/O is the distinct ion between
+current-sourcing and current-sinking devices. The terms “sourcing” and “sinking” refer to the
+direction of current (as denoted by conventional ﬂow notation) into or out of a devi ce’s control wire3.
+A device sending (conventional ﬂow) current out of its control terminal to some ot her device(s) is
+said to be sourcing current, while a device accepting (conventional ﬂow) current into its control
+terminal is said to be sinking current.
+2I/O “channels” are often referred to as “points” in industry lingo. Thus, a “32-point input card” refers to an
+input circuit with 32 separate channels through which to rec eive signals from on/oﬀ switches and sensors.
+3By “control wire,” I mean the single conductor connecting the I/O card channel to the ﬁeld device, as opposed to
+conductors directly common with either the positive or nega tive lead of the voltage source. If you focus your attention
+on this one wire, noting the direction of conventional-ﬂow c urrent through it, the task of determining whether a device
+is sourcing or sinking current becomes much simpler.12.2. INPUT/OUTPUT (I/O) CAPABILITIES 781
+To illustrate, the following illustration shows a PLC output channel is sourcing current to an
+indicator lamp, which is sinking current to ground:
+PLC discrete
+output channel
++V
+Sourcing current
+Sinking current
+Indicator lamp
+This is a "sourcing" or "PNP"
+discrete output channel
+These terms really only make sense when electric current is viewed from the perspecti ve of
+conventional ﬂow, where the positive terminal of the DC power supply is envisi oned to be the
+“source” of the current, with current ﬁnding its way “down” to ground (the negative ter minal of
+the DC power supply). In every circuit formed by the output channel of a PLC driving a dis crete
+control device, or by a discrete sensing device driving an input channel on a PLC, one element in
+the circuit must be sourcing current while the other is sinking current.
+An engineering colleague of mine has a charming way to describe sourcing and sinking: blowing
+and sucking. A device that sources current to another “blows” current toward the other device. A
+device that sinks current “sucks” current from the other device. Many students seem to ﬁnd t hese
+terms helpful in ﬁrst mastering the distinction between sourcing and sinking despite (o r perhaps
+because of!) their informal nature.782 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+If the discrete device connecting to the PLC is not polarity-sensitive, either type of PLC I/O
+module will suﬃce. For example, the following diagrams show a mechanical limit switch connecting
+to a sinking PLC input and to a sourcing PLC input:
+PLC discrete
+Limit switch
+(sinking)
+L1
+L2
+Gnd
+AC power
+DC power
+supply
+Sinking
+current
+Sourcing
+current
+Com
+Ch 1
+Ch 2
+Ch 3
+Ch 0 input card
+PLC discrete
+Limit switch
+L1
+L2
+Gnd
+AC power
+DC power
+supply
+current
+Sourcing
+current
+Ch 1
+Ch 2
+Ch 3
+Ch 0 input card
+VDC
+Sinking
+(sourcing)
+Note the diﬀerences in polarity and labeling between the sinking card’s common term inal and
+the sourcing card’s common terminal. On the “sinking” card, the input channel terminal is positive
+while the common (“Com”) terminal is negative. On the “sourcing” card, the input cha nnel terminal
+is negative while the common (“VDC”) terminal is positive.12.2. INPUT/OUTPUT (I/O) CAPABILITIES 783
+Some discrete sensing devices are polarity-sensitive, such as electronic proximity sensors
+containing transistor outputs. A “sourcing” proximity switch can only int erface with a “sinking”
+PLC input channel, and vice-versa:
+L1
+L2
+Gnd
+AC power
+Sourcing
+current
+Switch actuates
+when object 
+approaches this
+Gnd
++V
+Out
+end
+Current-sourcing (PNP) proximity switch
+PLC discrete
+(sinking)
+Sinking
+current
+Com
+Ch 1
+Ch 2
+Ch 3
+Ch 0
+input card
+L1
+L2
+Gnd
+AC power
+Sourcing
+current
+Switch actuates
+when object 
+approaches this
+Gnd
++V
+Out
+end
+PLC discrete
+Sinking
+current
+Ch 1
+Ch 2
+Ch 3
+Ch 0
+input card
+VDC
+(sourcing)
+Current-sinking (NPN) proximity switch
+In all cases, the “sourcing” device sends current out of its signal terminal while the “sinking”
+device takes current into its signal terminal.784 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+Two photographs of a DC (sinking) discrete input module for an Allen-Bradley model SLC 500
+PLC are shown here: one with the plastic cover closed over the connection terminals, and the other
+with the plastic cover opened up for viewing the terminals. A legend on the inside of the cover
+shows the purpose of each screw terminal: eight input channels (numbered 0 through 7) a nd two
+redundant “DC Com” terminals for the negative pole of the DC power supply to connect:
+A standard feature found on practically every PLC discrete I/O module is a set of L ED indicators
+visually indicating the status of each bit (discrete channel). On the SLC 500 module, t he LEDs
+appear as a cluster of eight numbered squares near the top of the module.
+A photograph of discrete output terminals on another brand of PLC (a Koyo model DL06 ) shows
+somewhat diﬀerent labeling:
+12.2. INPUT/OUTPUT (I/O) CAPABILITIES 785
+Here, each output channel terminal is designated with a letter/number code beginning with the
+letter “Y”. Several “common” terminals labeled with “C” codes service clusters of output channels.
+In this particular case, each “common” terminal is common only to four output channel s. With
+sixteen total output channels on this PLC, this means there are four diﬀerent “commo n” terminals.
+While this may seem somewhat strange (why not just have one “common” terminal f or all sixteen
+output channels?), it more readily permits diﬀerent DC power supplies to service diﬀ erent sets of
+output channels.
+Electrical polarity is not an issue with AC discrete I/O, since the polarit y of AC reverses
+periodically anyway. However, there is still the matter of whether the “commo n” terminal on
+a discrete PLC module will connect to the neutral (grounded) or hot (ungrounded) AC power
+conductor.
+The next photograph shows a discrete AC output module for an Allen-Bradley SLC 500 PLC ,
+using TRIACs as power switching devices rather than transistors as is customa ry with DC discrete
+output modules:
+This particular eight-channel module provides two sets of TRIACs for switching p ower to AC
+loads, each set of four TRIACs receiving AC power from a “hot” terminal (V AC 1 or V AC 2), the
+other side of the load device being connected to the “neutral” (grounded) conductor of the AC pow er
+source.786 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+Fortunately, the hardware reference manual supplied by the manufacturer of every PLC s hows
+diagrams illustrating how to connect discrete input and output channels to ﬁeld devices. One shoul d
+always consult these diagrams before connecting devices to the I/O points of a PLC !
+12.2.2 Analog I/O
+In the early days of programmable logic controllers, processor speed and mem ory were too limited
+to support anything but discrete (on/oﬀ) control functions. Consequently, the only I/O capability
+found on early PLCs were discrete in nature 4. Modern PLC technology, though, is powerful enough
+to support the measurement, processing, and output of analog (continuously varia ble) signals.
+All PLCs are digital devices at heart. Thus, in order to interface with an ana log sensor or control
+device, some “translation” is necessary between the analog and digital worlds. I nside every analog
+input module is an ADC, or Analog-to-Digital Converter , circuit designed to convert an analog
+electrical signal into a multi-bit binary word. Conversely, every analog output m odule contains
+a DAC, or Digital-to-Analog Converter , circuit to convert the PLC’s digital command words into
+analog electrical quantities.
+Analog I/O is commonly available for modular PLCs for many diﬀerent anal og signal types,
+including:
+• Voltage (0 to 10 volt, 0 to 5 volt)
+• Current (0 to 20 mA, 4 to 20 mA)
+• Thermocouple (millivoltage)
+• RTD (millivoltage)
+• Strain gauge (millivoltage)
+4Some modern PLCs such as the Koyo “CLICK” are also discrete-o nly. Analog I/O and processing is signiﬁcantly
+more complex to engineer and more expensive to manufacture t han discrete control, and so low-end PLCs are more
+likely to lack analog capability.12.2. INPUT/OUTPUT (I/O) CAPABILITIES 787
+The following photographs show two analog I/O cards for an Allen-Bradley SLC 50 0 modular
+PLC system, an analog input card and an analog output card. Labels on the terminal cover doors
+indicate screw terminal assignments:
+788 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+12.2.3 Network I/O
+Many diﬀerent digital network standards exist for PLCs to communicate with, f rom PLC to PLC
+and between PLCs and ﬁeld devices. One of the earliest digital protocols developed for P LC
+communication was Modbus, originally for the Modicon brand of PLC. Modbus was adopted by
+other PLC and industrial device manufacturers as a de facto standard5, and remains perhaps the
+most universal digital protocol available for industrial digital devices to day.
+Another digital network standard developed by a particular manufacturer and later a dopted as
+a de facto standard is Proﬁbus , originally developed by Siemens.
+For more information on networking standards used in PLC systems, refer to the “Digital
+electronic instrumentation” chapter, speciﬁcally sections on speciﬁc network standar ds such as
+Modbus and Proﬁbus.
+5A “de facto” standard is one arising naturally out of legacy r ather than by an premeditated agreement between
+parties. Modbus and Proﬁbus networks are considered “de fac to” standards because those networks were designed,
+built, and marketed by pioneering ﬁrms prior to their accept ance as standards for others to conform to. In Latin, de
+facto means “from the fact,” which in this case refers to the fact of pre-existence: a standard agreed upon to conform
+to something already in popular use. By contrast, a standard i ntentionally agreed upon before its physical realization
+is a de jure standard (Latin for “from the law”). FOUNDATION Fieldbus is an example of a de jure standard, where
+a committee arrives at a consensus for a network design and sp eciﬁcations prior to that network being built and
+marketed by any ﬁrm.12.3. LOGIC PROGRAMMING 789
+12.3 Logic programming
+Although it seems each model of PLC has its own idiosyncratic standard for pro gramming, there
+does exist an international standard for controller programming that most PLC manufacturers at
+least attempt to conform to. This is the IEC 61131-3 standard, which will be the standard presented
+in this chapter.
+One should take solace in the fact that despite diﬀerences in the details of PLC progra mming from
+one manufacturer to another and from one model to another, the basic principles are lar gely the same.
+There exist much greater disparities between diﬀerent general-purpose programming l anguages (e.g.
+C/C++, BASIC, FORTRAN, Pascal, Java, Ada, etc.) than between the programming languages
+supported by diﬀerent PLCs, and this fact does not prevent computer programmers from being
+“multilingual.” I have personally written and/or analyzed programs for ov er a half-dozen diﬀerent
+manufacturers of PLCs (Allen-Bradley, Siemens, Square D, Koyo, Fanuc, Moore Pro ducts APACS
+and QUADLOG, and Modicon), with multiple PLC models within most of those brands , and I can
+tell you the diﬀerences in programming conventions are largely insigniﬁcant. Af ter learning how to
+program one model of PLC, it is quite easy to adapt to programming other makes and models of
+PLC. If you are learning to program a particular PLC that does not exactly confo rm to the IEC
+61131-3 standard, you will still be able to apply every single principle discuss ed in this chapter –
+the fundamental concepts are truly that universal.
+The IEC 61131-3 standard speciﬁes ﬁve distinct forms of programming language f or industrial
+controllers:
+• Ladder Diagram (LD)
+• Structured Text (ST)
+• Instruction List (IL)
+• Function Block Diagram (FBD)
+• Sequential Function Chart (SFC)
+Not all programmable logic controllers support all ﬁve language types, but nearly all of them
+support Ladder Diagram (LD), which will be the primary focus of this book.
+Programming languages for many industrial devices are limited by design. One rea son for this
+is simplicity: any programming language simple enough in structure for someone with no for mal
+computer programming knowledge to understand is going to be limited in its capabil ities. Another
+reason for programming limitations is safety: the more ﬂexible and unbounded a programming
+language is, the more potential there will be to unintentionally create com plicated “run-time”
+errors when programming. The ISA safety standard number 84 classiﬁes industrial programming
+languages as either Fixed Programming Languages (FPL), Limited Variability Languages (L VL),
+or Full Variability Languages (FVL). Ladder Diagram and Function Block Diagram programming
+are both considered to be “limited variability” languages, whereas Instructi on List (and traditional
+computer programming languages such as C/C++, FORTRAN, BASIC, etc.) are considered “full
+variability” languages with all the attendant potential for complex error s.790 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+12.3.1 Relating I/O status to virtual elements
+Perhaps the most important yet elusive concept to grasp when learning to program P LCs is the
+relationship between the electrical status of the PLC’s I/O points and the sta tus of variables and
+other “elements” in its programming. This is especially true for Ladder Diagr am (LD) programming,
+where the program itself resembles an electrical diagram. Making the mental connecti on between
+the “real” world of the switches, contactors, and other electrical devices connected to the PLC and
+the “imaginary” world of the PLC’s program consisting of virtual conta cts and relay “coils” is most
+fundamental.
+The ﬁrst fundamental rule one should keep in mind when examining a Ladder Diagram PLC
+program is that each virtual contact shown in the program actuates whenever it reads
+a “1” state in its respective bit and will be at rest whenever it reads a “0” state in
+its respective bit (in the PLC’s memory). If the contact is a normally-open (NO) type, it wil l
+open when its bit is 0 and close when its bit is 1. If the contact is a normally-clo sed (NC) type, it
+will close when its bit is 0 and open when its bit is 1. A 0 bit state causes the cont act to be in its
+“normal” (resting) condition, while a 1 bit state actuates the contact, forcing it into its non-normal
+(actuated) state.
+Another rule to remember when examining a Ladder Diagram PLC program is that the
+programming software oﬀers color highlighting 6 to display the virtual status of each program element:
+a colored contact is closed, while an un-colored contact is open. While the presence or
+absence of a “slash” symbol marks the normal status of a contact, its live color highlighting shown
+by PLC programming software reveals the “conductive” status of the elements in real time .
+The following table shows how the two types of contacts in a PLC’s Ladder Dia gram program
+respond to bit states, using red coloring to signify each contact’s virtual co nductivity:
+0
+1
+Bit state
+Contact type
+(closed) (open)
+(closed)(open)
+(Actuated)
+(Normal)
+Normally-open Normally-closed
+Just as a pressure switch’s contacts are actuated by a high pressure condition, and a level switch’s
+contacts are actuated by a high level condition, and a temperature switch’s conta cts are actuated
+by a high temperature condition, so a PLC’s virtual contact is actuated by a hig h bit condition (1).
+In the context of any switch, an actuated condition is the opposite of its normal (resting) condition.
+6It should be noted that in some situations the programming so ftware will fail to color the contacts properly,
+especially if their status changes too quickly for the softw are communication link to keep up, and/or if the bit(s)
+change state multiple times within one scan of the program. H owever, for simple programs and situations, this rule
+holds true and is a great help to beginning programmers as the y learn the relationship between real-world conditions
+and conditions within the PLC’s “virtual” world.12.3. LOGIC PROGRAMMING 791
+The following simpliﬁed 7 illustration shows a small PLC with two of its discrete input channels
+electrically energized, causing those two bits to have “1” statuses. The color-highli ghted contacts in
+the programming editor software’s display shows a collection of contacts addr essed to those input
+bits in various states (colored = closed ; un-colored = open). As you can see, every co ntact addressed
+to a “set” bit (1) is in its actuated state, while every contact addressed to a “cl eared” bit (0) is in
+its normal state:
+10 0 0 0
+Input register
+1
+PLC
+X1
+X2
+X3
+X4
+X5
+X6
+L1 L2 Y1
+Y2
+Y3
+Y4
+Y5
+Y6
+Programming
+port
+Common Source
+L1
+X1
+X2
+X3
+X4
+X5
+X6
+(Inside the PLC’s memory)
+(Displayed on the editing software)
+X1
+X2 X3
+X4
+X5
+X6
+X2
+Remember that a colored contact is a closed contact. The contacts appearing as colored are either
+normally-closed contacts with “0” bit states, or normally-open contacts w ith “1” bit states. It is the
+combination of bit state and contact type (NO vs. NC) that determines whether the v irtual contact
+will be open (un-colored) or closed (colored) at any given time. Correspondingly , it is a combination
+of colored highlighting and virtual contact type that indicates the real-world energization status of
+a particular PLC input at any given time.
+7The electrical wiring shown in this diagram is incomplete, w ith the “Common” terminal shown unconnected for
+simplicity’s sake.792 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+In my teaching experience, the main problem students have comprehending PLC Ladder Diagram
+programs is that they over-simplify and try to directly associate real-worl d switches connected to the
+PLC with their respective contact instructions inside the PLC program. Students m istakenly think
+the real-world switch connecting to the PLC and the respective virtual switch co ntact inside the
+PLC program are one and the same, when this is not the case at all. Rather, the rea l-world switch
+sends power to the PLC input, which in turn controls the state of the virtual contact(s) programmed
+into the PLC. Speciﬁcally, I see students routinely fall into the following mis-conceptions:
+• Students mistakenly think the contact instruction type (NO vs. NC) needs to match that of
+its associated real-world switch
+• Students mistakenly think color highlighting of a contact instruction is equival ent to the
+electrical status of its associated real-world PLC input
+• Students mistakenly think a closed real-world switch must result in a closed cont act instruction
+in the live PLC program
+To clarify, here are the fundamental rules one should keep in mind when interpreting con tact
+instructions in Ladder Diagram PLC programs:
+• Each input bit in the PLC’s memory will be a “1” when its input cha nnel is
+powered, and will be a “0” when its input channel is unpowered
+• Each virtual contact shown in the program actuates whenever it reads a “1” state
+in its respective bit, and will be at rest whenever it reads a “0” state in its
+respective bit
+• A colored contact is closed (passes virtual power in the PLC program), while an
+un-colored contact is open (blocks virtual power in the PLC program)
+In trying to understand PLC Ladder Diagram programs, the importance of these r ules cannot
+be overemphasized. The truth of the matter is a causal chain – rather than a direct equiv alence
+– between the real-world switch and the contact instruction status. The real-wo rld switch controls
+whether or not electrical power reaches the PLC input channel, which in turn controls whether the
+input register bit will be a “1” or a “0”, which in turn controls whether the cont act instruction
+will actuated or at rest. Virtual contacts inside the PLC program are thus controlled by their
+corresponding real-world switches, rather than simply being identical to their real-world counterparts
+as novices tend to assume. Following these rules, we see that normally-open (NO) co ntact
+instructions will mimic what their real-world switches are doing, while norm ally-closed (NC) contact
+instructions will act opposite of their real-world counterparts.
+The color highlighting of coil instructions in a Ladder Diagram PLC program follows similar
+rules. A coil will be “on” (colored) when all contact instructions prior to it ar e closed (colored). A
+colored coil writes a “1” to its respective bit in memory, while an un-colored co il instruction writes
+a “0” to its respective bit in memory. If these bits are associated with rea l-world discrete output
+channels on the PLC, their states will control the real-world energization of dev ices electrically
+connected to those channels.12.3. LOGIC PROGRAMMING 793
+To further illuminate these fundamental concepts, we will examine the operation of a simple
+PLC system designed to energize a warning lamp in the event that a process vessel experi ences a
+high ﬂuid pressure. The PLC’s task is to energize a warning lamp if the process vessel pressure ever
+exceeds 270 PSI, and keep that warning lamp energized even if the pressure falls below the t rip point
+of 270 PSI. This way, operators will be alerted to both past and present process vessel overpressure
+events.
+120 volt AC “line” power (L1 and L2) provides electrical energy for the PLC to op erate, as well
+as signal potential for the input switches and power for the warning lamp. Two switches connect to
+the input of this PLC: one normally-open pushbutton switch acting as the alarm r eset (pressing this
+switch “unlatches” the alarm lamp) and one normally-open pressure switch act ing as the sensing
+element for high process vessel pressure:
+PLC
+X1
+X2
+X3
+X4
+X5
+X6
+L1 L2 Y1
+Y2
+Y3
+Y4
+Y5
+Y6
+Programming
+port
+Common Source
+Personal
+computer
+display
+Com NC NO
+Pressure switch
+120 VAC "line" power
+L1 L2
+X4 X1 Y5
+Y5
+Impulse tube connects
+to process vessel
+Alarm reset pushbutton High pressure
+alarm lamp
+(NO contacts)
+Trip point = 270 PSI
+(Ladder Diagram program)
+< 270 PSI
+The reset pushbutton connects to discrete input X1 of the PLC, while the pressure switch connects
+to discrete input X4. The warning lamp connects to discrete output Y5. Red indicator LEDs next
+to each I/O terminal visually indicate the electrical status of the I/O point s, while red-shaded794 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+highlighting shows the virtual power 8 status of the “contacts” and “coils” in the PLC’s program,
+displayed on the screen of a personal computer connected to the PLC through a programming cable.
+With no one pressing the reset pushbutton, that switch will be in its normal sta tus, which for
+a “normally-open” switch is open. Likewise with the pressure switch: with process pressure less
+than the trip point of 270 PSI, the pressure switch will also be in its no rmal status, which for a
+“normally-open” switch is open. Since neither switch is conducting electricity right now, neither
+discrete input X1 nor X4 will be energized. This means the “virtual” contacts inside the PLC program
+will likewise be in their own normal states. Thus, any virtual contact dr awn as a normally-open
+will be open (not passing virtual power), and any virtual contact drawn as a normally-closed (a
+diagonal slash mark through the contact symbol) will be closed. This is wh y the two normally-open
+virtual contacts X4 and Y5 have no highlighting, but the normally-closed virtual contact X1 does –
+the colored highlighting representing the ability to pass virtual power.
+8For a PLC program contact, the shading represents virtual “c onductivity.” For a PLC program coil, the shading
+represents a set (1) bit.12.3. LOGIC PROGRAMMING 795
+If the process vessel experiences a high pressure ( > 270 PSI), the pressure switch will actuate,
+closing its normally-open contact. This will energize input X4 on the PLC, which will “close” the
+virtual contact X4 in the ladder program. This sends virtual power to the virtual “coil” Y5, which
+in turn latches itself on through virtual contact Y59 and also energizes the real discrete output Y5
+to energize the warning lamp:
+PLC
+X1
+X2
+X3
+X4
+X5
+X6
+L1 L2 Y1
+Y2
+Y3
+Y4
+Y5
+Y6
+Programming
+port
+Common Source
+Personal
+computer
+display
+Com NC NO
+Pressure switch
+120 VAC "line" power
+L1 L2
+X4 X1 Y5
+Y5
+Impulse tube connects
+to process vessel
+Alarm reset pushbutton High pressure
+alarm lamp
+(NO contacts)
+Trip point = 270 PSI
+(Ladder Diagram program)
+> 270 PSI
+9It is worth noting the legitimacy of referencing virtual con tacts to output bits (e.g. contact Y5), and not just to
+input bits. A “virtual contact” inside a PLC program is nothi ng more than an instruction to the PLC’s processor
+to read the status of a bit in memory. It matters not whether that bit i s associated with a physical input channel,
+a physical output channel, or some abstract bit in the PLC’s m emory. It would, however, be wrong to associate
+a virtual coil with an input bit, as coil instructions write bit values to memory, and input bits are supposed to be
+controlled solely by the energization states of their physi cal input channels.796 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+If now the process pressure falls below 270 PSI, the pressure switch will return to its normal
+state (open), thus de-energizing discrete input X4 on the PLC. Because of the latching contact Y5 in
+the PLC’s program, however, output Y5 remains on to keep the warning lamp in its energized state:
+PLC
+X1
+X2
+X3
+X4
+X5
+X6
+L1 L2 Y1
+Y2
+Y3
+Y4
+Y5
+Y6
+Programming
+port
+Common Source
+Personal
+computer
+display
+Com NC NO
+Pressure switch
+120 VAC "line" power
+L1 L2
+X4 X1 Y5
+Y5
+Impulse tube connects
+to process vessel
+Alarm reset pushbutton High pressure
+alarm lamp
+(NO contacts)
+Trip point = 270 PSI
+(Ladder Diagram program)
+< 270 PSI
+Thus, the Y5 contact performs a seal-in function to keep the Y5 bit set (1) even after the high-
+pressure condition clears. This is precisely the same concept as the “seal-in” auxiliar y contact on a
+hard-wired motor starter circuit, where the electromechanical contactor keeps itself energized after
+the “Start” pushbutton switch has been released.12.3. LOGIC PROGRAMMING 797
+The only way for a human operator to re-set the warning lamp is to press the pushbut ton. This
+will have the eﬀect of energizing input X1 on the PLC, thus opening virtual contact X1 (normally-
+closed) in the program, thus interrupting virtual power to the virtual coil Y5, thus powering down
+the warning lamp and un-latching virtual power in the program:
+PLC
+X1
+X2
+X3
+X4
+X5
+X6
+L1 L2 Y1
+Y2
+Y3
+Y4
+Y5
+Y6
+Programming
+port
+Common Source
+Personal
+computer
+display
+Com NC NO
+Pressure switch
+120 VAC "line" power
+L1 L2
+X4 X1 Y5
+Y5
+Impulse tube connects
+to process vessel
+Alarm reset pushbutton High pressure
+alarm lamp
+(NO contacts)
+Trip point = 270 PSI
+(Ladder Diagram program)
+< 270 PSI
+Press798 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+12.3.2 Memory maps and I/O addressing
+A wise PLC programmer once told me that the ﬁrst thing any aspiring programm er should learn
+about the PLC they intend to program is how the digital memory of that PLC is o rganized.
+This is sage advice for any programmer, especially on systems where memory is limited, and/or
+where I/O has a ﬁxed association with certain locations in the system’s memo ry. Virtually every
+microprocessor-based control system comes with a published memory map showing the organization
+of its limited memory: how much is available for certain functions, which a ddresses are linked to
+which I/O points, how diﬀerent locations in memory are to be referenced by the pr ogrammer.
+Discrete input and output channels on a PLC correspond to individual bits in the PLC’s
+memory array. Similarly, analog input and output channels on a PLC correspond to multi-bit
+words (contiguous blocks of bits) in the PLC’s memory. The association between I /O points
+and memory locations is by no means standardized between diﬀerent PLC manufacturers, or even
+between diﬀerent PLC models designed by the same manufacturer. This makes it diﬃcult t o write
+a general tutorial on PLC addressing, and so my ultimate advice is to consult the engineering
+references for the PLC system you intend to program.
+The most common brand of PLC in use in the United States at the time of this wri ting (2010)
+is Allen-Bradley (Rockwell), which happens to use a unique form of I/O addressing 10 students tend
+to ﬁnd confusing. For these two reasons (popularity and confusion), I will focus on Allen-Bradley
+addressing conventions for the bulk of this section.
+10The most modern Allen-Bradley PLCs have all but done away with ﬁxed-location I/O addressing, opting instead
+for tag name based I/O addressing. However, enough legacy Allen-Bradley PLC systems still exist in industry to
+warrant coverage of these addressing conventions.12.3. LOGIC PROGRAMMING 799
+The following table shows a partial memory map for an Allen-Bradley SLC 500 PLC11:
+File number File type Logical address range
+0 Output image O:0 to O:30
+1 Input image I:0 to I:30
+2 Status S:0 to S:n
+3 Binary B3:0 to B3:255
+4 Timers T4:0 to T4:255
+5 Counters C5:0 to C5:255
+6 Control R6:0 to R6:255
+7 Integer N7:0 to N7:255
+8 Floating-point F8:0 to F8:255
+9 Network x9:0 to x9:255
+10 through 255 User deﬁned x10:0 to x255:255
+Note that Allen-Bradley’s use of the word “ﬁle” diﬀers from personal computer parl ance. In
+the SLC 500 controller, a “ﬁle” is a block of random-access memory used to store a particular
+type of data. By contrast, a “ﬁle” in a personal computer is a contiguous collect ion of data bits
+with collective meaning (e.g. a word processing ﬁle or a spreadsheet ﬁle), usually sto red on the
+computer’s hard disk drive. Within each of the Allen-Bradley PLC’s “ﬁles” are mult iple “elements,”
+each element consisting of a set of bits (8, 16, 24, or 32) representing data. El ements are addressed
+by number following the colon after the ﬁle designator, and individual bits withi n each element
+addressed by a number following a slash mark. For example, the ﬁrst bit (bit 0) of the second
+element in ﬁle 3 (Binary) would be addressed as B3:2/0.
+In Allen-Bradley PLCs such as the SLC 500 and PLC-5 models, ﬁles 0, 1, and 2 are excl usively
+reserved for discrete outputs, discrete inputs, and status bits, respectively. Thus, the letter
+designators O, I, and S (ﬁle types) are redundant to the numbers 0, 1, and 2 (ﬁle numb ers). Other
+ﬁle types such as B (binary), T (timers), C (counters), and others have their ow n default ﬁle numbers
+(3, 4, and 5, respectively), but may also be used in some of the user-deﬁned ﬁle numbers (10 and
+above). For example, ﬁle 7 in an Allen-Bradley controller is reserved for data o f the “integer” type
+(N), but integer data may also be stored in any ﬁle numbered 10 or greater at t he user’s discretion.
+Thus, ﬁle numbers and ﬁle type letters for data types other than output (O), input (I) , and status
+(S) always appear together. You would not typically see an integer word address ed as N:30 (integer
+word 30 in the PLC’s memory) for example, but rather as N7:30 (integer word 30 in ﬁle 7 of the
+PLC’s memory) to distinguish it from other integer word 30’s that may exi st in other ﬁles of the
+PLC’s memory.
+11Also called the data table , this map shows the addressing of memory areas reserved for p rograms entered by
+the user. Other areas of memory exist within the SLC 500 proce ssor, but these other areas are inaccessible to the
+technician writing PLC programs.800 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+This ﬁle-based addressing notation bears further explanation. When an address appears in a
+PLC program, special characters are used to separate (or “delimit”) diﬀerent ﬁelds from each other.
+The general scheme for Allen-Bradley SLC 500 PLCs is shown here:
+File type
+(letter)
+File separator
+(colon)
+Word separator
+(point)
+Element
+number
+Bit separator
+(slash)
+Word Bit
+number number
+File
+number
+Not all ﬁle types need to distinguish individual words and bits. Integer ﬁles (N), f or example,
+consist of one 16-bit word for each element. For instance, N7:5 would be the 16-bit integer word
+number ﬁve held in ﬁle seven. A discrete input ﬁle type (I), though, needs to be addressed as
+individual bits because each separate I/O point refers to a single bit. Thus, I:3/7 would be bit
+number seven residing in input element three. The “slash” symbol is necessary when addressi ng
+discrete I/O bits because we do not wish to refer to all sixteen bits in a word when we just mean a
+single input or output point on the PLC. Integer numbers, by contrast, are col lections of 16 bits each
+in the SLC 500 memory map, and so are usually addressed as entire words rather tha n bit-by-bit 12.
+Certain ﬁle types such as timers are more complex. Each timer “element 13” consists of two
+diﬀerent 16-bit words (one for the timer’s accumulated value, the other for the timer ’s target value)
+in addition to no less than three bits declaring the status of the timer (an “Enabled” bit, a “Timing”
+bit, and a “Done” bit). Thus, we must make use of both the decimal-point and sla sh separator
+symbols when referring to data within a timer. Suppose we declared a timer in our P LC program
+with the address T4:2, which would be timer number two contained in timer ﬁle four. If we wished
+to address that timer’s current value, we would do so as T4:2.ACC (the “Accumulator” word of timer
+number two in ﬁle four). The “Done” bit of that same timer would be addressed as T4:2/DN (the
+“Done” bit of timer number two in ﬁle four) 14.
+12This is not to say one cannot specify a particular bit in an otherwise whole word. In fact, this is one of the
+powerful advantages of Allen-Bradley’s addressing scheme: it gives you the ability to precisely specify portions of
+data, even if that data is not generally intended to be portio ned into smaller pieces!
+13Programmers familiar with languages such as C and C++ might r efer to an Allen-Bradley “element” as a data
+structure, each type with a set conﬁguration of words and/or bits.
+14Referencing the Allen-Bradley engineering literature, we s ee that the accumulator word may alternatively be
+addressed by number rather than by mnemonic, T4:2.2 (word 2 being the accumulator word in the timer data
+structure), and that the “done” bit may be alternatively add ressed as T4:2.0/13 (bit number 13 in word 0 of the
+timer’s data structure). The mnemonics provided by Allen-Br adley are certainly less confusing than referencing word
+and bit numbers for particular aspects of a timer’s function !12.3. LOGIC PROGRAMMING 801
+A hallmark of the SLC 500’s addressing scheme common to many legacy PLC syst ems is that
+the address labels for input and output bits explicitly reference the physical locations o f the I/O
+channels. For instance, if an 8-channel discrete input card were plugged into slot 4 of an Allen-
+Bradley SLC 500 PLC, and you wished to specify the second bit (bit 1 out of a 0 to 7 r ange), you
+would address it with the following label: I:4/1. Addressing the seventh bit (bit number 6) on a
+discrete output card plugged into slot 3 would require the label O:3/6. In either case, the numerical
+structure of that label tells you exactly where the real-world input signal connects t o the PLC.
+To illustrate the relationship between physical I/O and bits in the PLC’s mem ory, consider this
+example of an Allen-Bradley SLC 500 PLC, showing one of its discrete input channels energ ized
+(the switch being used as a “Start” switch for an electric motor):
+Power
+supply
+L1
+Gnd
+L2/N
+Processor Input
+0
+1
+2
+3
+4
+5
+6
+7
+IN0
+IN1
+IN2
+IN3
+IN4
+IN5
+IN6
+IN7
+COM
+COM
+Input
+0
+1
+2
+3
+4
+5
+6
+7
+IN0
+IN1
+IN2
+IN3
+IN4
+IN5
+IN6
+IN7
+COM
+COM
+SLC 500 4-slot chassis
+Slot 0 Slot 1 Slot 2 Slot 3
++−
+24 VDCpowersupply
+(pressed)
+Input bit I:1/3
+inside the PLC’s
+memory is "set"
+0 10 0 0 0 0 00 0 0 00 0 0 0
+Input image element for slot 1
+Bit 0
+Bit 1
+Bit 2
+Bit 3
+Bit 4
+Bit 5
+Bit 6
+Bit 7
+Bit 8
+Bit 9
+Bit 10
+Bit 11
+Bit 12
+Bit 13
+Bit 14
+Bit 15
+"Start"
+Output
+VDC1
+VDC1
+VDC2
+VDC2
+COM1
+COM1
+COM2
+COM2
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31802 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+If an input or output card possesses more than 16 bits – as in the case of the 32-bit discrete
+output card shown in slot 3 of the example SLC 500 rack – the addressing scheme furt her subdivides
+each element into words and bits (each “word” being 16 bits in length). Thus, the address for bit
+number 27 of a 32-bit input module plugged into slot 3 would be I:3.1/11 (since bit 27 is equivalent
+to bit 11 of word 1 – word 0 addressing bits 0 through 15 and word 1 addressing bit s 16 through
+31):
+Power
+supply
+L1
+Gnd
+L2/N
+Processor Input
+0
+1
+2
+3
+4
+5
+6
+7
+IN0
+IN1
+IN2
+IN3
+IN4
+IN5
+IN6
+IN7
+COM
+COM
+Input
+0
+1
+2
+3
+4
+5
+6
+7
+IN0
+IN1
+IN2
+IN3
+IN4
+IN5
+IN6
+IN7
+COM
+COM
+SLC 500 4-slot chassis
+Slot 0 Slot 1 Slot 2 Slot 3
++−
+24 VDCpowersupply
+inside the PLC’s
+memory is "set"
+0 0 0 0 0 0 00 0 0 00 0 0 0
+Bit 0
+Bit 1
+Bit 2
+Bit 3
+Bit 4
+Bit 5
+Bit 6
+Bit 7
+Bit 8
+Bit 9
+Bit 10
+Bit 11
+Bit 12
+Bit 13
+Bit 14
+Bit 15
+Output
+VDC1
+VDC1
+VDC2
+VDC2
+COM1
+COM1
+COM2
+COM2
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+Output bit O:3.1/11
+Output image element for slot 3
+1
+0
+0 0 0 0 0 0 0 0 0 0 00 0 0 0Word 1
+Word 0
+Lamp12.3. LOGIC PROGRAMMING 803
+A close-up photograph of a 32-bit DC input card for an Allen-Bradley SLC 500 PLC syst em
+shows this multi-word addressing:
+The ﬁrst sixteen input points on this card (the left-hand LED group numbered 0 throug h 15) are
+addressed I:X.0/0 through I:X.0/15, with “ X” referring to the slot number the card is plugged into.
+The next sixteen input points (the right-hand LED group numbered 16 through 31) ar e addressed
+I:X.1/0 through I:X.1/15.
+Legacy PLC systems typically reference each one of the I/O channels by labels such a s “I:1/3”
+(or equivalent15) indicating the actual location of the input channel terminal on the PLC unit. The
+IEC 61131-3 programming standard refers to this channel-based addressing of I/O da ta points as
+direct addressing. A synonym for direct addressing is absolute addressing .
+Addressing I/O bits directly by their card, slot, and/or terminal labels may seem s imple and
+elegant, but it becomes very cumbersome for large PLC systems and complex progra ms. Every time
+a technician or programmer views the program, they must “translate” each of thes e I/O labels to
+some real-world device (e.g. “Input I:1/3 is actually the Start pushbutton for the middle tank
+mixer motor”) in order to understand the function of that bit. A later eﬀort to enhance the clarity
+of PLC programming was the concept of addressing variables in a PLC’s memory by arbitrary
+names rather than ﬁxed codes. The IEC 61131-3 programming standard refers to this a s symbolic
+addressing in contrast to “direct” (channel-based) addressing, allowing programmers arbitr arily
+15Some systems such as the Texas Instruments 505 series used “X ” labels to indicate discrete input channels and
+“Y” labels to indicate discrete output channels (e.g. input X9 and output Y14). This same labeling convention is still
+used by Koyo in its DirectLogic and “CLICK” PLC models. Sieme ns continues a similar tradition of I/O addressing
+by using the letter “I” to indicate discrete inputs and the le tter “Q” to indicate discrete outputs (e.g. input channel
+I0.5 and output Q4.1).804 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+name I/O channels in ways that are meaningful to the system as a whole. To use our s imple
+motor “Start” switch example, it is now possible for the programmer to des ignate input I:1/3 (an
+example of a direct address ) as “ Motor start switch” (an example of a symbolic address ) within
+the program, thus greatly enhancing the readability of the PLC program. Initial implementations
+of this concept maintained direct addresses for I/O data points, with symbolic names appearing as
+supplements to the absolute addresses.
+The modern trend in PLC addressing is to avoid the use of direct addresses such as I:1/3
+altogether, so they do not appear anywhere in the programming code. The Allen-Bradley “ Logix”
+series of programmable logic controllers is the most prominent example of this new convention
+at the time of this writing. Each I/O point, regardless of type or phys ical location, is assigned
+a tag name which is meaningful in a real-world sense, and these tag names (or symbols as they
+are alternatively called) are referenced to absolute I/O channel locations by a data base ﬁle. An
+important requirement of tag names is that they contain no space characters betw een words (e.g.
+instead of “ Motor start switch ”, a tag name should use hyphens or underscore marks as spacing
+characters: “ Motor start switch”), since spaces are generally assumed by computer programming
+languages to be delimiters (separators between diﬀerent variables).
+Having introduced Allen-Bradley’s addressing notation for SLC 500 model PLCs, I will now
+abandon it in favor of the modern convention of symbolic addressing throughout the rest of this
+chapter, so as to avoid making the programming examples brand- or model-speciﬁc. Ea ch data
+point within my PLC programs will bear its own tag name rather than a dir ect (channel-based)
+address label.
+12.4 Ladder Diagram (LD) programming
+In the United States, the most common language used to program PLCs is Ladder Diagram
+(LD), also known as Relay Ladder Logic (RLL). This is a graphical language showing the logical
+relationships between inputs and outputs as though they were contacts and coils in a hard-w ired
+electromechanical relay circuit. This language was invented for the express purpose of making PLC
+programming feel “natural” to electricians familiar with relay-based logic and control circuits. While
+Ladder Diagram programming has many shortcomings, it remains extremely popul ar and so will be
+the primary focus of this chapter.12.4. LADDER DIAGRAM (LD) PROGRAMMING 805
+Every Ladder Diagram program is arranged to resemble an electrical diagram, m aking this a
+graphical (rather than text-based) programming language. Ladder diagrams are to b e thought of
+as virtual circuits, where virtual “power” ﬂows through virtual “contacts” (when closed) to energize
+virtual “relay coils” to perform logical functions. None of the contacts or coils seen in a Ladder
+Diagram PLC program are real; rather, they act on bits in the PLC’s memory , the logical inter-
+relationships between those bits expressed in the form of a diagram resembling a circuit.
+The following computer screenshot shows a typical Ladder Diagram program 16 being edited on
+a personal computer:
+Contacts appear just as they would in an electrical relay logic diagram – as s hort vertical line
+segments separated by a horizontal space. Normally-open contacts are empty wi thin the space
+between the line segments, while normally-closed contacts have a diagonal line cr ossing through
+that space. Coils are somewhat diﬀerent, appearing as either circles or pairs of par entheses. Other
+instructions appear as rectangular boxes.
+Each horizontal line is referred to as a rung, just as each horizontal step on a stepladder is called
+a “rung.” A common feature among Ladder Diagram program editors, as seen on thi s screenshot, is
+16This particular program and editor is for the Koyo “CLICK” se ries of micro-PLCs.806 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+the ability to color-highlight those virtual “components” in the virtual “ circuit” ready to “conduct”
+virtual “power.” In this particular editor, the color used to indicate “conduction” is light blue.
+Another form of status indication seen in this PLC program is the values of certa in variables in the
+PLC’s memory, shown in red text.
+For example, you can see coil T2 energized at the upper-right corner of the screen (ﬁlled with light
+blue coloring), while coil T3 is not. Correspondingly, each normally-open T2 contact appears colored,
+indicating its “closed” status, while each normally-closed T2 contact is uncolored. By contrast, each
+normally-open T3 contact is uncolored (since coil T3 is unpowered) while each normally-closed T3
+contact is shown colored to indicate its conductive status. Likewise, the current co unt values of
+timers T2 and T3 are shown as 193 and 0, respectively. The output value of the math instruction
+box happens to be 2400, also shown in red text.
+Color-highlighting of Ladder Diagram components only works, of course, when t he computer
+running the program editing software is connected to the PLC and the PLC is in the “run” mode
+(and the “show status” feature of the editing software is enabled). Otherwise, the L adder Diagram is
+nothing more than black symbols on a white background. Not only is status hig hlighting very useful
+in de-bugging PLC programs, but it also serves an invaluable diagnostic purpose when a technician
+analyzes a PLC program to check the status of real-world input and output devices connected t o the
+PLC. This is especially true when the program’s status is viewed remotely over a computer network,
+allowing maintenance staﬀ to investigate system problems without even being nea r the PLC!
+12.4.1 Contacts and coils
+The most elementary objects in Ladder Diagram programming are contacts and coils, intended
+to mimic the contacts and coils of electromechanical relays. Contacts and coil s are discrete
+programming elements, dealing with Boolean (1 and 0; on and oﬀ; true and fals e) variable states.
+Each contact in a Ladder Diagram PLC program represents the reading of a single bit in memory,
+while each coil represents the writing of a single bit in memory.
+Discrete input signals to the PLC from real-world switches are read by a Ladder Diagram program
+by contacts referenced to those input channels. In legacy PLC systems, each discrete input channel
+has a speciﬁc address which must be applied to the contact(s) within that program. In modern PLC
+systems, each discrete input channel has a tag name created by the programmer which is applied to
+the contact(s) within the program. Similarly, discrete output channels – referenced b y coil symbols
+in the Ladder Diagram – must also bear some form of address or tag name label .
+To illustrate, we will imagine the construction and programming of a redundant ﬂame-sensing
+system to monitor the status of a burner ﬂame using three sensors. The purpose of thi s system will
+be to indicate a “lit” burner if at least two out of the three sensors indicate ﬂame. I f only one sensor
+indicates ﬂame (or if no sensors indicate ﬂame), the system will declare the burner to be un-lit. The
+burner’s status will be visibly indicated by a lamp that human operators can r eadily see inside the
+control room area.12.4. LADDER DIAGRAM (LD) PROGRAMMING 807
+Our system’s wiring is shown in the following diagram:
+Power
+supply
+L1
+Gnd
+L2/N
+Processor Input
+0
+1
+2
+3
+4
+5
+6
+7
+IN0
+IN1
+IN2
+IN3
+IN4
+IN5
+IN6
+IN7
+COM
+COM
+VAC 1
+OUT1
+OUT2
+OUT3
+OUT4
+OUT5
+OUT6
+OUT7
+VAC 2
+OUT0
+Output
+0
+1
+2
+3
+6
+7
+4
+5
+L1 L2 Gnd
+L1 L2 Gnd
+L1 L2 Gnd
+To 120 VAC
+power source
+Burner
+sensor AFlame
+Flame
+Flame
+sensor B
+sensor C
+"Burner lit"
+indicator
+lamp
+Each ﬂame sensor outputs a DC voltage signal indicating the detection of ﬂame at t he burner,
+either on (24 volts DC) or oﬀ (0 volts DC). These three discrete DC voltage signals are sensed by
+the ﬁrst three channels of the PLC’s discrete input card. The indicator lamp is a 120 vo lt light bulb,
+and so must be powered by an AC discrete output card, shown here in the PLC’s last s lot.
+To make the ladder program more readable, we will assign tag names (symbol ic addresses) to each
+input and output bit in the PLC, describing its real-world device in an easily-interpret ed format 17.
+We will tag the ﬁrst three discrete input channels as IN sensor A, IN sensor B, and IN sensor C,
+and the output as OUT burner lit.
+17If this were a legacy Allen-Bradley PLC system using absolute addressing, we would be forced to address the three
+sensor inputs as I:1/0, I:1/1, and I:1/2 (slot 1, channels 0 through 2), and the indicator lamp output as O:2/0 (slot
+2, channel 0). If this were a newer Logix5000 Allen-Bradley PL C, the default tag names would be Local:1:I.Data.0,
+Local:1:I.Data.1, and Local:1:I.Data.2 for the three inputs, and Local:2:O.Data.0 for the output. However, in
+either system we have the ability to assign symbolic address es so we have a way to reference the I/O channels without
+having to rely on these cumbersome labels. The programs show ing in this book exclusively use tag names rather than
+absolute addresses, since this is the more modern programmi ng convention.808 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+A ladder program to determine if at least two out of the three sensors detect ﬂame is sho wn here,
+with the tag names referencing each contact and coil:
+IN_sensor_A IN_sensor_B OUT_burner_lit
+IN_sensor_A IN_sensor_C
+IN_sensor_B IN_sensor_C
+Series-connected contacts in a Ladder Diagram perform the logical AND function, while parallel
+contacts perform the logical OR function. Thus, this two-out-of-three ﬂame-sensing program could
+be verbally described as:
+“Burner is lit if either A and B, or either B and C, or either A and C”
+An alternate way to express this is to use the notation of Boolean algebra, where multiplication
+represents the AND function and addition represents the OR function:
+Burner lit = AB + BC + AC
+Yet another way to represent this logical relationship is to use logic gate sy mbols:
+B
+A
+C12.4. LADDER DIAGRAM (LD) PROGRAMMING 809
+To illustrate how this program would work, we will consider a case where ﬂame sensors B and
+C detect ﬂame, but sensor A does not 18. This represents a two-out-of-three-good condition, and
+so we would expect the PLC to turn on the “Burner lit” indicator light as progra mmed. From the
+perspective of the PLC’s rack, we would see the indicator LEDs for sensors B and C lit up on the
+discrete input card, as well as the indicator LED for the lamp’s output channel:
+Power
+supply
+L1
+Gnd
+L2/N
+Processor Input
+0
+1
+2
+3
+4
+5
+6
+7
+IN0
+IN1
+IN2
+IN3
+IN4
+IN5
+IN6
+IN7
+COM
+COM
+VAC 1
+OUT1
+OUT2
+OUT3
+OUT4
+OUT5
+OUT6
+OUT7
+VAC 2
+OUT0
+Output
+0
+1
+2
+3
+6
+7
+4
+5
+L1 L2 Gnd
+L1 L2 Gnd
+L1 L2 Gnd
+To 120 VAC
+power source
+Burner
+sensor AFlame
+Flame
+Flame
+sensor B
+sensor C
+"Burner lit"
+indicator
+lamp
+(senses flame)
+(senses flame)
+(does not sense flame)
+(lit)
+Those two energized input channels “set” bits (1 status) in the PLC’s memory represent ing
+the status of ﬂame sensors B and C. Flame sensor A’s bit will be “clear” (0 st atus) because its
+corresponding input channel is de-energized. The fact that the output channel LED is energized (and
+the “Burner lit” indicator lamp is energized) tells us the PLC program has “set” that corresponding
+bit in the PLC’s output memory register to a “1” state.
+18The most likely reason why one out of two ﬂame sensors might no t detect the presence of a ﬂame is some form
+of misalignment or fouling of the ﬂame sensor. In fact, this i s a good reason for using a 2-out-of-3 ﬂame detection
+system rather than a simplex (1-out-of-1) detector scheme: to make the system more tolerant of occasional sensor
+problems without compromising burner safety.810 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+A display of input and output register bits shows the “set” and “reset” states for the PLC at
+this moment in time:
+0 10 0 0 0 0
+Input register
+1
+IN0
+IN1
+IN2
+IN3
+IN4
+IN5
+IN6
+IN7 0 10 0 0 0 0
+Output register
+OUT1
+OUT0
+OUT2
+OUT3
+OUT4
+OUT5
+OUT6
+OUT7 0
+Examining the Ladder Diagram program with status indication enabled, we see how o nly the
+middle contact pair is passing “virtual power” to the output coil:
+IN_sensor_A IN_sensor_B OUT_burner_lit
+IN_sensor_A IN_sensor_C
+IN_sensor_B IN_sensor_C
+Color-highlighted contacts
+indicate "closed" (conductive)
+status
+Color-highlighted coil
+indicates powered (activated)
+status
+Contacts read bit status
+in the PLC’s memory
+Coils write bit status
+in the PLC’s memory
+Recall that the purpose of a contact in a PLC program is to read the status of a bit in the
+PLC’s memory. These six “virtual contacts” read the three input bits correspondi ng to the three
+ﬂame sensors. Each normally-open “contact” will “close” when its correspondi ng bit has a value of
+1, and will “open” (go to its normal state) when its corresponding bit has a val ue of 0. Thus, we
+see here that the two contacts corresponding to sensor A appear without highlighting (representing
+no “conductivity” in the virtual relay circuit) because the bit for that input is reset ( 0). The
+two contacts corresponding to sensor B and the two contacts corresponding to sensor C all appear
+highlighted (representing “conductivity” in the virtual circuit) because their bits a re both set (1).
+Recall also that the purpose of a coil in a PLC program is to write the status of a bit in the
+PLC’s memory. Here, the “energized” coil sets the bit for the PLC output 0 to a “1” st ate, thus
+activating the real-world output and sending electrical power to the “Burner lit” lam p.
+Note that the color highlighting does not indicate a virtual contact is conducting virtual power,
+but merely that it is able to conduct power. Color highlighting around a virtual coil, however, does
+indicate the presence of virtual “power” at that coil.12.4. LADDER DIAGRAM (LD) PROGRAMMING 811
+Contacts and relays are not just useful for implementing simple logic functions , but they may also
+perform latching functions as well. A very common application of this in industrial PLC systems
+is a latching start/stop program for controlling electric motors by m eans of momentary-contact
+pushbutton switches. As before, this functionality will be illustrated by mea ns of an hypothetical
+example circuit and program:
+Power
+supply
+L1
+Gnd
+L2/N
+Processor Input
+0
+1
+2
+3
+4
+5
+6
+7
+IN0
+IN1
+IN2
+IN3
+IN4
+IN5
+IN6
+IN7
+COM
+COM
+VAC 1
+OUT1
+OUT2
+OUT3
+OUT4
+OUT5
+OUT6
+OUT7
+VAC 2
+OUT0
+Output
+0
+1
+2
+3
+6
+7
+4
+5
+To 120 VAC
+power source
+"Start"
+"Stop"
+Three-phase 
+motor contactor
+Reset
+In this system, two pushbutton switches are connected to discrete inputs on a PLC, and the
+PLC in turn energizes the coil of a motor contactor relay by means of one of its di screte outputs 19.
+19The particular input and output channels chosen for this exa mple are completely arbitrary. There is no particular812 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+An overload contact is wired directly in series with the contactor coil to pro vide motor overcurrent
+protection, even in the event of a PLC failure where the discrete output channel remains energ ized20.
+The ladder program for this motor control system would look like this:
+IN_switch_Start IN_switch_Stop OUT_contactor
+OUT_contactor
+Pressing the “Start” pushbutton energizes discrete input channel 6 on the PLC, which “clos es”
+the virtual contact in the PLC program labeled IN switch Start. The normally-closed virtual
+contact for input channel 7 (the “Stop” pushbutton) is already closed by default when the “Sto p”
+button is not being pressed, and so the virtual coil will receive “power” when the “Sta rt” pushbutton
+is pressed and the “Stop” pushbutton is not.
+Note the seal-in contact bearing the exact same label as the coil: OUT contactor. At ﬁrst it
+may seem strange to have both a contact and a coil in a PLC program labeled iden tically21, since
+contacts are most commonly associated with inputs and coils with outputs, but t his makes perfect
+sense if you realize the true meaning of contacts and coils in a PLC program: as read and write
+operations on bits in the PLC’s memory. The coil labeled OUT contactor writes the status of that
+bit, while the contact labeled OUT contactor reads the status of that same bit. The purpose of this
+contact, of course, is to latch the motor in the “on” state after a human op erator has released his
+or her ﬁnger from the “Start” pushbutton.
+This programming technique is known as feedback, where an output variable of a function (in this
+case, the feedback variable is OUT contactor) is also an input to that same function. The path of
+feedback is implicit rather than explicit in Ladder Diagram programming, with the only indication
+of feedback being the common name shared by coil and contact. Other graphical programm ing
+languages (such as Function Block) have the ability to show feedback paths as connecti ng lines
+between function outputs and inputs, but this capacity does not exist in Ladder Diagram.
+reason to choose input channels 6 and 7, or output channel 2, a s I have shown in the wiring diagram. Any available
+I/O channels will suﬃce.
+20While it is possible to wire the overload contact to one of the PLC’s discrete input channels and then program a
+virtual overload contact in series with the output coil to stop the mo tor in the event of a thermal overload, this strategy
+would rely on the PLC to perform a safety function which is pro bably better performed by hard-wired circuitry.
+21A very common misconception among students ﬁrst learning PL C Ladder Diagram programming is to always
+associate contacts with PLC inputs and coils with PLC output s, thus it seems weird to have a contact bear the same
+label as an output. However, this is a false association. In r eality, contacts and coils are read and write instructions,
+and thus it is possible to have the PLC read one of its own outpu t bits as a part of some logic function. What would
+be truly strange is to label a coil with an input bit address or tag name, since the PLC is not electrically capable of
+setting the real-world energization status of any input cha nnels.12.4. LADDER DIAGRAM (LD) PROGRAMMING 813
+A step-by-step sequence showing the operation and status of this simple program il lustrates how
+the seal-in contact functions, through a start-up and shut-down cycle of the motor:
+IN_switch_Start IN_switch_Stop OUT_contactor
+OUT_contactor
+IN_switch_Start IN_switch_Stop OUT_contactor
+OUT_contactor
+Operator pushes "Start" switch
+Coil immediately activates
+Status of program before "Start" switch pressed
+IN_switch_Start IN_switch_Stop OUT_contactor
+OUT_contactor
+Seal-in contact closes on next scan
+IN_switch_Start IN_switch_Stop OUT_contactor
+OUT_contactor
+Operator releases "Start" switch
+Motor continues to run
+IN_switch_Start IN_switch_Stop OUT_contactor
+OUT_contactor
+Operator presses "Stop" switch
+Coil immediately de-activates
+IN_switch_Start IN_switch_Stop OUT_contactor
+OUT_contactor
+Seal-in contact releases on next scan
+Step 1
+Step 2
+Step 3
+Step 4
+Step 5
+Step 6
+This sequence helps illustrate the order of evaluation or scan order of a Ladder Diagram program.
+The PLC reads a Ladder Diagram from left to right, top to bottom, in the s ame general order as814 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+a human being reads sentences and paragraphs written in English. However, according to the IEC
+61131-3 standard, a PLC program must evaluate (read) all inputs (contacts) to a function before
+determining the status of a function’s output (coil or coils). In other words, the PL C does not make
+any decision on how to set the state of a coil until all contacts providing pow er to that coil have been
+read. Once a coil’s status has been written to memory, any contacts bearing the sa me tag name will
+update with that status on subsequent rungs in the program.
+Step 5 in the previous sequence is particularly illustrative. When the human operato r presses
+the “Stop” pushbutton, the input channel for IN switch Stop becomes activated, which “opens”
+the normally-closed virtual contact IN switch Stop. Upon the next scan of this program rung,
+the PLC evaluates all input contacts ( IN switch Start, IN switch Stop, and OUT contactor)
+to check their status before deciding what status to write to the OUT contactor coil. Seeing
+that the IN switch Stop contact has been forced open by the activation of its respective discrete
+input channel, the PLC writes a “0” (or “False”) state to the OUT contactor coil. However, the
+OUT contactor feedback contact does not update until the next scan, which is why you still see it
+color-highlighted during step 5.
+A potential problem with this system as it is designed is that the human operat or loses control of
+the motor in the event of an “open” wiring failure in either pushbutton switch ci rcuit. For instance,
+if a wire fell oﬀ a screw contact for the “Start” pushbutton switch circuit, the motor could not
+be started if it was already stopped. Similarly, if a wire fell oﬀ a screw co ntact for the “Stop”
+pushbutton switch circuit, the motor could not be stopped if it was already running . In either case,
+a broken wire connection acts the same as the pushbutton switch’s “normal” stat us, which is to
+keep the motor in its present state. In some applications, this failure mode w ould not be a severe
+problem. In many applications, though, it is quite dangerous to have a running motor that cannot
+be stopped. For this reason, it is customary to design motor start/stop s ystems a bit diﬀerently
+from what has been shown here.12.4. LADDER DIAGRAM (LD) PROGRAMMING 815
+In order to build a “fail-stop” motor control system with our PLC, we must ﬁrst re-wire the
+pushbutton switch to use its normally-closed (NC) contact:
+Power
+supply
+L1
+Gnd
+L2/N
+Processor Input
+0
+1
+2
+3
+4
+5
+6
+7
+IN0
+IN1
+IN2
+IN3
+IN4
+IN5
+IN6
+IN7
+COM
+COM
+VAC 1
+OUT1
+OUT2
+OUT3
+OUT4
+OUT5
+OUT6
+OUT7
+VAC 2
+OUT0
+Output
+0
+1
+2
+3
+6
+7
+4
+5
+To 120 VAC
+power source
+"Start"
+"Stop"
+Three-phase 
+motor contactor
+Reset
+Using the NC contact!
+This keeps discrete input channel 7 activated when the pushbutton is unpressed. When the
+operator presses the “Stop” pushbutton, the switch’s contact will be forced open, a nd input channel
+7 will de-energize. If a wire happens to fall oﬀ a screw terminal in the “Stop” switch circuit, input
+channel 7 will de-energize just the same as if someone pressed the “Stop” pushbutton, which w ill
+automatically shut oﬀ the motor.816 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+In order for the PLC program to work properly with this new switch wiring, the virtual contact
+for IN switch Stop must be changed from a normally-closed (NC) to a normally-open (NO):
+IN_switch_Start IN_switch_Stop OUT_contactor
+OUT_contactor
+This virtual contact maintained in
+its "closed" state because the real
+switch contacts are closed and the
+real input channel is energized with
+no one pushing the "Stop" button
+As before, the IN switch Stop virtual contact is in the “closed” state when no one presses the
+“Stop” switch, enabling the motor to start any time the “Start” switch is pressed. Similarly, the
+IN switch Stop virtual contact will open any time someone presses the “Stop” switch, thus st opping
+virtual “power” from ﬂowing to the OUT contactor coil.
+Although this is a very common way to build PLC-controlled motor start/s top systems – with
+an NC pushbutton switch and an NO “Stop” virtual contact – students new to PLC pro gramming
+often ﬁnd this logical reversal confusing 22. Perhaps the most common reason for this confusion
+is a mis-understanding of the “normal” concept for switch contacts, be they real or v irtual. The
+IN switch Stop virtual contact is programmed to be normally-open (NO), but yet it is typically
+found in the closed state. Recall that the “normal” status of any switch is i ts status while in a resting
+condition of no stimulation, not necessarily its status while the process is in a “normal” operating
+mode. The “normally-open” virtual contact IN switch Stop is typically found in the closed state
+because its corresponding input channel is typically found energized, owing to the normally -closed
+pushbutton switch contact, which passes real electrical power to the input channel whil e no one
+presses the switch. Just because a switch is conﬁgured as normally-open does not necessa rily mean
+it will be typically found in the open state! The status of any switch contact, whether real or virt ual,
+is a function of its conﬁguration (NO versus NC) and the stimulus applied to it.
+Another concern surrounding real-world wiring problems is what this system will do if the motor
+contactor coil circuit opens for any reason. An open circuit may develop as a result of a wire falling
+oﬀ a screw terminal, or it may occur because the thermal overload contact tripped o pen due to an
+over-temperature event. The problem with our motor start/stop system as desi gned is that it is
+not “aware” of the contactor’s real status. In other words, the PLC “thinks” the contactor will be
+22In an eﬀort to alleviate this confusion, the Allen-Bradley co rporation (Rockwell) uses the terms examine if closed
+(XIC) and examine if open (XIO) to describe “normally open” and “normally closed” vir tual contacts, respectively,
+in their Ladder Diagram programming. The idea here is that a v irtual contact drawn as a normally-open symbol
+will be “examined” (declared “true”) by the PLC’s processor if its corresponding input channel is energized (powered
+by a real-life contact in the closed state). Conversely, a virtual contact drawn as a normally-c losed symbol (with
+a slash mark through the middle) will be “examined” by the PLC ’s processor if its corresponding input channel is
+de-energized (if the real-life contact sending power to tha t terminal is in the open state). In my experience, I have
+found this nomenclature to be even more confusing to student s than simply calling these virtual contacts “normally
+open” and “normally closed” like other PLC manufacturers do . The foundational concept for students to grasp here
+is that the virtual contact is not a direct representation of the rea l-life electrical switch contact – rather, it is a
+read instruction for the bit set by power coming from the real-life electrical switch contact .12.4. LADDER DIAGRAM (LD) PROGRAMMING 817
+energized any time discrete output channel 2 is energized, but that may not actually be the case if
+there is an open fault in the contactor’s coil circuit.
+This may lead to a dangerous condition if the open fault in the contactor’s coil ci rcuit is later
+cleared. Imagine an operator pressing the “Start” switch but noticing the motor does not actually
+start. Wondering why this may be, he or she goes to look at the overload relay to see if it is tripped.
+If it is tripped, and the operator presses the “Reset” button on the overload ass embly, the motor will
+immediately start because the PLC’s discrete output has remained energized all the tim e following
+the pressing of the “Start” switch. Having the motor start up as soon as the thermal overload is
+reset may come as a surprise to operations personnel, and this could be quite danger ous if anyone
+happens to be near the motor-powered machinery when it starts.
+What would be safer is a motor control system that refuses to “latch” on unles s the contactor
+actually energizes when the “Start” switch is pressed. For this to be possible, the PLC must have
+some way of sensing the contactor’s status.818 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+In order to make the PLC “aware” of the contactor’s real status, we may connect the auxiliary
+switch contact to one of the unused discrete input channels on the PLC, like this:
+Power
+supply
+L1
+Gnd
+L2/N
+Processor Input
+0
+1
+2
+3
+4
+5
+6
+7
+IN0
+IN1
+IN2
+IN3
+IN4
+IN5
+IN6
+IN7
+COM
+COM
+VAC 1
+OUT1
+OUT2
+OUT3
+OUT4
+OUT5
+OUT6
+OUT7
+VAC 2
+OUT0
+Output
+0
+1
+2
+3
+6
+7
+4
+5
+To 120 VAC
+power source
+"Start"
+"Stop"
+Three-phase 
+motor contactor
+Reset
+Now, the PLC is able to sense the real-time status of the contactor via input cha nnel 5.12.4. LADDER DIAGRAM (LD) PROGRAMMING 819
+We may modify the PLC program to recognize this status by assigning a new tag na me to this
+input ( IN contactor aux) and using a normally-open virtual contact of this name as the seal-in
+contact instead of the OUT contactor bit:
+IN_switch_Start IN_switch_Stop OUT_contactor
+IN_contactor_aux
+Now, if the contactor fails to energize for any reason when the operator press es the “Start”
+switch, the PLC’s output will fail to latch when the “Start” switch is rel eased. When the open fault
+in the contactor’s coil circuit is cleared, the motor will not immediately start up, but rather wait
+until the operator presses the “Start” switch again, which is a much safer o perating characteristic
+than before.820 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+A special class of virtual “coil” used in PLC ladder programming that bears men tioning is the
+“latching” coil. These usually come in two forms: a set coil and a reset coil. Unlike a regular
+“output” coil that positively writes to a bit in the PLC’s memory with every scan of the program,
+“set” and “reset” coils only write to a bit in memory when energized by virtual po wer. Otherwise,
+the bit is allowed to retain its last value.
+A very simple motor start/stop program could be written with just two input contacts and two
+of these latching coils (both bearing the same tag name, writing to the same bit in memory):
+IN_switch_Start
+IN_switch_Stop
+OUT_contactor
+OUT_contactor
+"Start" pushbutton
+"Stop" pushbutton
+Discrete input
+card
+IN_switch_Start
+IN_switch_Stop
+Discrete output
+card
+OUT_contactor
+Real-world I/O wiring
+PLC program
+Contactor coil
+S
+R
+Note the use of a normally-open (NO) pushbutton switch contact (again!), wi th no auxiliary
+contact providing status indication of the contactor to the PLC. This is a very minimal program,
+shown for the strict purpose of illustrating the use of “set” and “reset” lat ching coils in Ladder
+Diagram PLC programming.
+“Set” and “Reset” coils 23 are examples of what is known in the world of PLC programming as
+retentive instructions. A “retentive” instruction retains its value after being virtually “de-energized”
+in the Ladder Diagram “circuit.” A standard output coil is non-retentive, which means it does not
+“latch” when de-energized. The concept of retentive and non-retentive instructions will appear again
+as we explore PLC programming, especially in the area of timers.
+Ordinarily, we try to avoid multiple coils bearing the same label in a PLC Ladder Diagram
+program. With each coil representing a “write” instruction, multiple coils bea ring the same name
+represents multiple “write” operations to the same bit in the PLC’s memory. Here, with latching
+coils, there is no conﬂict because each of the coils only writes to the OUT contactor bit when its
+23Referred to as “Latch” and “Unlatch” coils by Allen-Bradley.12.4. LADDER DIAGRAM (LD) PROGRAMMING 821
+respective contact is energized. So long as only one of the pushbutton switches is actuat ed at a time,
+there is no conﬂict between the identically-named coils.
+This raises the question: what would happen if both pushbutton switches were simultaneously
+pressed? What would happen if both “Set” and “Reset” coils were “energized” at the same time?
+The result is that the OUT contactor bit would ﬁrst be “set” (written to a value of 1) then “reset”
+(written to a value of 0) in that order as the two rungs of the program were sca nned from top
+to bottom. PLCs typically do not typically update their discrete I/O register s while scanning the
+Ladder Diagram program (this operation takes place either before or after eac h program scan), so
+the real discrete output channel status will be whatever the last write operation told it to be, in this
+case “reset” (0, or oﬀ).
+Even if the discrete output is not “confused” due to the conﬂicting write operations of the “Set”
+and “Reset” coils, other rungs of the program written between the “Set” and “Reset” r ungs might
+be. Consider for example a case where there were other program rungs following the “ Set” and
+“Reset” rungs reading the status of the OUT contactor bit for some purpose. Those other rungs
+would indeed become “confused” because they would see the OUT contactor bit in the “set” state
+while the actual discrete output of the PLC (and any rungs following the “Reset” rung ) would see
+the OUT contactor bit in the “reset” state:
+IN_switch_Start OUT_contactor
+"Start" and "Stop" pushbuttons simultaneously pressed!
+IN_switch_Stop OUT_contactor
+OUT_contactor
+OUT_contactor
+...this rung sees OUT_contactor set!
+...this rung sees OUT_contactor reset!
+S
+R
+Multiple (non-retentive) output coils with the same memory address are almost a lways a
+programming faux pax for this reason, but even retentive coils which are designed to be used in
+matched pairs can cause trouble if the implications of simultaneous energization a re not anticipated.
+Multiple contacts with identical addresses are no problem whatsoever, because multiple “read”
+operations to the same bit in memory will never cause a conﬂict.
+The IEC 61131-3 PLC programming standard speciﬁes transition-sensing contacts as well as the
+more customary “static” contacts. A transition-sensing contact will “actua te” only for a duration
+of one program scan, even if its corresponding bit remains active. Two types of tr ansition-sensing
+Ladder Diagram contacts are deﬁned in the IEC standard: one for positive transitions and another822 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+for negative transitions. The following example shows a wiring diagram, Ladder Diagra m program,
+and a timing diagram demonstrating how each type of transition-sensing contact functions when
+stimulated by a real (electrical) input signal to a discrete channel:
+P
+IN_test
+N
+IN_test
+OUT_test1
+OUT_test2
+Discrete input
+card
+Discrete output
+card
+Real-world I/O wiring
+PLC program
+"Test" pushbutton
+IN_test
+Test lamp 1
+Test lamp 2
+OUT_test1
+OUT_test2
+IN_test
+OUT_test1
+OUT_test2
+Duration of one program scan
+Duration of one program scan
+Timing diagram
+When the pushbutton switch is pressed and the discrete input energized, the ﬁrst test lamp wi ll
+blink “on” for exactly one scan of the PLC’s program, then return to its oﬀ sta te. The positive-
+transition contact (with the letter “P” inside) activates the coil OUT test1 only during the scan it
+sees the status of IN test transition from “false” to “true,” even though the input remains energized
+for many scans after that transition. Conversely, when the pushbutton switch is released and the
+discrete input de-energizes, the second test lamp will blink “on” for exactly one scan of the PLC’s12.4. LADDER DIAGRAM (LD) PROGRAMMING 823
+program then return to its oﬀ state. The negative-transition contact (with t he letter “N” inside)
+activates the coil OUT test2 only during the scan it sees the status of IN test transition from “true”
+to “false,” even though the input remains de-energized for many scans after that transit ion:
+It should be noted that the duration of a single PLC program scan is typically very short:
+measured in milliseconds. If this program were actually tested in a real PLC, y ou would probably
+not be able to see either test lamp light up, since each pulse is so short-lived. Tra nsitional contacts are
+typically used any time it is desired to execute an instruction just one time fol lowing a “triggering”
+event, as opposed to executing that instruction over and over again so long as the ev ent status is
+maintained “true.”
+Contacts and coils represent only the most basic of instructions in the Ladder Dia gram PLC
+programming language. Many other instructions exist, which will be discussed i n the following
+subsections.824 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+12.4.2 Counters
+A counter is a PLC instruction that either increments (counts up) or decrements (counts down)
+an integer number value when prompted by the transition of a bit from 0 to 1 (“f alse” to “true”).
+Counter instructions come in three basic types: up counters, down counters, and up/down counters.
+Both “up” and “down” counter instructions have single inputs for triggering counts, whereas
+“up/down” counters have two trigger inputs: one to make the counter increment and one to make
+the counter decrement.
+To illustrate the use of a counter instruction, we will analyze a PLC-based sys tem designed to
+count objects as they pass down a conveyor belt:
+Power
+supply
+L1
+Gnd
+L2/N
+Processor Input
+0
+1
+2
+3
+4
+5
+6
+7
+IN0
+IN1
+IN2
+IN3
+IN4
+IN5
+IN6
+IN7
+COM
+COM
+VAC 1
+OUT1
+OUT2
+OUT3
+OUT4
+OUT5
+OUT6
+OUT7
+VAC 2
+OUT0
+Output
+0
+1
+2
+3
+6
+7
+4
+5
+L1 L2
+To 120 VAC
+power source
+L1 L2
+Light source Light sensor
+Count
+indicator
+lamp
+"Reset count"
+pushbutton
+In this system, a continuous (unbroken) light beam causes the light sensor to clo se its output
+contact, energizing discrete channel IN4. When an object on the conveyor belt interrupts the
+light beam from source to sensor, the sensor’s contact opens, interrupting pow er to input IN4. A
+pushbutton switch connected to activate discrete input IN5 when pressed will serve as a manual
+“reset” of the count value. An indicator lamp connected to one of the discrete output channels will
+serve as an indicator of when the object count value has exceeded some pre-set limit.12.4. LADDER DIAGRAM (LD) PROGRAMMING 825
+We will now analyze a simple Ladder Diagram program designed to increment a counter
+instruction each time the light beam breaks:
+CTU
+CU
+R
+PV CV
+Q
+OUT_counts_reachedIN_switch_reset
+IN_sensor_object
+025 parts_counted
+This particular counter instruction (CTU) is an incrementing counter, which means i t counts
+“up” with each oﬀ-to-on transition input to its “CU” input. The normally-closed virtual contact
+(IN sensor object) is typically held in the “open” state when the light beam is continuous, by vi rtue
+of the fact the sensor holds that discrete input channel energized while the beam is continuous . When
+the beam is broken by a passing object on the conveyor belt, the input channel de-energizes, caus ing
+the virtual contact IN sensor object to “close” and send virtual power to the “CU” input of the
+counter instruction. This increments the counter just as the leading edge of the object break s the
+beam. The second input of the counter instruction box (“R”) is the reset input, receiving virtual
+power from the contact IN switch reset whenever the reset pushbutton is pressed. If this input is
+activated, the counter immediately resets its current value (CV) to zero.
+Status indication is shown in this Ladder Diagram program, with the counter’s preset value
+(PV) of 25 and the counter’s current value (CV) of 0 shown highlighted in blue. The preset value is
+something programmed into the counter instruction before the system put into ser vice, and it serves
+as a threshold for activating the counter’s output (Q), which in this case turns on the count indicator
+lamp (the OUT counts reached coil). According to the IEC 61131-3 programming standard, this
+counter output should activate whenever the current value is equal to or greater than the pr eset
+value (Q is active if CV ≥ PV).826 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+This is the status of the same program after thirty objects have passed by the sensor on the
+conveyor belt. As you can see, the current value of the counter has increased to 30, exceedi ng the
+preset value and activating the discrete output:
+CTU
+CU
+R
+PV CV
+Q
+OUT_counts_reachedIN_switch_reset
+IN_sensor_object
+3025 parts_counted
+If all we did not care about maintaining an accurate total count of objects pas t 25 – but merely
+wished the program to indicate when 25 objects had passed by – we could also use a down counter
+instruction preset to a value of 25, which turns on an output coil when the count reaches zero:
+OUT_counts_reached
+IN_sensor_object
+25 parts_counted
+CU
+PV CV
+CTD
+LD Q
+0
+IN_switch_load
+Here, a “load” input causes the counter’s current value to equal the preset value (25) when
+activated. With each sensor pulse received, the counter instruction decrements. When it rea ches
+zero, the Q output activates.
+A potential problem in either version of this object-counting system is that the P LC cannot
+discriminate between forward and reverse motion on the conveyor belt. If, f or instance, the conveyor
+belt were ever reversed in direction, the sensor would continue to count objects that ha d already
+passed by before (in the forward direction) as those objects retreated on the b elt. This would be
+a problem because the system would “think” more objects had passed along the belt (i ndicating
+greater production) than actually did.12.4. LADDER DIAGRAM (LD) PROGRAMMING 827
+One solution to this problem is to use an up/down counter, capable of both incrementing
+(counting up) and decrementing (counting down), and equip this counter with two light-bea m sensors
+capable of determining direction of travel. If two light beams are oriented par allel to each other,
+closer than the width of the narrowest object passing along the conveyor belt, we will have enough
+information to determine direction of object travel:
+A
+B
+SensorsSources
+Forward
+travel
+Reverse
+travel
+(A breaks before B)
+(B breaks before A)
+Time
+A
+B
+Forward travel timing 
+Time
+A
+B
+Reverse travel timing
+This is called quadrature signal timing, because the two pulse waveforms are approximately 90 o
+(one-quarter of a period) apart in phase. We can use these two phase-shifted signals to increment or
+decrement an up/down counter instruction, depending on which pulse leads and which pulse lags.828 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+A Ladder Diagram PLC program designed to interpret the quadrature pulse signals i s shown
+here, making use of negative-transition contacts as well as standard contacts:
+OUT_counts_reached
+IN_switch_reset
+25
+CU
+R
+PV CV
+CTUD
+CD
+LD
+QU
+QD
+0
+IN_sensor_A
+IN_sensor_B
+N
+IN_sensor_B
+N
+IN_sensor_A
+parts_counted
+The counter will increment (count up) when sensor B de-energizes only if sensor A is already in
+the de-energized state (i.e. light beam A breaks before B). The counter will decrement ( count down)
+when sensor A de-energizes only if sensor B is already in the de-energized state (i.e. light b eam B
+breaks before A).
+Note that the up/down counter has both a “reset” (R) input and a “load” input (“LD”) t o force
+the current value. Activating the reset input forces the counter’s current value (CV) to zero, just
+as we saw with the “up” counter instruction. Activating the load input forces the coun ter’s current
+value to the preset value (PV), just as we saw with the “down” counter instructio n. In the case of
+an up/down counter, there are two Q outputs: a QU (output up) to indicate when the current val ue
+is equal to or greater than the preset value, and a QD (output down) to indicate when the curren t
+value is equal to or less than zero.
+Note how the current value (CV) of each counter shown is associated with a tag name of its own,
+in this case parts counted. The integer number of a counter’s current value (CV) is a variable in
+the PLC’s memory just like boolean values such as IN sensor A and IN switch reset, and may be
+associated with a tag name or symbolic address just the same 24. This allows other instructions in a
+PLC program to read (and sometimes write!) values from and to that memory l ocation.
+24This represents the IEC 61131-3 standard, where each variab le within an instruction may be “connected” to
+its own arbitrary tag name. Other programming conventions m ay diﬀer somewhat. The Allen-Bradley Logix5000
+series of controllers is one of those that diﬀers, following a convention reminiscent of structure element addressing
+in the C programming language: each counter is given a tag nam e, and variables in each counter are addressed as
+elements within that structure. For example, a Logix5000 co unter instruction might be named parts count, with
+the accumulated count value (equivalent to the IEC’s “curre nt value”) addressed as parts count.ACC (each element
+within the counter speciﬁed as a suﬃx to the counter’s tag nam e).12.4. LADDER DIAGRAM (LD) PROGRAMMING 829
+12.4.3 Timers
+A timer is a PLC instruction measuring the amount of time elapsed following an event. Timer
+instructions come in two basic types: on-delay timers and oﬀ-delay timers. Both “on-delay” and
+“oﬀ-delay” timer instructions have single inputs triggering the timed function.
+An “on-delay” timer activates an output only when the input has been active for a minimum
+amount of time. Take for instance this PLC program, designed to sound an audio a larm siren prior
+to starting a conveyor belt. To start the conveyor belt motor, the operat or must press and hold
+the “Start” pushbutton for 10 seconds, during which time the siren sounds, warning peo ple to clear
+away from the conveyor belt that is about to start. Only after this 10-second s tart delay does the
+motor actually start (and latch “on”):
+Discrete input
+card
+Discrete output
+card
+Real-world I/O wiring
+PLC program
+"Start" pushbutton
+"Stop" pushbutton
+IN_switch_Start
+IN_switch_Stop
+OUT_contactor
+OUT_siren
+Contactor coil
+Alarm siren
+IN_switch_Start Time_elapsed
+OUT_siren
+10 0
+IN_switch_StopTime_elapsed OUT_contactor
+OUT_contactor
+TON
+IN Q
+PT ET830 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+Similar to an “up” counter, the on-delay timer’s elapsed time (ET) value increments once per
+second until the preset time (PT) is reached, at which time its output (Q) activates . In this program,
+the preset time value is 10 seconds, which means the Q output will not activate until the “Start”
+switch has been depressed for 10 seconds. The alarm siren output, which is not activa ted by the
+timer, energizes immediately when the “Start” pushbutton is pressed.
+An important detail regarding this particular timer’s operation is that i t be non-retentive. This
+means the timer instruction should not retain its elapsed time value when the input is de-activated.
+Instead, the elapsed time value should reset back to zero every time the input de-activates . This
+ensures the timer resets itself when the operator releases the “Start” pushbutton. A retentive on-
+delay timer, by contrast, maintains its elapsed time value even when the input is de-activated. This
+makes it useful for keeping “running total” times for some event.
+Most PLCs provide retentive and non-retentive versions of on-delay timer instruct ions, such
+that the programmer may choose the proper form of on-delay timer for any parti cular application.
+The IEC 61131-3 programming standard, however, addresses the issue of retentive versus non-
+retentive timers a bit diﬀerently. According to the IEC 61131-3 standard, a tim er instruction may
+be speciﬁed with an additional enable input (EN) that causes the timer instruction to behave non-
+retentively when activated, and retentively when de-activated. The general concept of the enable
+(EN) input is that the instruction behaves “normally” so long as the enable input is a ctive (in this
+case, non-retentive timing action is considered “normal” according to the IEC 6113 1-3 standard),
+but the instruction “freezes” all execution whenever the enable input de-activates. This “freezing” of
+operation has the eﬀect of retaining the current time (CT) value even if the input sig nal de-activates.12.4. LADDER DIAGRAM (LD) PROGRAMMING 831
+For example, if we wished to add a retentive timer to our conveyor control sys tem to record total
+run time for the conveyor motor, we could do so using an “enabled” IEC 61131-3 ti mer instruction
+like this:
+OUT_contactor
+TON
+IN Q
+PT ET
+EN ENO
+OUT_contactor
+run_time
+timer_enabled
+When the motor’s contactor bit ( OUT contactor) is active, the timer is enabled and allowed to
+time. However, when that bit de-activates (becomes “false”), the timer instruction as a whole is
+disabled, causing it to “freeze” and retain its current time (CT) value 25. This allows the motor to
+be started and stopped, with the timer maintaining a tally of total moto r run time.
+If we wished to give the operator the ability to manually reset the total r un time value to zero,
+we could hard-wire an additional switch to the PLC’s discrete input card and add “r eset” contacts
+to the program like this:
+OUT_contactor
+TON
+IN Q
+PT ET
+EN ENO
+IN_switch_ResetOUT_contactor
+IN_switch_Reset
+run_time
+timer_enabled
+Whenever the “Reset” switch is pressed, the timer is enabled (EN) but the timing input (IN) is
+disabled, forcing the timer to (non-retentively) reset its current time (CT) value to zero.
+25The “enable out” (ENO) signal on the timer instruction serve s to indicate the instruction’s status: it activates
+when the enable input (EN) activates and de-activates when e ither the enable input de-activates or the instruction
+generates an error condition (as determined by the PLC manuf acturer’s internal programming). The ENO output
+signal serves no useful purpose in this particular program, but it is available if there were any need for other rungs of
+the program to be “aware” of the run-time timer’s status.832 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+The other major type of PLC timer instruction is the oﬀ-delay timer. This timer instruction
+diﬀers from the on-delay type in that the timing function begins as soon as the ins truction is de-
+activated, not when it is activated. An application for an oﬀ-delay timer is a coo ling fan motor
+control for a large industrial engine. In this system, the PLC starts an elect ric cooling fan as soon as
+the engine is detected as rotating, and keeps that fan running for two minutes followi ng the engine’s
+shut-down to dissipate residual heat:
+Discrete input
+card
+Discrete output
+card
+Real-world I/O wiring
+PLC program
+0
+Engine speed switch
+IN_switch_enginespeed
+Cooling fan
+contactor coil
+IN_switch_enginespeed
+IN Q
+PT ET
+TOF
+OUT_contactor_fan
+OUT_contactor_fan
+120
+(120 seconds = 2 minutes)
+When the input (IN) to this timer instruction is activated, the output (Q) immediately activates
+(with no time delay at all) to turn on the cooling fan motor contactor. Thi s provides the engine
+with cooling as soon as it begins to rotate (as detected by the speed switch co nnected to the PLC’s
+discrete input). When the engine stops rotating, the speed switch returns to its norm ally-open
+position, de-activating the timer’s input signal which starts the timing sequence. The Q output
+remains active while the timer counts from 0 seconds to 120 seconds. As soon as it reaches 120
+seconds, the output de-activates (shutting oﬀ the cooling fan motor) and the elapsed ti me value
+remains at 120 seconds until the input re-activates, at which time it resets back to zero.12.4. LADDER DIAGRAM (LD) PROGRAMMING 833
+The following timing diagrams compare and contrast on-delay with oﬀ-delay ti mers:
+IN
+Q
+on-delay
+time
+On-delay timer (TON)
+IN
+Q time
+Off-delay timer (TOF)
+off-delay
+While it is common to ﬁnd on-delay PLC instructions oﬀered in both retentive and no n-retentive
+forms within the instruction sets of nearly every PLC manufacturer and model, it is almost unheard
+of to ﬁnd retentive oﬀ-delay timer instructions. Typically, oﬀ-delay timers are non-retentive only26.
+26The enable (EN) input signals speciﬁed in the IEC 61131-3 pro gramming standard make retentive oﬀ-delay timers
+possible (by de-activating the enable input while maintain ing the “IN” input in an inactive state), but bear in mind
+that most PLC implementations of timers do not have separate EN and IN inputs. This means (for most PLC timer
+instructions) the only input available to activate the time r is the “IN” input, in which case it is impossible to create
+a retentive oﬀ-delay timer (since such a timer’s elapsed tim e value would be immediately re-set to zero each time the
+input re-activates).834 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+12.4.4 Data comparison instructions
+As we have seen with counter and timers, some PLC instructions generate digital values other than
+simple Boolean (on/oﬀ) signals. Counters have current value (CV) register s and timers have elapsed
+time (ET) registers, both of which are typically integer number values. M any other PLC instructions
+are designed to receive and manipulate non-Boolean values such as these to perform usef ul control
+functions.
+The IEC 61131-3 standard speciﬁes a variety of data comparison instructions for comparing two
+non-Boolean values, and generating Boolean outputs. The basic comparative operat ions of “less
+than” ( <), “greater than” ( >), “less than or equal to” ( ≤), “greater than or equal to” ( ≥), “equal
+to” (=), and “not equal to” ( ⁄=) may be found as a series of “box” instructions in the IEC standard:
+EN
+EQ
+Q
+ENO
+IN1
+IN2
+IN1 = IN2
+EN
+Q
+ENO
+IN1
+IN2
+NE
+IN1 ≠ IN2
+EN
+Q
+ENO
+IN1
+IN2
+GT
+IN1 > IN2
+EN
+Q
+ENO
+IN1
+IN2
+LT
+IN1 < IN2
+EN
+Q
+ENO
+IN1
+IN2
+GE
+IN1 ≥ IN2
+EN
+Q
+ENO
+IN1
+IN2
+LE
+IN1 ≤ IN2
+The Q output for each instruction “box” activates whenever the evaluated comparison function
+is “true” and the enable input (EN) is active. If the enable input remains active but the compa rison
+function is false, the Q output de-activates. If the enable input de-de-activates, the Q output ret ains
+its last state.12.4. LADDER DIAGRAM (LD) PROGRAMMING 835
+A practical application for a comparative function is something called alternating motor control ,
+where the run-times of two redundant electric motors 27 are monitored, with the PLC determining
+which motor to turn on next based on which motor has run the least:
+Discrete input
+card
+Discrete output
+card
+Real-world I/O wiring
+PLC program
+"Start" pushbutton
+"Stop" pushbutton
+IN_switch_Start
+IN_switch_Stop
+IN_switch_Stop
+Motor "A"
+Motor "B"
+contactor coil
+contactor coil
+OUT_motor_A
+OUT_motor_B
+OUT_motor_A
+OUT_motor_A
+TON
+IN Q
+PT ET
+EN ENO
+IN_switch_Start
+Motor_A_runtime
+IN_switch_Stop
+TON
+IN Q
+PT ET
+EN ENO
+IN_switch_Start OUT_motor_B
+OUT_motor_B
+Motor_B_runtime
+EN
+Q
+ENO
+IN1
+IN2
+GT
+IN1 > IN2
+Motor_A_runtime
+Motor_B_runtime
+A_morethan_B
+A_morethan_B
+A_morethan_B
+0
+0
+OUT_motor_A OUT_motor_B
+0
+0
+In this program, two retentive on-delay timers keep track of each electric mot or’s total run
+time, storing the run time values in two registers in the PLC’s memory: Motor A runtime and
+27Perhaps two pumps performing the same pumping function, one serving as a backup to the other. Alternating
+motor control ensures the two motors’ run times are matched a s closely as possible.836 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+Motor B runtime. These two integer values are input to the “greater than” instruction box for
+comparison. If motor A has run longer than motor B, motor B will be the one ena bled to start
+up next time the “start” switch is pressed. If motor A has run less time or the same amount of
+time as motor B (the scenario shown by the blue-highlighted status indications), motor A will be
+the one enabled to start. The two series-connected virtual contacts OUT motor A and OUT motor B
+ensure the comparison between motor run times is not made until both motors ar e stopped. If the
+comparison were continually made, a situation might arise where both motors would start if someone
+happened to press the Start pushbutton with one motor is already running.12.4. LADDER DIAGRAM (LD) PROGRAMMING 837
+12.4.5 Math instructions
+The IEC 61131-3 standard speciﬁes several dedicated ladder instructions for performi ng arithmetic
+calculations. Some of them are shown here:
+ADD
+EN
+IN1
+IN2
+ENO
+OUT
+IN1 + IN2
+EN
+IN1
+IN2
+ENO
+OUT
+SUB
+IN1 - IN2
+EN
+IN1
+IN2
+ENO
+OUT
+MUL
+IN1 * IN2
+EN
+IN1
+IN2
+ENO
+OUT
+DIV
+IN1 ÷  IN2
+EN
+IN1
+IN2
+ENO
+OUT
+EXPT
+IN1IN2
+EN
+IN1
+IN2
+ENO
+OUT
+MOD
+IN1 % IN2
+ENO
+OUTIN
+EN
+SIN
+sin (IN)
+ENO
+OUTIN
+EN
+COS
+cos (IN)
+ENO
+OUTIN
+EN
+TAN
+tan (IN)
+ENO
+OUTIN
+EN
+LN
+ln (IN)
+ENO
+OUTIN
+EN
+LOG
+log (IN)
+ENO
+OUTIN
+EN
+EXP
+eIN
+ENO
+OUTIN
+EN
+SQRT
+IN
+ENO
+OUTIN
+EN
+ABS
+|IN|
+As with the data comparison instructions, each of these math instructions must be enabled by
+an “energized” signal to the enable (EN) input. Input and output values are linked to each ma th
+instruction by tag name.838 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+An example showing the use of such instructions is shown here, converting a temperat ure
+measurement in units of degrees Fahrenheit to units of degrees Celsius. In this particular ca se, the
+program inputs a temperature measurement of 138 oF and calculates the equivalent temperature of
+58.89 oC:
+PLC program
+Always_ON
+Always_ON
+Always_ON
+EN
+IN1
+IN2
+ENO
+OUT
+SUB
+IN1 - IN2
+IN_deg_F
+32
+138
+X
+106
+EN
+IN1
+IN2
+ENO
+OUT
+DIV
+IN1 ÷  IN2
+Always_ON
+Always_ON
+X
+106
+1.8
+OUT_deg_C
+58.89
+Note how two separate math instructions were required to perform this simple calculation, as
+well as a dedicated variable ( X) used to store the intermediate calculation between the subtraction
+and the division “boxes.”
+Although not speciﬁed in the IEC 61131-3 standard, many programmable logic co ntrollers
+support Ladder Diagram math instructions allowing the direct entry of arbitra ry equations. Rockwell12.4. LADDER DIAGRAM (LD) PROGRAMMING 839
+(Allen-Bradley) Logix5000 programming, for example, has the “Compute” ( CPT) function, which
+allows any typed expression to be computed in a single instruction as opposed to using several
+dedicated math instructions such as “Add,” “Subtract,” etc. General-purpose math instr uctions
+dramatically shorten the length of a ladder program compared to the use of dedicated m ath
+instructions for any applications requiring non-trivial calculations.
+For example, the same Fahrenheit-to-Celsius temperature conversion program impl emented in
+Logix5000 programming only requires a single math instruction and no declara tions of intermediate
+variables:
+Always_ON
+Always_ON
+Always_ON
+Always_ON
+OUT_deg_C
+58.89
+Compute
+Dest
+Expression (IN_deg_F - 32)/1.8
+Rockwell Logix5000 PLC program840 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+12.4.6 Sequencers
+Many industrial processes require control actions to take place in certain, predeﬁned s equences.
+Batch processes are perhaps the most striking example of this, where material s for making a batch
+must be loaded into the process vessels, parameters such as temperature and pressur e controlled
+during the batch processing, and then discharge of the product monitored and controlled. Before the
+advent of reliable programmable logic devices, this form of sequenced control wa s usually managed
+by an electromechanical device known as a drum sequencer. This device worked on the principle of
+a rotating cylinder (drum) equipped with tabs to actuate switches as the drum rotat ed into certain
+positions. If the drum rotated at a constant speed (turned by a clock motor), those switches would
+actuate according to a timed schedule 28.
+The following photograph shows a drum sequencer with 30 switches. Numbered tabs on t he
+circumference of the drum mark the drum’s rotary position in one of 24 increments. With this
+number of switches and tabs, the drum can control up to thirty discrete (on/oﬀ) devi ces over a
+series of twenty-four sequenced steps:
+28The operation of the drum is not unlike that of an old player piano , where a strip of paper punched with holes
+caused hammers in the piano to automatically strike their re spective strings as the strip was moved along at a set
+speed, thus playing a pre-programmed song.12.4. LADDER DIAGRAM (LD) PROGRAMMING 841
+A typical application for a sequencer is to control a Clean In Place (CIP ) system for a food
+processing vessel, where a process vessel must undergo a cleaning cycle to purge it of any bio logical
+matter between food processing cycles. The steps required to clean the vessel are well-deﬁned and
+must always occur in the same sequence in order to ensure hygienic conditions. An exampl e timing
+chart is shown here:
+Supply pump
+Return pump
+Caustic return valve
+Acid return valve
+Drain valve
+Caustic pump-down (2 min)
+Caustic wash and circulate (4 min)
+Time
+Wash at temp. (60 min @ 165 oF)
+Wash return to tank (2 min)
+Pre-rinse pump-down (3 min)
+Pre-rinse (10 min)
+Pre-rinse drain (2 min)
+Pre-rinse pump-down (2 min)
+Pre-rinse (10 min)
+Pre-rinse drain (2 min)
+Acid pump-down (2 min)
+Acid wash and circulate (4 min)
+Wash at temp. (30 min @ 165 oF)
+Wash return to tank (2 min)
+Rinse pump-down (2 min)
+Rinse (10 min)
+Drain (3 min)
+Pre-rinse supply valve
+Rinse supply valve
+Caustic supply valve
+Acid supply valve
+In this example, there are nine discrete outputs – one for each of the nine ﬁnal control el ements
+(pumps and valves) – and seventeen steps to the sequence, each one of them timed. In this parti cular
+sequence, the only input is the discrete signal to commence the CIP cycle. From the initiati on of the
+CIP to its conclusion two and a half hours (150 minutes) later, the sequencer simply steps through
+the programmed routine.842 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+Another practical application for a sequencer is to implement a Burner Management System
+(BMS), also called a ﬂame safety system . Here, the sequencer manages the safe start-up of a
+combustion burner: beginning by “purging” the combustion chamber with fresh air to s weep out
+any residual fuel vapors, waiting for the command to light the ﬁre, energizing a s park ignition system
+on command, and then continuously monitoring for presence of good ﬂame and proper fuel supply
+pressure once the burner is lit.
+In a general sense, the operation of a drum sequencer is that of a state machine : the output
+of the system depends on the condition of the machine’s internal state (the drum posi tion), not
+just the conditions of the input signals. Digital computers are very adept at implemen ting state
+functions, and so the general function of a drum sequencer should be (and is) easy to implemen t in
+a PLC. Other PLC functions we have seen (“latches” and timers in particular) are s imilar, in that
+the PLC’s output at any given time is a function of both its present input conditio n(s) and its past
+input condition(s). Sequencing functions expand upon this concept to deﬁne a much larger number
+of possible states (“positions” of a “drum”), some of which may even be timed.
+Unfortunately, despite the utility of drum sequence functions and their ease of implementa tion
+in digital form, there seems to be very little standardization between PLC m anufacturers regarding
+sequencing instructions. Sadly, the IEC 61131-3 standard (at least at the time of this writing, in
+2009) does not speciﬁcally deﬁne a sequencing function suitable for Ladder Diagram progra mming.
+PLC manufacturers are left to invent sequencing instructions of their own design. Wha t follows here
+is an exploration of some diﬀerent sequencer instructions oﬀered by PLC manufactur ers.12.4. LADDER DIAGRAM (LD) PROGRAMMING 843
+Koyo “drum” instructions
+The drum instruction oﬀered in Koyo PLCs is a model of simplicity itself. This instruct ion is
+practically self-explanatory, as shown in the following example:
+Koyo CLICK PLC program
+Drum (TimeBase:sec)
+Step Duration 1 2 3
+1
+2
+3
+10
+15
+18
+Output
+Complete
+1=Y001
+2=Y002
+3=Y003
+New Step
+Current Step
+Elapsed Time
+DS1
+TD1
+X001
+The three-by-three grid of squares represent steps in the sequence and bit states for each s tep.
+Rows represent steps, while columns represent output bits written by the drum instructio n. In this
+particular example, a three-step sequence proceeds at the command of a single input ( X001), and the
+drum instruction’s advance from one step to the next proceeds strictly on the basis of el apsed time
+(a time base orientation). When the input is active, the drum proceeds through its timed sequence.
+When the input is inactive, the drum halts wherever it left oﬀ, and resumes timing as soon as the
+input becomes active again.
+Being based on time, each step in the drum instruction has a set time duration for co mpletion.
+The ﬁrst step in this particular example has a duration of 10 seconds, the second step 1 5 seconds,
+and the third step 18 seconds. At the ﬁrst step, only output bit Y001 is set. In the second step, only
+output bit Y002 is set. In the third step, output bits Y002 and Y003 are set (1), while bit Y001 is
+reset (0). The colored versus uncolored boxes reveal which output bits are set and reset with each
+step. The current step number is held in memory register DS1, while the elapsed time (in seconds)
+is stored in timer register TD1. A “complete” bit is set at the conclusion of the three-step sequence.
+Koyo drum instructions may be expanded to include more than three steps and more than three
+output bits, with each of those step times independently adjustable and each of the out put bits
+arbitrarily assigned to any writable bit addresses in the PLC’s memory.844 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+This next example of a Koyo drum instruction shows how it may be set up to trigger o n events
+rather than on elapsed times. This orientation is called an event base :
+Koyo CLICK PLC program
+Drum
+Step 1 2 3
+1
+2
+3
+Output
+Complete
+1=Y001
+2=Y002
+3=Y003
+New Step
+Current Step DS1
+X001
+(EventBase)
+Event
+X002
+X003
+X004
+Here, a three-step sequence proceeds when enabled by a single input ( X001), with the drum
+instruction’s advance from one step to the next proceeding only as the diﬀerent event conditi on bits
+become set. When the input is active, the drum proceeds through its sequence when each event
+condition is met. When the input is inactive, the drum halts wherever it left oﬀ regardless of the
+event bit states.
+For example, during the ﬁrst step (when only output bit Y001 is set), the drum instruction waits
+for the ﬁrst condition input bit X002 to become set (1) before proceeding to step 2, with time being
+irrelevant. When this happens, the drum immediately advances to step 2 and waits for i nput bit
+X003 to be set, and so forth. If all three event conditions were met simultaneously ( X002, X003,
+and X004 all set to 1), the drum would skip through all steps as fast as it could (one st ep per PLC
+program scan) with no appreciable time elapsed for each step. Conversely, the drum i nstruction will
+wait as long as it must for the right condition to be met before advancing, whet her that event takes
+place in milliseconds or in days.12.4. LADDER DIAGRAM (LD) PROGRAMMING 845
+Allen-Bradley sequencer instructions
+Rockwell (Allen-Bradley) PLCs use a more sophisticated set of instructions to implement sequences.
+The closest equivalent to Koyo’s drum instruction is the Allen-Bradley SQO (Sequencer Output)
+instruction, shown here:
+Sequencer Output
+SQO
+File
+Mask
+Dest
+Control
+Length
+Position
+EN
+DN#B3:0
+FFFFh
+Rockwell SLC 500 PLC program
+R6:0
+3
+1
+I:1/0
+O:0.0
+You will notice there are no colored squares inside the SQO instruction box to speci fy when
+certain bits are set or reset throughout the sequence, in contrast to the simplicity o f the Koyo PLC’s
+drum instruction. Instead, the Allen-Bradley SQO instruction is told to read a set of 1 6-bit words
+beginning at a location in the PLC’s memory arbitrarily speciﬁed by the progr ammer, one word at a
+time. It steps to the next word in that set of words with each new position (st ep) value. This means
+Allen-Bradley sequencer instructions rely on the programmer already having pre-loaded an a rea of
+the PLC’s memory with the necessary 1’s and 0’s deﬁning the sequence. This makes the Allen-
+Bradley sequencer instruction more challenging for a human programmer to interpret because the
+bit states are not explicitly shown inside the SQO instruction box, but it also ma kes the sequencer
+far more ﬂexible in that these bits are not ﬁxed parameters of the SQO instruction and therefore
+may be dynamically altered as the PLC runs. With the Koyo drum instruction, the as signed output
+states are part of the instruction itself, and are therefore ﬁxed once the progra m is downloaded to
+the PLC (i.e. they cannot be altered without editing and re-loading the PLC’s program ). With
+the Allen-Bradley, the on-or-oﬀ bit states for the sequence may be freely altered 29 during run-time.
+This is a very useful feature in recipe-control applications, where the recipe is subj ect to change at
+the whim of production personnel, and they would rather not have to rely on a technician o r an
+engineer to re-program the PLC for each new recipe.
+The “Length” parameter tells the SQO instruction how many words will be read (i.e. how
+many steps are in the entire sequence). The sequencer advances to each new position when its
+29Perhaps the most practical way to give production personnel access to these bits without having them learn and
+use PLC programming software is to program an HMI panel to wri te to those memory areas of the PLC. This way,
+the operators may edit the sequence at any time simply by pres sing “buttons” on the screen of the HMI panel, and
+the PLC need not have its program altered in any “hard” way by a technician or engineer.846 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+enabling input transitions from inactive to active (from “false” to “true”), just like a count-up
+(CTU) instruction increments its accumulator value with each new false-to-true t ransition of the
+input. Here we see another important diﬀerence between the Allen-Bradley SQO instruction a nd
+the Koyo drum instruction: the Allen-Bradley instruction is fundamentally event-driven, and does
+not proceed on its own like the Koyo drum instruction is able to when conﬁgured for a time base.
+Sequencer instructions in Allen-Bradley PLCs use a notation called indexed addressing to specify
+the locations in memory for the set of 16-bit words it will read. In the example shown above, we see
+the “File” parameter speciﬁed as #B3:0. The “#” symbol tells the instruction that this is a starting
+location in memory for the ﬁrst 16-bit word, when the instruction’s position value is zero. As the
+position value increments, the SQO instruction reads 16-bit words from successive addresses in the
+PLC’s memory. If B3:0 is the word referenced at position 0, then B3:1 will be the memory address
+read at position 1, B3:2 will be the memory address read at position 2, etc. Thus, the “position”
+value causes the SQO instruction to “point” or “index” to successive memory locati ons.
+The bits read from each indexed word in the sequence are compared against a static m ask30
+specifying which bits in the indexed word are relevant. At each position, only these bits are written
+to the destination address.
+As with most other Allen-Bradley instructions, the sequencer requires the human progra mmer to
+declare a special area in memory reserved for the instruction’s internal use. The “ R6” ﬁle exists just
+for this purpose, each element in that ﬁle holding bit and integer values associated w ith a sequencer
+instruction (e.g. the “enable” and “done” bits, the array length, the current positio n, etc.).
+30In this particular example, the mask value is FFFF hexadecim al, which means all 1’s in a 16-bit ﬁeld. This mask
+value tells the sequencer instruction to regard all bits of each B3 word that is read. To contrast, if the mask were set
+to a value of 000F hexadecimal instead, the sequencer would o nly pay attention to the four least-signiﬁcant bits of
+each B3 word that is read, while ignoring the 12 more-signiﬁcant bit s of each 16-bit word. The mask allows the SQO
+instruction to only write to selected bits of the destinatio n word, rather than always writing all 16 bits of the indexed
+word to the destination word.12.4. LADDER DIAGRAM (LD) PROGRAMMING 847
+To illustrate, let us examine a set of bits held in the B3 ﬁle of an Allen-Bradley SLC 500 PLC,
+showing how each row (element) of this data ﬁle would be read by an SQO instruction as it stepped
+through its positions:
+0 0 0 0 0 00 00 0 0
+Bit 0
+Bit 1
+Bit 2
+Bit 3
+Bit 4
+Bit 5
+Bit 6
+Bit 7
+Bit 8
+Bit 9
+Bit 10
+Bit 11
+Bit 12
+Bit 13
+Bit 14
+Bit 15
+0
+0 0 0 0 0 0 0 0 0 0
+Data File B3 (bin) -- BINARY
+B3:0
+0
+0 0 0 0 0 0 00 0 0 00 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0B3:1
+B3:2
+B3:3
+1
+1
+11
+1111
+111
+1 1 1
+Read at position = 1
+Read at position = 2
+Read at position = 3
+If File = #B3:0, then . . .
+The sequencer’s position number is added to the ﬁle reference address as an oﬀset . Thus, if the
+data ﬁle is speciﬁed in the SQO instruction box as #B3:0, then B3:1 will be the row of bits read
+when the sequencer’s position value is 1, B3:2 will be the row of bits read when the position value
+is 2, and so on.
+The mask value speciﬁed in the SQO instruction tells the instruction which bits out of each ro w
+will be copied to the destination address. A mask value of FFFFh (FFFF in hexadecimal format)
+means all 16 bits of each B3 word will be read and written to the destination. A mask value of 0001h
+means only the ﬁrst (least-signiﬁcant) bit will be read and written, with the res t being ignored.
+Let’s see what would happen with an SQO instruction having a mask value of 000Fh, starting
+from ﬁle index #B3:0, and writing to a destination that is output register O:0.0, given the bit array
+values in ﬁle B3 shown above:
+0 0 0 0 0 00 00 0 0
+Bit 0
+Bit 1
+Bit 2
+Bit 3
+Bit 4
+Bit 5
+Bit 6
+Bit 7
+Bit 8
+Bit 9
+Bit 10
+Bit 11
+Bit 12
+Bit 13
+Bit 14
+Bit 15
+0
+0 0 0 0 0 0 0 0 0 0
+B3:0
+0
+0 0 0 0 0 0 00 0 0 00 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0B3:1
+B3:2
+B3:3
+1
+1
+11
+1111
+111
+1 1 1
+Read at position = 2
+Mask 0 0 0 0 0 0 0 00 1 1 11000 000Fh
+1 Output register as written
+at sequencer position = 20 0 0X X X X X X X X X X X XO:0.0
+When this SQO instruction is at position 2, it reads the bit values 0010 from B3:2 and writes
+only those four bits to O:0.0. The “X” symbols shown in the illustration mean that all the other
+bits in that output register are untouched – the SQO instruction does not write to thos e bits because
+they are “masked oﬀ” from being written. You may think of the mask’s zero bits inhibiting source
+bits from being written to the destination word in the same sense that masking tape prevents paint
+from being applied to a surface.848 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+The following Allen-Bradley SLC 500 PLC program shows how a pair of SQO instructi ons plus
+an on-delay timer instruction may be used to duplicate the exact same functionality a s the “time
+base” Koyo drum instruction presented earlier:
+The ﬁrst SQO instruction reads bits in the B3 ﬁle array, sending only the three least-signiﬁcant
+of them to the output register O:0.0 (as speciﬁed by the 0007h mask value). The second SQO
+instruction reads integer number values from elements of the N7 integer ﬁle and places them into
+the “preset” register of timer T4:0, so as to dynamically update the timer’s preset value with each
+step of the sequence. The timer, in turn, counts oﬀ each of the time delays and then enables
+both sequencers to advance to the next position when the speciﬁed time has elapsed. Here we
+see a tremendous beneﬁt of the SQO instruction’s indexed memory addressing: the fact that the
+SQO instruction reads its bits from arbitrarily-speciﬁed memory addresses means we may use SQO
+instructions to sequence any type of data existing in the PLC’s memory! We are not limited to
+turning on and oﬀ individual bits as we are with the Koyo drum instruction, but rather a re free to
+index whole integer numbers, ASCII characters, or any other forms of binary data resident in the
+PLC’s memory.
+Data ﬁle windows appear on the computer screen showing the bit array held in the B3 ﬁle as well
+as the timer values held in the N7 ﬁle. In this live screenshot, we see both sequencer instructions at
+position 2, with the second SQO instruction having loaded a value of 15 seconds fro m register N7:2
+to the timer’s preset register T4:0.PRE.
+Note how the enabling contact address for the second SQO instruction is the “enable” bit of t he
+ﬁrst instruction, ensuring both instructions are enabled simultaneously. This keeps the two separate
+sequencers synchronized (on the same step).12.4. LADDER DIAGRAM (LD) PROGRAMMING 849
+Event-based transitions may be implemented in Allen-Bradley PLCs using a complemen tary
+sequencing instruction called SQC (Sequencer Compare). The SQC instruction is set up very simil ar
+to the SQO instruction, with an indexed ﬁle reference address to read from, a reserved memo ry
+structure for internal use, a set length, and a position value. The purpose of the SQC instruction
+is to read a data register and compare it against another data register, setting a “found” ( FD) bit
+if the two match. Thus, the SQC instruction is ideally suited for detecting when certai n conditions
+have been met, and thus may be used to enable an SQO instruction to proceed to the next step i n
+its sequence.
+The following program example shows an Allen-Bradley MicroLogix 1100 PLC programmed with
+both an SQO and an SQC instruction:
+The three-position SQO (Sequencer Output) instruction reads data from B3:1, B3:2, and B3:3,
+writing the four least-signiﬁcant of those bits to output register O:0.0. The three-position SQC
+(Sequencer Compare) instruction reads data from B3:6, B3:7, and B3:8, comparing the four least-
+signiﬁcant of those bits against input bits in register I:0.0. When the four input bit conditions
+match the selected bits in the B3 ﬁle, the SQC instruction’s FD bit is set, causing both the SQO
+instruction and the SQC instruction to advance to the next step.
+Lastly, Allen-Bradley PLCs oﬀer a third sequencing instruction called Sequencer Load (SQL),
+which performs the opposite function as the Sequencer Output (SQO). An SQL instruction takes
+data from a designated source and writes it into an indexed register according to a p osition count
+value, rather than reading data from an indexed register and sending it to a designated dest ination
+as does the SQO instruction. SQL instructions are useful for reading data from a live pro cess and
+storing it in diﬀerent registers within the PLC’s memory at diﬀerent times, such as when a PLC is
+used for datalogging (recording process data).850 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+12.5 Structured Text (ST) programming
+(Will be addressed in future versions of this book)
+12.6 Instruction List (IL) programming
+(Will be addressed in future versions of this book)
+12.7 Function Block Diagram (FBD) programming
+(Will be addressed in future versions of this book)
+12.8 Sequential Function Chart (SFC) programming
+(Will be addressed in future versions of this book)12.9. HUMAN-MACHINE INTERF ACES 851
+12.9 Human-Machine Interfaces
+Programmable logic controllers are built to input various signal types ( discrete, analog), execute
+control algorithms on those signals, and then output signals in response to control processes. By
+itself, a PLC generally lacks the capability of displaying those signal val ues and algorithm variables
+to human operators. A technician or engineer with access to a personal computer and the requisite
+software for editing the PLC’s program may connect to the PLC and view the progr am’s status
+“online” to monitor signal values and variable states, but this is not a practica l way for operations
+personnel to monitor what the PLC is doing on a regular basis. In order for opera tors to monitor and
+adjust parameters inside the PLC’s memory, we need a diﬀerent sort of interface a llowing certain
+variables to be read and written without compromising the integrity of the P LC by exposing too
+much information or allowing any unqualiﬁed person to alter the program it self.
+One solution to this problem is a dedicated computer display programmed to provide select ive
+access to certain variable’s in the PLC’s memory, generally referred to as Human31-Machine
+Interface, or HMI.
+HMIs may take the form of general-purpose (“personal”) computers running special graphic
+software to interface with a PLC, or as special-purpose computers designed to be mounted in sheet
+metal panel fronts to perform no task but the operator-PLC interface. This ﬁrst photograph shows
+an example of an ordinary personal computer (PC) with HMI software running on it:
+The display shown here happens to be for monitoring a vacuum swing adsorption (VSA) process
+for purifying oxygen extracted from ambient air. Somewhere, a PLC (or collectio n of PLCs) is
+monitoring and controlling this VSA process, with the HMI software acting a s a “window” into the
+PLC’s memory to display pertinent variables in an easy-to-interpret form fo r operations personnel.
+The personal computer running this HMI software connects to the PLC(s) via digital network cables
+such as Ethernet.
+31An older term for an operator interface panel was the “Man-Ma chine Interface” or “MMI.” However, this fell out
+of favor due to its sexist tone.852 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+This next photograph shows an example of a special-purpose HMI panel designed and built
+expressly to be used in industrial operating environments:
+These HMI panels are really nothing more than “hardened” personal computers built ruggedly
+and in a compact format to facilitate their use in industrial environments. M ost industrial HMI
+panels come equipped with touch-sensitive screens, allowing operators to press their ﬁngertips on
+displayed objects to change screens, view details on portions of the process, etc.
+Power
+supply
+L1
+Gnd
+L2/N
+Processor Input
+0
+1
+2
+3
+4
+5
+6
+7
+IN0
+IN1
+IN2
+IN3
+IN4
+IN5
+IN6
+IN7
+COM
+COM
+Output
+0
+1
+2
+3
+4
+5
+6
+7
+COM
+OUT1
+OUT2
+OUT3
+OUT4
+OUT5
+OUT6
+OUT7
+OUT0
+VDC IN 0+
+IN 0-
+IN 1+
+IN 1-
+IN 2+
+IN 2-
+IN 3+
+IN 3-
+Input
+Analog
+ANL COM
+ANL COM
+ANL COM
+ANL COM
+To switches
+To analog sensors
+To on/off control elements
+Inputs
+Inputs
+Outputs
+PLC
+Network cable
+HMI writes to PLC
+HMI reads from PLC
+HMI
+Push
+to
+Start
+Push
+to
+Stop
+EnableDisable
+Motor speed
+74.8%
+Technicians and/or engineers program HMI displays to read and write data via a digi tal network
+to one or more PLCs. Graphical objects arrayed on the display screen of an HMI often mimic
+real-world indicators and switches, in order to provide a familiar interfa ce for operations personnel.
+A “pushbutton” object on the face of an HMI panel, for example, would be conﬁgured to write one
+bit of data to the PLC, in a manner similar to a real-world switch writing one bit of data to the
+PLC’s input register.12.9. HUMAN-MACHINE INTERF ACES 853
+Modern HMI panels and software are almost exclusively tag-based, with each gr aphic object on
+the screen associated with at least one data tag name, which in turn is associa ted to data points
+(bits, or words) in the PLC by way of a tag name database ﬁle resident in the H MI. Graphic objects
+on the HMI screen either accept (read) data from the PLC to present useful information t o the
+operator, send (write) data to the PLC from operator input, or both. The tas k of programming
+an HMI unit consists of building a tag name database and then drawing screens to illust rate the
+process to as good a level of detail as operators will need to run it.
+An example screenshot of a tag name database table for a modern HMI is shown here:
+The tag name database is accessed and edited using the same software to create gra phic images
+in the HMI. In this particular example you can see several tag names (e.g. START PUSHBUTTON,
+MOTOR RUN TIMER, ERROR MESSAGE, MOTOR SPEED) associated with data points within the PLC’s
+memory (in this example, the PLC addresses are shown in Modbus register format) . In many
+cases the tag name editor will be able to display corresponding PLC memory poin ts in the same
+manner as they appear in the PLC programming editor software (e.g. I:5/10, SM0.4, C11, etc.).
+An important detail to note in this tag name database display is the read/wr ite attributes of
+each tag. Note in particular how four of the tags shown are read-only: this means the HMI only has
+permission to read the values of those four tags from the PLC’s memory, a nd not to write (alter)
+those values. The reason for this in the case of these four tags is that those t ags refer to PLC
+input data points. The START PUSHBUTTON tag, for instance, refers to a discrete input in the PLC
+energized by a real pushbutton switch. As such, this data point gets its state fr om the energization
+of the discrete input terminal. If the HMI were to be given write permission for this data point,
+there would likely be a conﬂict. Suppose input terminal on the PLC were energized (setting the
+START PUSHBUTTON bit to a “1” state) and the HMI simultaneously attempted to write a “0” stat e
+to the same tag. One of these two data sources would win, and other would lose, pos sibly resulting
+in unexpected behavior from the PLC program. For this reason, data points in t he PLC linked to
+real-world inputs should always be limited as “read-only” permission in the HMI’s database, so the854 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+HMI cannot possibly generate a conﬂict.
+The potential for data conﬂict also exists for some of the other points in t he database, however.
+A good example of this is the MOTOR RUN bit, which is the bit within the PLC program telling
+the real-world motor to run. Presumably, this bit gets its data from a coil in the PLC’s Ladder
+Diagram program. However, since it also appears in the HMI database with read/write permission,
+the potential exists for the HMI to over-write (i.e. conﬂict) that same bit i n the PLC’s memory.
+Suppose someone programmed a toggling “pushbutton” screen object in the HMI linked t o this tag:
+pushing this virtual “button” on the HMI screen would attempt to set the bit (1), and pus hing it
+again would attempt to reset the bit (0). If this same bit is being written to by a coil in the PLC’s
+program, however, there exists the distinct possibility that the HMI’s “pushbut ton” object and the
+PLC’s coil will conﬂict, one trying to tell the bit to be a “0” while the other tr ies to tell that bit to
+be a “1”. This situation is quite similar to the problem experienced when multipl e coils in a Ladder
+Diagram program are addressed to the same bit.
+The general rule to follow here is never allow more than one element to write to any data point .
+In my experience teaching PLC and HMI programming, this is one of the more commo n errors
+students make when ﬁrst learning to program HMIs: they will try to have both t he HMI and the
+PLC writing to the same memory locations, with weird results.
+One of the lessons you will learn when programming large, complex systems is tha t it is very
+beneﬁcial to deﬁne all the necessary tag names before beginning to lay out graphics in an HMI.
+The same goes for PLC programming: it makes the whole project go faster wit h less confusion if
+you take the time to deﬁne all the necessary I/O points (and tag names, if the PL C programming
+software supports tag names in the programming environment) before you b egin to create any code
+specifying how those inputs and outputs will relate to each other.
+Maintaining a consistent convention for tag names is important, too. F or example, you may
+wish to begin the tag name of every hard-wired I/O point as either INPUT or OUTPUT (e.g.
+INPUT PRESSURE SWITCH HIGH, OUTPUT SHAKER MOTOR RUN, etc.). The reason for maintaining a
+strict naming convention is not obvious at ﬁrst, since the whole point of ta g names is to give
+the programmer the freedom to assign arbitrary names to data points in the system. However,
+you will ﬁnd that most tag name editors list the tags in alphabetical order, w hich means a naming
+convention organized in this way will present all the input tags contiguously ( adjacent) in the list,
+all the output tags contiguously in the list, and so on.12.9. HUMAN-MACHINE INTERF ACES 855
+Another way to leverage the alphabetical listing of tag names to your advantag e is to begin each
+tag name with a word describing its association to a major piece of equipment. Take for instance
+this example of a process with several data points deﬁned in a PLC control system and displayed in
+an HMI:
+TT
+TT
+TT
+TT
+FT
+Reactor
+Heat
+exchanger
+Reactor_feed_flow
+Reactor_feed_temp
+Reactor_jacket_valve
+Reactor_bed_temp
+Exchanger_preheat_valve
+Exchanger_effluent_temp_out
+Exchanger_preheat_temp_in
+Exchanger_effluent_pump
+Exchanger_preheat_pump856 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+If we list all these tags in alphabetical order, the association is immedia tely obvious:
+• Exchanger effluent pump
+• Exchanger effluent temp out
+• Exchanger preheat pump
+• Exchanger preheat temp in
+• Exchanger preheat valve
+• Reactor bed temp
+• Reactor feed flow
+• Reactor feed temp
+• Reactor jacket valve
+As you can see from this tag name list, all the tags directly associated wi th the heat exchanger are
+located in one contiguous group, and all the tags directly associated with the r eactor are located in
+the next contiguous group. In this way, judicious naming of tags serves to group them in hierarchical
+fashion, making them easy for the programmer to locate at any future time in the tag name database.
+You will note that all the tag names shown here lack space characters between wor ds (e.g. instead
+of “ Reactor bed temp ”, a tag name should use hyphens or underscore marks as spacing characters:
+“ Reactor bed temp”), since spaces are generally assumed by computer programming languages to
+be delimiters (separators between diﬀerent variable names).
+Like programmable logic controllers themselves, the capabilities of HMIs have been steadily
+increasing while their price decreases. Modern HMIs support graphic trending, data archi val,
+advanced alarming, and even web server ability allowing other computers to easily a ccess certain
+data over wide-area networks. The ability of HMIs to log data over long periods of time relieves the
+PLC of having to do this task, which is very memory-intensive. This way, the P LC merely “serves”
+current data to the HMI, and the HMI is able to keep a record of current and past data us ing its
+vastly larger memory reserves 32.
+Some modern HMI panels even have a PLC built inside the unit, providing control and moni toring
+in the same device. Such panels provide terminal strip connection points for discrete and even analog
+I/O, allowing all control and interface functions to be located in a single pa nel-mount unit.
+32If the HMI is based on a personal computer platform (e.g. Rock well RSView, Wonderware, FIX/Intellution
+software), it may even be equipped with a hard disk drive for e normous amounts of historical data storage.12.10. HOW TO TEACH YOURSELF PLC PROGRAMMING 857
+12.10 How to teach yourself PLC programming
+First and foremost, you need to get your very own PLC to work with. Computer pr ogramming of
+any kind is not a spectator sport, and can only be learned by signiﬁcant invest ment of time and
+eﬀort at the keyboard. In many ways, learning to program is like learning a new spoken or written
+language: there is new vocabulary and new grammatical rules to master, and many wa ys to make
+mistakes.
+Fortunately, many low-cost PLCs exist on the market for individuals to purcha se. My own
+personal favorites are the “CLICK” PLC models manufactured by Koyo and mark eted through
+Automation Direct, and also the Allen-Bradley MicroLogix series of PLC (esp ecially the 1000 and
+1100 models).
+The ﬁrst document you should read once you get your PLC is something called a Getting Started
+guide. Every PLC manufacturer publishes a document with this name (or something simil ar such
+as Quick Start or Getting Results ). This manual will step you through all the basic procedures for
+entering a simple program into your PLC and getting it to run. It is generally far easier to learn
+programming by copying and adapting a worked example than it is to start fro m a “blank page” on
+your own, just as it is easiest to learn a spoken or written language by pract icing sentences spoken
+in that language by other people before constructing your own sentences from scratc h.
+In order to work with your PLC, you will need a convenient way to simulate diﬀ erent input
+conditions coming from discrete (switch) devices. Any set of hand-operated switches w ill do, my
+recommendation being household light switches (very inexpensive and rugged). Attac hing an array
+of these switches to a wooden board along with the PLC and interconnecting termina l blocks forms
+what is often called a PLC trainer. The following photograph shows one such trainer 33, using an
+Allen-Bradley MicroLogix 1000 PLC:
+33This particular trainer was partially constructed from rec ycled materials – the wooden platform, light switches,
+and power cord – to minimize cost.858 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+Another example of a student-built PLC trainer is this unit, housed inside of an attac h´ e case.
+Not only does this trainer contain an Allen-Bradley MicroLogix 1100 PLC alo ng with input switches
+and output indicator lights, but it also includes an HMI touch-screen panel on a fold-down br acket:
+The educational value of building your own PLC trainer is diﬃcult to overstate when l earning
+about PLCs. Learning how to build properly-functioning I/O circuits is every bit as i mportant to a
+working technician as learning how to develop PLC programs. Additionally, the ex perience gained
+in general wiring layout and fabrication are valuable skills for any inst rumentation practitioner.12.10. HOW TO TEACH YOURSELF PLC PROGRAMMING 859
+Once you have learned the basic steps for entering, running, and saving a PLC program, you are
+ready to begin building your knowledge of the language’s vocabulary and grammar. I n computer
+programming (of all types), there are diﬀerent functions of the language one must become familiar
+with in order to do useful tasks. A great way to learn how to use these functions is to create your
+own “demonstration” programs illustrating the use of each function.
+For example, if you open up the pages of almost any computer programming book, somewhere
+near the beginning you will ﬁnd a demonstration program called “Hello World!” The purpose of
+a “Hello World!” program is to do nothing more than display the words Hello World! on the
+computer screen. It is an entirely useless program to run, but it is highly useful for gai ning teaching
+the programmer the basics of program construction and text message functionalit y.
+By the same token, you may learn the basics of each programming function by wr iting simple
+“Hello World”-type programs illustrating each one of those functions. These demonstration programs
+will not serve any useful purpose (other than to help you learn), and should be kept a s simple as
+possible in order to minimize confusion.
+For example, every PLC provides instructions to perform the following tasks:
+• Turn discrete outputs on and oﬀ
+• Count discrete events
+• Time events
+• Control events in a speciﬁc sequence
+• Compare numerical values (greater than, less than, equal, not equal)
+• Perform arithmetic functions
+Just as every spoken or written language has verbs, nouns, adjectives, and adverbs to describe
+actions and things, every PLC programming language has speciﬁc functions to perfor m useful tasks.
+The details of how to perform each function will vary somewhat between PLC man ufacturers and
+models, but the overall functions are quite similar. The reference manuals provided for your PLC will
+describe in detail how to use each function. Your task is to write simple demonstr ation programs for
+each function, allowing you to directly explore how each function works, and to g ain an understanding
+of each function by observing its behavior and also by making (inevitable) mis takes.
+After writing each demonstration program, you should add a lot of comments to it, so you will
+be able to understand what you did later when you go back to your demonstration pro gram for
+reference. These comments should cover the following points:
+• Proper use of the function
+• A verbal description of what the function does
+• A list of possible (practical) uses for the function
+• Idiosyncrasies of the function (i.e. odd or unexpected behavior, tricky points t o watch out for)
+• Mistakes you may have made (and thus might make again!) in using the functio n860 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS
+Years ago when I was teaching myself how to program using the C language, I wrote a set of
+“tutorial” programs demonstrating common programming functions and techniques . The following
+is a partial list of these tutorial programs, which I still keep to this da y:
+• Program that accepts and then prints alphanumeric characters (including their equivalen t
+numerical values)
+• Program demonstrating how to use command-line arguments to the main() function
+• Program demonstrating basic “curses” commands for plotting characters at arbi trary locations
+on the screen
+• Program illustrating the declaration and use of data structures
+• Program illustrating how to prototype and then call functions (subroutines)
+• Program executing an inﬁnite loop
+• Program illustrating how to return a pointer from a function
+Each one of these tutorial programs is heavily commented, to explain to mysel f in my own words
+how they work and what they are doing. Not only did they help me learn how to write pro grams
+in C, but they also serve as a handy reference for me any time in the future I need to refr esh my
+knowledge. The act of writing tutorial programs is akin to journaling as a way to work through
+complex problems in life – in a way, it is like having a conversation with y ourself.
+12.11 Review of fundamental principles
+Shown here is a partial listing of principles applied in the subject matter of this cha pter, given for
+the purpose of expanding the reader’s view of this chapter’s concepts and of their general int er-
+relationships with concepts elsewhere in the book. Your abilities as a problem-solv er and as a
+life-long learner will be greatly enhanced by mastering the applications of these princi ples to a wide
+variety of topics, the more varied the better.
+• “Normal” switch status : the “normal” status of a switch contact as deﬁned by the
+manufacturer is its resting condition (minimum stimulus).
+• “Seal-in” circuit : when an electrical relay uses one of its own switch contacts to continue
+its own coil energization after the initial triggering event has passed. Relevan t to all manner
+of relay control circuits.
+• Sourcing versus sinking : whether the electronic device in question is outputting
+(conventional ﬂow) current or inputting current. Relevant to the proper connection of di screte
+DC input and output cards.12.11. REVIEW OF FUNDAMENTAL PRINCIPLES 861
+References
+“1758 PLC-5 Programmable Controllers Addressing Reference Manual”, Publica tion 5000-6.4.4,
+Allen-Bradley Company, Inc., Milwaukee, WI, 1995.
+“Allen-Bradley I/O Modules Wiring Diagrams”, Publication CIG-WD001A-EN-P , Rockwell
+Automation, Inc., Milwaukee, WI, 2005.
+IEC 61131-3, “International Standard, Programmable Controllers – Par t 3: Programming
+Languages”, Edition 2.0, International Electrotechnical Commission, Geneva , Switzerland, 2003.
+“Logix5000 Controllers I/O and Tag Data”, Publication 1756-PM004 B-EN-P, Rockwell Automation,
+Inc., Milwaukee, WI, 2008.
+“Programming with STEP 7”, Siemens AG, N¨ urnberg, Germany, 2006.
+“S7-200 Programmable Controller System Manual”, Order Number 6ES7298-8F A 24-8BH0, Edition
+09/2007, Siemens AG, N¨ urnberg, Germany, 2007.
+“SLC 500 Family of Programmable Controllers Addressing Reference Manual” , Publication 5000-
+6.4.23, Allen-Bradley Company, Inc., Milwaukee, WI, 1995.
+“SLC 500 Modular Hardware Style User Manual”, Publication 1747-UM011E-E N-P, Rockwell
+Automation, Inc., Milwaukee, WI, 2004.862 CHAPTER 12. PROGRAMMABLE LOGIC CONTROLLERS

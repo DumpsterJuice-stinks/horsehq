@@ -1,0 +1,1143 @@
+o o o o o o 09°6.5e: o
+o
+rogrammable
+Controllers
+An Overview
+Rockwell Automation
+1* *4
+IPT OVERVIEW BLENDING RAPIDMIX FILLING LABELING PACKAGING CIP ALARMS MORE...
+CLEAN IN PLACE
+ESC valves
+Open
+E9
+25
+Log In Logout +
+Last Valve Cleaning Dote:
+Monday, Apr 28, 2014
+CIP Repeat Cycle
+s
+CIP Proc·** Stop·
+Monday. April 28, 2014 4:21:56 PM
+CEMKEMJANTHON
+Logged In User:
+CEWKEMUANTHION
+CIP Cleaning Complete!
+0
+CIP Trend
+CIP Clarity =
+sensor
+11
+43% -10 
+1. IE
+CIP Return a-m-)
+cipSupply - -
+Chemicals -
+cap supply llotor 20000 Liters :
+Lum
+sanitizer
+Tank Level 
+∣20000 ∣Ll⅛r⅝i
+Lmm
+Recovered Water
+Tank Level I 
+12500 Liters !
+_
+Freshwater-
+Tank Level
+6496 Liters J
+Drain
+IIIIIIIII Image Courtesy of Rockwell Automation, Inc.
+Chapter Objectives
+After completing this chapter, you will be able to:
+Define what a programmable logic controller (PLC) is 
+and list its advantages over relay systems
+Identify the main parts of a PLC and describe their 
+functions
+Outline the basic sequence of operation for a PLC
+Identify the general classifications of PLCs
+This chapter gives a brief history of the evolution of 
+the programmable logic controller, or PLC. The rea­
+sons for changing from relay control systems to PLCs 
+are discussed. You will learn the basic parts of a PLC, 
+how a PLC is used to control a process, and the dif­
+ferent kinds of PLCs and their applications. The lad­
+der logic language, which was developed to simplify 
+the task of programming PLCs, is introduced.
+1
+1.1 Programmable Logic Controllers
+Programmable logic controllers are now the most widely 
+used industrial process control technology. A program­
+mable logic controller (PLC) is an industrial grade com­
+puter that is capable of being programmed to perform 
+control functions. The programmable controller has elim­
+inated much of the hardwiring associated with conven­
+tional relay control circuits. Other benefits include fast 
+response, easy programmmg and installation, high con­
+trol speed, network compatibility, troubleshooting and 
+testing convenience, and high reliability.
+The PLC is designed for multiple input and output 
+arrangements, extended temperature ranges, immunity to 
+electrical noise, and resistance to vibration and impact. 
+Programs for the control and operation of manufacturing
+4
+星·
+process equipment and machinery are typically stored in
+battery-backed or nonvolatile memory. A PLC is an ex­
+ample of a real-time system since the output of the system 
+controlled by the PLC depends on the input conditions.
+The PLC is, then, basically a digital computer designed 
+for use in machine control. Unlike a personal computer, it 
+has been designed to operate in the industrial environment 
+and is equipped with special input/output interfaces and a 
+control programming language.
+Initially the PLC was used to replace relay logic, but its 
+ever-increasing range of functions means that it is found in 
+many and more complex applications. Because the struc­
+ture of a PLC is based on the same principles as those 
+employed in computer architecture, it is capable not only 
+of performing relay switching tasks but also of performing 
+other applications such as timing, counting, calculating, 
+comparing, and the processing of analog signals.
+Programmable controllers offer several advantages 
+over a conventional relay type of control. Relays have to 
+be hardwired to perform a specific function. When the 
+system requirements change, the relay wiring has to be 
+changed or modified. In extreme cases, such as in the auto 
+industry, complete control panels had to be replaced since 
+it was not economically feasible to rewire the old panels 
+with each model changeover. The programmable control­
+ler has eliminated much of the hardwiring associated with 
+conventional relay control circuits (Figure 1-1). It is small 
+and inexpensive compared to equivalent relay-based pro­
+cess control systems. Modern control systems still include 
+relays, but these are rarely used for logic.
+PLCs provide many other benefits including:
+• Increased Reliability. Once a program has been 
+written and tested, it can be easily downloaded to 
+other PLCs. Since all the logic is contained in the 
+PLC’s memory, there is no chance of making a logic 
+wiring error (Figure l-2). The program takes the
+1
+广
+(α)
+1׳՛
+'号
+，對
+Ì
+収 胆 ■鱷№J ^ J
+1 疝.¢**gA.irf> jiコ魔 法 济 ，シ ェ レ 启 : I  
+։♦ヌンス メ メ ミ ワ メ メ 》 ス ガ Xバ 用 イ イ イ イ ;Ur,ι·バメ・mr.ド ヤ | ^^ | V 
+エ £ 亡 三 三 三 二 三 ； 七 三 ՜ ՜ ՜ ՜ ՜ m : ~ τ ^ - ~ 5 ≈ ^ ≈ ^ ⅛ ‰ = Λ ≡ ≡ ≡  J
+(b)
+Figure 1-1 Relay- and PLC-based control panels, (a) Relay-based 
+control panel, (b) PLC-based control panel.
+Source: (α) Courtesy Mid-Illini Technical Group, Inc.; (b) Photo courtesy of Ramco
+Electric Ltd., Toronto
+PLC
+User program
+Figure 12־ All the logic is contained in the PLC's memory.
+2 Chapter 1 Programmable Logic Controllers (PLCs): An Overview
+Contactor Light Solenoid
+mu-.
+"<
+Outputs
+I®«®®««®®®»®®၊
+HHIK) H—1 Figure 1-4 High-speed counting.
+Source: Courtesy of Banner Engineering Corp.
+∙∙∙∙∙∙∙∙< .1 PLC Monitor
+Inputs
+[ 9
+π hi
+— BE
+1r
+IF
+( )
+Pushbutton Limit switch Sensor
+Figure 1-3 Relationships between the inputs and outputs are 
+determined by the user program.
+Figure 1-5 Control program can be displayed on a monitor in 
+real time.
+place of much of the external wiring that would 
+normally be required for control of a process. 
+Hardwiring, though still required to connect field 
+devices, is less intensive. PLCs also offer the 
+reliability associated with solid-state components.
+• More Flexibility. It is easier to create and change a 
+program in a PLC than to wire and rewire a circuit. 
+With a PLC the relationships between the inputs and 
+outputs are determined by the user program instead 
+of the manner in which they are interconnected 
+(Figure l-3). Original equipment manufacturers 
+can provide system updates by simply sending out 
+a new program. End users can modify the program 
+in the field, or if desired, security can be provided 
+by hardware features such as key locks and by 
+software passwords.
+• Lower Cost. PLCs were originally designed to re­
+place relay control logic, and the cost savings have 
+been so significant that relay control is becoming 
+obsolete except for power applications. Generally, if 
+an application has more than about a half-dozen
+control relays, it will probably be less expensive to 
+install a PLC.
+• Communications Capability. A PLC can communi­
+cate with other controllers or computer equipment to 
+perform such functions as supervisory control, data 
+gathering, monitoring devices and process parameters, 
+and download and upload of programs.
+• Faster Response Time. PLCs are designed for high- 
+speed and real-time applications (Figure l-4). The 
+programmable controller operates in real time, which 
+means that an event taking place in the field will result 
+in the execution of an operation or output. Machines 
+that process thousands of items per second and objects 
+that spend only a fraction of a second in front of a 
+sensor require the PLC’s quick-response capability.
+• Easier to Troubleshoot. PLCs have resident diag­
+nostics and override functions that allow users to 
+easily trace and correct software and hardware 
+problems. To find and fix problems, users can 
+display the control program on a monitor and watch 
+it in real time as it executes (Figure l-5)∙
+Programmable Logic Controllers (PLCs): An Overview Chapter 1 3
+Power supply 
+module
+?
+Input 
+module
+Input 
+control 
+devices
+9
+—o
+□ 
+□
+*______
+Controller 
+(CPU)
+Output 
+module
+O T0
+H Processor
+Memory
+<>
+- 
+. 
+M Output 
+load 
+devices
+J
+/02005)
+Programmer
+Figure 1-6 Typical parts of a programmable logic controller.
+• Easier to Test Field Devices. A PLC control panel 
+has the ability to check field devices at a common 
+point. For example, a control system consisting of 
+hundreds of input and output field devices may be 
+contained within a very large manufacturing area. 
+Thus, it would take a considerable amount of time 
+to check each device at its location. By having each 
+device wired back to a common point on a PLC 
+module, each device could be checked for operation 
+fairly quickly.
+1.2 Parts of a PLC
+A typical PLC can be divided into parts, as illustrated 
+in Figure 1-6. These are the central processing unit 
+(CPU), the input/output (I/O) section, the power sup­
+ply, and the programming device. The term architecture 
+can refer to PLC hardware, to PLC software, or to a 
+combination of both. An open architecture design al­
+lows the system to be connected easily to devices and 
+programs made by other manufacturers. Open architec­
+tures use off-the-shelf components that conform to ap­
+proved standards. A system with a closed architecture is 
+one whose design is proprietary, making it more diffi­
+cult to connect to other systems. Most PLC systems are 
+in fact proprietary, so you must be sure that any ge­
+neric hardware or software you may use is compatible 
+with your particular PLC. Also, although the principal 
+concepts are the same in all methods of programming, 
+there are differences in addressing, memory allocation, 
+retrieval, and data handling for different models. Conse­
+quently, PLC programs cannot be interchanged among 
+different PLC manufacturers.
+There are two ways in which I/Os (Inputs/Outputs) are 
+incorporated into the PLC: fixed and modular. Fixed I/O
+(Figure 1-7) is typical of small PLCs that come in one 
+package with no separate, removable units. The processor 
+and I/O are packaged together, and the I/O terminals will 
+have a fixed number of connections built in for inputs and 
+outputs. The main advantage of this type of packaging is 
+lower cost. The number of available I/O points varies and 
+usually can be expanded by buying additional units of 
+fixed I/O. One disadvantage of fixed I/O is its lack of flex­
+ibility; you are limited in what you can get in the quanti­
+ties and types dictated by the packaging. Also, for some 
+models, if any part in the unit fails, the whole unit has to 
+be replaced.
+Common power bus
+L1—τ----- .
+a
+Input ƒ 
+connections 1 000000000000000
+Processor
+Output 
+connectionsI
+PLC
+coco
+PL)
+L2
+Common return bus
+Figure 1-7 Fixed I/O configuration.
+Source: Image Courtesy of Rockwell Automation, Inc
+4 Chapter 1 Programmable Logic Controllers (PLCs): An Overview
+Modular I/O (Figure 1-8) is divided by compart­
+ments into which separate modules can be plugged. 
+This feature greatly increases your options and the unit’s 
+flexibility. You can choose from the modules available 
+from the manufacturer and mix them any way you de­
+sire. The basic modular controller consists of a rack, 
+power supply, processor module (CPU), input/output
+(I/O modules), and an operator interface for program-
+ming and monitoring. The modules plug into a rack. 
+When a module is slid into the rack, it makes an electri­
+cal connection with a series of contacts called the back­
+plane, located at the rear of the rack. Communication 
+between modules is accomplished by the backplane rail 
+that each module plugs into.
+The power supply supplies DC power through the back­
+plane, to the processor and the other modules that plug 
+into the rack (Figure 1-9). For large PLC systems, this 
+power supply does not normally supply power to the field
+devices. With most systems, power to field devices is pro­
+vided by external alternating current (AC) or direct current 
+(DC) supplies. For some small micro PLC systems, the 
+power supply may be used to power field devices.
+The processor (CPU) is the "brain" of the PLC. A typi­
+cal processor usually consists of a microprocessor for 
+implementing the logic and controlling the communica­
+tions among the modules. The processor requires memory 
+for storing user program instructions, numerical values, 
+and I/O devices status.
+The CPU controls all PLC activity and is responsible for 
+running the program. The PLC program is executed as part 
+of a repetitive process referred to as a scan (Figure 1-10). 
+A typical PLC scan starts with the CPU reading the status 
+of inputs. Then, the program logic is executed. Once the
+Processor 
+module
+Combination 
+I/O module
+10 01 a
+*
+D0∣1602
+HE
+Power 
+supply
+5
+/
+Power supply
+Input module Output module
+75 0
+Figure 1-9 The power supply supplies DC power to other 
+modules that plug into the rack.
+Source: Photo of PLC Modicon M340 © Schneider Electric. 2010.
+www.schneider-electric.com.
+E
+P
+3
+Module 
+slides into 
+the rack
+⅛°b 090
+Ox
+Figure 1-8 Modular 1/0 configuration. Figure 1-10 Typical PLC scan cycle.
+Programmable Logic Controllers (PLCs): An Overview Chapter 1 5
+Input module
+0
+1
+2
+3
+4
+5
+6
+7
+8 12
+9 13
+10 14
+11 15
+24 VDC 
+input 
+module Field device 
+power supply
+L2 240 VAC L1
+©-
+oo
+O
+y
+O.
++ 24 VDC|
+Field device 
+power supply
+IN 0
+IN 2
+IN 4
+IN 6
+IN 8
+IN 10
+IN 12
+IN 14
+DC 
+COM
+IN 1
+IN 3
+IN 5
+IN 7
+IN 9
+IN 11
+IN 13
+IN 15
+DC 
+COM
+M
+R
+Y
+Output module 
+0 4 8 12
+1
+2
+3
+5
+6
+7
+9 13
+10 14
+11 15
+240 VAC 
+output 
+module
+VAC
+OUT 1
+OUT 3
+OUT 5
+OUT 7
+OUT 9
+OUT 11
+OUT 13
+OUT 15
+OUT 0
+OUT 2
+OUT 4
+OUT 6
+OUT 8
+OUT 10
+OUT 12
+OUT 14
+AC 
+COM
+Figure 1-11 Typical PLC input/output (1/0) system connections.
+program execution is completed, the status of all outputs is 
+updated. Next, the CPU performs internal diagnostic and 
+communication tasks. This process is repeated continu­
+ously as long as the PLC is in the run mode.
+The I/O system forms the interface by which field 
+devices are connected to the controller (Figure 1-11). 
+The purpose of this interface is to condition the various 
+signals received from or sent to external field devices. 
+Input devices such as pushbuttons, limit switches, and 
+sensors are hardwired to the input terminals. Output de­
+vices sucli as small motors, motor starters, solenoid 
+valves, and indicator lights are hardwired to the output 
+terminals. To electrically isolate the internal compo­
+nents from the input and output terminals, PLCs com­
+monly employ an optical isolator, which uses light to 
+couple the circuits together. The external devices are 
+also referred to as “field” or “real-world” inputs and out­
+puts. The terms field or real world are used to distin­
+guish actual external devices that exist and must be 
+physically wired from the internal user program that 
+emulates the function of relays, timers, and counters.
+A programming device is used to interface with the 
+PLC in order to develop and transfer logic programs, 
+download or upload data, or supply diagnostic functions to 
+troubleshoot PLC systems. The device may be a dedicated 
+handheld type or a personal computer running special ap­
+plication software. Removing the programming device 
+will not affect the operation of the program.
+A laptop computer is the most commonly used pro­
+gramming device. Most brands of PLCs have software 
+available so that a laptop can be used as the programming 
+device. This software allows users to create, edit, document, 
+store, and troubleshoot ladder logic programs. The com­
+puter monitor is able to display more logic on the screen 
+than can hand-held types, thus simplifying the interpre­
+tation of the program. The programming device commu­
+nicates with the PLC processor via a serial or parallel data 
+communications link, or Ethernet.
+The logic program is a user-developed series of 
+instructions that directs the PLC to execute actions. A pro­
+gramming language provides rules for combining the in­
+structions so that they produce the desired actions. Relay 
+ladder logic (RLL) is the standard programming language 
+used with PLCs. Its origin is based on electromechanical 
+relay control. The relay ladder logic program graphically 
+represents rungs of contacts, coils, and special instruction 
+blocks. RLL was originally designed for easy use and un­
+derstanding for its users and has been modified to keep up 
+with the increasing demands of industry’s control needs.
+1.3 Principles of Operation
+To get an idea of how a PLC operates, consider the sim­
+ple process control problem illustrated in Figure 1-12. 
+Here a mixer motor is to be used to automatically stir the 
+liquid in a vat when the temperature and pressure reach
+6 Chapter 1 Programmable Logic Controllers (PLCs): An Overview
+Motor
+Input 
+module
+Pressure
+0
+Pressure 
+sensor 
+switch
+Temperature
+2
+1
+Temperature 
+sensor switch
+Manual pushbutton station՝
+Figure 1-12 Mixer process control problem.
+L1 L2
+Pressure 
+switch
+----o o----
+Manual 
+pushbutton
+4
+120 VAC
+Temperature 
+switch OL
+-©-TH
+Motor
+starter
+coil
+Figure 1-13 Process control relay ladder diagram.
+preset values. In addition, direct manual operation of the 
+motor is provided by means of a separate pushbutton sta­
+tion. The process is monitored with temperature and 
+pressure sensor switches that close their respective con­
+tacts when conditions reach their preset values.
+This control problem can be solved using the relay 
+method for motor control shown in the relay ladder 
+diagram of Figure 1-13. The motor starter coil (M) is 
+energized when both the pressure and temperature switches 
+are closed or when the manual pushbutton is pressed.
+Now let’s look at how a programmable logic con­
+troller might be used for this application. The same 
+input field devices (pressure switch, temperature 
+switch, and pushbutton) are used. Each of these de­
+vices is wired to a terminal on the 120 VAC input mod­
+ule as shown in Figure 1-14. The processor memory 
+location addresses used are:
+I/1 for the Pressure switch
+1/2 for the Temperature switch
+1/3 for the Manual pushbutton
+----o o----
+Manual 
+pushbutton
+–• L1
+120 VAC
+N ∙-
+6
+5
+7
+Common
+Figure 1-14 Typical wiring connections for a 120 VAC modular 
+configured input module.
+Output 
+module
+L1 ⅛ 
+0 
+1 ‰ 
+2 
+3 
+4 
+5 
+6 -
+7∖
+L1 N
+120 VAC
+OL
+—0—4¼
+Motor 
+starter coil
+Figure 1-15 Typical wiring connections for a 120 VAC modular 
+configured output module.
+The same output field device (motor starter coil) would 
+also be used. This device is wired to a terminal on the 
+120 VAC output module as shown in Figure 1-15. The 
+processor memory location address used for the Motor 
+starter coil is 0/1.
+Next, the PLC ladder logic program would be con­
+structed and entered into the memory of the CPU. A 
+typical ladder logic program for this process is shown in 
+Figure 1-16. The format used is similar to the layout of 
+the hardwired relay ladder circuit. The individual sym­
+bols represent instructions, whereas the numbers repre­
+sent the instruction memory location addresses. To 
+program the controller, you enter these instructions one 
+by one into the processor memory from the programming
+Programmable Logic Controllers (PLCs): An Overview Chapter 1 7
+Inputs Program
+L1
+0- 1/1
+Pressure 
+switch
+1/1
+Temperature 
+switch
+1/2
+Motor 
+starter 
+coil 
+0/1
+Output
+L2
+5
+1/2 Manual 
+pushbutton 
+1/3
+֊0 O— I/3
+Monitor
+I------ —
+inputs
+Execute 
+program 
+1
+...Checks the 
+inputs
+...Executes control 
+program
+0/1 : M
+OL
+X
+_ Change 
+outputs
+...And updates the 
+outputs
+Figure 1-16 Process control PLC ladder logic program with typical addressing scheme.
+device. Each input and output device is given an address, 
+which lets the PLC know where it is physically con­
+nected. Note that the I/O address format will differ, 
+depending on the PLC model and manufacturer. Instruc­
+tions are stored in the user program portion of the pro­
+cessor memory. During the program scan the controller 
+monitors the inputs, executes the control program, and 
+changes the output accordingly.
+For the program to operate, the controller is placed in the 
+RUN mode, or operating cycle. During the program scan, 
+the controller monitors the inputs, executes the control pro­
+gram, and changes the output accordingly. Each 4F symbol 
+(looks like a normally open contact) is an instruction. 
+The { } symbol is considered to represent a coil that, when 
+energized, will energize the device that is wired to the re­
+spective output. In the ladder logic program of Figure 1-16, 
+the coil 0/1 is energized when contacts I/1 and 1/2 are 
+closed or when contact 1/3 is closed. Either of these condi­
+tions provides a continuous logic path from left to right 
+across the rung that includes the coil.
+A programmable logic controller operates in real time 
+in that an event taking place in the field will result in an 
+operation or output taking place. The RUN operation for 
+the process control logic can be described by the 
+following sequence of events:
+• First, the pressure switch, temperature switch, and 
+pushbutton inputs are examined and their status is 
+recorded in the controller’s memory.
+• A closed contact is recorded in memory as logic 1 
+and an open contact as logic 0.
+• Next the ladder diagram is evaluated, with each in­
+ternal contact given an OPEN or CLOSED status 
+according to its recorded 1 or 0 state.
+• When the states of the input contacts provide logic 
+continuity from left to right across the rung, the out­
+put coil memory location is given a logic 1 value 
+and the output module interface contacts will close.
+• When there is no logic continuity of the program 
+rung, the output coil memory location is set to 
+logic 0 and the output module interface contacts 
+will be open.
+• The completion of one cycle of this sequence by the 
+controller is called a scan. The scan time, the time 
+required for one full cycle, provides a measure of 
+the speed of response of the PLC.
+• Generally, the output memory location is updated dur­
+ing the scan but the actual output is not updated until 
+the end of the program scan during the I/O scan.
+Figure 1-17 shows the typical wiring required to imple­
+ment the process control scheme using a fixed PLC con­
+troller. In this example, the Allen-Bradley Pico controller 
+equipped with 8 inputs and 4 outputs is used to control 
+and monitor the process. Installation can be summarized 
+as follows:
+• Fused power lines, of the specified voltage type and 
+level, are connected to the controller’s L1 and L2 
+terminals.
+• The pressure switch, temperature switch, and push- 
+button field input devices are hardwired between L1
+8 Chapter 1 Programmable Logic Controllers (PLCs): An Overview
+L1 L1
+He
+L2
+120 VAC
+L2♦
+Pressure 
+1 1
+i∣
+-PB
+Temp
+Pressure 
+switch
+-C^ T
+Temperature 
+switch OL 
+@ N * 
+Motor
+starter
+coil• % 00000000
+L1 L2 11 12 13
+Inputs -o o-
+11 12 Q1 
+HHHO
+Manual 
+pushbutton
+1Γ 
+13
+Figure 1-18 Relay ladder diagram for the modified process.
+Program
+Q1
+Outputs
+Q2 Q3 Q4
+229291
+Pressure 
+switch 
+1/1
+Temperature 
+switch
+1/2
+Motor 
+starter 
+coil 
+0/1 
+()
+M y Starter
+Figure 1-17 Typical wiring required to implement the process 
+control scheme using a fixed PLC controller.
+Manual 
+pushbutton 
+1/3
+and controller input terminals I1, I2, and I3, 
+respectively.
+• The motor starter coil connects directly to L2 and in 
+series with Q1 relay output contacts to LL
+• The ladder logic program is entered using the front 
+keypad and LCD display.
+• Pico programming software is also available that 
+allows you to create as well as test your program 
+using a personal computer.
+1.4 Modifying the Operation
+One of the important features of a PLC is the ease with 
+which the program can be changed. For example, assume 
+that the original process control circuit for the mixing op­
+eration must be modified as shown in the relay ladder dia­
+gram of Figure 1-18. The change requires that the manual 
+pushbutton control be permitted to operate at any pres­
+sure, but not unless the specified temperature setting has 
+been reached.
+If a relay system were used, it would require some 
+rewiring of the circuit shown in Figure 1-18 to achieve 
+the desired change. However, if a PLC system were used, 
+no rewiring would be necessary. The inputs and outputs 
+are still the same. All that is required is to change the 
+PLC ladder logic program as shown in Figure 1-19.
+At times, a process may call for additional real input 
+or output field devices to be added to the circuit. The
+Figure 1-19 PLC ladder logic program for the modified process.
+L1 L2
+120 VAC
+•-
+On/Off 
+switch
+Pressure 
+switch
+Temperature 
+switch OL
+o <—• 00 O O
+5 X
+-O
+-(e)
+Motor 
+starter 
+coil
+Manual 
+pushbutton
+Figure 1-20 Modified relay ladder for the addition of an ON/OFF 
+switch.
+relay ladder diagram of Figure 1-20 shows the circuit 
+further modified to include a process ON/OFF switch. 
+To accomplish this, using hard-wired circuit control re­
+quires accessing both the pressure switch and manual 
+pushbutton and rewiring the circuit so that the two are in 
+parallel with each other and in series with the ON/OFF 
+switch. The modification implemented using a PLC lad­
+der logic program is shown in Figure 1-21. Note that the 
+original wiring of the existing PLC input circuit remains 
+the same. All that is required is the connection of the 
+ON/OFF switch to 1/4 input and the related change in the 
+PLC program.
+Programmable Logic Controllers (PLCs): An Overview Chapter 1 9
+i
+Pressure switch
+Temperature switch
+Manual pushbutton
+ON/OFF switch
+→L1 120 VAC N *-
+Input 
+module
+Program Output
+O
+2
+1
+ON/OFF 
+switch 
+1/4
+Pressure 
+switch
+I/1
+4
+- 6
+5
+7
+Common
+Motor 
+Temperature starter
+Manual 
+pushbutton 
+I/3
+switch coil
+I∕2 0/1
+၊
+O∕1
+Motor 
+starter 
+coil 
+®-
+OL
+X
+L2
+Figure 1-21 Modified PLC ladder logic program and ON/OFF switch module connection.
+1.5 PLCs versus Computers
+The architecture of a PLC is basically the same as that of 
+a personal computer (PC). Characteristics that distinguish 
+PLCs from PC include:
+• Hardware. Unlike PCs, the PLC has no perma­
+nently attached keyboard, CD drive, or monitor.
+• Operating Environment. PLCs are designed to 
+operate in the industrial environment a wide range 
+of ambient temperature, humidity, and electrical 
+noise factors.
+• Programing. The PLC is programmed in relay 
+ladder logic or four other types of programming 
+languages and comes with its program language 
+built into its memory.
+• Program Execution. PLCs execute a single program 
+in a sequential order, while computers execute several 
+programs or tasks simultaneously in any order.
+Software associated with a PLC but written and run on 
+a personal computer falls into the following two broad 
+categories:
+• PLC software that allows the user to program 
+and document gives the user the tools to write a 
+PLC program—using ladder logic or another 
+programming language—and document or explain 
+the program in as much detail as is necessary.
+• PLC software that allows the user to monitor and 
+control the process is called a human machine 
+interface (HMI). It enables the user to view a 
+process—or a graphical representation of a 
+process—on a monitor, operate the machine, trend 
+values, and receive alarm conditions (Figure 1-22).
+PLCs can be integrated with HMIs but the same 
+software does not program both devices.
+Most recently automation manufacturers have re­
+sponded to the increased requirements of industrial control 
+systems by blending the advantages of PLC-style control 
+with that of PC-based systems. Such a device has been 
+termed a programmable automation controller, or PAC. 
+Programmable automation controllers combine PLC rug- 
+gedness with PC functionality. Using PACs, you can build 
+advanced systems incorporating software capabilities such 
+as advanced control, communication, data logging, and 
+signal processing with rugged hardware performing logic, 
+motion, process control, and vision. One main difference 
+between PLC- and PAC-based programs is how the pro­
+gram is executed. A PLC mixes scan-based and event- 
+driven program execution, whereas PAC software is 
+typically event-driven. The scan-based execution of a PLC
+Rockwell|
+Automation၊
+CLEAN IN PLACE
+own
+"J
+EΣΣ3-
+⅛Ie
+ι4*ι I.
+CIP Cleaning Compl
+1r—
+1to1 to *1
+Figure 1-22 Human Machine Interface (HMI).
+Source: Image Courtesy of Rockwell Automation, Inc.
+10 Chapter 1 Programmable Logic Controllers (PLCs): An Overview
+•mmmmmm
+56
+15 @
+to HH HH
+..9 0 51DOIT
+sim-
+WRTpETma
+Figure 1-23 Control management PLC application.
+program might take longer because the system needs to 
+complete the higher priority actions in the cycle first.
+1.6 PLC Size and Application
+The criteria used in categorizing PLCs include function­
+ality, number of inputs and outputs, cost, and physical 
+size. Of these, the I/O count is the most important factor.
+There are three major types of PLC application: single- 
+ended, multitask, and control management. A single- 
+ended or stand-alone PLC application involves one PLC 
+controlling one process. This would be a stand-alone unit 
+and would not be used for communicating with other 
+computers or PLCs.
+A multitask PLC application involves one PLC control­
+ling several processes. Adequate I/O capacity is a signifi­
+cant factor in this type of installation. In addition, if the PLC 
+would be a subsystem of a larger process and would have to 
+communicate with a central PLC or computer, provisions 
+for a data communications network are also required.
+A control management PLC application involves one 
+PLC controlling several others (Figure 1-23). This kind of 
+application requires a large PLC processor designed to 
+communicate with other PLCs and possibly with a com­
+puter. The control management PLC supervises several 
+PLCs by downloading programs that tell the other PLCs 
+what has to be done. It must be capable of connection to
+all PLCs so that by proper addressing it can communicate 
+with any one it wishes to.
+Memory is the part of a PLC that stores data, instruc­
+tions, and the control program. Memory size is usually ex­
+pressed in K values: 1 K, 6 K, 12 K, and so on. The 
+measurement kilo, abbreviated K, normally refers to 
+1000 units. When dealing with computer or PLC memory, 
+however, 1 K means 1024, because this measurement is 
+based on the binary number system (210 = 1024).
+Although it is common for us to measure the memory 
+capacity of PLCs in words, we need to know the number 
+of bits in each word before memory size can be accurately 
+compared. Modern computers usually have a word size of 
+16, 32, or 64 bits. The amount of memory required de­
+pends on the application. Factors affecting the memory 
+size needed for a particular PLC installation include:
+• Number of I/O points used
+• Size of control program
+• Data-collecting requirements
+• Supervisory functions required
+• Future expansion
+The instruction set for a particular PLC lists the differ­
+ent types of instructions supported. Typically, this ranges 
+from 15 instructions on smaller units up to 100 instruc­
+tions on larger, more powerful units (see Table 1-1).
+Table 1-1 Typical PLC Instructions
+Instruction Operation
+XIC (Examine ON)........  
+XIO (Examine OFF).... 
+OTE (Output Energize). 
+OTL (Output Latch).... 
+OTU (Output Unlatch). 
+TOF (Timer Off-Delay). 
+TON (Timer On-Delay). 
+CTD (Count Down)....
+CTU (Count Up)..........
+Examine a bit for an ON or 1 condition
+Examine a bit for an OFF or 0 condition
+Turn ON a bit (nonretentive)
+Latch a bit (retentive)
+Unlatch a bit (retentive)
+Turn an output ON or OFF after its rung has been OFF for a preset time interval 
+Turn an output ON or OFF after its rung has been ON for a preset time interval 
+Use a software counter to count down from a specified value
+Use a software counter to count up to a specified value
+Programmable Logic Controllers (PLCs): An Overview Chapter 1 11
+CHAPTER 1 REVIEW QUESTIONS
+1. What is a programmable logic controller (PLC)?
+2. Identify four tasks in addition to relay switching 
+operations that PLCs are capable of performing.
+3. List six distinct advantages that PLCs offer over 
+conventional relay-based control systems.
+4. Explain the differences between open and proprie­
+tary PLC architecture.
+5. State two ways in which I/O is incorporated into
+12.
+13.
+6.
+7.
+8.
+9.
+10.
+11.
+the PLC.
+Describe how the I/O modules connect to the pro­
+cessor in a modular-type PLC configuration.
+Explain the main function of each of the following 
+major components of a PLC:
+a. Processor module (CPU)
+b. I/O modules
+c. Programming device
+d. Power supply module
+What are the two most common types of PLC 
+programming devices?
+Explain the terms program and programming 
+language as they apply to a PLC.
+What is the standard programming language used 
+with PLCs?
+Answer the following with reference to the process 
+control relay ladder diagram of Figure 1-13 of this 
+chapter:
+a. When do the pressure switch contacts close?
+b. When do the temperature switch contacts close?
+c. How are the pressure and temperature switches 
+connected with respect to each other?
+d. Describe the two conditions under which the 
+motor starter coil will become energized.
+e. What is the approximate value of the voltage 
+drop across each of the following when their 
+contacts are open?
+(1) Pressure switch
+(2) Temperature switch
+(3) Manual pushbutton
+14.
+16.
+17.
+18.
+19.
+20.
+21.
+The programmable controller operates in real time. 
+What does this mean?
+Answer the following with reference to the process 
+control PLC ladder logic diagram of Figure 1-16 of 
+this chapter:
+a. What do the individual symbols represent?
+b. What do the numbers represent?
+c. What field device is the number 1/2 identified 
+with?
+d. What field device is the number 0/1 identified 
+with?
+e. What two conditions will provide a continuous 
+path from left to right across the rung?
+f. Describe the sequence of operation of the 
+controller for one scan of the program.
+Compare the method by which the process control 
+operation is changed in a relay-based system to the 
+method used for a PLC-based system.
+15. Compare the PLC and PC with regard to:
+a. Physical hardware differences
+b. Operating environment
+c. Method of programming
+d. Execution of program
+What two categories of software written and run on 
+PCs are used in conjunction with PLCs?
+What is a programmable automation controller 
+(PAC)?
+List four criteria by which PLCs are categorized.
+Compare the single-ended, multitask, and control 
+management types of PLC applications.
+What is the memory capacity, expressed in bits, for 
+a PLC that uses 16-bit words and has an 8 K word 
+capacity?
+List five factors affecting the memory size needed 
+for a particular PLC installation.
+22. What does the instruction set for a particular PLC 
+refer to?
+12 Chapter 1 Programmable Logic Controllers (PLCs): An Overview
+¡ Stari ■
+CHAPTER 1 PROBLEMS
+1.
+2.
+3.
+4.
+Given two single-pole switches, write a program 
+that will turn on an output when both switch A and 
+switch B are closed.
+Given two single-pole switches, write a program 
+that will turn on an output when either switch A or 
+switch B is closed.
+Given four NO (Normally Open) pushbuttons (A-B- 
+C-D), write a program that will turn a lamp on if 
+pushbuttons A and B or C and D are closed.
+Write a program for the relay ladder diagram 
+shown in Figure 1-24.
+5. Write a program for the relay ladder diagram 
+shown in Figure 1-25.
+<- 120 VAC
+PB1 S1
+*֊ 0000
+PS1 TC1 
+se 0.S2
+1- 0-0
+: ao5
+Figure 1-25 Circuit for Problem 5.
+I- 120 VAC -I
+S1 LS1
+f oo o qo 0
+qo
+LS2
+Figure 1-24 Circuit for Problem 4.
+Programmable Logic Controllers (PLCs): An Overview Chapter! 13
+٠٠ ٠٥ ٠ ٠٠
+٥٥٠ ٥٥٠٥٠ ° ٥٠ ٥٥٠٠
+omponentsHardwareP
+0
+٠٠٠٥١٦٦٠^ :٦
+⅛٦٦٦
+٩٠٣٢؛
+٠^⅞az⅛٠tatst
+!λSγj∙٠٠2٥
+!٠ I
+nnnwre.
+IIIIIIIIiII
+Chapter Objectives
+After completing this chapter, you will be able to:
+List and describe the function of the hardware 
+components used in PLC systems
+Describe the basic circuitry and applications for discrete 
+and analog I/O modules, and interpret typical I/O and 
+CPU specifications
+Differentiate between tag-based and rack/slot-based 
+addressing.
+Describe the general classes and types of PLC memory 
+devices
+List and describe the different types of PLC peripheral 
+support devices available
+۶
+S
+genkur∕Shutterstock
+This chapter exposes you to the details of PLC hard­
+ware and modules that make up a PLC control sys­
+tem. The chapter’s illustrations show the various 
+parts of a PLC as well as general connection paths. 
+In this chapter we discuss the CPU and memory 
+hardware components, including the various types 
+of memory that are available, and we describe the 
+hardware of the input/output section, including the 
+difference between the discrete and analog types 
+of modules.
+14
