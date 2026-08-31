@@ -315,3 +315,11 @@ midterm plus INTC Lab Test 2 within a week).
 - 2026-08-25 — Set up this notes file as persistent memory for college courses.
 - 2026-08-25 — Loaded both Fall 2026 syllabi (ELPT 2319 H03A, INTC 1343 H01A).
   Both PDFs were image-only scans; rendered every page to read them.
+
+## Course Materials Collected
+
+- `ELPT_2319/materials/` — "PLC OVERVIEW" video by Richard Tunstall
+  (https://youtu.be/cmBRvEXrYsM). Transcript, source script PDF, and study
+  notes. This is the video behind the "Overview of PLCs Video" quiz due 8/31/26.
+  Note: YouTube blocks direct retrieval from this environment's IP; the user
+  supplied the script as a PDF.

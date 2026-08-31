@@ -1,0 +1,328 @@
+To understand PLCs, we need to address, in this course, PLC history, architecture, 
+operation, ladder logic programming, applications, and, in particular, electrical 
+controls. PLCs are devices intended to do the same functionality as a relay. So, in 
+another video, in another part of the course, we'll talk about relays. That's relatively 
+quick because you must understand the relay to understand PLCs. Relays are handy 
+control devices, but they do have their problems. In particular, they are 
+electromechanical. Because they are mechanical, they can and will wear out. The PLC 
+overcomes this by virtualizing the relay, so you get the same functionality as a relay but 
+using the PLC without the moving parts, which is a considerable improvement in control 
+technology. 
+The term "control technology" contrasts with "instrumentation technology." Both deal 
+with automation and control, but the PLC is more concerned with electrical controls in 
+electrical automation, whereas instrumentation is more concerned with analog control 
+in continuous process control. Again, the PLC is in the electrical domain, and on/off 
+type control is what that term implies. There are two types of industry: batch and 
+continuous control. Batch control is the domain of PLCs. Batch is like making a batch of 
+cookies, but continuous control deals with analog. Meanwhile, control, or PLC control, 
+deals with digital signals (on/off status, black and white), while analog signals are black 
+and white and have shades of gray in between signals. 
+In instrumentation, we talk about 4 to 20 milliamps, with infinite positions or values 
+between 4 and 20 milliamps. The nature of analog is infinity between the lower and 
+upper range value. For example, if you're trying to position a control valve to throttle it, 
+we choose analog because we can go with any position between open and closed. 
+That's analog. That is the realm of instrumentation. Contrast that with batch control and 
+the term batch. 
+When you think of batch, think about a batch of cookies. If you're making a batch of 
+cookies, you add ingredients individually. You open the flour hopper, dose out so much 
+flour, and close the hopper. You then open the milk hopper and close the hopper after 
+you have the right amount of milk. So you see, the valves are going open and then 
+closed. When you need sugar, you open up the valve that dispenses sugar into the 
+mixing tank, and then you close it when enough sugar has been dispensed. So this is the 
+nature of batch. When you finish adding the ingredients to batch controls, you will mix 
+them. That would involve turning on a mixer or blender and then turning off that device. 
+So, all these actions in the electrical realm of control are on/off devices. Not only that, 
+but they also get information from the surrounding world that is on/off. In this regard, 
+there is a report in this course on input devices, which are switches. There are limit, 
+proximity, hand, photocell, pressure, level, flow, and temperature switches. A switch is a 
+device that tells you information, but it only tells you information at one particular point. 
+It doesn't tell you anything more than the temperature is at 180 degrees because that's 
+the set point for the actuation of the switch. It tells you nothing more. It'll tell you when it 
+crosses 180. It can't tell you how much more heat is in the process other than 180 
+degrees. It can't tell you how much less. The only thing you can know is that it's either at 
+180 degrees (possibly higher) or not at 180 degrees and is somewhere lower, but you don't know that value. So, on/off information is the nature of what we feed a PLC to 
+measure the environment around it. 
+And then again, contrast that with instrumentation, where there's a window to see the 
+temperature. You may have 180 degrees Fahrenheit as the set point, but you can see 
+as low as let's say, 150 degrees and as high as 210 degrees. And then, with that window 
+of view, you can know if the temperature is a little below 180 or a lot below 180. If it's a 
+little higher than 180 or a lot higher, and then it, you know, is it on the set point 180? So, 
+there are two types of control: automation instrumentation and controls. Controls are 
+electrical; instrumentation is instrumentation. Controls are batch, on/off processes; 
+instrumentation is analog process measurement and throttling. So that's important to 
+understand. 
+And when you talk about these controls, historically, batch controls have been done 
+with the relay. And the relay, again, is something we'll go into in another lecture, but the 
+relay is the precursor to the PLC. The PLC intends to do the functionality of the relay 
+on/off control, but it's electromechanical. So, with the advent of the PLC, you got rid of 
+many maintenance problems, and you essentially have a computer doing the 
+functionality of relays, not just one but many. 
+PLCs were invented by a company called Modicon for the automotive industry to 
+assemble automobiles. This technology then spread throughout all sectors of the 
+industry. You'll find PLCs in anything from race cars to amusement park ride control, 
+elevator operation, making beverages, and making batches of cookies. Budweiser is a 
+local employer that hires electricians who need to understand how PLCs work because 
+that would be a batch process. That is not to say that PLCs are not used in continuous 
+processes like refineries and chemical plants. They are used more incidentally. In 
+refineries and chemical plants, you hear the term DCS (Distributed Control Systems) 
+more often, and that's another topic for another day, another course. But it's in the 
+realm of analog control, even though it uses digital instrumentation at this present time 
+in many plants. 
+We're going to go into the architecture of a PLC, and then we'll go into the ladder logic 
+programming and applications. So, I'm going to switch over now to the 
+automationdirect.com website. Automationdirect.com manufactures the Do-more 
+PLC, the Click PLC, and others. It is also the one that gives you a fantastic PLC simulator 
+called Do-more that is suitable not only for programming without a PLC and being able 
+to see the functionality of your program but also that same program allows you to hook 
+up with an information cable, a data highway cord, to transfer what you program into 
+the hardware Do-more PLC. 
+So now let's go over to sharing the application. I'm going to choose the ELPT 2319 web 
+page. I'm going to click now, and I'll fade away. Now you see infinity in front of you. The 
+web page is basically like being in a room full of mirrors. I will switch over to the 
+Automation Direct web page and let you see. Let's start by going to a different page. 
+We're going to click on the logo, Automation Direct, and help you understand how to 
+navigate this. Now, it's an essential tool to know the manufacturer's website and use it effectively. Here, we see the front page. Whenever you click a logo, it typically takes 
+you to the main page. You can see the AutomationDirect.com home page up here. 
+And also, let's look down to the left. There is a menu for shopping. We see new and 
+trending information here about the products they are promoting. Let's scroll down, and 
+we're going to "Programmable Control." Remember, in another video, I said the old 
+name for PLCs is PCs, and here you see it echoed under "Programmable Control." Let's 
+go ahead and click. 
+The page is hopping around, but let's look and see here: interactive PLC selector, 
+Arduino compatible controller, so robotics use Arduino and Raspberry Pi, Click PLC, 
+Productivity PLCs, Do-more, Direct Logic (that's a legacy one), motion controllers, I/O 
+links (input-output links), for example. Let's click on "Programmable Controller" and look 
+at that page. Here, we're going to see their line of PLCs. I just reviewed those with you, 
+but the one we're interested in for this course is the Do-more series. Let's get more 
+specific by going to the Do-more. 
+Here we are on the page for Do-more. In another part of this course, you will learn the 
+methodology for downloading software. I again have a lagging computer here; it's still 
+thinking. As it finishes thinking, we can look and see that there are a whole lot of 
+products listed under here. We're not going to bother with that right now. We're going 
+to choose which of these Do-mores we're going to deal with. Now, there's a new 
+architecture called the Bricks. It uses the Do-more computer processor, which is the 
+more legacy model. The card itself looks gray. It's plugged into a legacy framework, 
+which we're about to go over. The typical precursor to all PLCs is this configuration. Then 
+there's another one, a stackable PLC, which is also new. I will go to this one and give it 
+time to load the page. 
+Okay, and now here's an excellent tutorial in itself. If I'm dealing with this product line, 
+the Do-more H2 series, it talks about the CPUs, bases, and some cards. PLC architecture 
+is straightforward, as you're going to find out. You need a power supply, a CPU (a 
+computer), and something to plug things into (a base, also known as a rack). In the 
+rack, plug-in I/O (input/output) cards. Those are cards that plug into one of these slots in 
+the base. Here's an AC (alternating current) input-output card that will allow you to 
+bring in switches and send out information that uses DC voltage. Same thing but for AC. 
+Here's one that combines AC and DC input and output. The actuality is that it's saying 
+AC or DC inputs, but the outputs are relay outputs. Now, that's curious because I told 
+you just now that PLCs were created to do the functionality of a relay. So here we learn 
+that PLCs do not do away with relays. Relays are one of the most versatile control 
+devices, and there's a perfectly good reason for using a relay for an output: you can 
+use external power with this PLC without having the PLC supply your output power. 
+Analog input and output show you that PLCs have come a long way from being only 
+for batch control. But PLCs today can do a DCS continuous control configuration 
+functionality by adding appropriate cards. Not only that, but we can deal with Ethernet 
+input and outputs. Some instrumentation on the factory floor uses Ethernet devices and 
+communication cards, which are specialty modules. Programming software is what 
+you're downloading for free. Automation Direct has this zip link wiring solution because 
+they made a very organized and valuable method of tying wires to their PLCs. You see, PLCs are going to take a lot of wires coming in and a lot of wires going out to devices. 
+Spare parts, such as starter kits and the documentation manual, are also listed here, 
+which I'll be entering in just a moment. 
+When we go down, we can again see more particular information about all these 
+devices. It's clickable for specs, drawings, and more information. Let's click on "software" 
+to help you with the programming software. It will be discussed in another video in 
+another section of the course. I just clicked on "software," this is how you acquire the 
+free, amazingly powerful PLC simulator called Do-more Designer. Down here, some 
+students hear what I say about it being free, and then they look and say, "Wait, wait, 
+wait, wait. It says eleven dollars and twelve dollars here." But that is if you want hard 
+media. But if you don't, just look here for the blue letters, "Download it." It says to 
+download for free. You click there, and it will open up another screen that will lead you 
+down a trail to download the software. Click on "Download Software." 
+Now, as it goes to the next screen, let me tell you, it will be archived when it downloads. 
+It's going to be zipped, which means it's going to be compressed. You have to 
+decompress the download before you install it. Please do not install it before you 
+decompress it. Again, another place to push "Download." Now, at this point, you need 
+to put in your email address. Yeah, they give you an amazing product for no cost, but 
+as any company, they intend to try to communicate with you, so that's why they email. 
+Put in your lead college email or your email. After all, you will become a technician, 
+and this is a tremendous technical company. Then, once you do, you can click 
+"Download" and download the program. Down at the bottom, I see it wants me to 
+accept cookies. It's a trustworthy website. They certainly do not allow viruses on their 
+website so that you can download a cookie. If you are unwilling to, perhaps you can 
+get this without doing that. That's up to you. 
+Okay, so now let's get over here to the user manual. Let's go back a couple of steps. 
+One of the clickable links was the manual. The manual can no longer be bought but 
+can be downloaded freely. I've already downloaded it to review the user manual web 
+page here. I clicked on it, so there it is. You can download the entire PDF manual. If you 
+want it, it's about an inch thick, actually more than an inch thick, with all kinds of 
+information. We won't use much of it because this is a foundation course. But since it 
+pops up, let me show you that Do-more offers many video tutorials. It's a brilliant 
+company in that it offers free training. Those may not be so useful to you because they 
+talk about analog temperature and PID (proportional integral derivative), which talks 
+about analog and instrumentation. But there are some videos you may want to 
+download and explore that are made by the company. 
+So here is the manual. Again, you can download it for free, but once you click on that 
+link, you can download it chapter by chapter. I want to show you chapters one, two, 
+and eight, which are a getting started, Do-more overview of the installation and wiring. 
+Here is chapter one. I will go back to the top of chapter one. Look at what chapter one 
+contains. You can see there's a table of contents on the left here, and you can go into 
+this at any point, but I'm just going to scroll through it. Let's talk about it. There's the table 
+of contents, the manual's Purposes, the chapter's purpose, and some regulatory information. Now, let's look at this PLC. Here, we're going to learn about the 
+architecture of the PLC. It's straightforward. 
+A PLC rack or base unit with this 110/220 volt AC power supply is here. This power supply 
+gives power to the PLC like any power to a device. You've got to plug it into the wall for 
+it to work. It is the same with the PLC. That power supply also furnishes power for inputs 
+and outputs if you so desire to power those internally. Then, look at the other card next 
+to it; the power supply is on the left. This card order has historically been very standard 
+across brands and manufacturers. Anyway, this second card is the computer, Do-more 
+CPU. Now CPU means central processing unit. If you're a computer techie, you know 
+that's another term for expressing a computer, the actual processor. You can see there 
+are ports on this. There are on, off, and program switch modes. There are some 
+indicator lights. Next are two more slots where you can plug in interface cards. This one 
+is the simulator module. It lets you use these switches instead of wiring up pressure 
+switches, level switches, proximity switches, and photocell switches to program. When 
+you're programming, you want to see what happens if the pressure switch reaches its 
+setpoint, what happens if the lights go off, and the photocell switch activates. It's 
+awkward to try to manipulate all those different types of switches: level, flow, 
+temperature. For programming, using these toggle switches is much easier and more 
+practical. Toggle means it has two positions. You toggle it one way, you toggle it the 
+other way, and that simulates a switch, which is nothing more than making and 
+breaking a wire. On top, the indicator lights tell you whether this switch is activated. On 
+this card, it's an output module. You notice automation direct PLCs have blue tabs for 
+input cards, and output cards have a little red tab or triangle. There is a cover over the 
+wiring terminal block that gives it a decent-looking presentation. 
+Whenever you finish wiring, you put this little cover over it, and it hides the terminal 
+block. Also, at the top, we learn that the outputs also have an LED indicator to tell us if 
+they're switched on and off. That's it. That's the configuration of a PLC. You can 
+interface with Windows XP, Vista, 7, 8, for example. Of course, by now, it can interface 
+with 10 or 11. Do-more designer software, that's what I just showed you how to acquire. 
+Here is the data transfer cable. It's called a programming cable, which hooks your PLC 
+to the computer where you'll do your programming. Once the program is complete, 
+you will send the program to the PLC through this information highway so the PLC can 
+have it in the CPU. Some auxiliary things: they'll sell you a screwdriver, which is handy, 
+wire strippers, hookup wire, and an AC cord that you could wire to this power supply. 
+Let's scroll on down. I'm not going to go into all the specs of the PLC. I'm just going to 
+give a walkthrough. If you want in-depth information, download it and read it. 
+Install Do-more Designer software. There's your installation. If you're having any difficulty 
+after you download it, here's your answer. Launch the Do-more designer software. It's 
+telling you how to get it up and going. It now shows you the features. We won't be 
+doing much on this left window, but this is our programming window here. Notice there's 
+an R rail and some rungs. Those are ladder terms. Rails go up and down both sides of 
+the ladder, and rungs connect the rails. That's where you put your hands and feet as 
+you climb, so you might then understand why they call the programming we're going to do "ladder programming." Ladder programming didn't come out of PLC technology. 
+Ladder programming came out of relay electrical relay controls, and it's a simplified 
+way to see circuitry when you're doing controls. 
+Install the hardware. It's telling me how to get it going. You can see behind the terminal 
+block now on the output card a legend showing where each of the zero, one, two, 
+three, four, etc., terminals are. You notice this terminal block itself unplugs from the PLC 
+card. You can disconnect it, do all your wiring, and then plug it back in. Connect your 
+PLC to the computer here with the USB cable. Apply power to the Do-more. Now, here, 
+let's look at the wiring strip. 
+Interestingly, we see a 110/220 VAC base terminal strip, but there's also a 12/24 volts DC 
+base terminal strip and a 125-volt DC base terminal strip. That is the power strip we're 
+going to need to furnish power. As I said, plug it into the wall for power. So it can be 
+done with AC or DC, and when it comes down to DC, if you're not familiar with that, 
+don't plug it into the wall if you have this one because you have to have a source for 
+125 volts DC. If we look more carefully, that voltage can range from 120 to 240 volts DC. 
+That is not standard. It's not what's in your receptacle in the classroom or at your house. 
+You could plug in this one here, but you notice that if you're in another environment 
+besides standard USA 60 hertz, 120 volts/110 volts, you can still use that and apply it 
+here. Here is 12 or 24 volts. Many pressure switches use 12 or 24 volts. This 12/24 VDC is 
+typical for instrumentation device wiring, and if that's the power supply you have, you 
+can buy a PLC with this specification. Now, these are not alternates to the same 
+terminal block. You have to buy the PLC with this option, or this option, or this option. 
+Establishing communication between the computer and the PLC is talked about here. 
+Verify hardware configuration. The hardware configuration you notice on this rack, this 
+base, has several more cards than the one we examined previously, which only had 
+the ones populated here: power supply, CPU, input, and output cards. This rack also 
+allows for quite a few more. One, two, three, four, five, and six more cards will plug in. 
+There is no specification on where you plug the inputs and the outputs. You may want 
+to combine four input cards and then put in your output cards. You may want to 
+alternate input-output, but that's an engineering choice. Yet, the PLC needs to 
+understand the final arrangement. Once it's determined engineering-wise, you do not 
+want to change the configuration, the hardware configuration, or the order of the 
+input-output cards. But once engineered and the configuration is known, you need to 
+let the PLC go out and map the placement of all the cards. It does it automatically so it 
+knows where an input is and where an output is. Historically, it's going to be octal. You'll 
+have maybe zero to seven for the first input card and eight to fifteen for the second. 
+The PLC knows that even though the cards are identical, the one on the left will be the 
+first to give it an address of zero through seven. When you plug in the second one, it 
+knows zero through seven has been used, automatically assigning eight through fifteen 
+to the second card. Octal is interesting because it's a power of two, and you'll see that 
+theme in this course: binary, octal, decimal, and hexadecimal. We'll be talking about all 
+these number systems. Again, getting started, I'll let you read this as you see fit. Create a ladder logic program. 
+I'll walk you through exactly how to do this, but it never hurts to have another way of 
+explaining it. Here, you see they have put a rung into place, a couple of rungs. We 
+have a contact here. Notice there's a space in between; that's a "normally open" 
+contact. You draw it as "normal," so that's open. If it were closed, there'd be a line 
+dissecting it, telling you that electrons can go through it if it's "normally closed." But this 
+one, electrons, is the power source of this left rail, and electrons can get to here, but 
+they can't get to the right side because that's a gap. It's the same thing down here. 
+When this loses, the power gets to this point and energizes this timer, which meets its set 
+point after three seconds, and all the contacts it owns switch. This rundown shows you 
+what we do in this course, giving you a little overview. 
+Introduction. How to save a project. It is not enough to program using your Windows 
+interface. That program is not in the PLC until you write your project to the PLC. It points 
+out this little button. You can save your program to the Windows interface, and that's 
+an intelligent thing to do, especially if you have a power outage and don't want to lose 
+all your work. But when you finally want to try your PLC programming, you must write it 
+to the PLC. Extensive online help exists in the program. 
+Now, I'll go to chapter two, a little briefer. It's a PLC overview. Let's look at the 
+architecture again. Here, I am showing you the Do-more H2 series on the computer. 
+You can see a connector resembling a Cat5 and other connectors like a telephone 
+jack. That plugs into this slot only; you would never put the PLC computer anywhere but 
+in this second slot. The first slot requires the power supply. It shows system compatibility, 
+base units, discrete input-output, analog, and specialty modules. Look at this PLC's 
+versatility—another chart showing communication protocols. You see Modbus. 
+Remember I mentioned that Modicon is a manufacturer of PLCs that invented PLCs? 
+They're still around, but there's Direct Logic, Direct Net, and Direct Logic's protocol. You 
+see the Do-more. That's it for this chapter. 
+The last chapter I briefly want to look at is chapter eight, which is about wiring. We're 
+going to leave wiring to PLC, too. It's enough for us to understand what a PLC is, gain 
+the foundational knowledge of a PLC, and learn how to program a PLC in this course. A 
+PLC mounts in a box, so it's suitable for being put into an enclosure. Observe specific 
+considerations when you panel mount it or put it into an enclosure. It's going to tell you 
+about those. You can see a ground bus here for grounding electricity. You can see a 
+plate it's mounted on, the plate mounted in the enclosure. That is a very standard 
+installation. It can be mounted outside. It could be mounted inside the control center 
+as well. However, PLCs are usually rugged enough to withstand the conditions inside a 
+protective case and enclosure. 
+When installing the bases, you learn that this PLC can snap onto a DIN rail. You hook the 
+top part on the back channel, swing it, and then push it; it locks in. This rail-mounted 
+terminal block end cap shows you how to swing it and lock it into place. Very easy to 
+install. You install this rail first, then snap on the PLC, and you can snap on terminal 
+blocks as well—the same DIN, same technology. We've seen that before. Now, here are some wiring basics. We've seen that before in the other module and 
+chapter. I/O modules, position, and wiring. Here, look at your input-output modules: DC 
+input, AC input, DC, AC output, relay output, analog input instrumentation, etc. 
+Specialty modules. PLCs are excellent devices; this is the best Christmas present ever for 
+techies. The only thing you want Santa to bring you is the PLC, which, by the way, you 
+can acquire for about $120 with about, I think, six outputs and eight inputs, something 
+like that; that's Very cheap. But it would help if you had devices. It would help if you 
+had switches for inputs and things to control. The things to control are motors and 
+pumps, solenoid valves, dampers, positioners, and lights. I/O checklist. Module type. On 
+this one, you get four points for your input, or eight, twelve, or sixteen. How big is the 
+wire diameter for wiring, and how much force is required to torque it down? Very techy 
+stuff here. It shows you here that all your inputs and outputs should be fused. Here's an 
+example of snap-on DIN rail fuses. Ziplink is their wiring protocol. You can read about 
+that if you like. More about wiring isolation boundaries. Wiring is not the nature of this 
+course, so let's pass it. Scott Churchman sent me the link to a couple of videos I placed 
+in the course. It's in the optional information about sinking and sourcing. So, if you want 
+a head start on wiring PLCs, it would be good to watch those videos and get that 
+thought about sinking and sourcing. It goes into a tutorial here about that. 
+Input-output common terminal concept. You have common wires and unique wires. 
+Common is going to be common to every switch. Observe how it goes from this 
+common. Here's your external power supply. The common is going here, which is to the 
+negative side of the battery. But on the positive side, you have these unique wires. 
+They're taking off in parallel, and one wire goes to every different kind of switch: 
+decimal switch, symbol, pressure switch, level switch, hand switch, whatever switch. So, 
+in wiring a PLC, the term common wire is used. In this case, it's negative, and the 
+positive wire is unique. Whenever this switch closes, it goes to a unique input terminal of 
+the PLC, so the PLC knows whether that switch is "made." These are symbols for wiring: 
+AC, DC, AC or DC power supply, and input switches. They're telling you their symbology: 
+solid-state input sensors, output loads. 
+Outstanding manufacturers tend to have excellent tutorials on using their equipment, 
+and Automation Direct is no different. If anything, they go overboard and give you 
+sound technical information for free. And that's it. I'm not going into anything else in this 
+video. It's been long enough. I hope you have had a chance to understand what's said 
+here and got some information out of it that will be helpful to you. We'll see you in the 
+next video. 
+ 
