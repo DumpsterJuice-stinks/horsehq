@@ -344,3 +344,8 @@ midterm plus INTC Lab Test 2 within a week).
   **Discrete Input Measurement Devices Report due 9/7**: 5-column table, 8 device
   rows, all web-links, and the instructor's example row. **SafeAssign
   plagiarism-checked — definitions and applications must be the user's own words.**
+- `INTC_1343/workbook_activities.md` — worked answers and methods for the
+  *Instrumentation and Process Control Workbook* (ATP 2019). Part 1, Chapter 1
+  "Instrumentation Overview": Activity 1-1 fractions/decimals/percentages,
+  1-2 calculation order and equation rearranging, 1-3 scientific notation, plus
+  the saturated steam table interpolation exercise on p. 8.
