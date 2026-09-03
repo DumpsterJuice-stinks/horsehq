@@ -349,3 +349,7 @@ midterm plus INTC Lab Test 2 within a week).
   "Instrumentation Overview": Activity 1-1 fractions/decimals/percentages,
   1-2 calculation order and equation rearranging, 1-3 scientific notation, plus
   the saturated steam table interpolation exercise on p. 8.
+- `ELPT_2319/materials/Number_Systems_reference.md` — binary/octal/decimal/hex:
+  the odometer model, the base-agnostic add-one algorithm, place values, the
+  hex↔binary 4-bit mapping, and worked Digital Challenge 03 columns. Covers
+  Exam 04 and Digital Challenges 01–03 (all due 9/21).
