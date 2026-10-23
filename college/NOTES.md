@@ -358,3 +358,6 @@ midterm plus INTC Lab Test 2 within a week).
   seal-in, four cascading TMR timers forming a self-resetting 60-second cycle,
   six lamp output rungs, a logic trace table, and the mutual-exclusion safety
   proof for the two green lamps.
+  **Rebuilt 10/23 to match the instructor's published spec** (PDF archived
+  alongside): Y0-Y2 = Main red/yellow/green, Y3-Y5 = Side red/yellow/green,
+  six timers T0-T5, and two all-red clearance intervals.
