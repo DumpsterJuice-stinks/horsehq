@@ -353,3 +353,8 @@ midterm plus INTC Lab Test 2 within a week).
   the odometer model, the base-agnostic add-one algorithm, place values, the
   hex↔binary 4-bit mapping, and worked Digital Challenge 03 columns. Covers
   Exam 04 and Digital Challenges 01–03 (all due 9/21).
+- `ELPT_2319/projects/Traffic_Light_Project.md` — complete Do-more ladder design
+  for the Traffic Light Project (due 10/26): I/O and nickname table, start/stop
+  seal-in, four cascading TMR timers forming a self-resetting 60-second cycle,
+  six lamp output rungs, a logic trace table, and the mutual-exclusion safety
+  proof for the two green lamps.
