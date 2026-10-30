@@ -361,3 +361,9 @@ midterm plus INTC Lab Test 2 within a week).
   **Rebuilt 10/23 to match the instructor's published spec** (PDF archived
   alongside): Y0-Y2 = Main red/yellow/green, Y3-Y5 = Side red/yellow/green,
   six timers T0-T5, and two all-red clearance intervals.
+- `ELPT_2319/projects/Car_Wash_Project7_Cheap.md` — Do-more ladder for Harry
+  Franz's CHEAP car wash (Project 7, due 11/2): coin counter CT3 to $3, car-in-
+  place permissive, three TMRA step timers at 1 s, interposing relays C41-C43,
+  and dedicated single-coil output rungs that extend to Projects 8 and 9.
+  Instructor spec PDF archived alongside. Key constraints: TMRA (not TMR) so
+  PAUSE holds accumulated time, and 1-second timers only when uploading.
