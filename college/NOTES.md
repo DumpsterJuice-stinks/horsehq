@@ -367,3 +367,5 @@ midterm plus INTC Lab Test 2 within a week).
   and dedicated single-coil output rungs that extend to Projects 8 and 9.
   Instructor spec PDF archived alongside. Key constraints: TMRA (not TMR) so
   PAUSE holds accumulated time, and 1-second timers only when uploading.
+
+- 2026-11-23: CHEAP car wash go-by sheet filled in and simulated. See `ELPT_2319/projects/Cheap_Carwash_GoBy_Filled.md`. The go-by uses CT0, T0/T1 at 3 s, and ST5 to blink Y2. I added T2 and a CHEAP CARWASH RESET coil because the sheet stops at rung 9.
