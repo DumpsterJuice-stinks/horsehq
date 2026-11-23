@@ -14,10 +14,11 @@ PURPLE, BLUE, GREY = colors.HexColor("#7a2a7a"), colors.HexColor("#1565c0"), col
 
 def NO(a, n): return ("NO", a, n)
 def NC(a, n): return ("NC", a, n)
+def PE(a, n): return ("PE", a, n)
 def P(*b): return ("PAR", list(b))
 
-def w(it): return CW if it[0] in ("NO", "NC") else max(sw(b) for b in it[1]) + 16
-def h(it): return CH if it[0] in ("NO", "NC") else sum(sh(b) for b in it[1])
+def w(it): return CW if it[0] in ("NO", "NC", "PE") else max(sw(b) for b in it[1]) + 16
+def h(it): return CH if it[0] in ("NO", "NC", "PE") else sum(sh(b) for b in it[1])
 def sw(s): return sum(w(i) for i in s)
 def sh(s): return max(h(i) for i in s)
 
@@ -27,6 +28,8 @@ def contact(c, it, x, y):
     c.line(x, y, cx - 7, y); c.line(cx + 7, y, x + CW, y)
     c.line(cx - 7, y - 9, cx - 7, y + 9); c.line(cx + 7, y - 9, cx + 7, y + 9)
     if k == "NC": c.line(cx - 10, y - 10, cx + 10, y + 10)
+    if k == "PE":
+        c.line(cx, y - 7, cx, y + 7); c.line(cx, y + 7, cx - 3, y + 2); c.line(cx, y + 7, cx + 3, y + 2)
     c.setFillColor(PURPLE); c.setFont("Helvetica", 6.6)
     lines = n.split("|")
     for i, ln in enumerate(reversed(lines)):
@@ -36,7 +39,7 @@ def contact(c, it, x, y):
 
 def series(c, s, x, y, to_x=None):
     for it in s:
-        if it[0] in ("NO", "NC"): contact(c, it, x, y); x += CW
+        if it[0] in ("NO", "NC", "PE"): contact(c, it, x, y); x += CW
         else:
             bw = w(it); yy = y; last = y
             for b in it[1]:
@@ -87,8 +90,8 @@ PROG = [
  ("SECTION", None, "CHEAP CAR WASH SEQUENCE SECTION"),
  (4, "C", [P([NO("CT3.Done", "$3 PAID"), NO("C1", "CAR IS|IN PLACE"), NO("C0", "SYSTEM|ENABLED")], [NO("C2", "CHEAP WASH|RUNNING")]), STOP, MRST, CRST],
   ("C2", "CHEAP WASH|RUNNING"), "$3 paid AND car in place AND system enabled starts the wash; C2 seals in."),
- (5, "C", [P([NO("X2", "PAUSE")], [NO("C3", "PAUSED")]), NC("X6", "RESUME"), STOP, MRST], ("C3", "PAUSED"),
-  "PAUSE latches C3; RESUME, STOP or MASTER RESET unlatches it."),
+ (5, "C", [P([PE("X2", "PAUSE|(rising edge)")], [NO("C3", "PAUSED")]), NC("X6", "RESUME"), STOP, MRST], ("C3", "PAUSED"),
+  "Rising edge of PAUSE latches C3 (works even if the PAUSE switch is left on). RESUME, STOP or MASTER RESET unlatches it."),
  (6, "B", ("TMRA", "SOAP|TIME", [("Timer Struct", "T0"), ("Preset", "1.000s")],
    [("E", [NO("C2", "CHEAP WASH|RUNNING"), NC("C3", "PAUSED")]), ("R", RST_BR)]),
   "Soap step time. Accumulating: holds its time while paused."),
@@ -171,7 +174,7 @@ for ln in ["1. Press GO (X0): SYSTEM ENABLED (C0) seals in.",
            "3. Car drives forward: CAR-IN-PLACE (X4) latches C1. With $3 paid and the car in place, CHEAP WASH RUNNING (C2) seals in.",
            "4. Soap (C41 -> Y1) for T0, soak (C42 -> Y2, blinking on ST5) for T1, rinse (C43 -> Y3) for T2.",
            "5. T2.Done fires CHEAP CARWASH RESET (C8) for one scan, which clears CT3, C1, C2 and all TMRA timers.",
-           "PAUSE (X2) latches C3: timer enables and all outputs drop, TMRA keeps its time. RESUME (X6) continues the same step.",
+           "PAUSE (X2, rising edge) latches C3: timer enables and all outputs drop, TMRA keeps its time. RESUME (X6) continues the same step.",
            "STOP (X1) or MASTER RESET (X5) clears the counter, timers, latches and outputs at any time."]:
     c.drawString(36, y, ln); y -= 13
 y -= 6; c.setFont("Helvetica-Bold", 11); c.drawString(30, y, "Matrix (which output is on in each step)"); y -= 16
@@ -182,7 +185,7 @@ c.showPage()
 # ladder pages
 items = list(PROG); idx = 0
 while idx < len(items):
-    page += 1; header(c, page, "Ladder Logic (Do-more). Purple = nickname, bold = address. Contacts with a slash are NC (XIO).")
+    page += 1; header(c, page, "Ladder Logic (Do-more). Purple = nickname, bold = address. Slash = NC contact. Arrow = rising-edge contact.")
     c.setLineWidth(1.4); top = PH - 62; start = top
     def need(i):
         hgt = rung_height(items[i])

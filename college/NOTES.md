@@ -370,3 +370,4 @@ midterm plus INTC Lab Test 2 within a week).
 
 - 2026-11-23: CHEAP car wash go-by sheet filled in and simulated. See `ELPT_2319/projects/Cheap_Carwash_GoBy_Filled.md`. The go-by uses CT0, T0/T1 at 3 s, and ST5 to blink Y2. I added T2 and a CHEAP CARWASH RESET coil because the sheet stops at rung 9.
 - 2026-11-23: Project 7 CHEAP car wash rebuilt from the Franz spec plus the go-by format (CT3, C41-C43, TMRA T0-T2 at 1 s, ST5 blink, GO/STOP/PAUSE/RESUME, C8 end-of-wash reset). 12/12 sim checks pass. PDF: `ELPT_2319/projects/Project7_CHEAP_Car_Wash_Ladder.pdf`. This supersedes `Car_Wash_Project7_Cheap.md`.
+- 2026-11-23: The user built Project 7 in the Do-more 2.11 simulator and reported it did not work (no details on the symptom yet). Fix: rung 5 PAUSE is now a rising-edge contact, so a PAUSE switch left on no longer locks the wash. Common setup mistakes: TMRA preset must be 1000 (ms); toggle COIN off between counts; press GO first; leave STOP/RESET off.

@@ -23,15 +23,17 @@ Y = dict.fromkeys([1, 2, 3], False)
 CT3, T0, T1, T2 = CNT(3), TMRA(1000), TMRA(1000), TMRA(1000)
 t = 0
 log = []
+last_x2 = False  # for the rising-edge PAUSE contact
 
 def scan():
-    global t
+    global t, last_x2
     ST5 = (t // 50) % 2 == 0                                                    # $100ms clock
     C[0] = (X[0] or C[0]) and not X[1] and not X[5]                             # R1 SYSTEM ENABLED
     CT3.run(C[0] and X[3], X[1] or X[5] or C[8])                                # R2 CHEAP COIN COUNTER
     C[1] = (X[4] or C[1]) and not X[1] and not X[5] and not C[8]                # R3 CAR IS IN PLACE
     C[2] = ((CT3.done and C[1] and C[0]) or C[2]) and not X[1] and not X[5] and not C[8]  # R4 WASH RUNNING
-    C[3] = (X[2] or C[3]) and not X[6] and not X[1] and not X[5]               # R5 PAUSED
+    pause_edge = X[2] and not last_x2; last_x2 = X[2]                           # rising edge of PAUSE
+    C[3] = (pause_edge or C[3]) and not X[6] and not X[1] and not X[5]          # R5 PAUSED (edge contact X2)
     rst = X[1] or X[5] or C[8]
     T0.run(C[2] and not C[3], rst)                                              # R6 soap timer
     T1.run(T0.done and not C[3], rst)                                           # R7 soak timer
